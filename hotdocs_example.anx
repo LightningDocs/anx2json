@@ -1,0 +1,1589 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AnswerSet title="" version="1.1">
+	<Answer name="(ANSWER FILE HISTORY)">
+		<TextValue>Master Loan Documents - Loan Agreement : May 2, 2023, 10:05
+Master Loan Documents - Loan Agreement : April 17, 2023, 11:48
+Master Loan Documents - Loan Agreement : March 27, 2023, 12:46
+Master Modification Documents : March 21, 2023, 12:22
+Master Modification Documents : March 21, 2023, 12:22
+Master Modification Documents : March 21, 2023, 12:12
+Master Modification Documents : March 20, 2023, 15:18
+Master Loan Documents - Loan Agreement : March 17, 2023, 12:15
+Master Loan Documents - Loan Agreement : March 15, 2023, 15:10
+Master Loan Documents - Loan Agreement : March 15, 2023, 14:48
+Master Loan Documents - Loan Agreement : March 15, 2023, 14:47
+Master Loan Documents - Loan Agreement : March 15, 2023, 14:47
+Master Loan Documents - Loan Agreement : March 15, 2023, 12:35
+Master Loan Documents - Loan Agreement : March 15, 2023, 12:35
+Master Loan Documents - Loan Agreement : March 15, 2023, 12:19
+Master Loan Documents - Loan Agreement : March 15, 2023, 9:24
+Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
+Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
+Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
+Master Loan Documents - Loan Agreement : March 6, 2023, 11:00
+Master Loan Documents - Loan Agreement : March 6, 2023, 10:45
+Master Loan Documents - Loan Agreement : March 3, 2023, 16:06
+Master Loan Documents - Loan Agreement : March 3, 2023, 15:58
+Master Loan Documents - Loan Agreement : March 3, 2023, 15:48
+Master Loan Documents - Loan Agreement : March 3, 2023, 15:43
+Master Loan Documents - Loan Agreement : March 3, 2023, 15:23
+Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
+</TextValue>
+	</Answer>
+	<Answer name="ALTA Endorsements TE">
+		<TextValue>test</TextValue>
+	</Answer>
+	<Answer name="B signature underlying entity 3 attorneyinfact TX">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<RptValue/>
+					<RptValue/>
+					<RptValue>
+						<TextValue>Investor A aif</TextValue>
+						<TextValue>Investor B aif</TextValue>
+						<TextValue>Investor C aif</TextValue>
+						<TextValue unans="true"/>
+					</RptValue>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 2 attorneyinfact TX">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<TextValue>Cornelius aif</TextValue>
+					<TextValue>Bertha aif</TextValue>
+					<TextValue unans="true"/>
+					<TextValue>Dolores aif</TextValue>
+					<TextValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 3 title TX">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<RptValue/>
+					<RptValue/>
+					<RptValue>
+						<TextValue>a</TextValue>
+						<TextValue>b</TextValue>
+						<TextValue>c</TextValue>
+						<TextValue unans="true"/>
+					</RptValue>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 2 title TX">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<TextValue>Trustee</TextValue>
+					<TextValue>Trustee</TextValue>
+					<TextValue>Something</TextValue>
+					<TextValue>Trustee</TextValue>
+					<TextValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 1 title TX">
+		<RptValue>
+			<RptValue>
+				<TextValue>test</TextValue>
+				<TextValue>test</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 1 name TX">
+		<RptValue>
+			<RptValue>
+				<TextValue>Albus Dumbledore</TextValue>
+				<TextValue>Ministry of Magic</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 3 name TX">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<RptValue/>
+					<RptValue/>
+					<RptValue>
+						<TextValue>Investor A</TextValue>
+						<TextValue>Investor B</TextValue>
+						<TextValue>Investor C</TextValue>
+						<TextValue unans="true"/>
+					</RptValue>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 2 name TX">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<TextValue>Cornelius Fudge</TextValue>
+					<TextValue>Bertha Jorkins</TextValue>
+					<TextValue>Ministry Investors</TextValue>
+					<TextValue>Dolores Umbridge</TextValue>
+					<TextValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower City TE">
+		<TextValue>Long Beach</TextValue>
+	</Answer>
+	<Answer name="Borrower First Name 1 TE">
+		<TextValue>Hogwarts</TextValue>
+	</Answer>
+	<Answer name="Borrower First Name 2 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower First Name 3 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Key TX">
+		<RptValue>
+			<TextValue>$$0004%%</TextValue>
+			<TextValue unans="true"/>
+			<TextValue unans="true"/>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower Last Name 1 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Last Name 2 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Last Name 3 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Middle Name 1 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Middle Name 2 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Middle Name 3 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Name TE">
+		<RptValue>
+			<TextValue>Hogwarts</TextValue>
+			<TextValue unans="true"/>
+			<TextValue unans="true"/>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower Owner Signer Underlying 1 Name TE">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<TextValue>Some Owner Here</TextValue>
+					<TextValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower Owner Signer Underlying 2 Name TE">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<RptValue/>
+					<RptValue/>
+					<RptValue>
+						<TextValue>Investor Aa</TextValue>
+						<TextValue>Investor Bb</TextValue>
+						<TextValue>Investor Cc</TextValue>
+						<TextValue unans="true"/>
+					</RptValue>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower Owner Signer Underlying 2 Title TE">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<RptValue/>
+					<RptValue/>
+					<RptValue>
+						<TextValue>aa</TextValue>
+						<TextValue>bb</TextValue>
+						<TextValue>cc</TextValue>
+						<TextValue unans="true"/>
+					</RptValue>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower Street Address TE">
+		<TextValue>4865 Lorelei Avenue</TextValue>
+	</Answer>
+	<Answer name="Borrower Suffix Name 1 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Suffix Name 2 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Suffix Name 3 TE">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Borrower Zip Code TE">
+		<TextValue>90808</TextValue>
+	</Answer>
+	<Answer name="Broker Fee Description TE">
+		<RptValue>
+			<TextValue>something</TextValue>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Certificate State TE">
+		<RptValue>
+			<TextValue>California</TextValue>
+			<TextValue>California</TextValue>
+			<TextValue>California</TextValue>
+			<TextValue>California</TextValue>
+			<TextValue>Alaska</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Client Specific Pass Store TX">
+		<TextValue>Deephaven</TextValue>
+	</Answer>
+	<Answer name="Closing Contact Email Address TX">
+		<TextValue>Collins</TextValue>
+	</Answer>
+	<Answer name="Closing Contact Name TE">
+		<TextValue>Seth</TextValue>
+	</Answer>
+	<Answer name="Escrow Company Name TE">
+		<TextValue>The Good Place</TextValue>
+	</Answer>
+	<Answer name="Escrow Officer City TE">
+		<TextValue>Universal</TextValue>
+	</Answer>
+	<Answer name="Escrow Officer Contact Email TE">
+		<TextValue>schur@nbc.com</TextValue>
+	</Answer>
+	<Answer name="Escrow Officer Street Address TE">
+		<TextValue>9921 Universal Way</TextValue>
+	</Answer>
+	<Answer name="Escrow Officer TE">
+		<TextValue>Mike Schur</TextValue>
+	</Answer>
+	<Answer name="Escrow Officer Zip Code TE">
+		<TextValue>98912</TextValue>
+	</Answer>
+	<Answer name="G signature underlying entity 1 title TX">
+		<RptValue>
+			<RptValue>
+				<TextValue>The Baddest of Guys</TextValue>
+				<TextValue>A Bad Guy</TextValue>
+				<TextValue unans="true"/>
+				<TextValue unans="true"/>
+			</RptValue>
+			<RptValue/>
+			<RptValue>
+				<TextValue>Officer Title</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="G signature underlying entity 1 name TX">
+		<RptValue>
+			<RptValue>
+				<TextValue>The Sith</TextValue>
+				<TextValue>Stormtrooper 81-92</TextValue>
+				<TextValue unans="true"/>
+				<TextValue unans="true"/>
+			</RptValue>
+			<RptValue/>
+			<RptValue>
+				<TextValue>Jabba The Hutt Officer</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor City TE">
+		<RptValue>
+			<TextValue>Outer Space</TextValue>
+			<TextValue>Long Beach</TextValue>
+			<TextValue>Long Beach</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Name TE">
+		<RptValue>
+			<TextValue>The Empire</TextValue>
+			<TextValue>Han Solo</TextValue>
+			<TextValue>The Hutt</TextValue>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Owner Signer Name TE">
+		<RptValue>
+			<RptValue>
+				<TextValue>Darth Vader</TextValue>
+				<TextValue>Count Dooku</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+			<RptValue/>
+			<RptValue>
+				<TextValue>Jabba The Hutt Shareholder</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Owner Signer Underlying 1 Name TE">
+		<RptValue>
+			<RptValue>
+				<RptValue>
+					<TextValue>Darth Vader</TextValue>
+					<TextValue>Count Dooku</TextValue>
+					<TextValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Owner Signer Underlying 1 Title TE">
+		<RptValue>
+			<RptValue>
+				<RptValue>
+					<TextValue unans="true"/>
+					<TextValue>SomethingIDK</TextValue>
+					<TextValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Street Address TE">
+		<RptValue>
+			<TextValue>9812 Death Star Way</TextValue>
+			<TextValue>4865 Lorelei Avenue</TextValue>
+			<TextValue>4865 Lorelei Avenue</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Zip Code TE">
+		<RptValue>
+			<TextValue>90808</TextValue>
+			<TextValue>90808</TextValue>
+			<TextValue>90808</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Language Capacity Name TX">
+		<RptValue>
+			<TextValue>Albus Dumbledore</TextValue>
+			<TextValue>Cornelius Fudge by Cornelius aif</TextValue>
+			<TextValue>Bertha Jorkins by Bertha aif</TextValue>
+			<TextValue>Investor A by Investor A aif</TextValue>
+			<TextValue>Investor B by Investor B aif</TextValue>
+			<TextValue>Investor C by Investor C aif</TextValue>
+			<TextValue>Dolores Umbridge by Dolores aif</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Lender City TE">
+		<TextValue>Long Beach</TextValue>
+	</Answer>
+	<Answer name="Lender Delivery To Notice TE">
+		<TextValue>Seth Collins</TextValue>
+	</Answer>
+	<Answer name="Lender Name TE">
+		<RptValue>
+			<TextValue>Big Lending Lenders</TextValue>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Lender Street Address TE">
+		<TextValue>4865 Lorelei Avenue</TextValue>
+	</Answer>
+	<Answer name="Lender Zip Code TE">
+		<TextValue>90808</TextValue>
+	</Answer>
+	<Answer name="Loan Number TE">
+		<TextValue>7234617</TextValue>
+	</Answer>
+	<Answer name="Loan Prepared By Email TE">
+		<TextValue>a.munoz@geracillp.com</TextValue>
+	</Answer>
+	<Answer name="Loan Prepared By TE">
+		<TextValue>Audie Munoz</TextValue>
+	</Answer>
+	<Answer name="Modification Loan Instrument Number TE">
+		<RptValue>
+			<TextValue>5438821</TextValue>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Property APN TE">
+		<RptValue>
+			<TextValue>882191</TextValue>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Property City TX">
+		<RptValue>
+			<TextValue>Long Beach</TextValue>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Property Key TX">
+		<RptValue>
+			<TextValue>$$0003%%</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Property Street Address TE">
+		<RptValue>
+			<TextValue>4865 Lorelei Avenue</TextValue>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Property Zip Code TE">
+		<RptValue>
+			<TextValue>90808</TextValue>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="SI Property APN TE">
+		<RptValue>
+			<RptValue>
+				<TextValue>188821</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+			<RptValue>
+				<TextValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="SI Property City TX">
+		<RptValue>
+			<RptValue>
+				<TextValue>GrahamCity</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+			<RptValue>
+				<TextValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="SI Property Street Address TE">
+		<RptValue>
+			<RptValue>
+				<TextValue>8281 Graham Lane</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+			<RptValue>
+				<TextValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="SI Property Zip Code TE">
+		<RptValue>
+			<RptValue>
+				<TextValue>29915</TextValue>
+				<TextValue unans="true"/>
+			</RptValue>
+			<RptValue>
+				<TextValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Security Instrument Vesting TX">
+		<RptValue>
+			<TextValue>Vesting stuff goes here</TextValue>
+			<TextValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Temp Features TX">
+		<TextValue></TextValue>
+	</Answer>
+	<Answer name="Title Company Name TE">
+		<TextValue>Universal</TextValue>
+	</Answer>
+	<Answer name="Title Deletions TE">
+		<TextValue>1</TextValue>
+	</Answer>
+	<Answer name="Title Officer City TE">
+		<TextValue>Universal</TextValue>
+	</Answer>
+	<Answer name="Title Officer Contact Email TE">
+		<TextValue>schur@nbc.com</TextValue>
+	</Answer>
+	<Answer name="Title Officer Name TE">
+		<TextValue>Mike Schur</TextValue>
+	</Answer>
+	<Answer name="Title Officer Street Address TE">
+		<TextValue>9921 Universal Way</TextValue>
+	</Answer>
+	<Answer name="Title Order Number TE">
+		<TextValue>992191</TextValue>
+	</Answer>
+	<Answer name="Title Zip Code TE">
+		<TextValue>98912</TextValue>
+	</Answer>
+	<Answer name="Trustee Address TE">
+		<RptValue>
+			<TextValue>90 Discovery, Irvine, California 92618</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="TrusteeName TE">
+		<RptValue>
+			<TextValue>Geraci Law Firm</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Vesting Name TX">
+		<RptValue>
+			<RptValue>
+				<TextValue>Hogwarts, a California general partnership</TextValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="s">
+		<TextValue>s</TextValue>
+	</Answer>
+	<Answer name="Amortization Period NU">
+		<NumValue>12.0000000</NumValue>
+	</Answer>
+	<Answer name="Broker Fee NU">
+		<RptValue>
+			<NumValue>25.0000000</NumValue>
+			<NumValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Default Interest Rate NU">
+		<NumValue>6.0000000</NumValue>
+	</Answer>
+	<Answer name="First Payment Letter Payment AMT NU">
+		<NumValue>20500.0000000</NumValue>
+	</Answer>
+	<Answer name="Flood Insurance NU">
+		<NumValue>0.0000000</NumValue>
+	</Answer>
+	<Answer name="Guaranty Count NU">
+		<NumValue>2.0000000</NumValue>
+	</Answer>
+	<Answer name="Homeowner Insurance NU">
+		<NumValue>0.0000000</NumValue>
+	</Answer>
+	<Answer name="Interest Rate NU">
+		<NumValue>6.0000000</NumValue>
+	</Answer>
+	<Answer name="Keys NU">
+		<NumValue>5.0000000</NumValue>
+	</Answer>
+	<Answer name="Lender Invest Amount NU">
+		<RptValue>
+			<NumValue>15.0000000</NumValue>
+			<NumValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Loan Amount NU">
+		<NumValue>200000.0000000</NumValue>
+	</Answer>
+	<Answer name="Loan Term NU">
+		<NumValue>36.0000000</NumValue>
+	</Answer>
+	<Answer name="Modification Lender Invest Amount NU">
+		<RptValue>
+			<NumValue>14.0000000</NumValue>
+			<NumValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Modification New Loan Amount NU">
+		<NumValue>250000.0000000</NumValue>
+	</Answer>
+	<Answer name="Modification Outstanding Late Charges NU">
+		<NumValue>0.0000000</NumValue>
+	</Answer>
+	<Answer name="Modification Unpaid Interest NU">
+		<NumValue>0.0000000</NumValue>
+	</Answer>
+	<Answer name="Prepay Term NU">
+		<NumValue>6.0000000</NumValue>
+	</Answer>
+	<Answer name="Prior LA Modification NU">
+		<NumValue>0.0000000</NumValue>
+	</Answer>
+	<Answer name="Prior SI Modification NU">
+		<NumValue>0.0000000</NumValue>
+	</Answer>
+	<Answer name="Property Taxes NU">
+		<NumValue>0.0000000</NumValue>
+	</Answer>
+	<Answer name="Signer Borr Ind Counter NU">
+		<NumValue>7.0000000</NumValue>
+	</Answer>
+	<Answer name="Variable Interest Rate Interest Only Period NM">
+		<NumValue>24.0000000</NumValue>
+	</Answer>
+	<Answer name="Date Created DT">
+		<DateValue>3/3/2023</DateValue>
+	</Answer>
+	<Answer name="Document Date DT">
+		<DateValue>3/3/2023</DateValue>
+	</Answer>
+	<Answer name="Modification Date DT">
+		<DateValue>21/3/2023</DateValue>
+	</Answer>
+	<Answer name="Modification Loan Recorded On DT">
+		<RptValue>
+			<DateValue>21/3/2023</DateValue>
+			<DateValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Original Maturity Date DT">
+		<DateValue>21/3/2023</DateValue>
+	</Answer>
+	<Answer name="Title Report Effective Date DT">
+		<DateValue>3/3/2023</DateValue>
+	</Answer>
+	<Answer name="ACH Delivery of Payments TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Affiliate Loan TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Appraisal Reserve TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Assignment and Allonge TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Assignment of Permits TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Assignment of Property Management TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Auto Extension TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="B signature underlying entity 3 attorneyinfact TF">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<RptValue>
+						<TFValue unans="true"/>
+					</RptValue>
+					<RptValue/>
+					<RptValue>
+						<TFValue>true</TFValue>
+						<TFValue>true</TFValue>
+						<TFValue>true</TFValue>
+						<TFValue unans="true"/>
+					</RptValue>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 2 attorneyinfact TF">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<TFValue>true</TFValue>
+					<TFValue>true</TFValue>
+					<TFValue unans="true"/>
+					<TFValue>true</TFValue>
+					<TFValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Blackburne Callable Term TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Blackburne Initial Bonus Rate TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Borrower AKA Required TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="CA Broker TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="CA CFL License TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="CSA Debtor TF">
+		<TFValue>true</TFValue>
+	</Answer>
+	<Answer name="Cannabis Loan TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Capex Holdback TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Collateral Assignment TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Collateral Security Agreement TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Confession of Judgment TF">
+		<TFValue>true</TFValue>
+	</Answer>
+	<Answer name="Construction Borrower Contribution TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Construction Contract TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Construction Design Contract TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Construction Fund Control TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Construction Holdback TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Construction Loan TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Contingency Reserve TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="DLP Deferred Line TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="DLP Deferred TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="DLP Deposits TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="DLP Insurance TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="DSCR TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Damage Reserve TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Default Fee TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Deferred Broker Fees TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Deposit Accounts TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Dryden Mortgage Fund TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Exclude Disbursement Schedule TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Exhibit A Lender List TF">
+		<RptValue>
+			<TFValue>true</TFValue>
+			<TFValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Exit Fee TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Extension TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="F Street Loan TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="FCI Disbursement Agreement TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Fay Servicing Springing LockBox TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="File Sync TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="First Payment Letter TF">
+		<TFValue>true</TFValue>
+	</Answer>
+	<Answer name="Fixture Filing TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Guarantor TF">
+		<TFValue>true</TFValue>
+	</Answer>
+	<Answer name="Guaranty of Completion TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Housemax Credit Card Authorization TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Impound Accounts TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Insurance Holdback TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Interest Reserve TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Interest Step TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Kass Schuler TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Language Capacity AIF TF">
+		<RptValue>
+			<TFValue>false</TFValue>
+			<TFValue>true</TFValue>
+			<TFValue>true</TFValue>
+			<TFValue>true</TFValue>
+			<TFValue>true</TFValue>
+			<TFValue>true</TFValue>
+			<TFValue>true</TFValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Leasehold Mortgage TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Lender Holdback TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Loan Administration Agreement TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Loan Type Interest Only TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Loan Type Variable TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="M360 Tenant Impovement Impounds TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="MERS TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Master Guaranty TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Membership Pledge TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Modification Outstanding Late Charges Paid TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Modification Outstanding Late Charges TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Modification Reserves TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Modification Unpaid Interest Paid TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Modification Unpaid Interest TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="No Entity Certificates TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="No Fill Business Purpose TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="No Fill Non Owner TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="No Footer Initials TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="No Title Policy TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Non Dutch TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Owner Occupied TF">
+		<RptValue>
+			<TFValue>false</TFValue>
+			<TFValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Partial Reconveyance TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Payment in Advance TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Prepay 20 Percent TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Prepay Lock Yield TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Prepay Step TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Prepayment Premium TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Principal Repayment Agreement TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Principal Repayment Proportional TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Prior LA Modification TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Prior SI Modification TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Proforma Policy TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Property Include PUD TF">
+		<RptValue>
+			<TFValue>false</TFValue>
+			<TFValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Rate Adjust Daily TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Real Property Tax Holdback TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Remove ACH TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Remove Arbitration TF">
+		<TFValue>true</TFValue>
+	</Answer>
+	<Answer name="Remove Language Capacity TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Renovo Cash Collateral TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Renovo Non Dutch TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Renovo Origination TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Renovo Third Party TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Rental Income LockBox TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Retainage Required TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="SBA Loan TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="SPE Recycled TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Schedule of Properties TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Servicing Fees TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Sharestate Partial Release TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Sharestate Rehab Holdback TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Sharestate Rehab Holdback Dutch TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Signing Instructions TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Silver Hill Deferred Loan TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Simple Construction Holdback TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Special Purpose Entity TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Stronghill Correspondent Loan TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Subordination Post Closing TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Termination Fee TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Third Party SI TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Title Insurance 100 TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Translator Required TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="UCC Fixture Filing TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="UCC Personal Property TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Unify ADA TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="W9 TF">
+		<TFValue>true</TFValue>
+	</Answer>
+	<Answer name="Wallis Construction Retainage TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Wallis Life Insurance TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="eResi Loan TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="m360 Capex Holdback TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="m360 Capital Expenditure Impound TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="m360 Debt Service Holdback TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="m360 Stabilization TF">
+		<TFValue>false</TFValue>
+	</Answer>
+	<Answer name="Arbitration County MC">
+		<MCValue>
+			<SelValue>Los AngelesH1</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Assignment and Allonge Concurrent MC">
+		<MCValue>
+			<SelValue>After</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="B signature underlying entity 2 org state MC">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<MCValue unans="true"/>
+					<MCValue unans="true"/>
+					<MCValue>
+						<SelValue>California</SelValue>
+					</MCValue>
+					<MCValue unans="true"/>
+					<MCValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 1 org state MC">
+		<RptValue>
+			<RptValue>
+				<MCValue unans="true"/>
+				<MCValue>
+					<SelValue>California</SelValue>
+				</MCValue>
+				<MCValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 1 entity type MC">
+		<RptValue>
+			<RptValue>
+				<MCValue>
+					<SelValue>individual</SelValue>
+				</MCValue>
+				<MCValue>
+					<SelValue>general partnership</SelValue>
+				</MCValue>
+				<MCValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="B signature underlying entity 2 entity type MC">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<MCValue>
+						<SelValue>individual</SelValue>
+					</MCValue>
+					<MCValue>
+						<SelValue>individual</SelValue>
+					</MCValue>
+					<MCValue>
+						<SelValue>limited liability company</SelValue>
+					</MCValue>
+					<MCValue>
+						<SelValue>individual</SelValue>
+					</MCValue>
+					<MCValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower Entity Type MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>general partnership</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+			<MCValue unans="true"/>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower Notice MC">
+		<MCValue>
+			<SelValue>Borrower</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Borrower Organization State MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>California</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower Owner Signer Underlying 1 Entity Type MC">
+		<RptValue>
+			<RptValue>
+				<RptValue/>
+				<RptValue>
+					<MCValue>
+						<SelValue>individual</SelValue>
+					</MCValue>
+					<MCValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Borrower State MC">
+		<MCValue>
+			<SelValue>California</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Broker Delivery Fee Comment MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>Deliver to Broker&apos;s Address</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="California Law Warning MC">
+		<MCValue>
+			<SelValue>Yes</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Client MC">
+		<MCValue>
+			<SelValue>Deephaven</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Default Reserve MC">
+		<MCValue>
+			<SelValue>None</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Deferred Origination Fees MC">
+		<MCValue>
+			<SelValue>None</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Escrow Officer State MC">
+		<MCValue>
+			<SelValue>California</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Escrow and Title Select MC">
+		<MCValue>
+			<SelValue>Escrow and Title</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="G signature underlying entity 1 org state MC">
+		<RptValue>
+			<RptValue>
+				<MCValue>
+					<SelValue>Florida</SelValue>
+				</MCValue>
+				<MCValue unans="true"/>
+				<MCValue unans="true"/>
+				<MCValue unans="true"/>
+			</RptValue>
+			<RptValue/>
+			<RptValue>
+				<MCValue unans="true"/>
+				<MCValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="G signature underlying entity 1 entity type MC">
+		<RptValue>
+			<RptValue>
+				<MCValue>
+					<SelValue>general partnership</SelValue>
+				</MCValue>
+				<MCValue>
+					<SelValue>individual</SelValue>
+				</MCValue>
+				<MCValue unans="true"/>
+				<MCValue unans="true"/>
+			</RptValue>
+			<RptValue/>
+			<RptValue>
+				<MCValue>
+					<SelValue>individual</SelValue>
+				</MCValue>
+				<MCValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Governing Law State MC">
+		<MCValue>
+			<SelValue>California</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Guarantor Address MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>Other</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>Borrower</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>Borrower</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Entity Type MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>corporation</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>individual</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>corporation</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Organization State MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>California</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+			<MCValue>
+				<SelValue>Alaska</SelValue>
+			</MCValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Owner Entity Type MC">
+		<RptValue>
+			<RptValue>
+				<MCValue>
+					<SelValue>individual</SelValue>
+				</MCValue>
+				<MCValue>
+					<SelValue>individual</SelValue>
+				</MCValue>
+				<MCValue unans="true"/>
+			</RptValue>
+			<RptValue/>
+			<RptValue>
+				<MCValue>
+					<SelValue>individual</SelValue>
+				</MCValue>
+				<MCValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Owner Signer Underlying 1 Role MC">
+		<RptValue>
+			<RptValue>
+				<RptValue>
+					<MCValue>
+						<SelValue>Owner</SelValue>
+					</MCValue>
+					<MCValue>
+						<SelValue>Signer</SelValue>
+					</MCValue>
+					<MCValue unans="true"/>
+				</RptValue>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor State MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>California</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>California</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>California</SelValue>
+			</MCValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Type MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>Full</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>Full</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>Limited</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Guarantor Type Select MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>Full</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>Full</SelValue>
+			</MCValue>
+			<MCValue>
+				<SelValue>Limited</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Guaranty Type MC">
+		<MCValue>
+			<SelValue>Full</SelValue>
+			<SelValue>Limited</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Interest Calc Type MC">
+		<MCValue>
+			<SelValue>30/360</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Lender Care Of MC">
+		<MCValue>
+			<SelValue>Lender</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Lender State MC">
+		<MCValue>
+			<SelValue>California</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Lien Position MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>first</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Loan Documents MC">
+		<MCValue>
+			<SelValue>Master</SelValue>
+			<SelValue>Assignment</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Loan Servicer MC">
+		<MCValue>
+			<SelValue>No Loan Servicer</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Loan Type MC">
+		<MCValue>
+			<SelValue>Interest Only</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Modification Bifurcate MC">
+		<MCValue>
+			<SelValue>Both</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Modification Options MC">
+		<MCValue>
+			<SelValue>Amount</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Note Governing Law State MC">
+		<MCValue>
+			<SelValue>California</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Partial Release Advanced MC">
+		<MCValue>
+			<SelValue>None</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Per Diem interest Delivery MC">
+		<MCValue>
+			<SelValue>Lender&apos;s Address</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Preparer Address MC">
+		<MCValue>
+			<SelValue>Lender</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Prepay MC">
+		<MCValue>
+			<SelValue>None</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Property Borrower DMC">
+		<RptValue>
+			<RptValue>
+				<MCValue>
+					<SelValue>$$0002%%</SelValue>
+				</MCValue>
+			</RptValue>
+			<RptValue>
+				<MCValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Property Collateral Type MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>1-4 Single Family Residence</SelValue>
+			</MCValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Property County MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>GrahamH1</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Property State MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>California</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="SI Property Lien Position MC">
+		<RptValue>
+			<RptValue>
+				<MCValue>
+					<SelValue>first</SelValue>
+				</MCValue>
+				<MCValue unans="true"/>
+			</RptValue>
+			<RptValue>
+				<MCValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Security Instrument Borrower DMC">
+		<RptValue>
+			<RptValue>
+				<MCValue>
+					<SelValue>$$0004%%</SelValue>
+				</MCValue>
+			</RptValue>
+			<RptValue>
+				<MCValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Security Instrument County MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>GrahamH1</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Security Instrument State MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>Arizona</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Security Instrument Type MC">
+		<MCValue>
+			<SelValue>Deed of Trust</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Stronghill Prepay Options MC">
+		<MCValue>
+			<SelValue>None</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Title Officer State MC">
+		<MCValue>
+			<SelValue>California</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Title Policy Version MC">
+		<MCValue>
+			<SelValue>2006</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Trustee Name MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>Geraci</SelValue>
+			</MCValue>
+		</RptValue>
+	</Answer>
+	<Answer name="Vesting Help MC">
+		<RptValue>
+			<RptValue>
+				<MCValue>
+					<SelValue>a married man as his sole and separate property</SelValue>
+				</MCValue>
+			</RptValue>
+			<RptValue>
+				<MCValue unans="true"/>
+			</RptValue>
+		</RptValue>
+	</Answer>
+</AnswerSet>

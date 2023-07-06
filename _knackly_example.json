@@ -1,0 +1,19 @@
+{
+  "borrower": "Sal Vulcano",
+  "lender": "Joe Gatto",
+  "loanAmount": 40500,
+  "closingDate": "2023-06-14",
+  "goals": [
+    "Buy some icecream",
+    "Go on the ferris wheel",
+    "Watch a movie"
+  ],
+  "address": {
+    "street": "90 Discovery",
+    "city": "Irvine",
+    "zip": "92131",
+    "county": "Orange County",
+    "state": "California"
+  },
+  "isExtraPayment": true
+}
