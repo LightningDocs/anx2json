@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AnswerSet title="" version="1.1">
+	<Answer name="(ANSWER FILE HISTORY)">
+		<TextValue>Master Loan Documents - Loan Agreement : January 1, 2023, 10:05</TextValue>
+	</Answer>
+	<Answer name="borrower">
+		<TextValue>Sal Vulcano</TextValue>
+	</Answer>
+	<Answer name="lender">
+		<TextValue>Joe Gatto</TextValue>
+	</Answer>
+	<Answer name="loanAmount">
+		<NumValue>40500.0000000</NumValue>
+	</Answer>
+	<Answer name="closingDate">
+		<DateValue>14/6/2023</DateValue>
+	</Answer>
+	<Answer name="goals">
+		<RptValue>
+			<TextValue>Buy some icecream</TextValue>
+			<TextValue>Go on the ferris wheel</TextValue>
+			<TextValue>Watch a movie</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="borrowerStreet">
+		<TextValue>90 Discovery</TextValue>
+	</Answer>
+	<Answer name="borrowerCity">
+		<TextValue>Irvine</TextValue>
+	</Answer>
+	<Answer name="borrowerZip">
+		<TextValue>92131</TextValue>
+	</Answer>
+	<Answer name="borrowerCounty">
+		<TextValue>Orange County</TextValue>
+	</Answer>
+	<Answer name="borrowerState">
+		<MCValue>
+			<SelValue>California</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="isExtraPayment">
+		<TFValue>true</TFValue>
+	</Answer>
+</AnswerSet>

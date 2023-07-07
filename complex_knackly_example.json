@@ -1,0 +1,125 @@
+{
+  "id$": "645016d95ecc06e224af6e5d",
+  "LoanTerms": {
+    "id$": "645016d9f6fb124bdb0827d3",
+    "IsVariableRate": true,
+    "VariableRate": {
+      "id$": "64504f79b841cf5e04a18d7a",
+      "isDailyFloatingRate": true
+    }
+  },
+  "FormattingGuide": {
+    "id$": "6450351ef6a48483c48b314e",
+    "object3": {
+      "id$": "645035318241fdb8ff9967b7"
+    },
+    "object2": {
+      "id$": "645035316df9c6b65541c395",
+      "Zip": "53",
+      "State": "District of Columbia"
+    }
+  },
+  "LenderInformation": {
+    "id$": "64503a165c941f3b2dacb4cf",
+    "NoticeTo": "Third Party",
+    "IsExhibitALenders": false,
+    "IsMultipleLenders": true
+  },
+  "Permissions": {
+    "id$": "64503a164140a45a2710d1c2",
+    "isExitFee": true
+  },
+  "IsGuaranty": true,
+  "Guarantor": {
+    "id$": "645043a7361dab2979ce4152",
+    "Guarantors": [
+      {
+        "id$": "645043b50fcace7eb1655268"
+      }
+    ],
+    "AvailableTypes": [
+      "Full recourse"
+    ]
+  },
+  "Borrower": {
+    "id$": "6450439d3e0a2bf7c4f36567",
+    "Borrowers": [
+      {
+        "id$": "6450445197ca5f742bb1e80a",
+        "BorrowerName": "Trevor Kneisly",
+        "BorrowerEntityType": "individual"
+      },
+      {
+        "id$": "6450445ae7c6477c61f11f5d",
+        "BorrowerName": "Audie Munoz",
+        "BorrowerEntityType": "individual"
+      },
+      {
+        "id$": "64504465f7de184c91352266",
+        "BorrowerName": "Seth Collins",
+        "BorrowerEntityType": "individual"
+      },
+      {
+        "id$": "6450446c4a38215b76d5caa7",
+        "BorrowerName": "Melissa Whatever",
+        "BorrowerEntityType": "individual"
+      },
+      {
+        "id$": "6450449f556ae8f01a493d70"
+      }
+    ]
+  },
+  "SelectServicer": "Other",
+  "IsBroker": true,
+  "features": {
+    "id$": "64504505dc0913fc207202c6",
+    "isConstructionReserve": true,
+    "Construction": {
+      "id$": "645046cb5b3e6a5dd12b5915",
+      "Type": "Standard"
+    },
+    "Reserves": {
+      "id$": "645046cba51ebbffb0483b84",
+      "DebtServiceType": "Dollar Amount",
+      "DebtServiceDollars": 12
+    }
+  },
+  "IsEscrow": true,
+  "PreparerAddress": "Other",
+  "Property": [
+    {
+      "id$": "64504dd8a460512bbef15962"
+    }
+  ],
+  "TitleInformation": {
+    "id$": "645046b987fbbecee94b5977",
+    "TitleCompanyAddress": {
+      "id$": "645046ef06e07ba5c2f02fd6"
+    }
+  },
+  "SpecialLoanCategories": {
+    "id$": "645016dbd0a9d64b0a17a061",
+    "isAffiliateLoan": true,
+    "isCannabisLoan": false,
+    "isLeaseholdMortgage": true,
+    "isLockbox": false
+  },
+  "FeeInformation": {
+    "id$": "64503a16fd5d4b89b201983e",
+    "IsExit": false,
+    "IsBorrowerResponsible": false
+  },
+  "PenaltyInformation": {
+    "id$": "64503a1672b516d97c078beb",
+    "PrepaymentPenalty": "Guaranteed Interest"
+  },
+  "SecurityAndUCCDocs": {
+    "id$": "645016dbfa10adfc170d8f15",
+    "isOwnershipPledge": true,
+    "lenderUCCInformation": [
+      {
+        "id$": "6450314a991e2b9e0bd15ffc"
+      }
+    ]
+  }
+}
