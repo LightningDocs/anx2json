@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<AnswerSet title="" version="1.1">
+	<Answer name="(ANSWER FILE HISTORY)">
+		<TextValue>Master Loan Documents - Loan Agreement : January 1, 2023, 10:05</TextValue>
+	</Answer>
+	<Answer name="hd_borrower">
+		<TextValue>Sal Vulcano</TextValue>
+	</Answer>
+	<Answer name="hd_lender">
+		<TextValue>Joe Gatto</TextValue>
+	</Answer>
+	<Answer name="hd_loanAmount">
+		<NumValue>40500.0000000</NumValue>
+	</Answer>
+	<Answer name="hd_closingDate">
+		<DateValue>14/6/2023</DateValue>
+	</Answer>
+	<Answer name="hd_goals">
+		<RptValue>
+			<TextValue>Buy some icecream</TextValue>
+			<TextValue>Go on the ferris wheel</TextValue>
+			<TextValue>Watch a movie</TextValue>
+		</RptValue>
+	</Answer>
+	<Answer name="hd_borrowerStreet">
+		<TextValue>90 Discovery</TextValue>
+	</Answer>
+	<Answer name="hd_borrowerCity">
+		<TextValue>Irvine</TextValue>
+	</Answer>
+	<Answer name="hd_borrowerZip">
+		<TextValue>92131</TextValue>
+	</Answer>
+	<Answer name="hd_borrowerCounty">
+		<TextValue>Orange County</TextValue>
+	</Answer>
+	<Answer name="hd_borrowerState">
+		<MCValue>
+			<SelValue>California</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="hd_isExtraPayment">
+		<TFValue>true</TFValue>
+	</Answer>
+</AnswerSet>

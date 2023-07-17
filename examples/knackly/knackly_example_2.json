@@ -1,0 +1,70 @@
+{
+  "id$": "649f5e2432e441ae02b8228e",
+  "borrower": "Sal Vulcano",
+  "lender": "Joe Gatto",
+  "loanAmount": 40500.5,
+  "closingDate": "2023-06-14",
+  "goals": [
+    "Buy some icecream",
+    "Go on the ferris wheel",
+    "Watch a movie"
+  ],
+  "address": {
+    "id$": "649f5e2334c06a34e70c4d02",
+    "street": "90 Discovery",
+    "city": "Irvine",
+    "zip": "92131",
+    "county": "Orange County",
+    "state": "California"
+  },
+  "isExtraPayment": true,
+  "beneficiaries": [
+    {
+      "id$": "64ac56cdb610c88358863884",
+      "name": "Harry Potter",
+      "address": {
+        "id$": "64ac56cd251a05f4de74aa91",
+        "street": "1689 Grayston Lakes",
+        "city": "Macon",
+        "state": "Georgia",
+        "zip": "31201",
+        "county": "Bibb County"
+      },
+      "bequests": [
+        "the contents of my bank account",
+        "the house"
+      ]
+    },
+    {
+      "id$": "64ac5732bfe44e3a45719cc1",
+      "name": "Hermione Granger",
+      "address": {
+        "id$": "64ac57322a2ffe556b5ec1ca",
+        "street": "3135 Isaacs Creek Road",
+        "city": "Charleston",
+        "state": "Illinois",
+        "zip": "61920",
+        "county": "Coles County"
+      },
+      "bequests": [
+        "the dog",
+        "the cat",
+        "the three gerbils",
+        "my collection of rare stamps",
+        "my red gym shoes"
+      ]
+    },
+    {
+      "id$": "64ac577cef5f006723222baa",
+      "name": "Ron Weasley",
+      "address": {
+        "id$": "64ac577c5179c427227ba863",
+        "street": "3449 Dovetail Estates",
+        "city": "Valliant",
+        "state": "Oklahoma",
+        "zip": "74764",
+        "county": "McCurtain"
+      }
+    }
+  ]
+}

@@ -2,33 +2,33 @@
 <AnswerSet title="" version="1.1">
 	<Answer name="(ANSWER FILE HISTORY)">
 		<TextValue>Master Loan Documents - Loan Agreement : May 2, 2023, 10:05
-Master Loan Documents - Loan Agreement : April 17, 2023, 11:48
-Master Loan Documents - Loan Agreement : March 27, 2023, 12:46
-Master Modification Documents : March 21, 2023, 12:22
-Master Modification Documents : March 21, 2023, 12:22
-Master Modification Documents : March 21, 2023, 12:12
-Master Modification Documents : March 20, 2023, 15:18
-Master Loan Documents - Loan Agreement : March 17, 2023, 12:15
-Master Loan Documents - Loan Agreement : March 15, 2023, 15:10
-Master Loan Documents - Loan Agreement : March 15, 2023, 14:48
-Master Loan Documents - Loan Agreement : March 15, 2023, 14:47
-Master Loan Documents - Loan Agreement : March 15, 2023, 14:47
-Master Loan Documents - Loan Agreement : March 15, 2023, 12:35
-Master Loan Documents - Loan Agreement : March 15, 2023, 12:35
-Master Loan Documents - Loan Agreement : March 15, 2023, 12:19
-Master Loan Documents - Loan Agreement : March 15, 2023, 9:24
-Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
-Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
-Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
-Master Loan Documents - Loan Agreement : March 6, 2023, 11:00
-Master Loan Documents - Loan Agreement : March 6, 2023, 10:45
-Master Loan Documents - Loan Agreement : March 3, 2023, 16:06
-Master Loan Documents - Loan Agreement : March 3, 2023, 15:58
-Master Loan Documents - Loan Agreement : March 3, 2023, 15:48
-Master Loan Documents - Loan Agreement : March 3, 2023, 15:43
-Master Loan Documents - Loan Agreement : March 3, 2023, 15:23
-Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
-</TextValue>
+			Master Loan Documents - Loan Agreement : April 17, 2023, 11:48
+			Master Loan Documents - Loan Agreement : March 27, 2023, 12:46
+			Master Modification Documents : March 21, 2023, 12:22
+			Master Modification Documents : March 21, 2023, 12:22
+			Master Modification Documents : March 21, 2023, 12:12
+			Master Modification Documents : March 20, 2023, 15:18
+			Master Loan Documents - Loan Agreement : March 17, 2023, 12:15
+			Master Loan Documents - Loan Agreement : March 15, 2023, 15:10
+			Master Loan Documents - Loan Agreement : March 15, 2023, 14:48
+			Master Loan Documents - Loan Agreement : March 15, 2023, 14:47
+			Master Loan Documents - Loan Agreement : March 15, 2023, 14:47
+			Master Loan Documents - Loan Agreement : March 15, 2023, 12:35
+			Master Loan Documents - Loan Agreement : March 15, 2023, 12:35
+			Master Loan Documents - Loan Agreement : March 15, 2023, 12:19
+			Master Loan Documents - Loan Agreement : March 15, 2023, 9:24
+			Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
+			Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
+			Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
+			Master Loan Documents - Loan Agreement : March 6, 2023, 11:00
+			Master Loan Documents - Loan Agreement : March 6, 2023, 10:45
+			Master Loan Documents - Loan Agreement : March 3, 2023, 16:06
+			Master Loan Documents - Loan Agreement : March 3, 2023, 15:58
+			Master Loan Documents - Loan Agreement : March 3, 2023, 15:48
+			Master Loan Documents - Loan Agreement : March 3, 2023, 15:43
+			Master Loan Documents - Loan Agreement : March 3, 2023, 15:23
+			Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
+		</TextValue>
 	</Answer>
 	<Answer name="ALTA Endorsements TE">
 		<TextValue>test</TextValue>
@@ -36,15 +36,15 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="B signature underlying entity 3 attorneyinfact TX">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
-					<RptValue/>
-					<RptValue/>
+					<RptValue />
+					<RptValue />
 					<RptValue>
 						<TextValue>Investor A aif</TextValue>
 						<TextValue>Investor B aif</TextValue>
 						<TextValue>Investor C aif</TextValue>
-						<TextValue unans="true"/>
+						<TextValue unans="true" />
 					</RptValue>
 				</RptValue>
 			</RptValue>
@@ -53,13 +53,13 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="B signature underlying entity 2 attorneyinfact TX">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
 					<TextValue>Cornelius aif</TextValue>
 					<TextValue>Bertha aif</TextValue>
-					<TextValue unans="true"/>
+					<TextValue unans="true" />
 					<TextValue>Dolores aif</TextValue>
-					<TextValue unans="true"/>
+					<TextValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -67,15 +67,15 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="B signature underlying entity 3 title TX">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
-					<RptValue/>
-					<RptValue/>
+					<RptValue />
+					<RptValue />
 					<RptValue>
 						<TextValue>a</TextValue>
 						<TextValue>b</TextValue>
 						<TextValue>c</TextValue>
-						<TextValue unans="true"/>
+						<TextValue unans="true" />
 					</RptValue>
 				</RptValue>
 			</RptValue>
@@ -84,13 +84,13 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="B signature underlying entity 2 title TX">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
 					<TextValue>Trustee</TextValue>
 					<TextValue>Trustee</TextValue>
 					<TextValue>Something</TextValue>
 					<TextValue>Trustee</TextValue>
-					<TextValue unans="true"/>
+					<TextValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -100,7 +100,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<RptValue>
 				<TextValue>test</TextValue>
 				<TextValue>test</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -109,22 +109,22 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<RptValue>
 				<TextValue>Albus Dumbledore</TextValue>
 				<TextValue>Ministry of Magic</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
 	<Answer name="B signature underlying entity 3 name TX">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
-					<RptValue/>
-					<RptValue/>
+					<RptValue />
+					<RptValue />
 					<RptValue>
 						<TextValue>Investor A</TextValue>
 						<TextValue>Investor B</TextValue>
 						<TextValue>Investor C</TextValue>
-						<TextValue unans="true"/>
+						<TextValue unans="true" />
 					</RptValue>
 				</RptValue>
 			</RptValue>
@@ -133,13 +133,13 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="B signature underlying entity 2 name TX">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
 					<TextValue>Cornelius Fudge</TextValue>
 					<TextValue>Bertha Jorkins</TextValue>
 					<TextValue>Ministry Investors</TextValue>
 					<TextValue>Dolores Umbridge</TextValue>
-					<TextValue unans="true"/>
+					<TextValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -159,9 +159,9 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Borrower Key TX">
 		<RptValue>
 			<TextValue>$$0004%%</TextValue>
-			<TextValue unans="true"/>
-			<TextValue unans="true"/>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
+			<TextValue unans="true" />
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Last Name 1 TE">
@@ -185,18 +185,18 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Borrower Name TE">
 		<RptValue>
 			<TextValue>Hogwarts</TextValue>
-			<TextValue unans="true"/>
-			<TextValue unans="true"/>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
+			<TextValue unans="true" />
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Owner Signer Underlying 1 Name TE">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
 					<TextValue>Some Owner Here</TextValue>
-					<TextValue unans="true"/>
+					<TextValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -204,15 +204,15 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Borrower Owner Signer Underlying 2 Name TE">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
-					<RptValue/>
-					<RptValue/>
+					<RptValue />
+					<RptValue />
 					<RptValue>
 						<TextValue>Investor Aa</TextValue>
 						<TextValue>Investor Bb</TextValue>
 						<TextValue>Investor Cc</TextValue>
-						<TextValue unans="true"/>
+						<TextValue unans="true" />
 					</RptValue>
 				</RptValue>
 			</RptValue>
@@ -221,15 +221,15 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Borrower Owner Signer Underlying 2 Title TE">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
-					<RptValue/>
-					<RptValue/>
+					<RptValue />
+					<RptValue />
 					<RptValue>
 						<TextValue>aa</TextValue>
 						<TextValue>bb</TextValue>
 						<TextValue>cc</TextValue>
-						<TextValue unans="true"/>
+						<TextValue unans="true" />
 					</RptValue>
 				</RptValue>
 			</RptValue>
@@ -253,7 +253,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Broker Fee Description TE">
 		<RptValue>
 			<TextValue>something</TextValue>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Certificate State TE">
@@ -297,13 +297,13 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<RptValue>
 				<TextValue>The Baddest of Guys</TextValue>
 				<TextValue>A Bad Guy</TextValue>
-				<TextValue unans="true"/>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
+				<TextValue unans="true" />
 			</RptValue>
-			<RptValue/>
+			<RptValue />
 			<RptValue>
 				<TextValue>Officer Title</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -312,13 +312,13 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<RptValue>
 				<TextValue>The Sith</TextValue>
 				<TextValue>Stormtrooper 81-92</TextValue>
-				<TextValue unans="true"/>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
+				<TextValue unans="true" />
 			</RptValue>
-			<RptValue/>
+			<RptValue />
 			<RptValue>
 				<TextValue>Jabba The Hutt Officer</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -334,7 +334,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<TextValue>The Empire</TextValue>
 			<TextValue>Han Solo</TextValue>
 			<TextValue>The Hutt</TextValue>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Guarantor Owner Signer Name TE">
@@ -342,12 +342,12 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<RptValue>
 				<TextValue>Darth Vader</TextValue>
 				<TextValue>Count Dooku</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
-			<RptValue/>
+			<RptValue />
 			<RptValue>
 				<TextValue>Jabba The Hutt Shareholder</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -357,7 +357,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 				<RptValue>
 					<TextValue>Darth Vader</TextValue>
 					<TextValue>Count Dooku</TextValue>
-					<TextValue unans="true"/>
+					<TextValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -366,9 +366,9 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 		<RptValue>
 			<RptValue>
 				<RptValue>
-					<TextValue unans="true"/>
+					<TextValue unans="true" />
 					<TextValue>SomethingIDK</TextValue>
-					<TextValue unans="true"/>
+					<TextValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -407,7 +407,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Lender Name TE">
 		<RptValue>
 			<TextValue>Big Lending Lenders</TextValue>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Lender Street Address TE">
@@ -428,19 +428,19 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Modification Loan Instrument Number TE">
 		<RptValue>
 			<TextValue>5438821</TextValue>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Property APN TE">
 		<RptValue>
 			<TextValue>882191</TextValue>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Property City TX">
 		<RptValue>
 			<TextValue>Long Beach</TextValue>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Property Key TX">
@@ -451,23 +451,23 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Property Street Address TE">
 		<RptValue>
 			<TextValue>4865 Lorelei Avenue</TextValue>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Property Zip Code TE">
 		<RptValue>
 			<TextValue>90808</TextValue>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="SI Property APN TE">
 		<RptValue>
 			<RptValue>
 				<TextValue>188821</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 			<RptValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -475,10 +475,10 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 		<RptValue>
 			<RptValue>
 				<TextValue>GrahamCity</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 			<RptValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -486,10 +486,10 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 		<RptValue>
 			<RptValue>
 				<TextValue>8281 Graham Lane</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 			<RptValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -497,17 +497,17 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 		<RptValue>
 			<RptValue>
 				<TextValue>29915</TextValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 			<RptValue>
-				<TextValue unans="true"/>
+				<TextValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
 	<Answer name="Security Instrument Vesting TX">
 		<RptValue>
 			<TextValue>Vesting stuff goes here</TextValue>
-			<TextValue unans="true"/>
+			<TextValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Temp Features TX">
@@ -563,7 +563,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Broker Fee NU">
 		<RptValue>
 			<NumValue>25.0000000</NumValue>
-			<NumValue unans="true"/>
+			<NumValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Default Interest Rate NU">
@@ -590,7 +590,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Lender Invest Amount NU">
 		<RptValue>
 			<NumValue>15.0000000</NumValue>
-			<NumValue unans="true"/>
+			<NumValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Loan Amount NU">
@@ -602,7 +602,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Modification Lender Invest Amount NU">
 		<RptValue>
 			<NumValue>14.0000000</NumValue>
-			<NumValue unans="true"/>
+			<NumValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Modification New Loan Amount NU">
@@ -644,7 +644,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Modification Loan Recorded On DT">
 		<RptValue>
 			<DateValue>21/3/2023</DateValue>
-			<DateValue unans="true"/>
+			<DateValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Original Maturity Date DT">
@@ -677,17 +677,17 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="B signature underlying entity 3 attorneyinfact TF">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
 					<RptValue>
-						<TFValue unans="true"/>
+						<TFValue unans="true" />
 					</RptValue>
-					<RptValue/>
+					<RptValue />
 					<RptValue>
 						<TFValue>true</TFValue>
 						<TFValue>true</TFValue>
 						<TFValue>true</TFValue>
-						<TFValue unans="true"/>
+						<TFValue unans="true" />
 					</RptValue>
 				</RptValue>
 			</RptValue>
@@ -696,13 +696,13 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="B signature underlying entity 2 attorneyinfact TF">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
 					<TFValue>true</TFValue>
 					<TFValue>true</TFValue>
-					<TFValue unans="true"/>
+					<TFValue unans="true" />
 					<TFValue>true</TFValue>
-					<TFValue unans="true"/>
+					<TFValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -797,7 +797,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Exhibit A Lender List TF">
 		<RptValue>
 			<TFValue>true</TFValue>
-			<TFValue unans="true"/>
+			<TFValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Exit Fee TF">
@@ -922,7 +922,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Owner Occupied TF">
 		<RptValue>
 			<TFValue>false</TFValue>
-			<TFValue unans="true"/>
+			<TFValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Partial Reconveyance TF">
@@ -961,7 +961,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="Property Include PUD TF">
 		<RptValue>
 			<TFValue>false</TFValue>
-			<TFValue unans="true"/>
+			<TFValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Rate Adjust Daily TF">
@@ -1094,15 +1094,15 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="B signature underlying entity 2 org state MC">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
-					<MCValue unans="true"/>
-					<MCValue unans="true"/>
+					<MCValue unans="true" />
+					<MCValue unans="true" />
 					<MCValue>
 						<SelValue>California</SelValue>
 					</MCValue>
-					<MCValue unans="true"/>
-					<MCValue unans="true"/>
+					<MCValue unans="true" />
+					<MCValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -1110,11 +1110,11 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 	<Answer name="B signature underlying entity 1 org state MC">
 		<RptValue>
 			<RptValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 				<MCValue>
 					<SelValue>California</SelValue>
 				</MCValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -1127,14 +1127,14 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 				<MCValue>
 					<SelValue>general partnership</SelValue>
 				</MCValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
 	<Answer name="B signature underlying entity 2 entity type MC">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
 					<MCValue>
 						<SelValue>individual</SelValue>
@@ -1148,7 +1148,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 					<MCValue>
 						<SelValue>individual</SelValue>
 					</MCValue>
-					<MCValue unans="true"/>
+					<MCValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -1158,9 +1158,9 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>general partnership</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
-			<MCValue unans="true"/>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
+			<MCValue unans="true" />
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Notice MC">
@@ -1173,19 +1173,19 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>California</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Owner Signer Underlying 1 Entity Type MC">
 		<RptValue>
 			<RptValue>
-				<RptValue/>
+				<RptValue />
 				<RptValue>
 					<MCValue>
 						<SelValue>individual</SelValue>
 					</MCValue>
-					<MCValue unans="true"/>
+					<MCValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -1200,7 +1200,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>Deliver to Broker&apos;s Address</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="California Law Warning MC">
@@ -1239,14 +1239,14 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 				<MCValue>
 					<SelValue>Florida</SelValue>
 				</MCValue>
-				<MCValue unans="true"/>
-				<MCValue unans="true"/>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
+				<MCValue unans="true" />
+				<MCValue unans="true" />
 			</RptValue>
-			<RptValue/>
+			<RptValue />
 			<RptValue>
-				<MCValue unans="true"/>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
+				<MCValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -1259,15 +1259,15 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 				<MCValue>
 					<SelValue>individual</SelValue>
 				</MCValue>
-				<MCValue unans="true"/>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
+				<MCValue unans="true" />
 			</RptValue>
-			<RptValue/>
+			<RptValue />
 			<RptValue>
 				<MCValue>
 					<SelValue>individual</SelValue>
 				</MCValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -1287,7 +1287,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>Borrower</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Guarantor Entity Type MC">
@@ -1301,7 +1301,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>corporation</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Guarantor Organization State MC">
@@ -1309,7 +1309,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>California</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 			<MCValue>
 				<SelValue>Alaska</SelValue>
 			</MCValue>
@@ -1324,14 +1324,14 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 				<MCValue>
 					<SelValue>individual</SelValue>
 				</MCValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
-			<RptValue/>
+			<RptValue />
 			<RptValue>
 				<MCValue>
 					<SelValue>individual</SelValue>
 				</MCValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -1345,7 +1345,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 					<MCValue>
 						<SelValue>Signer</SelValue>
 					</MCValue>
-					<MCValue unans="true"/>
+					<MCValue unans="true" />
 				</RptValue>
 			</RptValue>
 		</RptValue>
@@ -1374,7 +1374,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>Limited</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Guarantor Type Select MC">
@@ -1388,7 +1388,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>Limited</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Guaranty Type MC">
@@ -1417,7 +1417,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>first</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Loan Documents MC">
@@ -1479,7 +1479,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 				</MCValue>
 			</RptValue>
 			<RptValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -1495,7 +1495,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>GrahamH1</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Property State MC">
@@ -1503,7 +1503,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>California</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="SI Property Lien Position MC">
@@ -1512,10 +1512,10 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 				<MCValue>
 					<SelValue>first</SelValue>
 				</MCValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
 			<RptValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -1527,7 +1527,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 				</MCValue>
 			</RptValue>
 			<RptValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -1536,7 +1536,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>GrahamH1</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Security Instrument State MC">
@@ -1544,7 +1544,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 			<MCValue>
 				<SelValue>Arizona</SelValue>
 			</MCValue>
-			<MCValue unans="true"/>
+			<MCValue unans="true" />
 		</RptValue>
 	</Answer>
 	<Answer name="Security Instrument Type MC">
@@ -1582,7 +1582,7 @@ Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
 				</MCValue>
 			</RptValue>
 			<RptValue>
-				<MCValue unans="true"/>
+				<MCValue unans="true" />
 			</RptValue>
 		</RptValue>
 	</Answer>
