@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<AnswerSet>
+    <Answer name="(ANSWER FILE HISTORY)">
+		<TextValue>Master Loan Documents - Loan Agreement : May 2, 2023, 10:05
+			Master Loan Documents - Loan Agreement : April 17, 2023, 11:48
+			Master Loan Documents - Loan Agreement : March 27, 2023, 12:46
+			Master Modification Documents : March 21, 2023, 12:22
+			Master Modification Documents : March 21, 2023, 12:22
+			Master Modification Documents : March 21, 2023, 12:12
+			Master Modification Documents : March 20, 2023, 15:18
+			Master Loan Documents - Loan Agreement : March 17, 2023, 12:15
+			Master Loan Documents - Loan Agreement : March 15, 2023, 15:10
+			Master Loan Documents - Loan Agreement : March 15, 2023, 14:48
+			Master Loan Documents - Loan Agreement : March 15, 2023, 14:47
+			Master Loan Documents - Loan Agreement : March 15, 2023, 14:47
+			Master Loan Documents - Loan Agreement : March 15, 2023, 12:35
+			Master Loan Documents - Loan Agreement : March 15, 2023, 12:35
+			Master Loan Documents - Loan Agreement : March 15, 2023, 12:19
+			Master Loan Documents - Loan Agreement : March 15, 2023, 9:24
+			Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
+			Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
+			Master Loan Documents - Loan Agreement : March 7, 2023, 11:23
+			Master Loan Documents - Loan Agreement : March 6, 2023, 11:00
+			Master Loan Documents - Loan Agreement : March 6, 2023, 10:45
+			Master Loan Documents - Loan Agreement : March 3, 2023, 16:06
+			Master Loan Documents - Loan Agreement : March 3, 2023, 15:58
+			Master Loan Documents - Loan Agreement : March 3, 2023, 15:48
+			Master Loan Documents - Loan Agreement : March 3, 2023, 15:43
+			Master Loan Documents - Loan Agreement : March 3, 2023, 15:23
+			Master Loan Documents - Loan Agreement : March 3, 2023, 9:46
+		</TextValue>
+	</Answer>
+    <Answer name="ClientName">
+        <TextValue>John Doe</TextValue>
+    </Answer>
+    <Answer name="DOB">
+        <DateValue>21/3/2023</DateValue>
+    </Answer>
+    <Answer name="Street">
+        <TextValue>123 Main St</TextValue>
+    </Answer>
+    <Answer name="City">
+        <TextValue>Anytown</TextValue>
+    </Answer>
+    <Answer name="State">
+        <TextValue>Alabama</TextValue>
+    </Answer>
+    <Answer name="Zipcode">
+        <TextValue>90808</TextValue>
+    </Answer>
+    <Answer name="County MC">
+		<MCValue>
+			<SelValue>Los AngelesH1</SelValue>
+		</MCValue>
+	</Answer>
+    <Answer name="CaseNumber">
+        <TextValue>12345</TextValue>
+    </Answer>
+    <Answer name="PerDiem TF">
+        <TFValue>false</TFValue>
+    </Answer>
+    <Answer name="Per Diem interest Delivery MC">
+		<MCValue>
+			<SelValue>Lender&apos;s Address</SelValue>
+		</MCValue>
+	</Answer>
+    <Answer name="Interest Rate NU">
+		<NumValue>4.05890000</NumValue>
+	</Answer>
+    <Answer name="Default Interest Rate NU">
+		<NumValue>6.0000000</NumValue>
+	</Answer>
+    <Answer name="unanswered test">
+        <TextValue unans="true" />
+    </Answer>
+    <Answer name="Loan Documents MC">
+		<MCValue>
+			<SelValue>Master</SelValue>
+			<SelValue>Assignment</SelValue>
+		</MCValue>
+	</Answer>
+</AnswerSet>
