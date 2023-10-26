@@ -149,6 +149,35 @@ class ANX_Parser:
                 f"`result` list is empty. This really shouldn't happen here."
             )
 
+    def parse_Primitive(self, element: ET.Element) -> str | int | float:
+        """Parse the contents of any primitive element type in the .anx file.
+        Primitive element types are:
+        - TextValue
+        - DateValue
+        - NumValue
+        - TFValue
+        - SelValue
+        - MCValue
+
+        Args:
+            element (ET.Element): The actual element object
+
+        Returns:
+            str | int | float: The parsed representation of the element if possible, otherwise None.
+        """
+        mapping = {
+            "TextValue": self.parse_TextValue,
+            "DateValue": self.parse_DateValue,
+            "NumValue": self.parse_NumValue,
+            "TFValue": self.parse_TFValue,
+            "SelValue": self.parse_SelValue,
+            "MCValue": self.parse_MCValue,
+        }
+
+        if element.tag not in mapping:
+            raise ANXTagError(" | ".join(mapping.keys()), element.tag)
+        return mapping[element.tag](element)
+
 
 class ANXTagError(Exception):
     """Error to be thrown when the xml tag of an element is not as expected"""
