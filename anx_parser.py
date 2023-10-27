@@ -24,7 +24,10 @@ class ANX_Parser:
             Element: the Element object if found, otherwise None.
         """
         xpath = f"./Answer[@name='{name_tag}']"
-        return self.answer_set.find(xpath)
+        answer_element = self.answer_set.find(xpath)
+        if answer_element is not None:
+            answer_element.set("visited", "true")
+        return answer_element
 
     def parse_TextValue(self, element: ET.Element) -> str:
         """Parse the contents of a TextValue element in the .anx file.
@@ -160,7 +163,7 @@ class ANX_Parser:
         - MCValue
 
         Args:
-            element (ET.Element): The actual element object
+            element (ET.Element): The actual element object.
 
         Returns:
             str | int | float: The parsed representation of the element if possible, otherwise None.
@@ -177,6 +180,56 @@ class ANX_Parser:
         if element.tag not in mapping:
             raise ANXTagError(" | ".join(mapping.keys()), element.tag)
         return mapping[element.tag](element)
+
+    def parse_RptValue(self, element: ET.Element) -> list:
+        """Parse the contents of any RptValue element type in the .anx file.
+
+        Args:
+            element (ET.Element): The actual RptValue element object.
+
+        Returns:
+            list: The parsed representation of the element if possible, otherwise None.
+        """
+        # Raise an error if the element is not actually a RptValue element
+        if element.tag != "RptValue":
+            raise ANXTagError("RptValue", element.tag)
+        elif "unans" in element.attrib:
+            return None
+
+        # Recursively search through each sub element and call either parse_RptValue or parse_Primitive
+        results = []
+        for idx, child in enumerate(element):
+            if child.tag == "RptValue":
+                results.append(self.parse_RptValue(child))
+            else:
+                results.append(self.parse_Primitive(child))
+
+        return results
+
+    def get_unvisited_elements(
+        self, excluded_elements: list[str] = None
+    ) -> list[ET.Element]:
+        """Get a list of all elements that have not been used / visited.
+
+        Args:
+            excluded_elements (list[str], optional): A list of all elements that you purposely don't care about the 'visitedness' of. Defaults to None.
+
+        Returns:
+            list[ET.Element]: A list of all elements that have not been used / visited.
+        """
+        if excluded_elements is None:
+            excluded_elements = []
+
+        unvisited_elements = []
+
+        for element in self.answer_set:
+            if (
+                element.get("name") not in excluded_elements
+                and element.get("visited") != "true"
+            ):
+                unvisited_elements.append(element)
+
+        return unvisited_elements
 
 
 class ANXTagError(Exception):
