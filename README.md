@@ -14,3 +14,5 @@ By default, this creates a new file "`_<filename>`". To replace the file instead
 ```bash
 python strip_id.py <filename> [-r]
 ```
+
+
