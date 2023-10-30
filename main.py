@@ -1,6 +1,9 @@
 import argparse
-from anx_parser import ANX_Parser
 import os
+import json
+
+from anx_parser import ANX_Parser
+from knackly_writer import Knackly_Writer
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -70,38 +73,42 @@ def parse_arguments() -> argparse.Namespace:
 
 
 def main(args: argparse.Namespace):
-    test(args)
+    writer = Knackly_Writer(ANX_Parser(args.input))
+    args.input.close()
+    writer.create()
+
+    json.dump(writer.json, args.output, indent=2)
+    print(f"Success! Saved output to {os.path.abspath(args.output.name)}")
+    args.output.close()
 
 
 def test(args: argparse.Namespace):
     # print(args)
     anx_parser = ANX_Parser(args.input)
 
-    test = anx_parser.find_answer("unanswered test")
-    # print(anx_parser.parse_TextValue(test[0]))
+    # test = anx_parser.find_answer("unanswered test")
+    # print(anx_parser.parse_TextValue(test))
 
-    test2 = anx_parser.find_answer("DOB")
-    # print(anx_parser.parse_DateValue(test2[0]))
+    # test2 = anx_parser.find_answer("DOB")
+    # print(anx_parser.parse_DateValue(test2))
 
-    test3 = anx_parser.find_answer("PerDiem TF")
-    # print(anx_parser.parse_TFValue(test3[0]), type(anx_parser.parse_TFValue(test3[0])))
+    # test3 = anx_parser.find_answer("PerDiem TF")
+    # print(anx_parser.parse_TFValue(test3), type(anx_parser.parse_TFValue(test3)))
 
-    test4 = anx_parser.find_answer("Default Interest Rate NU")
-    # print(
-    #     anx_parser.parse_NumValue(test4[0]), type(anx_parser.parse_NumValue(test4[0]))
-    # )
+    # test4 = anx_parser.find_answer("Default Interest Rate NU")
+    # print(anx_parser.parse_NumValue(test4), type(anx_parser.parse_NumValue(test4)))
 
-    test5 = anx_parser.find_answer("Per Diem interest Delivery MC")
-    # selValue = test5[0][0]
+    # test5 = anx_parser.find_answer("Per Diem interest Delivery MC")
+    # selValue = test5[0]
     # print(anx_parser.parse_SelValue(selValue))
 
-    test6 = anx_parser.find_answer("Loan Documents MC")
-    # print(anx_parser.parse_MCValue(test6[0]))
+    # test6 = anx_parser.find_answer("Loan Documents MC")
+    # print(anx_parser.parse_MCValue(test6))
 
-    test7 = anx_parser.find_answer("Guarantor Name TE")
-    print(anx_parser.parse_RptValue(test7[0]))
-    test7 = anx_parser.find_answer("Guarantor Owner Signer Name TE")
-    print(anx_parser.parse_RptValue(test7[0]))
+    # test7 = anx_parser.find_answer("Guarantor Name TE")
+    # print(anx_parser.parse_RptValue(test7))
+    # test7 = anx_parser.find_answer("Guarantor Owner Signer Name TE")
+    # print(anx_parser.parse_RptValue(test7))
 
     # This example uses the examples/hotdocs/hotdocs_example.anx file
     # test8 = anx_parser.find_answer("B signature underlying entity 3 attorneyinfact TF")
@@ -114,7 +121,19 @@ def test(args: argparse.Namespace):
     # for name in names:
     #     print(name)
 
+    # -- / borrower_information_example.anx file as input \ --
+    test10 = anx_parser.find_answer("Borrower Entity Type MC")
+    # print(test10)
+    # for elem in test10:
+    # print(elem)
+
+    test11 = anx_parser.find_answer("Borrower Name TE")
+    print(test11)
+    for elem in test11:
+        print(elem)
+
 
 if __name__ == "__main__":
     args = parse_arguments()
     main(args)
+    # test(args)

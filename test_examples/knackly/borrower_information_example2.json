@@ -1,0 +1,120 @@
+{
+  "id$": "653fea131c45e2b8dddef937",
+  "Borrower": {
+    "id$": "653fea1228176aa9decf5de3",
+    "Borrowers": [
+      {
+        "id$": "653fea1a9f9b52bac37fde61",
+        "BorrowerName": "Borrower A",
+        "BorrowerEntityType": "individual",
+        "IsBorrowerAIF": true,
+        "AIFName": "Joe Smith AIF"
+      },
+      {
+        "id$": "653fea3b88eb917769e83ea8",
+        "BorrowerName": "Borrower B",
+        "BorrowerEntityType": "individual",
+        "isAKA": true,
+        "AKAName": [
+          "BB",
+          "Borrowuh Bee"
+        ]
+      },
+      {
+        "id$": "653fea58a50f8b2cb043fb4a",
+        "BorrowerName": "Borrower C",
+        "BorrowerEntityType": "corporation",
+        "BorrowerOrgState": "Alaska",
+        "BorrowerSigners": [
+          {
+            "id$": "653fea634923e7dc7e90b1c1",
+            "Signer1Name": "Big Boss",
+            "Signer1Title": "CEO",
+            "Signer1EntityType": "individual",
+            "isAKA": true,
+            "AKAName": [
+              "Bigly Bossly"
+            ],
+            "Signer1OrgState": "Arizona"
+          },
+          {
+            "id$": "653fea8ea2ee2618b4761c76",
+            "Signer1Name": "Lil Vice Prezzy",
+            "Signer1Title": "Vice President",
+            "Signer1EntityType": "individual",
+            "Signer1OrgState": "Alaska"
+          },
+          {
+            "id$": "653feaa8b142892198a6af7f",
+            "Signer1Name": "Parent Company",
+            "Signer1EntityType": "corporation",
+            "Signer1Title": "something here",
+            "Signer1OrgState": "Alabama",
+            "Signer1Signers": [
+              {
+                "id$": "653feab65321d7296a685ce1",
+                "Signer2Name": "PC Officer 1",
+                "Signer2Title": "yea",
+                "isAKA": false
+              },
+              {
+                "id$": "653feac8bda9b0a7aecc6ffe",
+                "Signer2Name": "PC Officer 2",
+                "Signer2Title": "yea 2",
+                "isAKA": true,
+                "AKAName": [
+                  "PCO2"
+                ]
+              }
+            ],
+            "Signer1Owners": [
+              {
+                "id$": "653feadd950e25bf2fd9e1e6",
+                "Signer2Name": "PC Shareholder 1"
+              },
+              {
+                "id$": "653feae5b3f1848a0566d2d4",
+                "Signer2Name": "PC Shareholder 2"
+              }
+            ]
+          }
+        ],
+        "BorrowerOwners": [
+          {
+            "id$": "653fea7877e931f3181b16c0",
+            "Signer1Name": "Borrower C Shareholder 1"
+          },
+          {
+            "id$": "653fea8098caf893d9f62243",
+            "Signer1Name": "Borrower C Shareholder 2"
+          },
+          {
+            "id$": "653fea85a36ec064aec9f792",
+            "Signer1Name": "Borrower C Shareholder 3"
+          }
+        ]
+      },
+      {
+        "id$": "653feb10935bcd3b3568d22c",
+        "BorrowerEntityType": "trust",
+        "BorrowerName": "Trust Borrower",
+        "BorrowerOrgState": "Connecticut",
+        "VenturersOrTrustees": [
+          "Trustee 1",
+          "Trustee 2",
+          "Trustee 3",
+          "Trustee 4"
+        ]
+      }
+    ],
+    "BorrowerNoticeSentTo": "Other",
+    "Notice": {
+      "id$": "653fea19d226f2f8122d7d45",
+      "street": "4865 Lorelei Avenue",
+      "city": "Long Beach",
+      "state": "California",
+      "zip": "90808"
+    },
+    "BorrowerDeliveryTo": "Third party notice delivery"
+  }
+}

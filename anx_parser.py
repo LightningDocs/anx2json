@@ -27,7 +27,9 @@ class ANX_Parser:
         answer_element = self.answer_set.find(xpath)
         if answer_element is not None:
             answer_element.set("visited", "true")
-        return answer_element
+            return answer_element[0]
+        else:
+            return None
 
     def parse_TextValue(self, element: ET.Element) -> str:
         """Parse the contents of a TextValue element in the .anx file.
@@ -38,6 +40,8 @@ class ANX_Parser:
         Returns:
             str: The Knackly acceptable version of the text if present, otherwise None.
         """
+        if element is None:
+            return None
         # Raise an error if the element is not actually a TextValue element
         if element.tag != "TextValue":
             raise ANXTagError("TextValue", element.tag)
@@ -55,6 +59,8 @@ class ANX_Parser:
         Returns:
             str: The date as a string in the YYYY-MM-DD format that Knackly expects if present, otherwise None.
         """
+        if element is None:
+            return None
         # Raise an error if the element is not actually a DateValue element
         if element.tag != "DateValue":
             raise ANXTagError("DateValue", element.tag)
@@ -73,6 +79,8 @@ class ANX_Parser:
         Returns:
             bool: The boolean value of the element's text if present, otherwise None.
         """
+        if element is None:
+            return None
         # Raise an error if the element is not actually a TFValue element
         if element.tag != "TFValue":
             raise ANXTagError("TFValue", element.tag)
@@ -90,6 +98,8 @@ class ANX_Parser:
         Returns:
             int | float: The integer (or float, if decimal places are relevant) value of the element's text if present, otherwise None.
         """
+        if element is None:
+            return None
         # Raise an error if the element is not actually a NumValue element
         if element.tag != "NumValue":
             raise ANXTagError("NumValue", element.tag)
@@ -110,6 +120,8 @@ class ANX_Parser:
         Returns:
             str: The element's text if present, otherwise None.
         """
+        if element is None:
+            return None
         # Raise an error if the element is not actually a SelValue element
         if element.tag != "SelValue":
             raise ANXTagError("SelValue", element.tag)
@@ -133,6 +145,8 @@ class ANX_Parser:
         Returns:
             str | int | float | list[str] | list[int] | list[float]: More often than not will return a single value, but is capable of returning a list if the MCValue is a 'Select all that apply'
         """
+        if element is None:
+            return None
         # Raise an error if the element is not actually a MCValue element
         if element.tag != "MCValue":
             raise ANXTagError("MCValue", element.tag)

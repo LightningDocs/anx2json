@@ -1,0 +1,39 @@
+{
+  "id$": "654039a253c8f97a18b704c9",
+  "Borrower": {
+    "id$": "654039a253c8f97a18b704ca",
+    "Borrowers": [
+      {
+        "id$": "654039a253c8f97a18b704cb",
+        "BorrowerName": "Borrower A",
+        "BorrowerEntityType": "individual",
+        "IsBorrowerAIF": true,
+        "AIFName": "Joe Smith AIF"
+      },
+      {
+        "id$": "654039a253c8f97a18b704cc",
+        "BorrowerName": "Borrower B",
+        "BorrowerEntityType": "individual",
+        "IsBorrowerAIF": false
+      },
+      {
+        "id$": "654039a253c8f97a18b704cd",
+        "BorrowerName": "Borrower C",
+        "BorrowerEntityType": "corporation"
+      },
+      {
+        "id$": "654039a253c8f97a18b704ce",
+        "BorrowerName": "Trust Borrower",
+        "BorrowerEntityType": "trust"
+      }
+    ],
+    "BorrowerNoticeSentTo": "Borrower",
+    "Notice": {
+      "id$": "654039a253c8f97a18b704cf",
+      "street": "4865 Lorelei Avenue",
+      "city": "Long Beach",
+      "state": "California",
+      "zip": "90808"
+    }
+  }
+}
