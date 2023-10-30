@@ -3,16 +3,26 @@ Python script that converts HotDocs .anx files to Knackly .json files
 
 ## Commands
 
-To trim down a knackly file and remove all `id$` keys, run
+### Usage
 
 ```bash
-python strip_id.py <filename>
+python main.py -i INPUT -o OUTPUT [-v] [-e EXCLUDE [EXCLUDE ...]]
 ```
 
-By default, this creates a new file "`_<filename>`". To replace the file instead, include the `-r` tag
+The `-v` (verbose) flag can be provided to print the names of .anx components that were not used in construction of the output json.
+
+The `-e` (exclude) argument can be provided alongside `-v` to specify certain .anx components to exclude from the verbose output. This can be passed through as a single argument, the path to a file where each line in the file is treated as a component to exclude, or as multiple strings, where each string is the name of a component to exclude.
+
+### Examples
 
 ```bash
-python strip_id.py <filename> [-r]
+python main.py -i "my_loan.anx" -o "output.json"
+
+python main.py -i "my_loan.anx" -o "output.json" -v
+
+python main.py -i "my_loan.anx" -o "output.json" -v -e "exclusion.txt"
+
+python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "ClientName" "(ANSWER FILE HISTORY)" 
 ```
 
 
