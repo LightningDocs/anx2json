@@ -1,52 +1,61 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AnswerSet title="" version="1.1">
 	<Answer name="(ANSWER FILE HISTORY)">
-		<TextValue>Master Loan Documents - Loan Agreement : October 30, 2023, 14:01
-			Master Loan Documents - Loan Agreement : October 30, 2023, 14:01
-			Master Loan Documents - Loan Agreement : October 30, 2023, 13:53
-			Master Loan Documents - Loan Agreement : October 30, 2023, 13:52
-			Master Loan Documents - Loan Agreement : October 30, 2023, 13:52
-			Master Loan Documents - Loan Agreement : October 30, 2023, 11:50
-		</TextValue>
+		<TextValue>Master Loan Documents - Loan Agreement : October 31, 2023, 16:11
+Master Loan Documents - Loan Agreement : October 31, 2023, 16:10
+Master Loan Documents - Loan Agreement : October 31, 2023, 16:07
+Master Loan Documents - Loan Agreement : October 31, 2023, 14:24
+Master Loan Documents - Loan Agreement : October 31, 2023, 14:20
+Master Loan Documents - Loan Agreement : October 30, 2023, 14:01
+Master Loan Documents - Loan Agreement : October 30, 2023, 14:01
+Master Loan Documents - Loan Agreement : October 30, 2023, 13:53
+Master Loan Documents - Loan Agreement : October 30, 2023, 13:52
+Master Loan Documents - Loan Agreement : October 30, 2023, 13:52
+Master Loan Documents - Loan Agreement : October 30, 2023, 11:50
+</TextValue>
 	</Answer>
 	<Answer name="B signature attorney in fact name TX">
 		<RptValue>
 			<TextValue>Joe Smith AIF</TextValue>
+			<TextValue unans="true"/>
+			<TextValue unans="true"/>
+			<TextValue unans="true"/>
+			<TextValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="B signature trustee name TX">
 		<RptValue>
-			<RptValue />
-			<RptValue />
-			<RptValue />
+			<RptValue/>
+			<RptValue/>
+			<RptValue/>
 			<RptValue>
 				<TextValue>Trustee 1</TextValue>
 				<TextValue>Trustee 2</TextValue>
 				<TextValue>Trustee 3</TextValue>
 				<TextValue>Trustee 4</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
 	<Answer name="B signature underlying entity 1 title TX">
 		<RptValue>
-			<RptValue />
-			<RptValue />
+			<RptValue/>
+			<RptValue/>
 			<RptValue>
 				<TextValue>CEO</TextValue>
 				<TextValue>Vice President</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
 	<Answer name="B signature underlying entity 1 name TX">
 		<RptValue>
-			<RptValue />
-			<RptValue />
+			<RptValue/>
+			<RptValue/>
 			<RptValue>
 				<TextValue>Big Boss</TextValue>
 				<TextValue>Lil Vice Prezzy</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -55,13 +64,14 @@
 			<RptValue>
 				<TextValue>BB</TextValue>
 				<TextValue>Borrowuh Bee</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 			<RptValue>
 				<TextValue>Bigly Bossly</TextValue>
+				<TextValue unans="true"/>
 			</RptValue>
 			<RptValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -74,7 +84,8 @@
 			<TextValue>$$0002%%</TextValue>
 			<TextValue>$$0003%%</TextValue>
 			<TextValue>$$0004%%</TextValue>
-			<TextValue unans="true" />
+			<TextValue unans="true"/>
+			<TextValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Name TE">
@@ -83,18 +94,19 @@
 			<TextValue>Borrower B</TextValue>
 			<TextValue>Borrower C</TextValue>
 			<TextValue>Trust Borrower</TextValue>
-			<TextValue unans="true" />
+			<TextValue unans="true"/>
+			<TextValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Owner Signer Name TE">
 		<RptValue>
-			<RptValue />
-			<RptValue />
+			<RptValue/>
+			<RptValue/>
 			<RptValue>
 				<TextValue>Borrower C Shareholder 1</TextValue>
 				<TextValue>Borrower C Shareholder 2</TextValue>
 				<TextValue>Borrower C Shareholder 3</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -105,7 +117,7 @@
 		<TextValue>90808</TextValue>
 	</Answer>
 	<Answer name="Client Specific Pass Store TX">
-		<TextValue></TextValue>
+		<TextValue>Trans</TextValue>
 	</Answer>
 	<Answer name="Closing Contact Email Address TX">
 		<TextValue>a</TextValue>
@@ -134,8 +146,24 @@
 	<Answer name="Homeowner Insurance NU">
 		<NumValue>0.0000000</NumValue>
 	</Answer>
+	<Answer name="Interest Step Duration NU">
+		<RptValue>
+			<NumValue>2.0000000</NumValue>
+			<NumValue>4.0000000</NumValue>
+			<NumValue>6.0000000</NumValue>
+			<NumValue unans="true"/>
+		</RptValue>
+	</Answer>
+	<Answer name="Interest Step Rate NU">
+		<RptValue>
+			<NumValue unans="true"/>
+			<NumValue>10.0000000</NumValue>
+			<NumValue>12.5000000</NumValue>
+			<NumValue unans="true"/>
+		</RptValue>
+	</Answer>
 	<Answer name="Keys NU">
-		<NumValue>5.0000000</NumValue>
+		<NumValue>7.0000000</NumValue>
 	</Answer>
 	<Answer name="Property Taxes NU">
 		<NumValue>0.0000000</NumValue>
@@ -177,6 +205,9 @@
 		<RptValue>
 			<TFValue>true</TFValue>
 			<TFValue>false</TFValue>
+			<TFValue unans="true"/>
+			<TFValue unans="true"/>
+			<TFValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Blackburne Initial Bonus Rate TF">
@@ -275,7 +306,7 @@
 	<Answer name="Exhibit A Lender List TF">
 		<RptValue>
 			<TFValue>false</TFValue>
-			<TFValue unans="true" />
+			<TFValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Exit Fee TF">
@@ -321,7 +352,7 @@
 		<TFValue>false</TFValue>
 	</Answer>
 	<Answer name="Interest Step TF">
-		<TFValue>false</TFValue>
+		<TFValue>true</TFValue>
 	</Answer>
 	<Answer name="Kass Schuler TF">
 		<TFValue>false</TFValue>
@@ -371,7 +402,7 @@
 	<Answer name="Owner Occupied TF">
 		<RptValue>
 			<TFValue>false</TFValue>
-			<TFValue unans="true" />
+			<TFValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="PLDirect Origination Fee TF">
@@ -479,7 +510,7 @@
 		<TFValue>false</TFValue>
 	</Answer>
 	<Answer name="Translator Required TF">
-		<TFValue>false</TFValue>
+		<TFValue>true</TFValue>
 	</Answer>
 	<Answer name="UCC Fixture Filing TF">
 		<TFValue>false</TFValue>
@@ -502,6 +533,11 @@
 	<Answer name="seth_Inspection Fee TF">
 		<TFValue>false</TFValue>
 	</Answer>
+	<Answer name="Arbitration County MC">
+		<MCValue>
+			<SelValue>AnchorageH6</SelValue>
+		</MCValue>
+	</Answer>
 	<Answer name="Assignment and Allonge Concurrent MC">
 		<MCValue>
 			<SelValue>None</SelValue>
@@ -515,7 +551,7 @@
 			<MCValue>
 				<SelValue>Big Boss</SelValue>
 			</MCValue>
-			<MCValue unans="true" />
+			<MCValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Entity Type MC">
@@ -532,7 +568,8 @@
 			<MCValue>
 				<SelValue>trust</SelValue>
 			</MCValue>
-			<MCValue unans="true" />
+			<MCValue unans="true"/>
+			<MCValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Notice MC">
@@ -542,8 +579,8 @@
 	</Answer>
 	<Answer name="Borrower Organization State MC">
 		<RptValue>
-			<MCValue unans="true" />
-			<MCValue unans="true" />
+			<MCValue unans="true"/>
+			<MCValue unans="true"/>
 			<MCValue>
 				<SelValue>Alaska</SelValue>
 			</MCValue>
@@ -562,6 +599,11 @@
 	<Answer name="Deferred Origination Fees MC">
 		<MCValue>
 			<SelValue>None</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Escrow and Title Select MC">
+		<MCValue>
+			<SelValue>Escrow and Title</SelValue>
 		</MCValue>
 	</Answer>
 	<Answer name="Guaranty Type MC">
@@ -587,6 +629,11 @@
 	<Answer name="Loan Servicer MC">
 		<MCValue>
 			<SelValue>Lender</SelValue>
+		</MCValue>
+	</Answer>
+	<Answer name="Note Governing Law State MC">
+		<MCValue>
+			<SelValue>Alaska</SelValue>
 		</MCValue>
 	</Answer>
 	<Answer name="Partial Release Advanced MC">
@@ -625,5 +672,13 @@
 		<MCValue>
 			<SelValue>2006</SelValue>
 		</MCValue>
+	</Answer>
+	<Answer name="Translator Required MC">
+		<RptValue>
+			<MCValue>
+				<SelValue>Trustee 1</SelValue>
+			</MCValue>
+			<MCValue unans="true"/>
+		</RptValue>
 	</Answer>
 </AnswerSet>

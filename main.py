@@ -1,6 +1,7 @@
 import argparse
 import os
 import json
+from pprint import pprint
 
 from anx_parser import ANX_Parser
 from knackly_writer import Knackly_Writer
@@ -80,6 +81,7 @@ def main(args: argparse.Namespace):
     json.dump(writer.json, args.output, indent=2)
     print(f"Success! Saved output to {os.path.abspath(args.output.name)}")
     args.output.close()
+    # pprint(writer.uuid_map)
 
 
 def test(args: argparse.Namespace):
@@ -127,10 +129,14 @@ def test(args: argparse.Namespace):
     # for elem in test10:
     # print(elem)
 
-    test11 = anx_parser.find_answer("Borrower Name TE")
-    print(test11)
-    for elem in test11:
-        print(elem)
+    # test11 = anx_parser.find_answer("Borrower Name TE")
+    # print(test11)
+    # for elem in test11:
+    # print(elem)
+
+    # test12 = anx_parser.find_answer("Borrower AKA TX")
+    # print(test12)
+    # print(anx_parser.parse_RptValue(test12))
 
 
 if __name__ == "__main__":
