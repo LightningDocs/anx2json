@@ -180,6 +180,7 @@ class Knackly_Writer:
                 dict: The full variableRate object. For any values that were `None`, they are removed before returning.
             """
             result = {
+                "id$": str(ObjectId()),
                 "margin": self.anx.parse_NumValue(
                     self.anx.find_answer("Variable Margin NM")
                 ),

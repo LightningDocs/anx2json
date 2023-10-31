@@ -1,25 +1,26 @@
 {
-  "id$": "65418aef53c8f97da4f198ae",
+  "id$": "65418c3253c8f9a8108e07ef",
   "loanTerms": {
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
     "variableRate": {
+      "id$": "65418c3253c8f9a8108e07f0",
       "isDailyFloatingRate": false
     },
     "isInterestStep": true,
     "interestStepSpreadsheet": [
       {
-        "id$": "65418aef53c8f97da4f198af",
+        "id$": "65418c3253c8f9a8108e07f1",
         "duration": 2
       },
       {
-        "id$": "65418aef53c8f97da4f198b0",
+        "id$": "65418c3253c8f9a8108e07f2",
         "rate": 10,
         "duration": 4
       },
       {
-        "id$": "65418aef53c8f97da4f198b1",
+        "id$": "65418c3253c8f9a8108e07f3",
         "rate": 12.5,
         "duration": 6
       }
