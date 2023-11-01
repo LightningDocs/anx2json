@@ -24,5 +24,32 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "exclusion.txt"
 
 python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "ClientName" "(ANSWER FILE HISTORY)" 
 ```
+## Todo list
 
-
+- [ ] Section A
+  - [ ] Borrower Information
+  - [ ] Non-Borrower Property Owners
+  - [ ] Property Information
+- [ ] Section B
+  - [x] Standard Loan Terms
+  - [ ] Special Loan Features
+  - [ ] Membership Pledge & UCC Documents
+- [ ] Section C
+  - [ ] Lender Information
+  - [ ] Is there a Guaranty?
+  - [ ] Guarantor Information
+- [ ] Section D
+  - [ ] Loan Servicer
+  - [ ] Servicer Info
+  - [ ] FCI Disbursement Agreement
+  - [ ] Is there a Broker?
+  - [ ] Broker
+  - [ ] Title Information
+  - [ ] Is there an escrow company?
+  - [ ] Escrow Company Info
+  - [ ] Settlement Statement Info
+- [ ] Loan Preparer
+- [ ] Closing Contact Info
+- [ ] Optional Documents
+  - [ ] Additional Documents
+  - [ ] Customizations to Documents

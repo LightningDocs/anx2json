@@ -1,5 +1,6 @@
 # examples folder (only used for testing / comparing answer files)
 examples/
+test_examples/
 test_output.json
 
 # Byte-compiled / optimized / DLL files

@@ -1,31 +1,47 @@
 {
-  "id$": "65418c3253c8f9a8108e07ef",
+  "id$": "6542c7655c2066a20c32f7d5",
   "loanTerms": {
+    "id$": "6542c7655c2066a20c32f7d6",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
-    "variableRate": {
-      "id$": "65418c3253c8f9a8108e07f0",
-      "isDailyFloatingRate": false
-    },
-    "isInterestStep": true,
-    "interestStepSpreadsheet": [
-      {
-        "id$": "65418c3253c8f9a8108e07f1",
-        "duration": 2
-      },
-      {
-        "id$": "65418c3253c8f9a8108e07f2",
-        "rate": 10,
-        "duration": 4
-      },
-      {
-        "id$": "65418c3253c8f9a8108e07f3",
-        "rate": 12.5,
-        "duration": 6
-      }
-    ],
+    "isInterestStep": false,
     "isMERSLoan": false,
     "paymentInAdvance": false
+  },
+  "features": {
+    "isLineOfCredit": false,
+    "lineOfCreditPage": {
+      "id$": "6542c7655c2066a20c32f7d7",
+      "isRevolving": false
+    },
+    "penalties": {
+      "id$": "6542c7655c2066a20c32f7d8",
+      "PrepaymentPenalty": "None",
+      "IsPrepay20Percent": false,
+      "IsPrepayLockYield": false
+    },
+    "isConstructionReserve": false,
+    "construction1": {
+      "id$": "6542c7655c2066a20c32f7d9",
+      "IsNonDutch": false,
+      "IsExcludeSchedule": false,
+      "IsRetainageRequired": false,
+      "IsThirdPartyFCA": false,
+      "isAssignmentOfPermits": false,
+      "isInspectionFee": false,
+      "IsConstructionContract": false,
+      "IsDesignContract": false,
+      "isThirdPartyConstructionGuaranty": true,
+      "completionGuarantors": [
+        "Guarantor Gerald",
+        "Guarantor Grandpa",
+        "Guarantor Geoff",
+        "Guarantor Gale",
+        "Guarantor Gabe"
+      ],
+      "doesConstructionBorrowerContribute": false
+    },
+    "isImpounds1": false
   }
 }

@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <AnswerSet title="" version="1.1">
 	<Answer name="(ANSWER FILE HISTORY)">
-		<TextValue>Master Loan Documents - Loan Agreement : October 30, 2023, 14:01
+		<TextValue>Master Loan Documents - Loan Agreement : November 1, 2023, 10:19
+Master Loan Documents - Loan Agreement : October 30, 2023, 14:01
 			Master Loan Documents - Loan Agreement : October 30, 2023, 14:01
 			Master Loan Documents - Loan Agreement : October 30, 2023, 13:53
 			Master Loan Documents - Loan Agreement : October 30, 2023, 13:52
@@ -16,37 +17,37 @@
 	</Answer>
 	<Answer name="B signature trustee name TX">
 		<RptValue>
-			<RptValue />
-			<RptValue />
-			<RptValue />
+			<RptValue/>
+			<RptValue/>
+			<RptValue/>
 			<RptValue>
 				<TextValue>Trustee 1</TextValue>
 				<TextValue>Trustee 2</TextValue>
 				<TextValue>Trustee 3</TextValue>
 				<TextValue>Trustee 4</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
 	<Answer name="B signature underlying entity 1 title TX">
 		<RptValue>
-			<RptValue />
-			<RptValue />
+			<RptValue/>
+			<RptValue/>
 			<RptValue>
 				<TextValue>CEO</TextValue>
 				<TextValue>Vice President</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
 	<Answer name="B signature underlying entity 1 name TX">
 		<RptValue>
-			<RptValue />
-			<RptValue />
+			<RptValue/>
+			<RptValue/>
 			<RptValue>
 				<TextValue>Big Boss</TextValue>
 				<TextValue>Lil Vice Prezzy</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -55,13 +56,13 @@
 			<RptValue>
 				<TextValue>BB</TextValue>
 				<TextValue>Borrowuh Bee</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 			<RptValue>
 				<TextValue>Bigly Bossly</TextValue>
 			</RptValue>
 			<RptValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -74,7 +75,7 @@
 			<TextValue>$$0002%%</TextValue>
 			<TextValue>$$0003%%</TextValue>
 			<TextValue>$$0004%%</TextValue>
-			<TextValue unans="true" />
+			<TextValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Name TE">
@@ -83,18 +84,18 @@
 			<TextValue>Borrower B</TextValue>
 			<TextValue>Borrower C</TextValue>
 			<TextValue>Trust Borrower</TextValue>
-			<TextValue unans="true" />
+			<TextValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Owner Signer Name TE">
 		<RptValue>
-			<RptValue />
-			<RptValue />
+			<RptValue/>
+			<RptValue/>
 			<RptValue>
 				<TextValue>Borrower C Shareholder 1</TextValue>
 				<TextValue>Borrower C Shareholder 2</TextValue>
 				<TextValue>Borrower C Shareholder 3</TextValue>
-				<TextValue unans="true" />
+				<TextValue unans="true"/>
 			</RptValue>
 		</RptValue>
 	</Answer>
@@ -275,7 +276,7 @@
 	<Answer name="Exhibit A Lender List TF">
 		<RptValue>
 			<TFValue>false</TFValue>
-			<TFValue unans="true" />
+			<TFValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Exit Fee TF">
@@ -371,7 +372,7 @@
 	<Answer name="Owner Occupied TF">
 		<RptValue>
 			<TFValue>false</TFValue>
-			<TFValue unans="true" />
+			<TFValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="PLDirect Origination Fee TF">
@@ -515,7 +516,7 @@
 			<MCValue>
 				<SelValue>Big Boss</SelValue>
 			</MCValue>
-			<MCValue unans="true" />
+			<MCValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Entity Type MC">
@@ -532,7 +533,7 @@
 			<MCValue>
 				<SelValue>trust</SelValue>
 			</MCValue>
-			<MCValue unans="true" />
+			<MCValue unans="true"/>
 		</RptValue>
 	</Answer>
 	<Answer name="Borrower Notice MC">
@@ -542,8 +543,8 @@
 	</Answer>
 	<Answer name="Borrower Organization State MC">
 		<RptValue>
-			<MCValue unans="true" />
-			<MCValue unans="true" />
+			<MCValue unans="true"/>
+			<MCValue unans="true"/>
 			<MCValue>
 				<SelValue>Alaska</SelValue>
 			</MCValue>

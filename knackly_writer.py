@@ -49,6 +49,28 @@ class Knackly_Writer:
         else:
             return dictionary
 
+    def is_all_args_none(self, args: dict | list) -> bool:
+        """Helper function to check if all of the arguments provided to it were `None`.
+
+        Args:
+            args (dict | list): Either a dictionary where the values for each key are what is checked (for use with `.locals()`), or a list of elements.
+
+        Raises:
+            TypeError: `True` if every argument's value is `None`, otherwise `False`.
+
+        Returns:
+            bool: _description_
+        """
+        if isinstance(args, dict):
+            return all(value is None for value in args.values())
+        elif isinstance(args, list):
+            return all(value is None for value in args)
+        else:
+            # This should never run
+            raise TypeError(
+                f"Expected a dictionary or a list, but got {type(args).__name__}"
+            )
+
     def address(
         self,
         street: str,
@@ -259,6 +281,7 @@ class Knackly_Writer:
             return result
 
         result = {
+            "id$": str(ObjectId()),
             "closingDate": self.anx.parse_DateValue(
                 self.anx.find_answer("Document Date DT")
             ),
@@ -294,7 +317,6 @@ class Knackly_Writer:
             "isVariableRate": self.anx.parse_TFValue(
                 self.anx.find_answer("Loan Type Variable TF")
             ),
-            "variableRate": variable_rate_setup(),
             "isInterestStep": self.anx.parse_TFValue(
                 self.anx.find_answer("Interest Step TF")
             ),
@@ -314,6 +336,229 @@ class Knackly_Writer:
             ),
         }
 
+        if result.get("isVariableRate"):
+            result["variableRate"] = variable_rate_setup()
+        if result.get("isInterestStep"):
+            result["interestStepSpreadsheet"] = interest_step_spreadsheet_setup()
+
+        return self.remove_none_values(result)
+
+    def special_loan_features(self) -> dict:
+        def line_of_credit_setup():
+            result = {
+                "id$": str(ObjectId()),
+                "isRevolving": self.anx.parse_TFValue(
+                    self.anx.find_answer("Credit Line Revolving TF")
+                ),
+                "minAdvanceRequest": self.anx.parse_NumValue(
+                    self.anx.find_answer("Credit Line Minimum Request NU")
+                ),
+                "advanceRequestFee": self.anx.parse_NumValue(
+                    self.anx.find_answer("Credit Line Request Fee NU")
+                ),
+                "maxDrawsPerMonth": self.anx.parse_NumValue(
+                    self.anx.find_answer("Credit Line Maximum Draws NU")
+                ),
+                "minOutstandingPrincipalBal": self.anx.parse_NumValue(
+                    self.anx.find_answer("Credit Line Minimum Balance NU")
+                ),
+            }
+
+            return self.remove_none_values(result)
+
+        def penalties_setup():
+            def prepay_non_linear_setup():
+                number = self.anx.parse_RptValue(
+                    self.anx.find_answer("Prepay Non Percent NU")
+                )
+                if number is None:
+                    return None
+
+                return {
+                    "id$": str(ObjectId()),
+                    "Percent": number[0],
+                }  # number will be a list, but HotDocs ensures that it can only be one element long
+
+            result = {
+                "id$": str(ObjectId()),
+                "PrepaymentPenalty": self.anx.parse_MCValue(
+                    self.anx.find_answer("Prepay MC")
+                ),
+                "PrepayTerm": self.anx.parse_NumValue(
+                    self.anx.find_answer("Prepay Term NU")
+                ),
+                "IsPrepay20Percent": self.anx.parse_TFValue(
+                    self.anx.find_answer("Prepay 20 Percent TF")
+                ),
+                "PenatlyCalculatedFrom": self.anx.parse_MCValue(
+                    self.anx.find_answer("Prepay Lock Penalty MC")
+                ),
+                "IsPrepayLockYield": self.anx.parse_TFValue(
+                    self.anx.find_answer("Prepay Lock Yield TF")
+                ),
+                "PrepayNonlinear": prepay_non_linear_setup(),
+                "PrepayLockDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Prepay Lock Dollars NU")
+                ),
+                "PrepayLockMonths": self.anx.parse_NumValue(
+                    self.anx.find_answer("Prepay Lock Months NU")
+                ),
+                "PrepayLockPercent": self.anx.parse_NumValue(
+                    self.anx.find_answer("Prepay Lock Percent NU")
+                ),
+                "prepaymentPremiumMonths": self.anx.parse_NumValue(
+                    self.anx.find_answer("Prepayment Premium Months NU")
+                ),
+            }
+
+            return self.remove_none_values(result)
+
+        def construction_setup():
+            def completion_setup():
+                percents = self.anx.parse_RptValue(
+                    self.anx.find_answer("Construction Contract Percent NU")
+                )
+                days = self.anx.parse_RptValue(
+                    self.anx.find_answer("Construction Contract Days NU")
+                )
+
+                # Make sure that the percents and days lists aren't both None
+                if self.is_all_args_none(locals()):
+                    return None
+
+                result = []
+                for percent, day in zip_longest(percents, days):
+                    if self.is_all_args_none([percent, day]):
+                        continue
+                    temp = {"id$": str(ObjectId()), "Percent": percent, "Deadline": day}
+                    result.append(temp)
+
+                return self.remove_none_values(result)
+
+            result = {
+                "id$": str(ObjectId()),
+                "reserve": self.anx.parse_NumValue(
+                    self.anx.find_answer("Holdback Amount NU")
+                ),
+                "IsNonDutch": self.anx.parse_TFValue(
+                    self.anx.find_answer("Non Dutch TF")
+                ),
+                "Type": self.anx.parse_MCValue(
+                    self.anx.find_answer("Construction Type MC")
+                ),
+                "IsExcludeSchedule": self.anx.parse_TFValue(
+                    self.anx.find_answer("Exclude Disbursement Schedule TF")
+                ),
+                "IsRetainageRequired": self.anx.parse_TFValue(
+                    self.anx.find_answer("Retainage Required TF")
+                ),
+                "IsThirdPartyFCA": self.anx.parse_TFValue(
+                    self.anx.find_answer("Construction Fund Control TF")
+                ),
+                "isAssignmentOfPermits": self.anx.parse_TFValue(
+                    self.anx.find_answer("Assignment of Permits TF")
+                ),
+                "isInspectionFee": self.anx.parse_TFValue(
+                    self.anx.find_answer("seth_Inspection Fee TF")
+                ),
+                "inspectionFee": self.anx.parse_NumValue(
+                    self.anx.find_answer("Inspection Fee NU")
+                ),
+                "IsConstructionContract": self.anx.parse_TFValue(
+                    self.anx.find_answer("Construction Contract TF")
+                ),
+                "ContractorName": self.anx.parse_TextValue(
+                    self.anx.find_answer("Construction Contractor TE")
+                ),
+                "IsDesignContract": self.anx.parse_TFValue(
+                    self.anx.find_answer("Construction Design Contract TF")
+                ),
+                "DesignerName": self.anx.parse_TextValue(
+                    self.anx.find_answer("Construction Designer TE")
+                ),
+                "isThirdPartyConstructionGuaranty": self.anx.parse_TFValue(
+                    self.anx.find_answer("Guaranty of Completion TF")
+                ),
+                "completionGuarantors": self.anx.parse_RptValue(
+                    self.anx.find_answer("Construction Guaranty Name TX")
+                ),
+                "doesConstructionBorrowerContribute": self.anx.parse_TFValue(
+                    self.anx.find_answer("Construction Borrower Contribution TF")
+                ),
+                "constructionBorrowerContribution": self.anx.parse_NumValue(
+                    self.anx.find_answer("Construction Borrower Contribution NU")
+                ),
+            }
+
+            if result.get("IsConstructionContract"):
+                result.update(
+                    {
+                        "Contractor": self.address(
+                            street=self.anx.parse_TextValue(
+                                self.anx.find_answer("Contractor Street Address TE")
+                            ),
+                            city=self.anx.parse_TextValue(
+                                self.anx.find_answer("Contractor City TE")
+                            ),
+                            state=self.anx.parse_MCValue(
+                                self.anx.find_answer("Contractor State MC")
+                            ),
+                            zip=self.anx.parse_TextValue(
+                                self.anx.find_answer("Contractor Zip TE")
+                            ),
+                        ),
+                        "Completion": completion_setup(),
+                    }
+                )
+            if result.get("IsDesignContract"):
+                result.update(
+                    {
+                        "Designer": self.address(
+                            street=self.anx.parse_TextValue(
+                                self.anx.find_answer("Designer Street Address TE")
+                            ),
+                            city=self.anx.parse_TextValue(
+                                self.anx.find_answer("Designer City TE")
+                            ),
+                            state=self.anx.parse_MCValue(
+                                self.anx.find_answer("Designer State MC")
+                            ),
+                            zip=self.anx.parse_TextValue(
+                                self.anx.find_answer("Designer Zip TE")
+                            ),
+                        )
+                    }
+                )
+
+            return self.remove_none_values(result)
+
+        def loan_features_setup():
+            pass
+
+        def reserves_setup():
+            pass
+
+        def impounds_setup():
+            pass
+
+        result = {
+            "isLineOfCredit": self.anx.parse_TFValue(
+                self.anx.find_answer("Credit Line TF")
+            ),
+            "lineOfCreditPage": line_of_credit_setup(),
+            "penalties": penalties_setup(),
+            "isConstructionReserve": self.anx.parse_TFValue(
+                self.anx.find_answer("Construction Holdback TF")
+            ),
+            "construction1": construction_setup(),
+            "loanFeatures": loan_features_setup(),
+            "reserves": reserves_setup(),
+            "isImpounds1": self.anx.parse_TFValue(
+                self.anx.find_answer("Impound Accounts TF")
+            ),
+            "impounds1": impounds_setup(),
+        }
+
         return self.remove_none_values(result)
 
     def create(self) -> None:
@@ -323,3 +568,4 @@ class Knackly_Writer:
         # self.json["propertyInformation"] = self.property_information()
         # self.json["loanTerms"] = self.standard_loan_terms()
         self.json.update({"loanTerms": self.standard_loan_terms()})
+        self.json.update({"features": self.special_loan_features()})

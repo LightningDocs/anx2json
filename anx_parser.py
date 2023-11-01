@@ -204,6 +204,8 @@ class ANX_Parser:
         Returns:
             list: The parsed representation of the element if possible, otherwise None.
         """
+        if element is None:
+            return None
         # Raise an error if the element is not actually a RptValue element
         if element.tag != "RptValue":
             raise ANXTagError("RptValue", element.tag)
