@@ -33,6 +33,12 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "Clie
 - [ ] Section B
   - [x] Standard Loan Terms
   - [ ] Special Loan Features
+    - [x] Line of Credit
+    - [x] Penalties
+    - [x] Construction
+    - [x] Loan Features
+    - [ ] Reserves
+    - [ ] Impounds
   - [ ] Membership Pledge & UCC Documents
 - [ ] Section C
   - [ ] Lender Information

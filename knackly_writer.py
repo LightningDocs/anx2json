@@ -344,7 +344,24 @@ class Knackly_Writer:
         return self.remove_none_values(result)
 
     def special_loan_features(self) -> dict:
-        def line_of_credit_setup():
+        """Create the `features` top level object.
+
+        Returns:
+            dict: the `features` dictionary containing information about:
+            - line of credit
+            - penalties
+            - construction
+            - features
+            - reserves
+            - impounds
+        """
+
+        def line_of_credit_setup() -> dict:
+            """Responsible for creating the `line of credit` object.
+
+            Returns:
+                dict: the `line of credit` dictionary object.
+            """
             result = {
                 "id$": str(ObjectId()),
                 "isRevolving": self.anx.parse_TFValue(
@@ -366,8 +383,19 @@ class Knackly_Writer:
 
             return self.remove_none_values(result)
 
-        def penalties_setup():
-            def prepay_non_linear_setup():
+        def penalties_setup() -> dict:
+            """Responsible for creating the `penalties` object.
+
+            Returns:
+                dict: the `penalties` dictionary object.
+            """
+
+            def prepay_non_linear_setup() -> dict | None:
+                """Responsible for creating the prepay non linear object. This is analogous to the one cell spreadsheet on the Loan Information page of the HotDocs interview.
+
+                Returns:
+                    dict | None: A dictionary representation of the one penalty percentage the user entered, or `None` if they didn't enter one.
+                """
                 number = self.anx.parse_RptValue(
                     self.anx.find_answer("Prepay Non Percent NU")
                 )
@@ -413,8 +441,15 @@ class Knackly_Writer:
 
             return self.remove_none_values(result)
 
-        def construction_setup():
-            def completion_setup():
+        def construction_setup() -> dict:
+            """Sets up the `construction1` object."""
+
+            def completion_setup() -> list[dict] | None:
+                """Helper function to set up the list of completion objects to be given to the `Completion` key
+
+                Returns:
+                    list[dict] | None: A list of the completion objects if any exist, otherwise `None`.
+                """
                 percents = self.anx.parse_RptValue(
                     self.anx.find_answer("Construction Contract Percent NU")
                 )
@@ -532,8 +567,170 @@ class Knackly_Writer:
 
             return self.remove_none_values(result)
 
-        def loan_features_setup():
-            pass
+        def loan_features_setup() -> dict:
+            """Sets up the "loanFeatures" object."""
+
+            def deferred_broker_type_setup() -> str:
+                """Perform some logic to decide what the "deferredBrokerType" key's value should be
+
+                Returns:
+                    str: "None" if there are no deferred broker fees. "Dollar" if there was a dollar amount entered. "Percent" otherwise.
+                """
+                # Old version
+                broker_fees_tf = self.anx.parse_TFValue(
+                    self.anx.find_answer("Deferred Broker Fees TF")
+                )
+
+                # New version
+                broker_fees_mc = self.anx.parse_MCValue(
+                    self.anx.find_answer("Deferred Broker Fees MC")
+                )
+
+                is_old_version = broker_fees_tf is not None and broker_fees_mc is None
+
+                if (is_old_version and broker_fees_tf == False) or (
+                    broker_fees_mc == "None"
+                ):
+                    return "None"  # We return the string "None" instead of the singleton "None" here because that is the actual name of the option in Knackly.
+
+                dollar_amount = self.anx.parse_NumValue(
+                    self.anx.find_answer("Deferred Broker Fee NU")
+                )
+                # percentage_amount = self.anx.parse_NumValue(self.anx.find_answer("Deferred Broker Fee Percent NU"))
+
+                if dollar_amount:
+                    return "Dollar Amount"
+                else:
+                    return "Percentage of Loan"
+
+            result = {
+                "id$": str(ObjectId()),
+                "insurancePayment": self.anx.parse_NumValue(
+                    self.anx.find_answer("Insurance Payment NU")
+                ),
+                "isACH": self.anx.parse_TFValue(
+                    self.anx.find_answer("ACH Delivery of Payments TF")
+                ),
+                "isACHRemove": self.anx.parse_TFValue(
+                    self.anx.find_answer("Remove ACH TF")
+                ),
+                "isSBALoan": self.anx.parse_TFValue(
+                    self.anx.find_answer("SBA Loan TF")
+                ),
+                "sba_ApprovalDate": self.anx.parse_DateValue(
+                    self.anx.find_answer("SBA Approval DT")
+                ),
+                "sba_LoanNumber": self.anx.parse_TextValue(
+                    self.anx.find_answer("SBA Loan Number TX")
+                ),
+                "isCannabisLoan": self.anx.parse_TFValue(
+                    self.anx.find_answer("Cannabis Loan TF")
+                ),
+                "isAffiliateLoan": self.anx.parse_TFValue(
+                    self.anx.find_answer("Affiliate Loan TF")
+                ),
+                "isSpecialPurposeEntity": self.anx.parse_TFValue(
+                    self.anx.find_answer("Special Purpose Entity TF")
+                ),
+                "isRecycledSPE": self.anx.parse_TFValue(
+                    self.anx.find_answer("SPE Recycled TF")
+                ),
+                "isDebtServiceCoverageRatio": self.anx.parse_TFValue(
+                    self.anx.find_answer("DSCR TF")
+                ),
+                "ratio": self.anx.parse_NumValue(self.anx.find_answer("DSCR NU")),
+                "isAutoExtension": self.anx.parse_TFValue(
+                    self.anx.find_answer("Auto Extension TF")
+                ),
+                "isExtension": self.anx.parse_TFValue(
+                    self.anx.find_answer("Extension TF")
+                ),
+                "extensionNum": self.anx.parse_NumValue(
+                    self.anx.find_answer("Extension Number NU")
+                ),
+                "extensionMonths": self.anx.parse_NumValue(
+                    self.anx.find_answer("Extension Months NU")
+                ),
+                "extensionType": self.anx.parse_MCValue(
+                    self.anx.find_answer("Extension Fee Type MC")
+                ),
+                "extensionFeePercent": self.anx.parse_NumValue(
+                    self.anx.find_answer("Extension Fee NU")
+                ),
+                "extensionFeeAmount": self.anx.parse_NumValue(
+                    self.anx.find_answer("Extension Fee Amount NU")
+                ),
+                "isLockbox": self.anx.parse_TFValue(
+                    self.anx.find_answer("Rental Income LockBox TF")
+                ),
+                "lockbox_Type": self.anx.parse_MCValue(
+                    self.anx.find_answer("Rental Income Lockbox MC")
+                ),
+                "lockbox_Bank": self.anx.parse_TextValue(
+                    self.anx.find_answer("Rental Income Lockbox Bank TE")
+                ),
+                "lockbox_FirstRentDate": self.anx.parse_DateValue(
+                    self.anx.find_answer("Rental Income Lockbox DT")
+                ),
+                "isServicingFees": self.anx.parse_TFValue(
+                    self.anx.find_answer("Servicing Fees TF")
+                ),
+                "servicingFee": self.anx.parse_NumValue(
+                    self.anx.find_answer("Servicing Fees Amount NU")
+                ),
+                "isExit": self.anx.parse_TFValue(self.anx.find_answer("Exit Fee TF")),
+                "exitDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Exit Fee Amount NU")
+                ),
+                "isTermination": self.anx.parse_TFValue(
+                    self.anx.find_answer("Termination Fee TF")
+                ),
+                "terminationDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Termination Fee AMT NU")
+                ),
+                "deferredBrokerType": deferred_broker_type_setup(),
+                "deferredBrokerDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Deferred Broker Fee NU")
+                ),
+                "deferredBrokerPercent": self.anx.parse_NumValue(
+                    self.anx.find_answer("Deferred Broker Fee Percent NU")
+                ),
+                "deferredOriginationType": self.anx.parse_MCValue(
+                    self.anx.find_answer("Deferred Origination Fees MC")
+                ),
+                "deferredOriginationDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Deferred Origination Fee NU")
+                ),
+                "deferredOriginationPercent": self.anx.parse_NumValue(
+                    self.anx.find_answer("Deferred Origination Fee Percent NU")
+                ),
+                "isDefaultFee": self.anx.parse_TFValue(
+                    self.anx.find_answer("Default Fee TF")
+                ),
+                "defaultFeeAMT": self.anx.parse_NumValue(
+                    self.anx.find_answer("Default Fee AMT NU")
+                ),
+                "iseResiLoan": self.anx.parse_TFValue(
+                    self.anx.find_answer("eResi Loan TF")
+                ),
+                "isFStreetLoan": self.anx.parse_TFValue(
+                    self.anx.find_answer("F Street Loan TF")
+                ),
+                "plDirectOriginationFeeNU": self.anx.parse_NumValue(
+                    self.anx.find_answer("PLDirect Origination Fee NU")
+                ),
+                "plDirectOriginationFee": self.anx.parse_TFValue(
+                    self.anx.find_answer("PLDirect Origination Fee TF")
+                ),
+                "isWallisLife": self.anx.parse_TFValue(
+                    self.anx.find_answer("Wallis Life Insurance TF")
+                ),
+                "silverHillDeferredLoan": self.anx.parse_TFValue(
+                    self.anx.find_answer("Silver Hill Deferred Loan TF")
+                ),
+            }
+
+            return self.remove_none_values(result)
 
         def reserves_setup():
             pass
@@ -542,6 +739,7 @@ class Knackly_Writer:
             pass
 
         result = {
+            "id$": str(ObjectId()),
             "isLineOfCredit": self.anx.parse_TFValue(
                 self.anx.find_answer("Credit Line TF")
             ),

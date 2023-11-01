@@ -1,7 +1,7 @@
 {
-  "id$": "6542c7655c2066a20c32f7d5",
+  "id$": "6542db69f4b2369d06eb4d8f",
   "loanTerms": {
-    "id$": "6542c7655c2066a20c32f7d6",
+    "id$": "6542db69f4b2369d06eb4d90",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
@@ -10,20 +10,21 @@
     "paymentInAdvance": false
   },
   "features": {
+    "id$": "6542db69f4b2369d06eb4d91",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "6542c7655c2066a20c32f7d7",
+      "id$": "6542db69f4b2369d06eb4d92",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "6542c7655c2066a20c32f7d8",
+      "id$": "6542db69f4b2369d06eb4d93",
       "PrepaymentPenalty": "None",
       "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "6542c7655c2066a20c32f7d9",
+      "id$": "6542db69f4b2369d06eb4d94",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -32,15 +33,36 @@
       "isInspectionFee": false,
       "IsConstructionContract": false,
       "IsDesignContract": false,
-      "isThirdPartyConstructionGuaranty": true,
-      "completionGuarantors": [
-        "Guarantor Gerald",
-        "Guarantor Grandpa",
-        "Guarantor Geoff",
-        "Guarantor Gale",
-        "Guarantor Gabe"
-      ],
+      "isThirdPartyConstructionGuaranty": false,
       "doesConstructionBorrowerContribute": false
+    },
+    "loanFeatures": {
+      "id$": "6542db69f4b2369d06eb4d95",
+      "isACH": false,
+      "isACHRemove": false,
+      "isSBALoan": false,
+      "isCannabisLoan": false,
+      "isAffiliateLoan": false,
+      "isSpecialPurposeEntity": false,
+      "isRecycledSPE": false,
+      "isDebtServiceCoverageRatio": false,
+      "isAutoExtension": false,
+      "isExtension": false,
+      "isLockbox": false,
+      "isServicingFees": false,
+      "isExit": false,
+      "isTermination": false,
+      "deferredBrokerType": "Dollar",
+      "deferredBrokerDollars": 25,
+      "deferredBrokerPercent": 3.1,
+      "deferredOriginationType": "Dollar Amount",
+      "deferredOriginationDollars": 22,
+      "isDefaultFee": true,
+      "iseResiLoan": false,
+      "isFStreetLoan": false,
+      "plDirectOriginationFee": false,
+      "isWallisLife": false,
+      "silverHillDeferredLoan": false
     },
     "isImpounds1": false
   }
