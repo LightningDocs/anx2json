@@ -732,8 +732,96 @@ class Knackly_Writer:
 
             return self.remove_none_values(result)
 
-        def reserves_setup():
-            pass
+        def reserves_setup() -> dict:
+            """Create and populate the `reserves` object.
+
+            Returns:
+                dict: The value of the `reserves` object.
+            """
+
+            def debt_service_type_setup() -> str:
+                """Helper function to determine what the key should be for the `DebtServiceType` question.
+
+                Returns:
+                    str: `"None"` if there was no debt service reserve. `"Monthly Payments"` if the DSR was in months. Otherwise, `"Dollar Amount"`.
+                """
+                tf_question = self.anx.parse_TFValue(
+                    self.anx.find_answer("Interest Reserve TF")
+                )
+                if tf_question == False:
+                    return "None"  # We return the literal string "None" because that is the name of one of the keys in Knackly.
+
+                is_months = self.anx.parse_TFValue(
+                    self.anx.find_answer("Interest Reserve Months TF")
+                )
+                if is_months:
+                    return "Monthly Payments"
+                else:
+                    return "Dollar Amount"
+
+            result = {
+                "id$": str(ObjectId()),
+                "IsLender": self.anx.parse_TFValue(
+                    self.anx.find_answer("Lender Holdback TF")
+                ),
+                "LenderDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Lender Holdback NU")
+                ),
+                "isPropertyTax": self.anx.parse_TFValue(
+                    self.anx.find_answer("Real Property Tax Holdback TF")
+                ),
+                "PropertyTaxDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Real Property Tax Holdback NU")
+                ),
+                "isPropertyInsurance": self.anx.parse_TFValue(
+                    self.anx.find_answer("Insurance Holdback TF")
+                ),
+                "PropertyInsuranceDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Insurance Holdback NU")
+                ),
+                "IsCapEx": self.anx.parse_TFValue(
+                    self.anx.find_answer("Capex Holdback TF")
+                ),
+                "CapExDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Capex Holdback NU")
+                ),
+                "IsAppraisal": self.anx.parse_TFValue(
+                    self.anx.find_answer("Appraisal Reserve TF")
+                ),
+                "AppraisalDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Appraisal Reserve Amount NU")
+                ),
+                "appraisalARV": self.anx.parse_NumValue(
+                    self.anx.find_answer("Appraisal ARV NU")
+                ),
+                "DefaultType": self.anx.parse_MCValue(
+                    self.anx.find_answer("Default Reserve MC")
+                ),
+                "DefaultDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Default Reserve Dollars NU")
+                ),
+                "DefaultMonths": self.anx.parse_NumValue(
+                    self.anx.find_answer("Default Reserve Months NU")
+                ),
+                "isOccupancy": self.anx.parse_TFValue(
+                    self.anx.find_answer("Damage Reserve TF")
+                ),
+                "occupancyAmount": self.anx.parse_NumValue(
+                    self.anx.find_answer("Damage Reserve Amount NU")
+                ),
+                "occupancyDeadline": self.anx.parse_DateValue(
+                    self.anx.find_answer("Damage Deadline DT")
+                ),
+                "DebtServiceType": debt_service_type_setup(),
+                "DebtServiceDollars": self.anx.parse_NumValue(
+                    self.anx.find_answer("Interest Reserve Amount NU")
+                ),
+                "DebtServiceMonths": self.anx.parse_NumValue(
+                    self.anx.find_answer("Interest Reserve Months NU")
+                ),
+            }
+
+            return self.remove_none_values(result)
 
         def impounds_setup():
             pass
