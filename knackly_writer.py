@@ -823,8 +823,35 @@ class Knackly_Writer:
 
             return self.remove_none_values(result)
 
-        def impounds_setup():
-            pass
+        def impounds_setup() -> dict:
+            """Set up the `impounds` object.
+
+            Returns:
+                dict: The actual value of the `impounds` object.
+            """
+            result = {
+                "id$": str(ObjectId()),
+                "initialTax": self.anx.parse_NumValue(
+                    self.anx.find_answer("Impound Tax NU")
+                ),
+                "initialInsurance": self.anx.parse_NumValue(
+                    self.anx.find_answer("Impound Insurance NU")
+                ),
+                "monthlyTax": self.anx.parse_NumValue(
+                    self.anx.find_answer("Tax Payment NU")
+                ),
+                "monthlyPropertyInsurance": self.anx.parse_NumValue(
+                    self.anx.find_answer("Insurance Payment NU")
+                ),
+                "monthlyFloodInsurance": self.anx.parse_NumValue(
+                    self.anx.find_answer("First Payment Letter Flood NU")
+                ),
+                "monthlyCapEx": self.anx.parse_NumValue(
+                    self.anx.find_answer("CapEx Impound NU")
+                ),
+            }
+
+            return self.remove_none_values(result)
 
         result = {
             "id$": str(ObjectId()),
@@ -847,6 +874,119 @@ class Knackly_Writer:
 
         return self.remove_none_values(result)
 
+    def membership_pledge_and_ucc_docs(self):
+        raise NotImplementedError
+
+    def lender_information(self) -> dict:
+        """Create the `lenderInformation` top level object.
+
+        Returns:
+            dict: The value for the `lenderInformation` key.
+        """
+
+        def lender_setup() -> str | None:
+            """Get the name of the sole lender on the loan, if available.
+
+            Returns:
+                str | None: The name of the sole lender. If there were multiple lenders, return None.
+            """
+            lender_name_rpt = self.anx.parse_RptValue(
+                self.anx.find_answer("Lender Name TE")
+            )
+
+            if len(lender_name_rpt) == 1:
+                return lender_name_rpt[0]
+            else:
+                return None
+
+        def multiple_lenders_setup() -> list[dict] | None:
+            """Creates the list of lender objects when there are multiple lenders.
+
+            Returns:
+                list[dict] | None: A list of dictionaries containing the name of the lender and amount invested if available, otherwise None if there were no multiple lenders
+            """
+            lender_name_rpt = self.anx.parse_RptValue(
+                self.anx.find_answer("Lender Name TE")
+            )
+            lender_amount_rpt = self.anx.parse_RptValue(
+                self.anx.find_answer("Lender Invest Amount NU")
+            )
+
+            result = []
+            for name, amount in zip_longest(lender_name_rpt, lender_amount_rpt):
+                if self.is_all_args_none([name, amount]):
+                    continue
+                temp = {"id$": str(ObjectId()), "Name": name, "Amount": amount}
+
+                result.append(self.remove_none_values(temp))
+
+            if len(result) > 1:
+                # If there was only one lender, then `lender_setup()` will take care of it.
+                return result
+            else:
+                return None
+
+        def notice_email_setup() -> str | None:
+            """Gets either the Temple or FinMe lender email, if available.
+
+            Returns:
+                str | None: The email address if found, otherwise None.
+            """
+            # raise NotImplementedError
+            temple_email = self.anx.parse_TextValue(
+                self.anx.find_answer("Temple Lender Email Address TX")
+            )
+            finme_email = self.anx.parse_TextValue(
+                self.anx.find_answer("FinMe Lender Email TE")
+            )
+
+            if self.is_all_args_none(locals()):
+                return None
+
+            # If *somehow* temple and finme emails were provided... too bad we are just returning temple's email
+            if temple_email:
+                return temple_email
+            elif finme_email:
+                return finme_email
+
+        result = {
+            "id$": str(ObjectId()),
+            "isExhibitALenders": self.anx.parse_RptValue(
+                self.anx.find_answer("Exhibit A Lender List TF")[0]
+                # We only care about the answer to the first iteration
+            ),
+            "IsMultipleLenders": self.anx.parse_TFValue(
+                self.anx.find_answer("seth_Multiple Lenders TF")
+            ),
+            "IsCFLLicensee": self.anx.parse_TFValue(
+                self.anx.find_answer("CA CFL License TF")
+            ),
+            "Lender": lender_setup(),
+            "CFLLicenseNumber": self.anx.parse_TextValue(
+                self.anx.find_answer("Lender CFL License Number TE")
+            ),
+            "MultipleLenders": multiple_lenders_setup(),
+            "NoticeTo": self.anx.parse_MCValue(
+                self.anx.find_answer("Lender Care Of MC")
+            ),
+            "OtherDelivery": self.anx.parse_TextValue(
+                self.anx.find_answer("Lender Delivery To Notice TE")
+            ),
+            "Notice": self.address(
+                street=self.anx.parse_TextValue(
+                    self.anx.find_answer("Lender Street Address TE")
+                ),
+                city=self.anx.parse_TextValue(self.anx.find_answer("Lender City TE")),
+                state=self.anx.parse_MCValue(self.anx.find_answer("Lender State MC")),
+                zip=self.anx.parse_TextValue(
+                    self.anx.find_answer("Lender Zip Code TE")
+                ),
+            ),
+            "noticeEmail": notice_email_setup(),
+        }
+
+        return self.remove_none_values(result)
+
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""
         # self.json.update({"Borrower": self.borrower_information()}) # This is broken UGH
@@ -855,3 +995,5 @@ class Knackly_Writer:
         # self.json["loanTerms"] = self.standard_loan_terms()
         self.json.update({"loanTerms": self.standard_loan_terms()})
         self.json.update({"features": self.special_loan_features()})
+        #
+        self.json.update({"lenderInformation": self.lender_information()})
