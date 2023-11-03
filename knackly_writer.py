@@ -894,6 +894,9 @@ class Knackly_Writer:
                 self.anx.find_answer("Lender Name TE")
             )
 
+            if lender_name_rpt is None:
+                return None
+
             if len(lender_name_rpt) == 1:
                 return lender_name_rpt[0]
             else:
@@ -911,6 +914,10 @@ class Knackly_Writer:
             lender_amount_rpt = self.anx.parse_RptValue(
                 self.anx.find_answer("Lender Invest Amount NU")
             )
+
+            # Check to see if they were both not none.
+            if self.is_all_args_none([lender_name_rpt, lender_amount_rpt]):
+                return None
 
             result = []
             for name, amount in zip_longest(lender_name_rpt, lender_amount_rpt):
@@ -952,9 +959,10 @@ class Knackly_Writer:
         result = {
             "id$": str(ObjectId()),
             "isExhibitALenders": self.anx.parse_RptValue(
-                self.anx.find_answer("Exhibit A Lender List TF")[0]
-                # We only care about the answer to the first iteration
-            ),
+                self.anx.find_answer("Exhibit A Lender List TF")
+            )[
+                0
+            ],  # We only care about the answer to the first iteration
             "IsMultipleLenders": self.anx.parse_TFValue(
                 self.anx.find_answer("seth_Multiple Lenders TF")
             ),
@@ -987,6 +995,87 @@ class Knackly_Writer:
 
         return self.remove_none_values(result)
 
+    def guarantor_information(self) -> dict:
+        def guarantors_setup() -> list[dict]:
+            result = []
+
+            names = self.anx.parse_RptValue(self.anx.find_answer("Guarantor Name TE"))
+            entity_types = self.anx.parse_RptValue(
+                self.anx.find_answer("Guarantor Entity Type MC")
+            )
+            guaranty_types = self.anx.parse_RptValue(
+                self.anx.find_answer("Guarantor Type Select MC")
+            )
+            address_types = self.anx.parse_RptValue(
+                self.anx.find_answer("Guarantor Address MC")
+            )
+
+            a_streets = self.anx.parse_RptValue(
+                self.anx.find_answer("Guarantor Street Address TE")
+            )
+            a_cities = self.anx.parse_RptValue(
+                self.anx.find_answer("Guarantor City TE")
+            )
+            a_states = self.anx.parse_RptValue(
+                self.anx.find_answer("Guarantor State MC")
+            )
+            a_zip_codes = self.anx.parse_RptValue(
+                self.anx.find_answer("Guarantor Zip Code TE")
+            )
+
+            for (
+                name,
+                entity_type,
+                guaranty_type,
+                address_type,
+                street,
+                city,
+                state,
+                zip_code,
+            ) in zip_longest(
+                names,
+                entity_types,
+                guaranty_types,
+                address_types,
+                a_streets,
+                a_cities,
+                a_states,
+                a_zip_codes,
+            ):
+                if self.is_all_args_none(
+                    [
+                        name,
+                        entity_type,
+                        guaranty_type,
+                        address_type,
+                        street,
+                        city,
+                        state,
+                        zip_code,
+                    ]
+                ):
+                    continue
+                    # Skip this iteration if everything is None
+
+                temp = {
+                    "id$": str(ObjectId()),
+                    "GuarantorName": name,
+                    "GuarantorEntityType": entity_type,
+                    "Type": guaranty_type,
+                    "WhichAddress": address_type,
+                    "GuarantorAddress": self.address(street, city, state, zip_code),
+                }
+
+                result.append(self.remove_none_values(temp))
+
+            if not result:
+                return None
+            return result
+
+        result = {"id$": str(ObjectId()), "Guarantors": guarantors_setup()}
+
+        return self.remove_none_values(result)
+
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""
         # self.json.update({"Borrower": self.borrower_information()}) # This is broken UGH
@@ -997,3 +1086,8 @@ class Knackly_Writer:
         self.json.update({"features": self.special_loan_features()})
         #
         self.json.update({"lenderInformation": self.lender_information()})
+        # Guaranty Stuff below
+        self.json.update(
+            {"IsGuaranty": self.anx.parse_TFValue(self.anx.find_answer("Guarantor TF"))}
+        )
+        self.json.update({"Guarantor": self.guarantor_information()})

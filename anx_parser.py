@@ -222,6 +222,22 @@ class ANX_Parser:
 
         return results
 
+    def parse_field(self, field_name: str):
+        """Helper method that encapsulates finding and parsing an answer from the .anx file.
+
+        Args:
+            field_name (str): The name of the answer you want to parse. For example, "Cannabis Loan TF", or "Guarantor Name TE".
+
+        Returns:
+            list | str | int | float: The parsed representation of the element if possible, otherwise None.
+        """
+        element = self.find_answer(field_name)
+
+        if element.tag == "RptValue":
+            return self.parse_RptValue(element)
+        else:
+            return self.parse_Primitive(element)
+
     def get_unvisited_elements(
         self, excluded_elements: list[str] = None
     ) -> list[ET.Element]:

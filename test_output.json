@@ -1,7 +1,7 @@
 {
-  "id$": "6542db69f4b2369d06eb4d8f",
+  "id$": "65454c566508890c793bd04f",
   "loanTerms": {
-    "id$": "6542db69f4b2369d06eb4d90",
+    "id$": "65454c566508890c793bd050",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
@@ -10,21 +10,21 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "6542db69f4b2369d06eb4d91",
+    "id$": "65454c566508890c793bd051",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "6542db69f4b2369d06eb4d92",
+      "id$": "65454c566508890c793bd052",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "6542db69f4b2369d06eb4d93",
+      "id$": "65454c566508890c793bd053",
       "PrepaymentPenalty": "None",
       "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "6542db69f4b2369d06eb4d94",
+      "id$": "65454c566508890c793bd054",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -37,7 +37,7 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "6542db69f4b2369d06eb4d95",
+      "id$": "65454c566508890c793bd055",
       "isACH": false,
       "isACHRemove": false,
       "isSBALoan": false,
@@ -52,18 +52,69 @@
       "isServicingFees": false,
       "isExit": false,
       "isTermination": false,
-      "deferredBrokerType": "Dollar",
-      "deferredBrokerDollars": 25,
-      "deferredBrokerPercent": 3.1,
-      "deferredOriginationType": "Dollar Amount",
-      "deferredOriginationDollars": 22,
-      "isDefaultFee": true,
+      "deferredBrokerType": "None",
+      "deferredOriginationType": "None",
+      "isDefaultFee": false,
       "iseResiLoan": false,
       "isFStreetLoan": false,
       "plDirectOriginationFee": false,
       "isWallisLife": false,
       "silverHillDeferredLoan": false
     },
-    "isImpounds1": false
+    "reserves": {
+      "id$": "65454c566508890c793bd056",
+      "IsLender": false,
+      "isPropertyTax": false,
+      "isPropertyInsurance": false,
+      "IsCapEx": false,
+      "IsAppraisal": false,
+      "DefaultType": "None",
+      "isOccupancy": false,
+      "DebtServiceType": "None"
+    },
+    "isImpounds1": false,
+    "impounds1": {
+      "id$": "65454c566508890c793bd057"
+    }
+  },
+  "lenderInformation": {
+    "id$": "65454c566508890c793bd058",
+    "isExhibitALenders": false,
+    "IsCFLLicensee": false,
+    "NoticeTo": "Lender",
+    "OtherDelivery": "jkl",
+    "Notice": {
+      "id$": "65454c566508890c793bd059"
+    }
+  },
+  "IsGuaranty": true,
+  "Guarantor": {
+    "id$": "65454c566508890c793bd05a",
+    "Guarantors": [
+      {
+        "id$": "65454c566508890c793bd05b",
+        "GuarantorName": "Guarantor 1",
+        "GuarantorEntityType": "individual",
+        "Type": "Limited",
+        "WhichAddress": "Borrower",
+        "GuarantorAddress": {
+          "id$": "65454c566508890c793bd05c"
+        }
+      },
+      {
+        "id$": "65454c566508890c793bd05d",
+        "GuarantorName": "Guarantor 2",
+        "GuarantorEntityType": "individual",
+        "Type": "Full",
+        "WhichAddress": "Other",
+        "GuarantorAddress": {
+          "id$": "65454c566508890c793bd05e",
+          "street": "4865 Lorelei Avenue",
+          "city": "Long Beach",
+          "state": "California",
+          "zip": "90808"
+        }
+      }
+    ]
   }
 }
