@@ -232,11 +232,25 @@ class ANX_Parser:
             list | str | int | float: The parsed representation of the element if possible, otherwise None.
         """
         element = self.find_answer(field_name)
+        if element is None:
+            return None
 
         if element.tag == "RptValue":
             return self.parse_RptValue(element)
         else:
             return self.parse_Primitive(element)
+
+    def parse_multiple(self, *answers: str) -> list:
+        """Helper method to parse multiple answers from the .anx file at once.
+
+        Returns:
+            list: A list where each element is the parsed representation of an answer if possible, otherwise None. If all elements are None, simply returns None.
+        """
+        result = [self.parse_field(answer) for answer in answers]
+        if len(result) == 0:
+            return None
+        else:
+            return result
 
     def get_unvisited_elements(
         self, excluded_elements: list[str] = None

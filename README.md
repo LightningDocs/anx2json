@@ -42,11 +42,11 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "Clie
   - [ ] Membership Pledge & UCC Documents
 - [ ] Section C
   - [x] Lender Information
-  - [ ] Is there a Guaranty?
+  - [x] Is there a Guaranty?
   - [ ] Guarantor Information
 - [ ] Section D
-  - [ ] Loan Servicer
-  - [ ] Servicer Info
+  - [x] Loan Servicer
+  - [x] Servicer Info
   - [ ] FCI Disbursement Agreement
   - [ ] Is there a Broker?
   - [ ] Broker

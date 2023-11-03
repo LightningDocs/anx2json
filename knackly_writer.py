@@ -1050,6 +1050,40 @@ class Knackly_Writer:
 
         return {"id$": str(ObjectId()), "Guarantors": guarantors}
 
+    def servicer(self) -> dict:
+        # components = [
+        #     "Loan Servicer Name TE",
+        #     "Loan Servicer Street Address TE",
+        #     "Loan Servicer City TE",
+        #     "Loan Servicer State MC",
+        #     "Loan Servicer Zip Code TE",
+        # ]
+
+        # parsed_components = [
+        #     self.anx.parse_field(component) for component in components
+        # ]
+
+        parsed_components = self.anx.parse_multiple(
+            "Loan Servicer Name TE",
+            "Loan Servicer Street Address TE",
+            "Loan Servicer City TE",
+            "Loan Servicer State MC",
+            "Loan Servicer Zip Code TE",
+        )
+
+        if self.is_all_args_none(parsed_components):
+            return None
+
+        name, street, city, state, zip_code = parsed_components
+
+        result = {
+            "id$": str(ObjectId()),
+            "name": name,
+            "contact": self.address(street, city, state, zip_code),
+        }
+
+        return self.remove_none_values(result)
+
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""
         # self.json.update({"Borrower": self.borrower_information()}) # This is broken UGH
@@ -1065,3 +1099,7 @@ class Knackly_Writer:
             {"IsGuaranty": self.anx.parse_TFValue(self.anx.find_answer("Guarantor TF"))}
         )
         self.json.update({"Guarantor": self.guarantor_information()})
+        #
+        self.json.update({"SelectServicer": self.anx.parse_field("Loan Servicer MC")})
+        if self.json.get("SelectServicer") == "Other":
+            self.json.update({"servicer": self.servicer()})
