@@ -49,7 +49,7 @@ class Knackly_Writer:
         else:
             return dictionary
 
-    def is_all_args_none(self, args: dict | list) -> bool:
+    def is_all_args_none(self, args: dict | list | tuple) -> bool:
         """Helper function to check if all of the arguments provided to it were `None`.
 
         Args:
@@ -63,7 +63,7 @@ class Knackly_Writer:
         """
         if isinstance(args, dict):
             return all(value is None for value in args.values())
-        elif isinstance(args, list):
+        elif isinstance(args, list) or isinstance(args, tuple):
             return all(value is None for value in args)
         else:
             # This should never run
@@ -89,7 +89,7 @@ class Knackly_Writer:
             county (str, optional): The county. Defaults to None.
 
         Returns:
-            dict: The Knackly "Address" dictionary.
+            dict: The Knackly "Address" dictionary, if at least one field was present, otherwise None.
         """
         result = {
             "id$": str(ObjectId()),
@@ -100,7 +100,13 @@ class Knackly_Writer:
             "county": county,
         }
 
-        return self.remove_none_values(result)
+        result = self.remove_none_values(result)
+
+        # If `id$` is the only key in result, return None instead.
+        if len(result) == 1 and "id$" in result:
+            return None
+
+        return result
 
     def borrower_information(
         self,
@@ -996,85 +1002,53 @@ class Knackly_Writer:
         return self.remove_none_values(result)
 
     def guarantor_information(self) -> dict:
-        def guarantors_setup() -> list[dict]:
-            result = []
+        def create_guarantor(name, entity_type, guaranty_type, address) -> dict:
+            result = {
+                "id$": str(ObjectId()),
+                "GuarantorName": name,
+                "GuarantorEntityType": entity_type,
+                "Type": guaranty_type,
+                "Address": address,
+            }
 
-            names = self.anx.parse_RptValue(self.anx.find_answer("Guarantor Name TE"))
-            entity_types = self.anx.parse_RptValue(
-                self.anx.find_answer("Guarantor Entity Type MC")
-            )
-            guaranty_types = self.anx.parse_RptValue(
-                self.anx.find_answer("Guarantor Type Select MC")
-            )
-            address_types = self.anx.parse_RptValue(
-                self.anx.find_answer("Guarantor Address MC")
-            )
+            return self.remove_none_values(result)
 
-            a_streets = self.anx.parse_RptValue(
-                self.anx.find_answer("Guarantor Street Address TE")
-            )
-            a_cities = self.anx.parse_RptValue(
-                self.anx.find_answer("Guarantor City TE")
-            )
-            a_states = self.anx.parse_RptValue(
-                self.anx.find_answer("Guarantor State MC")
-            )
-            a_zip_codes = self.anx.parse_RptValue(
-                self.anx.find_answer("Guarantor Zip Code TE")
-            )
+        guarantors = []
+        components = [
+            "Guarantor Name TE",
+            "Guarantor Entity Type MC",
+            "Guarantor Type Select MC",
+            "Guarantor Street Address TE",
+            "Guarantor City TE",
+            "Guarantor State MC",
+            "Guarantor Zip Code TE",
+        ]
+        parsed_components = [
+            self.anx.parse_field(component) for component in components
+        ]
 
-            for (
+        for guarantor_data in zip_longest(*parsed_components):
+            if self.is_all_args_none(guarantor_data):
+                continue  # Skip this iteration if all values are None
+
+            (
                 name,
                 entity_type,
                 guaranty_type,
-                address_type,
                 street,
                 city,
                 state,
                 zip_code,
-            ) in zip_longest(
-                names,
-                entity_types,
-                guaranty_types,
-                address_types,
-                a_streets,
-                a_cities,
-                a_states,
-                a_zip_codes,
-            ):
-                if self.is_all_args_none(
-                    [
-                        name,
-                        entity_type,
-                        guaranty_type,
-                        address_type,
-                        street,
-                        city,
-                        state,
-                        zip_code,
-                    ]
-                ):
-                    continue
-                    # Skip this iteration if everything is None
+            ) = guarantor_data
+            address = self.address(street, city, state, zip_code)
+            guarantor = create_guarantor(name, entity_type, guaranty_type, address)
 
-                temp = {
-                    "id$": str(ObjectId()),
-                    "GuarantorName": name,
-                    "GuarantorEntityType": entity_type,
-                    "Type": guaranty_type,
-                    "WhichAddress": address_type,
-                    "GuarantorAddress": self.address(street, city, state, zip_code),
-                }
+            guarantors.append(guarantor)
 
-                result.append(self.remove_none_values(temp))
+        if not guarantors:
+            return None
 
-            if not result:
-                return None
-            return result
-
-        result = {"id$": str(ObjectId()), "Guarantors": guarantors_setup()}
-
-        return self.remove_none_values(result)
+        return {"id$": str(ObjectId()), "Guarantors": guarantors}
 
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""

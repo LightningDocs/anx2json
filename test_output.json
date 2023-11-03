@@ -1,7 +1,7 @@
 {
-  "id$": "65454c566508890c793bd04f",
+  "id$": "654552526b70093185dcd3c2",
   "loanTerms": {
-    "id$": "65454c566508890c793bd050",
+    "id$": "654552526b70093185dcd3c3",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
@@ -10,21 +10,21 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "65454c566508890c793bd051",
+    "id$": "654552526b70093185dcd3c4",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "65454c566508890c793bd052",
+      "id$": "654552526b70093185dcd3c5",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "65454c566508890c793bd053",
+      "id$": "654552526b70093185dcd3c6",
       "PrepaymentPenalty": "None",
       "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "65454c566508890c793bd054",
+      "id$": "654552526b70093185dcd3c7",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -37,7 +37,7 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "65454c566508890c793bd055",
+      "id$": "654552526b70093185dcd3c8",
       "isACH": false,
       "isACHRemove": false,
       "isSBALoan": false,
@@ -62,7 +62,7 @@
       "silverHillDeferredLoan": false
     },
     "reserves": {
-      "id$": "65454c566508890c793bd056",
+      "id$": "654552526b70093185dcd3c9",
       "IsLender": false,
       "isPropertyTax": false,
       "isPropertyInsurance": false,
@@ -74,41 +74,33 @@
     },
     "isImpounds1": false,
     "impounds1": {
-      "id$": "65454c566508890c793bd057"
+      "id$": "654552526b70093185dcd3ca"
     }
   },
   "lenderInformation": {
-    "id$": "65454c566508890c793bd058",
+    "id$": "654552526b70093185dcd3cb",
     "isExhibitALenders": false,
     "IsCFLLicensee": false,
     "NoticeTo": "Lender",
-    "OtherDelivery": "jkl",
-    "Notice": {
-      "id$": "65454c566508890c793bd059"
-    }
+    "OtherDelivery": "jkl"
   },
   "IsGuaranty": true,
   "Guarantor": {
-    "id$": "65454c566508890c793bd05a",
+    "id$": "654552526b70093185dcd3d1",
     "Guarantors": [
       {
-        "id$": "65454c566508890c793bd05b",
+        "id$": "654552526b70093185dcd3ce",
         "GuarantorName": "Guarantor 1",
         "GuarantorEntityType": "individual",
-        "Type": "Limited",
-        "WhichAddress": "Borrower",
-        "GuarantorAddress": {
-          "id$": "65454c566508890c793bd05c"
-        }
+        "Type": "Limited"
       },
       {
-        "id$": "65454c566508890c793bd05d",
+        "id$": "654552526b70093185dcd3d0",
         "GuarantorName": "Guarantor 2",
         "GuarantorEntityType": "individual",
         "Type": "Full",
-        "WhichAddress": "Other",
-        "GuarantorAddress": {
-          "id$": "65454c566508890c793bd05e",
+        "Address": {
+          "id$": "654552526b70093185dcd3cf",
           "street": "4865 Lorelei Avenue",
           "city": "Long Beach",
           "state": "California",
