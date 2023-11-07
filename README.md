@@ -58,7 +58,7 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "Clie
 - [x] Closing Contact Info
 - [ ] Optional Documents
   - [ ] Additional Documents
-  - [ ] Customizations to Documents
+  - [x] Customizations to Documents
 
 ## General clean-up
 - Go back and remove most cases of `dict.update()` to instead use the `dict[key] = value` syntax, as it is more efficient and readable.

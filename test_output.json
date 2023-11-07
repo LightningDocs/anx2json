@@ -1,7 +1,7 @@
 {
-  "id$": "654a81ec02e4cb880fc0b8ee",
+  "id$": "654a87252e5417763c825ee1",
   "loanTerms": {
-    "id$": "654a81ec02e4cb880fc0b8ef",
+    "id$": "654a87252e5417763c825ee2",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
@@ -10,21 +10,21 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "654a81ec02e4cb880fc0b8f0",
+    "id$": "654a87252e5417763c825ee3",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "654a81ec02e4cb880fc0b8f1",
+      "id$": "654a87252e5417763c825ee4",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "654a81ec02e4cb880fc0b8f2",
+      "id$": "654a87252e5417763c825ee5",
       "PrepaymentPenalty": "None",
       "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "654a81ec02e4cb880fc0b8f3",
+      "id$": "654a87252e5417763c825ee6",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -37,7 +37,7 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "654a81ec02e4cb880fc0b8f4",
+      "id$": "654a87252e5417763c825ee7",
       "isACH": false,
       "isACHRemove": false,
       "isSBALoan": false,
@@ -62,7 +62,7 @@
       "silverHillDeferredLoan": false
     },
     "reserves": {
-      "id$": "654a81ec02e4cb880fc0b8f5",
+      "id$": "654a87252e5417763c825ee8",
       "IsLender": false,
       "isPropertyTax": false,
       "isPropertyInsurance": false,
@@ -74,15 +74,21 @@
     },
     "isImpounds1": false,
     "impounds1": {
-      "id$": "654a81ec02e4cb880fc0b8f6"
+      "id$": "654a87252e5417763c825ee9"
     }
   },
   "lenderInformation": {
-    "id$": "654a81ec02e4cb880fc0b8f7",
+    "id$": "654a87252e5417763c825eea",
     "isExhibitALenders": false,
     "IsCFLLicensee": false,
     "NoticeTo": "Lender",
-    "OtherDelivery": "adwa"
+    "Notice": {
+      "id$": "654a87252e5417763c825eeb",
+      "street": "One Baxter Way, Suite 220",
+      "city": "Thousand Oaks",
+      "state": "California",
+      "zip": "91362"
+    }
   },
   "IsGuaranty": false,
   "Guarantor": null,
@@ -90,29 +96,34 @@
   "fciDisbursementAgreement": false,
   "isBroker": false,
   "titlePolicy": {
-    "id$": "654a81ec02e4cb880fc0b8f9",
+    "id$": "654a87252e5417763c825eec",
     "isReduceInsurance": false,
     "isProformaPolicy": false,
     "version": "2006"
   },
-  "isEscrow": true,
-  "escrowCompany": {
-    "id$": "654a81ec02e4cb880fc0b8fa",
-    "isKassSchuler": false
-  },
+  "isEscrow": false,
   "settlementFees": {
-    "id$": "654a81ec02e4cb880fc0b8fc"
+    "id$": "654a87252e5417763c825eed"
   },
-  "preparerName": "Seth Collins",
-  "preparerEmail": "s.collins@lightningdocs.com",
-  "PreparerAddress": "Other",
-  "Preparer": {
-    "id$": "654a81ec02e4cb880fc0b8fd",
-    "street": "4865 Lorelei Avenue",
-    "city": "Long Beach",
-    "state": "California",
-    "zip": "90808"
-  },
-  "closingName": null,
-  "closingEmail": "a"
+  "preparerName": "a",
+  "preparerEmail": "a",
+  "PreparerAddress": "Lender",
+  "closingName": "a",
+  "closingEmail": "a",
+  "docsAdd": null,
+  "docsCustomize": {
+    "id$": "654a87252e5417763c825eee",
+    "isRemoveArbitrationProvisions": true,
+    "isRemoveLanguageCapacity": true,
+    "isRemoveInitialLines": false,
+    "isRemoveAllEntityCerts": true,
+    "isIncludeEntityDocs": false,
+    "isRemoveTitleInsurance": false,
+    "isCoverpage": false,
+    "isMasterGuaranty": true,
+    "masterGuarantyDate": "2023-11-17",
+    "masterGuarantyName": "Billy Bob, Elvis Presley",
+    "isNoFillNonOwner": true,
+    "isNoFillBusinessPurpose": true
+  }
 }

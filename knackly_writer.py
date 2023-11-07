@@ -1370,6 +1370,39 @@ class Knackly_Writer:
         else:
             return self.remove_none_values(result)
 
+    def docs_add(self) -> dict:
+        pass
+
+    def docs_customize(self) -> dict:
+        result = {
+            "id$": str(ObjectId()),
+            "isRemoveArbitrationProvisions": self.anx.parse_field(
+                "Remove Arbitration TF"
+            ),
+            "isRemoveLanguageCapacity": self.anx.parse_field(
+                "Remove Language Capacity TF"
+            ),
+            "isRemoveInitialLines": self.anx.parse_field("No Footer Initials TF"),
+            "isRemoveAllEntityCerts": self.anx.parse_field("No Entity Certificates TF"),
+            "isIncludeEntityDocs": self.anx.parse_field("Include Entity Documents TF"),
+            "isRemoveTitleInsurance": self.anx.parse_field("No Title Policy TF"),
+            "isCoverpage": self.anx.parse_field("Signing Instructions TF"),
+            "isMasterGuaranty": self.anx.parse_field("Master Guaranty TF"),
+            "masterGuarantyDate": self.anx.parse_field("Master Guaranty DT"),
+            "masterGuarantyName": self.anx.parse_field("Master Guaranty Name TX"),
+            "isNoFillNonOwner": self.anx.parse_field("No Fill Non Owner TF"),
+            "isNoFillBusinessPurpose": self.anx.parse_field(
+                "No Fill Business Purpose TF"
+            ),
+        }
+
+        result = self.remove_none_values(result)
+
+        if len(result) == 1 and "id$" in result:
+            return None
+
+        return result
+
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""
         # self.json.update({"Borrower": self.borrower_information()}) # This is broken UGH
@@ -1430,3 +1463,6 @@ class Knackly_Writer:
         self.json["closingEmail"] = self.anx.parse_field(
             "Closing Contact Email Address TX"
         )
+        # Docs Add / Customize
+        self.json["docsAdd"] = self.docs_add()
+        self.json["docsCustomize"] = self.docs_customize()
