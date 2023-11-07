@@ -44,16 +44,16 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "Clie
   - [x] Lender Information
   - [x] Is there a Guaranty?
   - [ ] Guarantor Information
-- [ ] Section D
+- [x] Section D
   - [x] Loan Servicer
   - [x] Servicer Info
-  - [ ] FCI Disbursement Agreement
-  - [ ] Is there a Broker?
-  - [ ] Broker
-  - [ ] Title Information
-  - [ ] Is there an escrow company?
-  - [ ] Escrow Company Info
-  - [ ] Settlement Statement Info
+  - [x] FCI Disbursement Agreement
+  - [x] Is there a Broker?
+  - [x] Broker
+  - [x] Title Information
+  - [x] Is there an escrow company?
+  - [x] Escrow Company Info
+  - [x] Settlement Statement Info
 - [ ] Loan Preparer
 - [ ] Closing Contact Info
 - [ ] Optional Documents

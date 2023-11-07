@@ -1001,8 +1001,29 @@ class Knackly_Writer:
 
         return self.remove_none_values(result)
 
-    def guarantor_information(self) -> dict:
-        def create_guarantor(name, entity_type, guaranty_type, address) -> dict:
+    def guarantor_information(
+        self,
+    ) -> dict:  # Not done (need to deal with guarantor address mc stuff)
+        """Create the `Guarantor` top level object
+
+        Returns:
+            dict: the `Guarantor` object
+        """
+
+        def create_guarantor(
+            name: str, entity_type: str, guaranty_type: str, address: dict
+        ) -> dict:
+            """Helper function to create a single guarantor
+
+            Args:
+                name (str): The name of the guarantor
+                entity_type (str): The type of entity (individual, corporation, trust, etc.)
+                guaranty_type (str): The type of guaranty (springing, limited, etc.)
+                address (dict): The address of the guarantor
+
+            Returns:
+                dict: _description_
+            """
             result = {
                 "id$": str(ObjectId()),
                 "GuarantorName": name,
@@ -1051,18 +1072,11 @@ class Knackly_Writer:
         return {"id$": str(ObjectId()), "Guarantors": guarantors}
 
     def servicer(self) -> dict:
-        # components = [
-        #     "Loan Servicer Name TE",
-        #     "Loan Servicer Street Address TE",
-        #     "Loan Servicer City TE",
-        #     "Loan Servicer State MC",
-        #     "Loan Servicer Zip Code TE",
-        # ]
+        """Responsible for creating the top level `servicer` object (if "other" was selected for Loan Servicer MC)
 
-        # parsed_components = [
-        #     self.anx.parse_field(component) for component in components
-        # ]
-
+        Returns:
+            dict: A dictionary describing the various attributes of the servicer
+        """
         parsed_components = self.anx.parse_multiple(
             "Loan Servicer Name TE",
             "Loan Servicer Street Address TE",
@@ -1084,6 +1098,261 @@ class Knackly_Writer:
 
         return self.remove_none_values(result)
 
+    def broker(self) -> dict:
+        """Responsible for creating the top level `broker` object.
+
+        Returns:
+            dict: A dictionary describing the attributes of the broker.
+        """
+        parsed_components = self.anx.parse_multiple(
+            "CA Broker Name TE",
+            "CA Broker License Num TE",
+            "Broker Street Address TE",
+            "Broker City TE",
+            "Broker State MC",
+            "Broker Zip Code TE",
+        )
+
+        if self.is_all_args_none(parsed_components):
+            return None
+
+        name, license_number, street, city, state, zip_code = parsed_components
+
+        result = {
+            "id$": str(ObjectId()),
+            "name": name,
+            "licenseNumber": license_number,
+            "address": self.address(street, city, state, zip_code),
+        }
+
+        return self.remove_none_values(result)
+
+    def title_policy(self) -> dict:
+        """Responsible for creating the top level `titlePolicy` object.
+
+        Returns:
+            dict: The object describing the attributes of the `titlePolicy` object.
+        """
+
+        def create_title_company(
+            company_name: str, contact_name: str, address: dict, contact_email: str
+        ) -> dict:
+            """Helper function to create a TitleCompany object.
+
+            Args:
+                company_name (str): The name of the title company
+                contact_name (str): The name of the officer
+                address (dict): The address of the title company
+                contact_email (str): The email address of the officer
+
+            Returns:
+                dict: A dictionary representating the above attributes.
+            """
+            result = {
+                "id$": str(ObjectId()),
+                "companyName": company_name,
+                "officerContactName": contact_name,
+                "address": address,
+                "officerContactEmail": contact_email,
+            }
+
+            return self.remove_none_values(result)
+
+        parsed_components = self.anx.parse_multiple(
+            "Title Company Name TE",
+            "Title Officer Name TE",
+            "Title Officer Street Address TE",
+            "Title Officer State MC",
+            "Title Officer City TE",
+            "Title Zip Code TE",
+            "Title Officer Contact Email TE",
+        )
+
+        # Ensure that at least one of the components necessary for a title company is present.
+        # Otherwise, don't bother making the title_company object.
+        title_company = None
+        if not self.is_all_args_none(parsed_components):
+            c_name, o_name, street, state, city, zip_code, o_email = parsed_components
+            title_company = create_title_company(
+                c_name, o_name, self.address(street, state, city, zip_code), o_email
+            )
+
+        parsed_components = self.anx.parse_multiple(
+            "Title Order Number TE",
+            "Title Report Effective Date DT",
+            "Title Insurance 100 TF",
+            "Proforma Policy TF",
+            "Title Deletions TE",
+            "ALTA Endorsements TE",
+            "Title Policy Version MC",
+        )
+
+        # Put the title company variable at the start of the list (useful when unpacking later)
+        parsed_components.insert(0, title_company)
+
+        if self.is_all_args_none(parsed_components):
+            return None
+
+        (
+            company,
+            order_number,
+            effective_date,
+            is_reduce_insurance,
+            is_proforma_policy,
+            deletions,
+            endorsements,
+            version,
+        ) = parsed_components
+
+        result = {
+            "id$": str(ObjectId()),
+            "titleCompany": company,
+            "orderNumber": order_number,
+            "effectiveDate": effective_date,
+            "isReduceInsurance": is_reduce_insurance,
+            "isProformaPolicy": is_proforma_policy,
+            "deletions": deletions,
+            "altaEndorsements": endorsements,
+            "version": version,
+        }
+
+        return self.remove_none_values(result)
+
+    def create_escrow_company(self) -> dict:
+        """Responsible for creating the top level `escrowCompany` object.
+
+        Returns:
+            dict: A dictionary describing the various attributes of an escrow company.
+        """
+        parsed_components = self.anx.parse_multiple(
+            "Escrow Company Name TE",
+            "Escrow Officer TE",
+            "Escrow Officer Street Address TE",
+            "Escrow Officer State MC",
+            "Escrow Officer City TE",
+            "Escrow Officer Zip Code TE",
+            "Escrow Officer Contact Email TE",
+            "Kass Schuler TF",
+        )
+
+        if self.is_all_args_none(parsed_components):
+            return None
+
+        (
+            c_name,
+            o_name,
+            street,
+            state,
+            city,
+            zip_code,
+            o_email,
+            is_kass,
+        ) = parsed_components
+
+        result = {
+            "id$": str(ObjectId()),
+            "companyName": c_name,
+            "officerContactName": o_name,
+            "address": self.address(street, state, city, zip_code),
+            "officerContactEmail": o_email,
+            "isKassSchuler": is_kass,
+        }
+
+        return self.remove_none_values(result)
+
+    def settlement(self) -> dict:
+        """Responsible for creating the top level `settlementFees` object.
+
+        Returns:
+            dict: A dictionary containing information about fees related to the broker, lender, other, and Geraci, as well as per diem interest.
+        """
+
+        def create_fees(
+            amounts: list[int | float],
+            descriptions: list[str],
+            comments: list[str],
+            paid_tos: list[str] = None,
+        ) -> list[dict]:
+            """Helper function to create a list of `fee` objects.
+
+            Args:
+                amounts (list[int  |  float]): The amounts of the fees
+                descriptions (list[str]): The descriptions of the fees
+                comments (list[str]): The delivery comments of the fees
+                paid_tos (list[str]): The paid to's of the fees
+
+            Returns:
+                list[dict]: A list of objects, where each object contains at most one amount, description, comment, and paid to.
+            """
+            if paid_tos == None:
+                paid_tos = [None]
+            result = []
+
+            for amount, description, comment, paid_to in zip_longest(
+                amounts, descriptions, comments, paid_tos
+            ):
+                if self.is_all_args_none([amount, description, comment, paid_to]):
+                    continue  # Skip this iteration
+
+                temp = {
+                    "id$": str(ObjectId()),
+                    "amount": amount,
+                    "description": description,
+                    "comment": comment,
+                    "paidTo": paid_to,
+                }
+
+                result.append(self.remove_none_values(temp))
+
+            return result
+
+        def process_fee_components(fee_type: str) -> list[dict]:
+            """Helper function to process all the fees related to a specific type
+
+            Args:
+                fee_type (str): Either `Broker`, `Lender`, or `Other`.
+
+            Returns:
+                list[dict]: A list of dictionaries, where each dictionary contains at most the amount, description, comment, and paid to.
+            """
+            fee_components = [
+                f"{fee_type} Fee NU",
+                f"{fee_type} Fee Description TE",
+                f"{fee_type} Delivery Fee Comment MC",
+            ]
+
+            if fee_type == "Other":
+                fee_components.append(f"{fee_type} Paid To Fee TE")
+
+            fee_components = self.anx.parse_multiple(*fee_components)
+            fee_components = [x if x is not None else [None] for x in fee_components]
+            if self.is_all_args_none(fee_components):
+                return None
+
+            fees = create_fees(*fee_components)
+            if fees:
+                return fees
+
+        # Broker, Lender, and Other fees
+        result = {"id$": str(ObjectId())}
+        for fee_type in ["Broker", "Lender", "Other"]:
+            result[fee_type] = process_fee_components(fee_type)
+
+        # Geraci fees
+        geraci_fee = self.anx.parse_field("Geraci Fee NU")
+        geraci_delivery = self.anx.parse_field("Geraci Fee Delivery MC")
+
+        if geraci_fee is not None and len(geraci_fee) > 0:
+            result["geraciFee"] = geraci_fee[0]
+        if geraci_delivery is not None and len(geraci_fee) > 0:
+            result["geraciFeeDelivery"] = geraci_delivery[0]
+
+        # Return none if the result only contains the id$ key
+        if len(result) == 1 and "id$" in result:
+            return None
+        else:
+            return self.remove_none_values(result)
+
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""
         # self.json.update({"Borrower": self.borrower_information()}) # This is broken UGH
@@ -1103,3 +1372,23 @@ class Knackly_Writer:
         self.json.update({"SelectServicer": self.anx.parse_field("Loan Servicer MC")})
         if self.json.get("SelectServicer") == "Other":
             self.json.update({"servicer": self.servicer()})
+        self.json.update(
+            {
+                "fciDisbursementAgreement": self.anx.parse_field(
+                    "FCI Disbursement Agreement TF"
+                )
+            }
+        )
+        # Broker Stuff below
+        self.json.update({"isBroker": self.anx.parse_field("CA Broker TF")})
+        if self.json.get("isBroker") == True:
+            self.json.update({"broker": self.broker()})
+        # Title Policy stuff below
+        self.json.update({"titlePolicy": self.title_policy()})
+        # Escrow / Settlement stuff below
+        escrow_title_select = self.anx.parse_field("Escrow and Title Select MC")
+        is_escrow = True if escrow_title_select == "Escrow and Title" else False
+        self.json.update({"isEscrow": is_escrow})
+        if self.json.get("isEscrow") == True:
+            self.json.update({"escrowCompany": self.create_escrow_company()})
+        self.json.update({"settlementFees": self.settlement()})
