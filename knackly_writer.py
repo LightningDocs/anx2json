@@ -920,6 +920,8 @@ class Knackly_Writer:
             lender_amount_rpt = self.anx.parse_RptValue(
                 self.anx.find_answer("Lender Invest Amount NU")
             )
+            if lender_amount_rpt == None:
+                lender_amount_rpt = [None]
 
             # Check to see if they were both not none.
             if self.is_all_args_none([lender_name_rpt, lender_amount_rpt]):
@@ -1059,6 +1061,8 @@ class Knackly_Writer:
 
         if self.is_all_args_none(parsed_components):
             return None
+
+        parsed_components = [x if x is not None else [None] for x in parsed_components]
 
         for guarantor_data in zip_longest(*parsed_components):
             if self.is_all_args_none(guarantor_data):
@@ -1371,9 +1375,158 @@ class Knackly_Writer:
             return self.remove_none_values(result)
 
     def docs_add(self) -> dict:
-        pass
+        """Responsible for creating the top level `docs_add` object.
+
+        Returns:
+            dict: The dictionary containing information about any additional documents.
+        """
+
+        def loan_sale_information() -> dict:
+            """Helper function to generate the loan sale information
+
+            Returns:
+                dict: Dictionary representing information about the sale of the loan
+            """
+            parsed_components = self.anx.parse_multiple(
+                "Assignment and Allonge Concurrent MC",
+                "Assignee MC",
+                "Collateral Assignment Assignee DT",
+                "Assignment and Allonge Street TE",
+                "Assignment and Allonge CSZ TE",
+                "Assignment and Allonge Assignee TE",
+            )
+
+            if self.is_all_args_none(parsed_components):
+                return None
+
+            when_sold, assignee, date, street, city_state_zip, name = parsed_components
+
+            result = {
+                "id$": str(ObjectId()),
+                "whenSold": when_sold,
+                "Assignee": assignee,
+                "collateralAssigneeDate": date,
+                "assigneeName": name,
+            }
+
+            if street is not None and (
+                city_state_zip is not None and len(city_state_zip.split(", ")) == 3
+            ):
+                city, state, zip_code = city_state_zip.split(", ")
+                result["assigneeAddress"] = self.address(street, city, state, zip_code)
+
+            result = self.remove_none_values(result)
+
+            if len(result) == 1 and "id$" in result:
+                return None
+
+            return result
+
+        def assignment_spreadsheet() -> list[dict]:
+            """Helper function to create the list of property assignment objects.
+
+            Returns:
+                list[dict]: A list of dictionaries, where each dictionary contains the property, the manager, agreement date, and address of the manager.
+            """
+            parsed_components = self.anx.parse_multiple(
+                "PDM Property DMC",  # This involves ObjectID / Property Key TX
+                "Property Manager TE",
+                "Property Manager Signing DT",
+                "Property Manager Street Address TE",
+                "Property Manager City TE",
+                "Property Manager State MC",
+                "Property Manager Zip Code TE",
+            )
+
+            if self.is_all_args_none(parsed_components):
+                return None
+
+            result = []
+            # properties, managers, dates, streets, cities, states, zip_codes = parsed_components
+            for property_, manager, date, street, city, state, zip_code in zip_longest(
+                *parsed_components
+            ):
+                if self.is_all_args_none(
+                    [property_, manager, date, street, city, state, zip_code]
+                ):
+                    continue  # Skip this iteration if everything is None
+                temp = {
+                    "id$": str(ObjectId()),
+                    "property": property_,
+                    "propertyManager": manager,
+                    "agreementDate": date,
+                    "address": self.address(street, city, state, zip_code),
+                }
+                result.append(temp)
+            return result
+
+        result = {
+            "id$": str(ObjectId()),
+            "isAssignmentOfPropertyManagement": self.anx.parse_field(
+                "Assignment of Property Management TF"
+            ),
+            "assignment_Spreadsheet_list": assignment_spreadsheet(),
+            "isW9": self.anx.parse_field("W9 TF"),
+            "isFirstPaymentLetter": self.anx.parse_field("First Payment Letter TF"),
+            "firstPaymentAmount": self.anx.parse_field(
+                "First Payment Letter Payment AMT NU"
+            ),
+            "isFirstPaymentIncludeEscrow": self.anx.parse_field(
+                "Fay Escrow Reserves TF"
+            ),
+            "firstPaymentLetterInsurance": self.anx.parse_field(
+                "First Payment Letter Insurance NU"
+            ),
+            "floodInsurance": self.anx.parse_field("Flood Insurance NU"),
+            "firstPaymentLetterFlood": self.anx.parse_field(
+                "First Payment Letter Flood NU"
+            ),
+            "taxPayment": self.anx.parse_field("Tax Payment NU"),
+            "firstPaymentLetterTax": self.anx.parse_field(
+                "First Payment Letter Tax NU"
+            ),
+            "isForSale": self.anx.parse_field("seth_isForSale"),
+            "loanSaleInformation": loan_sale_information(),
+            "isCollateralAssignment": self.anx.parse_field("Collateral Assignment TF"),
+            "isSubordinations": self.anx.parse_field("seth_isSubordinations"),
+            "subordinations_list": 1,
+            "isIntercreditor": self.anx.parse_field("seth_isIntercreditor"),
+            "intercreditorAgreements_list": 1,
+            "isTranslator": self.anx.parse_field("Translator Required TF"),
+            "needsTranslator": 1,  # <- This involves ObjectID (i think)
+            "isLoanAdministrationAgreement": self.anx.parse_field(
+                "Loan Administration Agreement TF"
+            ),
+            "impledServicingSpreadPercent": self.anx.parse_field(
+                "Implied Servicing Spread Percent NU"
+            ),
+            "investorRatePercent": self.anx.parse_field("Investor Rate Percent NU"),
+            "isPrincipalRepaymentAgreement": self.anx.parse_field(
+                "Principal Repayment Agreement TF"
+            ),
+            "isPrincipalRepaymentProportional": self.anx.parse_field(
+                "Principal Repayment Proportional TF"
+            ),
+            "isThirdPartyAffiliate": self.anx.parse_field("Renovo Third Party TF"),
+            "renovoThirdPartyName": self.anx.parse_field("Renovo Third Party Name TX"),
+            "housemaxCreditCardAuthorization": self.anx.parse_field(
+                "Housemax Credit Card Authorization TF"
+            ),
+        }
+
+        result = self.remove_none_values(result)
+
+        if len(result) == 1 and "id$" in result:
+            return None
+
+        return result
 
     def docs_customize(self) -> dict:
+        """Responsible for creating the top level `docs_customize` object
+
+        Returns:
+            dict: A dictionary containing information about the document customizations.
+        """
         result = {
             "id$": str(ObjectId()),
             "isRemoveArbitrationProvisions": self.anx.parse_field(

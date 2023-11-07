@@ -1,8 +1,9 @@
 {
-  "id$": "654a87252e5417763c825ee1",
+  "id$": "654ac7992d7dba60077c06ef",
   "loanTerms": {
-    "id$": "654a87252e5417763c825ee2",
+    "id$": "654ac7992d7dba60077c06f0",
     "isInterestOnly": false,
+    "defaultInterestRate": 18,
     "interestCalcType": "30/360",
     "isVariableRate": false,
     "isInterestStep": false,
@@ -10,21 +11,22 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "654a87252e5417763c825ee3",
+    "id$": "654ac7992d7dba60077c06f1",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "654a87252e5417763c825ee4",
+      "id$": "654ac7992d7dba60077c06f2",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "654a87252e5417763c825ee5",
-      "PrepaymentPenalty": "None",
-      "IsPrepay20Percent": false,
+      "id$": "654ac7992d7dba60077c06f3",
+      "PrepaymentPenalty": "Linear Step",
+      "PrepayTerm": 5,
+      "IsPrepay20Percent": true,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "654a87252e5417763c825ee6",
+      "id$": "654ac7992d7dba60077c06f4",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -37,8 +39,8 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "654a87252e5417763c825ee7",
-      "isACH": false,
+      "id$": "654ac7992d7dba60077c06f5",
+      "isACH": true,
       "isACHRemove": false,
       "isSBALoan": false,
       "isCannabisLoan": false,
@@ -49,7 +51,7 @@
       "isAutoExtension": false,
       "isExtension": false,
       "isLockbox": false,
-      "isServicingFees": false,
+      "isServicingFees": true,
       "isExit": false,
       "isTermination": false,
       "deferredBrokerType": "None",
@@ -62,67 +64,117 @@
       "silverHillDeferredLoan": false
     },
     "reserves": {
-      "id$": "654a87252e5417763c825ee8",
+      "id$": "654ac7992d7dba60077c06f6",
       "IsLender": false,
-      "isPropertyTax": false,
-      "isPropertyInsurance": false,
+      "isPropertyTax": true,
+      "isPropertyInsurance": true,
       "IsCapEx": false,
       "IsAppraisal": false,
       "DefaultType": "None",
       "isOccupancy": false,
       "DebtServiceType": "None"
     },
-    "isImpounds1": false,
+    "isImpounds1": true,
     "impounds1": {
-      "id$": "654a87252e5417763c825ee9"
+      "id$": "654ac7992d7dba60077c06f7"
     }
   },
   "lenderInformation": {
-    "id$": "654a87252e5417763c825eea",
+    "id$": "654ac7992d7dba60077c06f8",
     "isExhibitALenders": false,
     "IsCFLLicensee": false,
     "NoticeTo": "Lender",
-    "Notice": {
-      "id$": "654a87252e5417763c825eeb",
-      "street": "One Baxter Way, Suite 220",
-      "city": "Thousand Oaks",
-      "state": "California",
-      "zip": "91362"
-    }
+    "OtherDelivery": "a"
   },
-  "IsGuaranty": false,
-  "Guarantor": null,
+  "IsGuaranty": true,
+  "Guarantor": {
+    "id$": "654ac7992d7dba60077c06fd",
+    "Guarantors": [
+      {
+        "id$": "654ac7992d7dba60077c06fc",
+        "GuarantorEntityType": "individual"
+      }
+    ]
+  },
   "SelectServicer": "Lender",
   "fciDisbursementAgreement": false,
   "isBroker": false,
   "titlePolicy": {
-    "id$": "654a87252e5417763c825eec",
+    "id$": "654ac7992d7dba60077c06fe",
     "isReduceInsurance": false,
     "isProformaPolicy": false,
     "version": "2006"
   },
   "isEscrow": false,
   "settlementFees": {
-    "id$": "654a87252e5417763c825eed"
+    "id$": "654ac7992d7dba60077c06ff"
   },
   "preparerName": "a",
   "preparerEmail": "a",
   "PreparerAddress": "Lender",
   "closingName": "a",
   "closingEmail": "a",
-  "docsAdd": null,
+  "docsAdd": {
+    "id$": "654ac7992d7dba60077c0700",
+    "isAssignmentOfPropertyManagement": true,
+    "assignment_Spreadsheet_list": [
+      {
+        "id$": "654ac7992d7dba60077c0701",
+        "property": "$$0001%%",
+        "propertyManager": "Cindy Gibson",
+        "agreementDate": "2023-11-16",
+        "address": {
+          "id$": "654ac7992d7dba60077c0702",
+          "street": "536 Palmer Road",
+          "city": "Columbus",
+          "state": "Ohio",
+          "zip": "43215"
+        }
+      },
+      {
+        "id$": "654ac7992d7dba60077c0703",
+        "property": "$$0002%%",
+        "propertyManager": "Catherine Amundson",
+        "agreementDate": "2023-11-15",
+        "address": {
+          "id$": "654ac7992d7dba60077c0704",
+          "street": "1221 Nelm Street",
+          "city": "Manchester",
+          "state": "Montana",
+          "zip": "63011"
+        }
+      }
+    ],
+    "isW9": true,
+    "isFirstPaymentLetter": true,
+    "floodInsurance": 0,
+    "isForSale": true,
+    "loanSaleInformation": {
+      "id$": "654ac7992d7dba60077c0705",
+      "whenSold": "Concurrent",
+      "Assignee": "Saluda"
+    },
+    "isCollateralAssignment": false,
+    "subordinations_list": 1,
+    "intercreditorAgreements_list": 1,
+    "isTranslator": false,
+    "needsTranslator": 1,
+    "isLoanAdministrationAgreement": false,
+    "isPrincipalRepaymentAgreement": false,
+    "isPrincipalRepaymentProportional": false,
+    "isThirdPartyAffiliate": false,
+    "housemaxCreditCardAuthorization": false
+  },
   "docsCustomize": {
-    "id$": "654a87252e5417763c825eee",
+    "id$": "654ac7992d7dba60077c0706",
     "isRemoveArbitrationProvisions": true,
-    "isRemoveLanguageCapacity": true,
-    "isRemoveInitialLines": false,
-    "isRemoveAllEntityCerts": true,
+    "isRemoveLanguageCapacity": false,
+    "isRemoveInitialLines": true,
+    "isRemoveAllEntityCerts": false,
     "isIncludeEntityDocs": false,
     "isRemoveTitleInsurance": false,
     "isCoverpage": false,
-    "isMasterGuaranty": true,
-    "masterGuarantyDate": "2023-11-17",
-    "masterGuarantyName": "Billy Bob, Elvis Presley",
+    "isMasterGuaranty": false,
     "isNoFillNonOwner": true,
     "isNoFillBusinessPurpose": true
   }
