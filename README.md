@@ -55,7 +55,11 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "Clie
   - [x] Escrow Company Info
   - [x] Settlement Statement Info
 - [x] Loan Preparer
-- [ ] Closing Contact Info
+- [x] Closing Contact Info
 - [ ] Optional Documents
   - [ ] Additional Documents
   - [ ] Customizations to Documents
+
+## General clean-up
+- Go back and remove most cases of `dict.update()` to instead use the `dict[key] = value` syntax, as it is more efficient and readable.
+- Explore a `remove_false_values()` and/or `remove_null_values()` method to be called alongside `remove_none_values()` at the end of the json creation.

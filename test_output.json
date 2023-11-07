@@ -1,7 +1,7 @@
 {
-  "id$": "654a7ff8f8b780faf90c3e9c",
+  "id$": "654a81ec02e4cb880fc0b8ee",
   "loanTerms": {
-    "id$": "654a7ff8f8b780faf90c3e9d",
+    "id$": "654a81ec02e4cb880fc0b8ef",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
@@ -10,21 +10,21 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "654a7ff8f8b780faf90c3e9e",
+    "id$": "654a81ec02e4cb880fc0b8f0",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "654a7ff8f8b780faf90c3e9f",
+      "id$": "654a81ec02e4cb880fc0b8f1",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "654a7ff8f8b780faf90c3ea0",
+      "id$": "654a81ec02e4cb880fc0b8f2",
       "PrepaymentPenalty": "None",
       "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "654a7ff8f8b780faf90c3ea1",
+      "id$": "654a81ec02e4cb880fc0b8f3",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -37,7 +37,7 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "654a7ff8f8b780faf90c3ea2",
+      "id$": "654a81ec02e4cb880fc0b8f4",
       "isACH": false,
       "isACHRemove": false,
       "isSBALoan": false,
@@ -62,7 +62,7 @@
       "silverHillDeferredLoan": false
     },
     "reserves": {
-      "id$": "654a7ff8f8b780faf90c3ea3",
+      "id$": "654a81ec02e4cb880fc0b8f5",
       "IsLender": false,
       "isPropertyTax": false,
       "isPropertyInsurance": false,
@@ -74,13 +74,15 @@
     },
     "isImpounds1": false,
     "impounds1": {
-      "id$": "654a7ff8f8b780faf90c3ea4"
+      "id$": "654a81ec02e4cb880fc0b8f6"
     }
   },
   "lenderInformation": {
-    "id$": "654a7ff8f8b780faf90c3ea5",
+    "id$": "654a81ec02e4cb880fc0b8f7",
     "isExhibitALenders": false,
-    "IsCFLLicensee": false
+    "IsCFLLicensee": false,
+    "NoticeTo": "Lender",
+    "OtherDelivery": "adwa"
   },
   "IsGuaranty": false,
   "Guarantor": null,
@@ -88,23 +90,29 @@
   "fciDisbursementAgreement": false,
   "isBroker": false,
   "titlePolicy": {
-    "id$": "654a7ff8f8b780faf90c3ea7",
+    "id$": "654a81ec02e4cb880fc0b8f9",
     "isReduceInsurance": false,
     "isProformaPolicy": false,
     "version": "2006"
   },
-  "isEscrow": false,
+  "isEscrow": true,
+  "escrowCompany": {
+    "id$": "654a81ec02e4cb880fc0b8fa",
+    "isKassSchuler": false
+  },
   "settlementFees": {
-    "id$": "654a7ff8f8b780faf90c3ea8"
+    "id$": "654a81ec02e4cb880fc0b8fc"
   },
   "preparerName": "Seth Collins",
   "preparerEmail": "s.collins@lightningdocs.com",
   "PreparerAddress": "Other",
   "Preparer": {
-    "id$": "654a7ff8f8b780faf90c3ea9",
+    "id$": "654a81ec02e4cb880fc0b8fd",
     "street": "4865 Lorelei Avenue",
     "city": "Long Beach",
     "state": "California",
     "zip": "90808"
-  }
+  },
+  "closingName": null,
+  "closingEmail": "a"
 }

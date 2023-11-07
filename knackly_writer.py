@@ -1359,6 +1359,11 @@ class Knackly_Writer:
         if geraci_delivery is not None and len(geraci_fee) > 0:
             result["geraciFeeDelivery"] = geraci_delivery[0]
 
+        # Per Diem
+        result["perDiemInterestDelivery"] = self.anx.parse_field(
+            "Per Diem interest Delivery MC"
+        )
+
         # Return none if the result only contains the id$ key
         if len(result) == 1 and "id$" in result:
             return None
@@ -1375,12 +1380,12 @@ class Knackly_Writer:
         self.json.update({"features": self.special_loan_features()})
         #
         self.json.update({"lenderInformation": self.lender_information()})
-        # Guaranty Stuff below
+        # Guaranty stuff below
         self.json.update(
             {"IsGuaranty": self.anx.parse_TFValue(self.anx.find_answer("Guarantor TF"))}
         )
         self.json.update({"Guarantor": self.guarantor_information()})
-        #
+        # Servicer stuff below
         self.json.update({"SelectServicer": self.anx.parse_field("Loan Servicer MC")})
         if self.json.get("SelectServicer") == "Other":
             self.json.update({"servicer": self.servicer()})
@@ -1391,7 +1396,7 @@ class Knackly_Writer:
                 )
             }
         )
-        # Broker Stuff below
+        # Broker stuff below
         self.json.update({"isBroker": self.anx.parse_field("CA Broker TF")})
         if self.json.get("isBroker") == True:
             self.json.update({"broker": self.broker()})
@@ -1420,3 +1425,8 @@ class Knackly_Writer:
                 "Loan Prepared By Zip Code TE",
             )
             self.json.update({"Preparer": self.address(*preparer_address_components)})
+        # Closing Contact stuff below
+        self.json["closingName"] = self.anx.parse_field("Closing Contact Name TE")
+        self.json["closingEmail"] = self.anx.parse_field(
+            "Closing Contact Email Address TX"
+        )
