@@ -1035,7 +1035,19 @@ class Knackly_Writer:
             return self.remove_none_values(result)
 
         guarantors = []
-        components = [
+        # components = [
+        #     "Guarantor Name TE",
+        #     "Guarantor Entity Type MC",
+        #     "Guarantor Type Select MC",
+        #     "Guarantor Street Address TE",
+        #     "Guarantor City TE",
+        #     "Guarantor State MC",
+        #     "Guarantor Zip Code TE",
+        # ]
+        # parsed_components = [
+        #     self.anx.parse_field(component) for component in components
+        # ]
+        parsed_components = self.anx.parse_multiple(
             "Guarantor Name TE",
             "Guarantor Entity Type MC",
             "Guarantor Type Select MC",
@@ -1043,10 +1055,10 @@ class Knackly_Writer:
             "Guarantor City TE",
             "Guarantor State MC",
             "Guarantor Zip Code TE",
-        ]
-        parsed_components = [
-            self.anx.parse_field(component) for component in components
-        ]
+        )
+
+        if self.is_all_args_none(parsed_components):
+            return None
 
         for guarantor_data in zip_longest(*parsed_components):
             if self.is_all_args_none(guarantor_data):
@@ -1392,3 +1404,19 @@ class Knackly_Writer:
         if self.json.get("isEscrow") == True:
             self.json.update({"escrowCompany": self.create_escrow_company()})
         self.json.update({"settlementFees": self.settlement()})
+        # Preparer stuff below
+        self.json.update(
+            {
+                "preparerName": self.anx.parse_field("Loan Prepared By TE"),
+                "preparerEmail": self.anx.parse_field("Loan Prepared By Email TE"),
+                "PreparerAddress": self.anx.parse_field("Preparer Address MC"),
+            }
+        )
+        if self.json.get("PreparerAddress") == "Other":
+            preparer_address_components = self.anx.parse_multiple(
+                "Loan Prepared By Street Address TE",
+                "Loan Prepared By City TE",
+                "Loan Prepared By State MC",
+                "Loan Prepared By Zip Code TE",
+            )
+            self.json.update({"Preparer": self.address(*preparer_address_components)})

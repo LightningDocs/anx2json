@@ -1,7 +1,7 @@
 {
-  "id$": "65498e43f16c146c97052156",
+  "id$": "654a7ff8f8b780faf90c3e9c",
   "loanTerms": {
-    "id$": "65498e43f16c146c97052157",
+    "id$": "654a7ff8f8b780faf90c3e9d",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
@@ -10,24 +10,22 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "65498e43f16c146c97052158",
+    "id$": "654a7ff8f8b780faf90c3e9e",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "65498e43f16c146c97052159",
+      "id$": "654a7ff8f8b780faf90c3e9f",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "65498e43f16c146c9705215a",
+      "id$": "654a7ff8f8b780faf90c3ea0",
       "PrepaymentPenalty": "None",
       "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
-    "isConstructionReserve": true,
+    "isConstructionReserve": false,
     "construction1": {
-      "id$": "65498e43f16c146c9705215b",
-      "reserve": 25,
+      "id$": "654a7ff8f8b780faf90c3ea1",
       "IsNonDutch": false,
-      "Type": "Standard",
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
       "IsThirdPartyFCA": false,
@@ -39,7 +37,7 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "65498e43f16c146c9705215c",
+      "id$": "654a7ff8f8b780faf90c3ea2",
       "isACH": false,
       "isACHRemove": false,
       "isSBALoan": false,
@@ -64,7 +62,7 @@
       "silverHillDeferredLoan": false
     },
     "reserves": {
-      "id$": "65498e43f16c146c9705215d",
+      "id$": "654a7ff8f8b780faf90c3ea3",
       "IsLender": false,
       "isPropertyTax": false,
       "isPropertyInsurance": false,
@@ -76,112 +74,37 @@
     },
     "isImpounds1": false,
     "impounds1": {
-      "id$": "65498e43f16c146c9705215e"
+      "id$": "654a7ff8f8b780faf90c3ea4"
     }
   },
   "lenderInformation": {
-    "id$": "65498e43f16c146c9705215f",
+    "id$": "654a7ff8f8b780faf90c3ea5",
     "isExhibitALenders": false,
-    "IsCFLLicensee": false,
-    "NoticeTo": "Lender",
-    "OtherDelivery": "jkl"
+    "IsCFLLicensee": false
   },
-  "IsGuaranty": true,
-  "Guarantor": {
-    "id$": "65498e43f16c146c97052165",
-    "Guarantors": [
-      {
-        "id$": "65498e43f16c146c97052162",
-        "GuarantorName": "Guarantor 1",
-        "GuarantorEntityType": "individual",
-        "Type": "Limited"
-      },
-      {
-        "id$": "65498e43f16c146c97052164",
-        "GuarantorName": "Guarantor 2",
-        "GuarantorEntityType": "individual",
-        "Type": "Full",
-        "Address": {
-          "id$": "65498e43f16c146c97052163",
-          "street": "4865 Lorelei Avenue",
-          "city": "Long Beach",
-          "state": "California",
-          "zip": "90808"
-        }
-      }
-    ]
-  },
-  "SelectServicer": "FCI",
+  "IsGuaranty": false,
+  "Guarantor": null,
+  "SelectServicer": "Lender",
   "fciDisbursementAgreement": false,
   "isBroker": false,
   "titlePolicy": {
-    "id$": "65498e43f16c146c97052166",
-    "orderNumber": "751-01-XXXX",
-    "effectiveDate": "2023-11-06",
-    "isReduceInsurance": true,
+    "id$": "654a7ff8f8b780faf90c3ea7",
+    "isReduceInsurance": false,
     "isProformaPolicy": false,
-    "deletions": "exceptionA, exceptionB, exceptionC, and exceptionD",
-    "altaEndorsements": "ALTA 7.3, ALTA 7.4, and ALTA 8.5",
     "version": "2006"
   },
-  "isEscrow": true,
-  "escrowCompany": {
-    "id$": "65498e43f16c146c97052167",
-    "companyName": "MC Escher Escrow",
-    "officerContactName": "Michael Scott",
-    "address": {
-      "id$": "65498e43f16c146c97052168",
-      "city": "Massachusetts",
-      "state": "Boston",
-      "zip": "88123"
-    },
-    "officerContactEmail": "threatlevelmidnight@dundermifflin.com",
-    "isKassSchuler": false
-  },
+  "isEscrow": false,
   "settlementFees": {
-    "id$": "65498e43f16c146c97052169",
-    "Broker": [
-      {
-        "id$": "65498e43f16c146c9705216a",
-        "amount": 150,
-        "description": "just for fun",
-        "comment": "Deliver to Broker's Address"
-      },
-      {
-        "id$": "65498e43f16c146c9705216b",
-        "amount": 12,
-        "description": "just for fun2"
-      },
-      {
-        "id$": "65498e43f16c146c9705216c",
-        "amount": 200,
-        "description": "just for fun4",
-        "comment": "Payment deferred until after Closing"
-      },
-      {
-        "id$": "65498e43f16c146c9705216d",
-        "comment": "Fee Paid Outside of Closing"
-      }
-    ],
-    "Lender": [
-      {
-        "id$": "65498e43f16c146c9705216e",
-        "comment": "Deliver to Lender's Address"
-      }
-    ],
-    "Other": [
-      {
-        "id$": "65498e43f16c146c9705216f",
-        "paidTo": "Joe"
-      },
-      {
-        "id$": "65498e43f16c146c97052170",
-        "amount": 500,
-        "description": "for Impractical Jokers",
-        "paidTo": "Sal"
-      }
-    ],
-    "geraciFee": 125,
-    "geraciFeeDelivery": "Wire"
+    "id$": "654a7ff8f8b780faf90c3ea8"
+  },
+  "preparerName": "Seth Collins",
+  "preparerEmail": "s.collins@lightningdocs.com",
+  "PreparerAddress": "Other",
+  "Preparer": {
+    "id$": "654a7ff8f8b780faf90c3ea9",
+    "street": "4865 Lorelei Avenue",
+    "city": "Long Beach",
+    "state": "California",
+    "zip": "90808"
   }
 }
