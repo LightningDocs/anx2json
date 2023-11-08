@@ -1,9 +1,8 @@
 {
-  "id$": "654ac7992d7dba60077c06ef",
+  "id$": "654acf6ee2169765cd7a51ac",
   "loanTerms": {
-    "id$": "654ac7992d7dba60077c06f0",
+    "id$": "654acf6ee2169765cd7a51ad",
     "isInterestOnly": false,
-    "defaultInterestRate": 18,
     "interestCalcType": "30/360",
     "isVariableRate": false,
     "isInterestStep": false,
@@ -11,22 +10,21 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "654ac7992d7dba60077c06f1",
+    "id$": "654acf6ee2169765cd7a51ae",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "654ac7992d7dba60077c06f2",
+      "id$": "654acf6ee2169765cd7a51af",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "654ac7992d7dba60077c06f3",
-      "PrepaymentPenalty": "Linear Step",
-      "PrepayTerm": 5,
-      "IsPrepay20Percent": true,
+      "id$": "654acf6ee2169765cd7a51b0",
+      "PrepaymentPenalty": "None",
+      "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "654ac7992d7dba60077c06f4",
+      "id$": "654acf6ee2169765cd7a51b1",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -39,8 +37,8 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "654ac7992d7dba60077c06f5",
-      "isACH": true,
+      "id$": "654acf6ee2169765cd7a51b2",
+      "isACH": false,
       "isACHRemove": false,
       "isSBALoan": false,
       "isCannabisLoan": false,
@@ -51,7 +49,7 @@
       "isAutoExtension": false,
       "isExtension": false,
       "isLockbox": false,
-      "isServicingFees": true,
+      "isServicingFees": false,
       "isExit": false,
       "isTermination": false,
       "deferredBrokerType": "None",
@@ -64,50 +62,42 @@
       "silverHillDeferredLoan": false
     },
     "reserves": {
-      "id$": "654ac7992d7dba60077c06f6",
+      "id$": "654acf6ee2169765cd7a51b3",
       "IsLender": false,
-      "isPropertyTax": true,
-      "isPropertyInsurance": true,
+      "isPropertyTax": false,
+      "isPropertyInsurance": false,
       "IsCapEx": false,
       "IsAppraisal": false,
       "DefaultType": "None",
       "isOccupancy": false,
       "DebtServiceType": "None"
     },
-    "isImpounds1": true,
+    "isImpounds1": false,
     "impounds1": {
-      "id$": "654ac7992d7dba60077c06f7"
+      "id$": "654acf6ee2169765cd7a51b4"
     }
   },
   "lenderInformation": {
-    "id$": "654ac7992d7dba60077c06f8",
+    "id$": "654acf6ee2169765cd7a51b5",
     "isExhibitALenders": false,
     "IsCFLLicensee": false,
     "NoticeTo": "Lender",
-    "OtherDelivery": "a"
+    "OtherDelivery": "b"
   },
-  "IsGuaranty": true,
-  "Guarantor": {
-    "id$": "654ac7992d7dba60077c06fd",
-    "Guarantors": [
-      {
-        "id$": "654ac7992d7dba60077c06fc",
-        "GuarantorEntityType": "individual"
-      }
-    ]
-  },
+  "IsGuaranty": false,
+  "Guarantor": null,
   "SelectServicer": "Lender",
   "fciDisbursementAgreement": false,
   "isBroker": false,
   "titlePolicy": {
-    "id$": "654ac7992d7dba60077c06fe",
+    "id$": "654acf6ee2169765cd7a51b7",
     "isReduceInsurance": false,
     "isProformaPolicy": false,
     "version": "2006"
   },
   "isEscrow": false,
   "settlementFees": {
-    "id$": "654ac7992d7dba60077c06ff"
+    "id$": "654acf6ee2169765cd7a51b8"
   },
   "preparerName": "a",
   "preparerEmail": "a",
@@ -115,47 +105,45 @@
   "closingName": "a",
   "closingEmail": "a",
   "docsAdd": {
-    "id$": "654ac7992d7dba60077c0700",
-    "isAssignmentOfPropertyManagement": true,
-    "assignment_Spreadsheet_list": [
-      {
-        "id$": "654ac7992d7dba60077c0701",
-        "property": "$$0001%%",
-        "propertyManager": "Cindy Gibson",
-        "agreementDate": "2023-11-16",
-        "address": {
-          "id$": "654ac7992d7dba60077c0702",
-          "street": "536 Palmer Road",
-          "city": "Columbus",
-          "state": "Ohio",
-          "zip": "43215"
-        }
-      },
-      {
-        "id$": "654ac7992d7dba60077c0703",
-        "property": "$$0002%%",
-        "propertyManager": "Catherine Amundson",
-        "agreementDate": "2023-11-15",
-        "address": {
-          "id$": "654ac7992d7dba60077c0704",
-          "street": "1221 Nelm Street",
-          "city": "Manchester",
-          "state": "Montana",
-          "zip": "63011"
-        }
-      }
-    ],
-    "isW9": true,
-    "isFirstPaymentLetter": true,
+    "id$": "654acf6ee2169765cd7a51b9",
+    "isAssignmentOfPropertyManagement": false,
+    "isW9": false,
+    "isFirstPaymentLetter": false,
     "floodInsurance": 0,
-    "isForSale": true,
     "loanSaleInformation": {
-      "id$": "654ac7992d7dba60077c0705",
-      "whenSold": "Concurrent",
-      "Assignee": "Saluda"
+      "id$": "654acf6ee2169765cd7a51ba",
+      "whenSold": "None"
     },
     "isCollateralAssignment": false,
-    "subordinations_list": 1,
+    "isSubordinations": true,
+    "subordinations_list": [
+      {
+        "id$": "654acf6ee2169765cd7a51bb",
+        "documentType": "Simple",
+        "property": "$$0001%%",
+        "postClosing": false,
+        "documentName": "Lease Doc Name 1",
+        "documentDate": "2023-11-17",
+        "leaseMonths": 12,
+        "tenantNames": [
+          "Tenant 1-A",
+          "Tenant 1-B"
+        ]
+      },
+      {
+        "id$": "654acf6ee2169765cd7a51bc",
+        "documentType": "SNDA",
+        "property": "$$0002%%",
+        "postClosing": true,
+        "documentName": "Lease Doc Name 2",
+        "documentDate": "2023-11-13",
+        "tenantNames": [
+          "Tenant 2-A",
+          "Tenant 2-B"
+        ]
+      }
+    ],
+    "isIntercreditor": true,
     "intercreditorAgreements_list": 1,
     "isTranslator": false,
     "needsTranslator": 1,
@@ -166,16 +154,16 @@
     "housemaxCreditCardAuthorization": false
   },
   "docsCustomize": {
-    "id$": "654ac7992d7dba60077c0706",
-    "isRemoveArbitrationProvisions": true,
+    "id$": "654acf6ee2169765cd7a51be",
+    "isRemoveArbitrationProvisions": false,
     "isRemoveLanguageCapacity": false,
-    "isRemoveInitialLines": true,
+    "isRemoveInitialLines": false,
     "isRemoveAllEntityCerts": false,
     "isIncludeEntityDocs": false,
     "isRemoveTitleInsurance": false,
     "isCoverpage": false,
     "isMasterGuaranty": false,
-    "isNoFillNonOwner": true,
-    "isNoFillBusinessPurpose": true
+    "isNoFillNonOwner": false,
+    "isNoFillBusinessPurpose": false
   }
 }

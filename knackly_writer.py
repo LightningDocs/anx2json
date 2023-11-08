@@ -920,6 +920,8 @@ class Knackly_Writer:
             lender_amount_rpt = self.anx.parse_RptValue(
                 self.anx.find_answer("Lender Invest Amount NU")
             )
+            if lender_name_rpt == None:
+                lender_name_rpt = [None]
             if lender_amount_rpt == None:
                 lender_amount_rpt = [None]
 
@@ -1460,6 +1462,65 @@ class Knackly_Writer:
                 result.append(temp)
             return result
 
+        def subordinations() -> list[dict]:
+            """Helper function to create the subordination objects.
+
+            Returns:
+                list[dict]: A list of dictionaries, with keys relating to subordination type, property, post-closing language, etc.
+            """
+            parsed_components = self.anx.parse_multiple(
+                "Subordination Doc Type MC",
+                "PDS Property DMC",
+                "Subordination Post Closing TF",
+                "Subordination Lease Document TE",
+                "Subordination Lease Document DT",
+                "Subordination Lease Months NU",
+                "Tenant Name TE",
+            )
+
+            if self.is_all_args_none(parsed_components):
+                return None
+
+            result = []
+            for subordination_info in zip_longest(*parsed_components):
+                (
+                    doc_types,
+                    property_,
+                    post_closing,
+                    doc_name,
+                    doc_date,
+                    months,
+                    names,
+                ) = subordination_info
+
+                temp = {
+                    "id$": str(ObjectId()),
+                    "documentType": doc_types,
+                    "property": property_,  # <- This involves ObjectID / keys
+                    "postClosing": post_closing,
+                    "documentName": doc_name,
+                    "documentDate": doc_date,
+                    "leaseMonths": months,
+                    "tenantNames": names,
+                }
+
+                if isinstance(temp["documentType"], list):
+                    temp["documentType"] = temp["documentType"][0]
+                    # Knackly only supports a single selection for documentType, so if there were multiple selected in HotDocs, just pick the first one
+
+                temp = self.remove_none_values(temp)
+
+                if (
+                    len(temp) == 2
+                    and "id$" in temp
+                    and "tenantNames" in temp
+                    and len(temp["tenantNames"]) == 0
+                ):
+                    continue  # Skip this iteration if its really empty
+
+                result.append(temp)
+            return result
+
         result = {
             "id$": str(ObjectId()),
             "isAssignmentOfPropertyManagement": self.anx.parse_field(
@@ -1489,7 +1550,7 @@ class Knackly_Writer:
             "loanSaleInformation": loan_sale_information(),
             "isCollateralAssignment": self.anx.parse_field("Collateral Assignment TF"),
             "isSubordinations": self.anx.parse_field("seth_isSubordinations"),
-            "subordinations_list": 1,
+            "subordinations_list": subordinations(),
             "isIntercreditor": self.anx.parse_field("seth_isIntercreditor"),
             "intercreditorAgreements_list": 1,
             "isTranslator": self.anx.parse_field("Translator Required TF"),
