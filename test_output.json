@@ -1,7 +1,7 @@
 {
-  "id$": "654acf6ee2169765cd7a51ac",
+  "id$": "654d74bff88225611051de81",
   "loanTerms": {
-    "id$": "654acf6ee2169765cd7a51ad",
+    "id$": "654d74bff88225611051de82",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
@@ -10,21 +10,21 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "654acf6ee2169765cd7a51ae",
+    "id$": "654d74bff88225611051de83",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "654acf6ee2169765cd7a51af",
+      "id$": "654d74bff88225611051de84",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "654acf6ee2169765cd7a51b0",
+      "id$": "654d74bff88225611051de85",
       "PrepaymentPenalty": "None",
       "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "654acf6ee2169765cd7a51b1",
+      "id$": "654d74bff88225611051de86",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -37,7 +37,7 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "654acf6ee2169765cd7a51b2",
+      "id$": "654d74bff88225611051de87",
       "isACH": false,
       "isACHRemove": false,
       "isSBALoan": false,
@@ -62,7 +62,7 @@
       "silverHillDeferredLoan": false
     },
     "reserves": {
-      "id$": "654acf6ee2169765cd7a51b3",
+      "id$": "654d74bff88225611051de88",
       "IsLender": false,
       "isPropertyTax": false,
       "isPropertyInsurance": false,
@@ -74,11 +74,11 @@
     },
     "isImpounds1": false,
     "impounds1": {
-      "id$": "654acf6ee2169765cd7a51b4"
+      "id$": "654d74bff88225611051de89"
     }
   },
   "lenderInformation": {
-    "id$": "654acf6ee2169765cd7a51b5",
+    "id$": "654d74bff88225611051de8a",
     "isExhibitALenders": false,
     "IsCFLLicensee": false,
     "NoticeTo": "Lender",
@@ -90,14 +90,14 @@
   "fciDisbursementAgreement": false,
   "isBroker": false,
   "titlePolicy": {
-    "id$": "654acf6ee2169765cd7a51b7",
+    "id$": "654d74bff88225611051de8c",
     "isReduceInsurance": false,
     "isProformaPolicy": false,
     "version": "2006"
   },
   "isEscrow": false,
   "settlementFees": {
-    "id$": "654acf6ee2169765cd7a51b8"
+    "id$": "654d74bff88225611051de8d"
   },
   "preparerName": "a",
   "preparerEmail": "a",
@@ -105,20 +105,20 @@
   "closingName": "a",
   "closingEmail": "a",
   "docsAdd": {
-    "id$": "654acf6ee2169765cd7a51b9",
+    "id$": "654d74bff88225611051de8e",
     "isAssignmentOfPropertyManagement": false,
     "isW9": false,
     "isFirstPaymentLetter": false,
     "floodInsurance": 0,
     "loanSaleInformation": {
-      "id$": "654acf6ee2169765cd7a51ba",
+      "id$": "654d74bff88225611051de8f",
       "whenSold": "None"
     },
     "isCollateralAssignment": false,
     "isSubordinations": true,
     "subordinations_list": [
       {
-        "id$": "654acf6ee2169765cd7a51bb",
+        "id$": "654d74bff88225611051de90",
         "documentType": "Simple",
         "property": "$$0001%%",
         "postClosing": false,
@@ -131,7 +131,7 @@
         ]
       },
       {
-        "id$": "654acf6ee2169765cd7a51bc",
+        "id$": "654d74bff88225611051de91",
         "documentType": "SNDA",
         "property": "$$0002%%",
         "postClosing": true,
@@ -144,7 +144,65 @@
       }
     ],
     "isIntercreditor": true,
-    "intercreditorAgreements_list": 1,
+    "intercreditorAgreements_list": [
+      {
+        "id$": "654d74bff88225611051de93",
+        "repOptions": "Senior",
+        "documentType": "Junior",
+        "documentRecording": "Concurrent",
+        "property": "$$0001%%",
+        "debtAmount": 2500,
+        "recordingDate": "2023-11-27",
+        "signingDate": "2023-11-28",
+        "instrumentNumber": "BCD-234",
+        "trustor": "Loan Mortgagor Name 1",
+        "address": {
+          "id$": "654d74bff88225611051de94",
+          "street": "4547 Park Boulevard",
+          "city": "Oskaloosa",
+          "state": "Indiana",
+          "zip": "52577"
+        },
+        "lenderSpreadsheet": [
+          {
+            "id$": "654d74bff88225611051de95",
+            "name": "Sub Lender 1-A"
+          }
+        ]
+      },
+      {
+        "id$": "654d74bff88225611051de96",
+        "repOptions": "Subordinate",
+        "documentType": "Junior",
+        "documentRecording": "Existing",
+        "property": "$$0002%%",
+        "debtAmount": 3250,
+        "recordingDate": "2023-12-12",
+        "signingDate": "2023-12-13",
+        "instrumentNumber": "CDE-345",
+        "trustor": "Loan Trustor Name 1",
+        "trustee": "Loan Trustee Name 1",
+        "address": {
+          "id$": "654d74bff88225611051de97",
+          "street": "4200 Hill Haven Drive",
+          "city": "Waco",
+          "state": "Texas",
+          "zip": "76701"
+        },
+        "lenderSpreadsheet": [
+          {
+            "id$": "654d74bff88225611051de98",
+            "name": "Loan Lender 2-A",
+            "investedAmount": 2250
+          },
+          {
+            "id$": "654d74bff88225611051de99",
+            "name": "Loan Lender 2-B",
+            "investedAmount": 1000
+          }
+        ]
+      }
+    ],
     "isTranslator": false,
     "needsTranslator": 1,
     "isLoanAdministrationAgreement": false,
@@ -154,7 +212,7 @@
     "housemaxCreditCardAuthorization": false
   },
   "docsCustomize": {
-    "id$": "654acf6ee2169765cd7a51be",
+    "id$": "654d74bff88225611051de9a",
     "isRemoveArbitrationProvisions": false,
     "isRemoveLanguageCapacity": false,
     "isRemoveInitialLines": false,

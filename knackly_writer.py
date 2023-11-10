@@ -1521,6 +1521,112 @@ class Knackly_Writer:
                 result.append(temp)
             return result
 
+        def intercreditor_agreements() -> list[dict]:
+            def lender_spreadsheet(
+                names: list[str], amounts: [list[int]]
+            ) -> list[dict]:
+                """Helper function to create the subordinate lender spreadsheets.
+
+                Args:
+                    names (list[str]): A list of lender names.
+                    amounts (list[int]]): A list of associated invested amounts for the respective lender.
+
+                Returns:
+                    list[dict]: A list of dictionaries containing a unique id, the name, and invested amount.
+                """
+                result = []
+                for name, amount in zip_longest(names, amounts):
+                    if self.is_all_args_none([name, amount]):
+                        continue  # Skip if this iteration is all None
+                    temp = {
+                        "id$": str(ObjectId()),
+                        "name": name,
+                        "investedAmount": amount,
+                    }
+                    result.append(self.remove_none_values(temp))
+
+                if len(result) == 0:
+                    return None
+                else:
+                    return result
+
+            parsed_components = self.anx.parse_multiple(
+                "Subordination Rep Options MC",
+                "Subordination Senior Doc Options MC",
+                "Subordination Existing Senior Doc MC",
+                "PDIA Property DMC",
+                "Subordinate Debt Amount NU",
+                "Junior Loan Recorded On DT",
+                "Junior Loan Signing DT",
+                "Junior Loan Instrument Number TE",
+                "Junior Loan Trustor Name TE",
+                "Junior Loan Trustee TE",
+                "Subordinate Interest Rate NU",
+                "Junior Loan Beneficiary TE",
+                "Subordinate Lender Invest Amount NU",
+                "Subordinate Lender Street Address TE",
+                "Subordinate Lender City TE",
+                "Subordinate Lender State MC",
+                "Subordinate Lender Zip Code TE",
+            )
+
+            if self.is_all_args_none(parsed_components):
+                return None
+
+            parsed_components = [
+                x if x is not None else [None] for x in parsed_components
+            ]
+
+            result = []
+            for intercreditor_agreement_info in zip_longest(*parsed_components):
+                (
+                    rep,
+                    doc_type,
+                    doc_recording,
+                    property_,
+                    amount,
+                    recording_date,
+                    signing_date,
+                    instrument_no,
+                    trustor_name,
+                    trustee_name,
+                    interest_rate,
+                    sub_lenders,
+                    invested_amounts,
+                    street,
+                    city,
+                    state,
+                    zip_code,
+                ) = intercreditor_agreement_info
+                if self.is_all_args_none(intercreditor_agreement_info):
+                    continue  # Skip this iteration if its completely blank
+                # print(intercreditor_agreement_info)
+                temp = {
+                    "id$": str(ObjectId()),
+                    "repOptions": rep,
+                    "documentType": doc_type,
+                    "documentRecording": doc_recording,
+                    "property": property_,
+                    "debtAmount": amount,
+                    "recordingDate": recording_date,
+                    "signingDate": signing_date,
+                    "instrumentNumber": instrument_no,
+                    "trustor": trustor_name,
+                    "trustee": trustee_name,
+                    "address": self.address(street, city, state, zip_code),
+                    "lenderSpreadsheet": lender_spreadsheet(
+                        sub_lenders, invested_amounts
+                    ),
+                    "subordinateInterestRate": interest_rate,
+                }
+
+                result.append(self.remove_none_values(temp))
+
+            if len(result) == 0:
+                return None
+            else:
+                return result
+
         result = {
             "id$": str(ObjectId()),
             "isAssignmentOfPropertyManagement": self.anx.parse_field(
@@ -1552,7 +1658,7 @@ class Knackly_Writer:
             "isSubordinations": self.anx.parse_field("seth_isSubordinations"),
             "subordinations_list": subordinations(),
             "isIntercreditor": self.anx.parse_field("seth_isIntercreditor"),
-            "intercreditorAgreements_list": 1,
+            "intercreditorAgreements_list": intercreditor_agreements(),
             "isTranslator": self.anx.parse_field("Translator Required TF"),
             "needsTranslator": 1,  # <- This involves ObjectID (i think)
             "isLoanAdministrationAgreement": self.anx.parse_field(
