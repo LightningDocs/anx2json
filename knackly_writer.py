@@ -192,7 +192,199 @@ class Knackly_Writer:
         raise NotImplementedError
 
     def property_information(self) -> dict:
-        raise NotImplementedError
+        """Creates the `property_information` dictionary on the top level.
+
+        Returns:
+            dict: A dictionary containing information about various properties, and general information about all the properties.
+        """
+
+        def senior_lien_row(
+            name: str, date: str, instrument: str, trustor: str, trustee: str
+        ) -> dict:
+            """Helper function to create a single senior_lien_row object.
+
+            Args:
+                name (str): Senior Lender Name
+                date (str): Recording Date
+                instrument (str): Loan Instrument No.
+                trustor (str): Senior Trustor
+                trustee (str): Senior Trustee
+
+            Returns:
+                dict: A dictionary containing the passed parameters structured in the way Knackly expects.
+            """
+            result = {
+                "id$": str(ObjectId()),
+                "lenderName": name,
+                "recordingDate": date,
+                "instrumentNumber": instrument,
+                "trustorName": trustor,
+                "trustee": trustee,
+            }
+
+            result = self.remove_none_values(result)
+
+            if len(result) == 1 and "id$" in result:
+                return None
+
+            return result
+
+        parsed_components = self.anx.parse_multiple(
+            "Schedule of Properties TF",
+            "Partial Release Advanced MC",
+            "_",  # To be replaced with actual properties
+            "Legal Description TX",
+            "Note Governing Law State MC",
+            "Arbitration County MC",
+            "Confession of Judgment TF",
+        )
+
+        if self.is_all_args_none(parsed_components):
+            return None
+
+        (
+            schedule_of_props,
+            partial_release,
+            _,
+            legal_description,
+            governing_law_state,
+            governing_law_county,
+            confession_of_judgment,
+        ) = parsed_components
+        result = {
+            "id$": str(ObjectId()),
+            "isScheduleOfProperties": schedule_of_props,
+            "partialReleaseExpert": partial_release,
+            "properties": _,
+            "legalDescription": legal_description,
+            "governingLawState": governing_law_state,
+            "arbitrationCounty": governing_law_county,
+            "isConfessionofJudgment": confession_of_judgment,
+        }
+
+        # Now look at actual properties
+        property_components = self.anx.parse_multiple(
+            "Property Key TX",
+            "Property Collatoral Release NU",
+            "Property Street Address TE",
+            "Property State MC",
+            "Property County MC",
+            "Property City TX",
+            "Property Zip Code TE",
+            "Property APN TE",
+            "Lien Position MC",
+            "Property Purchase Money TF",
+            "Property Collateral Type MC",
+            "Property Rental TF",
+            "Leasehold Mortgage TF",
+            "Leasehold Mortgage Lessor TE",
+            "Trustee Name MC",
+            "TrusteeName TE",
+            "Trustee Address TE",
+            "Tennessee County TE",
+            "_",
+            "Owner Occupied TF",
+            "Junior Lien Beneficiary TE",
+            "Junior Lien Recorded On DT",
+            "Junior Lien Instrument Number TE",
+            "Junior Lien Trustor Name TE",
+            "Junior Lien Trustee TE",
+            "Property Collatoral Value NU",
+            "Property Include PUD TF",
+        )
+        # Make sure that everything is a list
+        property_components = [
+            item if isinstance(item, list) else [item] for item in property_components
+        ]
+
+        temp_result = []
+        for property_info in zip_longest(*property_components):
+            # Skip the iteration if everything is None
+            if self.is_all_args_none(property_info):
+                continue
+            # print(f"{property_info = }")
+            (
+                property_key,
+                min_release_price,
+                street,
+                state,
+                county,
+                city,
+                zip_code,
+                tax_id_num,
+                lien_pos,
+                is_purchase_money,
+                type_,
+                is_rental,
+                is_leasehold,
+                leasehold_names,
+                trustee_mc,
+                trustee_name,
+                trustee_address,
+                trustee_county,
+                _,
+                is_owner_occupied,
+                senior_name,
+                date,
+                instrument_num,
+                senior_trustor,
+                senior_trustee,
+                collateral_value,
+                is_include_pud,
+            ) = property_info
+
+            temp = {
+                "id$": str(ObjectId()),
+                "minimumReleasePrice": min_release_price,
+                "PropertyAddress": self.address(street, city, state, zip_code, county),
+                "APN": tax_id_num,
+                "lienPosition": lien_pos,
+                "isPurchaseMoney": is_purchase_money,
+                "type": type_,
+                "isRental": is_rental,
+                "isLeaseholdMortgage": is_leasehold,
+                "leasehold_MortgageLessor": leasehold_names,
+                "trusteeDropdown": trustee_mc,
+                "trusteeName": trustee_name,
+                "trusteeAddressText": trustee_address,
+                "trusteeCounty": trustee_county,
+                "PropertyOwners": [],  # Come back to this
+                "isOwnerOccupied": is_owner_occupied,
+                "seniorLiens": [],  # Come back to this
+                "collatoralValue": collateral_value,
+                "includePUD": is_include_pud,
+            }
+
+            # Handle senior lien stuff
+            if self.is_all_args_none(
+                (senior_name, date, instrument_num, senior_trustor, senior_trustee)
+            ):
+                temp["seniorLiens"] = None
+            else:
+                pass
+                temp["seniorLiens"] = [
+                    senior_lien_row(
+                        n,
+                        d,
+                        i_n,
+                        s_trustor,
+                        s_trustee,
+                    )
+                    for n, d, i_n, s_trustor, s_trustee in zip_longest(
+                        senior_name,
+                        date,
+                        instrument_num,
+                        senior_trustor,
+                        senior_trustee,
+                    )
+                ]
+
+            # Add property data to temp_result as well as the Knackly_Writer's uuid_map
+            self.uuid_map["Properties"].update({property_key: temp["id$"]})
+            temp_result.append(self.remove_none_values(temp))
+
+        result["properties"] = temp_result
+        return self.remove_none_values(result)
 
     def standard_loan_terms(self) -> dict:
         """Produces the top level `loanTerms` object in the Knackly json.
@@ -1732,7 +1924,7 @@ class Knackly_Writer:
         """Actually fill out `self.json` with all of the relevant information."""
         # self.json.update({"Borrower": self.borrower_information()}) # This is broken UGH
         # self.json["TitleHolder2"] = self.non_borrower_property_owners()
-        # self.json["propertyInformation"] = self.property_information()
+        self.json["propertyInformation"] = self.property_information()
         # self.json["loanTerms"] = self.standard_loan_terms()
         self.json.update({"loanTerms": self.standard_loan_terms()})
         self.json.update({"features": self.special_loan_features()})
@@ -1792,11 +1984,10 @@ class Knackly_Writer:
         self.json["docsCustomize"] = self.docs_customize()
 
         # Optional clean up
-        self.clean_up()
+        # self.clean_up()
 
     def clean_up(self) -> None:
-        """Clean up the self.json dictionary associated with the class instance.
-        """
+        """Clean up the self.json dictionary associated with the class instance."""
         self.json = self._recursive_clean(self.json)
 
         if self.json is None:

@@ -1,18 +1,200 @@
 {
-  "id$": "65527c4e4e679b900bf3fffd",
+  "id$": "6552a88dc7b3aa5ebfcdccda",
+  "propertyInformation": {
+    "id$": "6552a88dc7b3aa5ebfcdccdb",
+    "isScheduleOfProperties": false,
+    "partialReleaseExpert": "None",
+    "properties": [
+      {
+        "id$": "6552a88dc7b3aa5ebfcdccdc",
+        "PropertyAddress": {
+          "id$": "6552a88dc7b3aa5ebfcdccdd",
+          "street": "996 Clay Street",
+          "city": "Indianapolis",
+          "state": "Nebraska",
+          "zip": "46254",
+          "county": "AdamsH1"
+        },
+        "APN": "ABC-123",
+        "lienPosition": "second",
+        "type": "1-4 Single Family Residence",
+        "isLeaseholdMortgage": false,
+        "trusteeDropdown": "Title",
+        "PropertyOwners": [],
+        "isOwnerOccupied": true,
+        "seniorLiens": [
+          {
+            "id$": "6552a88dc7b3aa5ebfcdccde",
+            "lenderName": "Senior Lender 1",
+            "recordingDate": "2023-01-21",
+            "instrumentNumber": "123",
+            "trustorName": "Senior Trustor 1",
+            "trustee": "Senior Trustee 1"
+          },
+          {
+            "id$": "6552a88dc7b3aa5ebfcdccdf",
+            "lenderName": "Senior Lender 2",
+            "recordingDate": "2023-02-22",
+            "instrumentNumber": "234",
+            "trustorName": "Senior Trustor 2",
+            "trustee": "Senior Trustee 2"
+          },
+          {
+            "id$": "6552a88dc7b3aa5ebfcdcce0",
+            "lenderName": "Senior Lender 4",
+            "recordingDate": "2023-04-24",
+            "instrumentNumber": "456",
+            "trustorName": "Senior Trustor 4",
+            "trustee": "Senior Trustee 4"
+          }
+        ],
+        "includePUD": false
+      },
+      {
+        "id$": "6552a88dc7b3aa5ebfcdcce2",
+        "PropertyAddress": {
+          "id$": "6552a88dc7b3aa5ebfcdcce3",
+          "street": "2934 Angus Road",
+          "city": "Portland",
+          "state": "Oregon",
+          "zip": "97218",
+          "county": "BentonH1"
+        },
+        "APN": "XYZ-987",
+        "lienPosition": "fourth",
+        "type": "1-4 Single Family Residence",
+        "trusteeDropdown": "Other",
+        "trusteeName": "Super Trusty Beneficiary",
+        "PropertyOwners": [],
+        "isOwnerOccupied": false
+      }
+    ],
+    "governingLawState": "Alabama",
+    "arbitrationCounty": "BullockH1",
+    "isConfessionofJudgment": true
+  },
+  "loanTerms": {
+    "id$": "6552a88dc7b3aa5ebfcdcce4",
+    "isInterestOnly": false,
+    "interestCalcType": "30/360",
+    "isVariableRate": false,
+    "isInterestStep": false,
+    "isMERSLoan": false,
+    "paymentInAdvance": false
+  },
+  "features": {
+    "id$": "6552a88dc7b3aa5ebfcdcce5",
+    "isLineOfCredit": false,
+    "lineOfCreditPage": {
+      "id$": "6552a88dc7b3aa5ebfcdcce6",
+      "isRevolving": false
+    },
+    "penalties": {
+      "id$": "6552a88dc7b3aa5ebfcdcce7",
+      "PrepaymentPenalty": "None",
+      "IsPrepay20Percent": false,
+      "IsPrepayLockYield": false
+    },
+    "isConstructionReserve": false,
+    "construction1": {
+      "id$": "6552a88dc7b3aa5ebfcdcce8",
+      "IsNonDutch": false,
+      "IsExcludeSchedule": false,
+      "IsRetainageRequired": false,
+      "IsThirdPartyFCA": false,
+      "isAssignmentOfPermits": false,
+      "isInspectionFee": false,
+      "IsConstructionContract": false,
+      "IsDesignContract": false,
+      "isThirdPartyConstructionGuaranty": false,
+      "doesConstructionBorrowerContribute": false
+    },
+    "loanFeatures": {
+      "id$": "6552a88dc7b3aa5ebfcdcce9",
+      "isACH": false,
+      "isACHRemove": false,
+      "isSBALoan": false,
+      "isCannabisLoan": false,
+      "isAffiliateLoan": false,
+      "isSpecialPurposeEntity": false,
+      "isRecycledSPE": false,
+      "isDebtServiceCoverageRatio": false,
+      "isAutoExtension": false,
+      "isExtension": false,
+      "isLockbox": false,
+      "isServicingFees": false,
+      "isExit": false,
+      "isTermination": false,
+      "deferredBrokerType": "None",
+      "deferredOriginationType": "None",
+      "isDefaultFee": false,
+      "iseResiLoan": false,
+      "isFStreetLoan": false,
+      "plDirectOriginationFee": false,
+      "isWallisLife": false,
+      "silverHillDeferredLoan": false
+    },
+    "reserves": {
+      "id$": "6552a88dc7b3aa5ebfcdccea",
+      "IsLender": false,
+      "isPropertyTax": false,
+      "isPropertyInsurance": false,
+      "IsCapEx": false,
+      "IsAppraisal": false,
+      "DefaultType": "None",
+      "isOccupancy": false,
+      "DebtServiceType": "None"
+    },
+    "isImpounds1": false,
+    "impounds1": {
+      "id$": "6552a88dc7b3aa5ebfcdcceb"
+    }
+  },
+  "lenderInformation": {
+    "id$": "6552a88dc7b3aa5ebfcdccec",
+    "isExhibitALenders": false,
+    "IsCFLLicensee": false,
+    "NoticeTo": "Lender",
+    "OtherDelivery": "b"
+  },
+  "IsGuaranty": false,
+  "Guarantor": null,
+  "SelectServicer": "Lender",
+  "fciDisbursementAgreement": false,
+  "isBroker": false,
+  "titlePolicy": {
+    "id$": "6552a88dc7b3aa5ebfcdccee",
+    "isReduceInsurance": false,
+    "isProformaPolicy": false,
+    "version": "2006"
+  },
+  "isEscrow": false,
+  "settlementFees": {
+    "id$": "6552a88dc7b3aa5ebfcdccef"
+  },
+  "preparerName": "a",
+  "preparerEmail": "a",
+  "PreparerAddress": "Lender",
+  "closingName": "a",
+  "closingEmail": "a",
   "docsAdd": {
-    "id$": "65527c4e4e679b900bf3fffe",
+    "id$": "6552a88dc7b3aa5ebfcdccf0",
+    "isAssignmentOfPropertyManagement": false,
+    "isW9": false,
+    "isFirstPaymentLetter": false,
     "floodInsurance": 0,
     "loanSaleInformation": {
-      "id$": "65527c4e4e679b900bf3ffff",
+      "id$": "6552a88dc7b3aa5ebfcdccf1",
       "whenSold": "None"
     },
+    "isCollateralAssignment": false,
     "isSubordinations": true,
     "subordinations_list": [
       {
-        "id$": "65527c4e4e679b900bf40000",
+        "id$": "6552a88dc7b3aa5ebfcdccf2",
         "documentType": "Simple",
         "property": "$$0001%%",
+        "postClosing": false,
         "documentName": "Lease Doc Name 1",
         "documentDate": "2023-11-17",
         "leaseMonths": 12,
@@ -22,7 +204,7 @@
         ]
       },
       {
-        "id$": "65527c4e4e679b900bf40001",
+        "id$": "6552a88dc7b3aa5ebfcdccf3",
         "documentType": "SNDA",
         "property": "$$0002%%",
         "postClosing": true,
@@ -37,7 +219,7 @@
     "isIntercreditor": true,
     "intercreditorAgreements_list": [
       {
-        "id$": "65527c4e4e679b900bf40003",
+        "id$": "6552a88dc7b3aa5ebfcdccf5",
         "repOptions": "Senior",
         "documentType": "Junior",
         "documentRecording": "Concurrent",
@@ -48,7 +230,7 @@
         "instrumentNumber": "BCD-234",
         "trustor": "Loan Mortgagor Name 1",
         "address": {
-          "id$": "65527c4e4e679b900bf40004",
+          "id$": "6552a88dc7b3aa5ebfcdccf6",
           "street": "4547 Park Boulevard",
           "city": "Oskaloosa",
           "state": "Indiana",
@@ -56,13 +238,13 @@
         },
         "lenderSpreadsheet": [
           {
-            "id$": "65527c4e4e679b900bf40005",
+            "id$": "6552a88dc7b3aa5ebfcdccf7",
             "name": "Sub Lender 1-A"
           }
         ]
       },
       {
-        "id$": "65527c4e4e679b900bf40006",
+        "id$": "6552a88dc7b3aa5ebfcdccf8",
         "repOptions": "Subordinate",
         "documentType": "Junior",
         "documentRecording": "Existing",
@@ -74,7 +256,7 @@
         "trustor": "Loan Trustor Name 1",
         "trustee": "Loan Trustee Name 1",
         "address": {
-          "id$": "65527c4e4e679b900bf40007",
+          "id$": "6552a88dc7b3aa5ebfcdccf9",
           "street": "4200 Hill Haven Drive",
           "city": "Waco",
           "state": "Texas",
@@ -82,18 +264,37 @@
         },
         "lenderSpreadsheet": [
           {
-            "id$": "65527c4e4e679b900bf40008",
+            "id$": "6552a88dc7b3aa5ebfcdccfa",
             "name": "Loan Lender 2-A",
             "investedAmount": 2250
           },
           {
-            "id$": "65527c4e4e679b900bf40009",
+            "id$": "6552a88dc7b3aa5ebfcdccfb",
             "name": "Loan Lender 2-B",
             "investedAmount": 1000
           }
         ]
       }
     ],
-    "needsTranslator": 1
+    "isTranslator": false,
+    "needsTranslator": 1,
+    "isLoanAdministrationAgreement": false,
+    "isPrincipalRepaymentAgreement": false,
+    "isPrincipalRepaymentProportional": false,
+    "isThirdPartyAffiliate": false,
+    "housemaxCreditCardAuthorization": false
+  },
+  "docsCustomize": {
+    "id$": "6552a88dc7b3aa5ebfcdccfc",
+    "isRemoveArbitrationProvisions": false,
+    "isRemoveLanguageCapacity": false,
+    "isRemoveInitialLines": false,
+    "isRemoveAllEntityCerts": false,
+    "isIncludeEntityDocs": false,
+    "isRemoveTitleInsurance": false,
+    "isCoverpage": false,
+    "isMasterGuaranty": false,
+    "isNoFillNonOwner": false,
+    "isNoFillBusinessPurpose": false
   }
 }
