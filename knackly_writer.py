@@ -1522,6 +1522,12 @@ class Knackly_Writer:
             return result
 
         def intercreditor_agreements() -> list[dict]:
+            """Helper function to create the intercreditor_agreements objects.
+
+            Returns:
+                list[dict]: A list of dictionaries, where each element contains information about a particular intercreditor agreement.
+            """
+
             def lender_spreadsheet(
                 names: list[str], amounts: [list[int]]
             ) -> list[dict]:
@@ -1600,7 +1606,6 @@ class Knackly_Writer:
                 ) = intercreditor_agreement_info
                 if self.is_all_args_none(intercreditor_agreement_info):
                     continue  # Skip this iteration if its completely blank
-                # print(intercreditor_agreement_info)
                 temp = {
                     "id$": str(ObjectId()),
                     "repOptions": rep,
@@ -1731,7 +1736,6 @@ class Knackly_Writer:
         # self.json["loanTerms"] = self.standard_loan_terms()
         self.json.update({"loanTerms": self.standard_loan_terms()})
         self.json.update({"features": self.special_loan_features()})
-        #
         self.json.update({"lenderInformation": self.lender_information()})
         # Guaranty stuff below
         self.json.update(
@@ -1786,3 +1790,52 @@ class Knackly_Writer:
         # Docs Add / Customize
         self.json["docsAdd"] = self.docs_add()
         self.json["docsCustomize"] = self.docs_customize()
+
+        # Optional clean up
+        self.clean_up()
+
+    def clean_up(self) -> None:
+        """Clean up the self.json dictionary associated with the class instance.
+        """
+        self.json = self._recursive_clean(self.json)
+
+        if self.json is None:
+            self.json = {}
+
+    def _recursive_clean(self, data: dict) -> dict | None:
+        """Recursively delete keys in a dictionary that contain values of `False` or `None`. If the dictionary ends up with just one key, "id$", remove that key as well.
+
+        Args:
+            data (dict): A dictionary, optionally containing sub-dictionaries and lists.
+
+        Returns:
+            dict | None: The cleaned up dictionary, or `None` if the entire dictionary is empty.
+        """
+        if isinstance(data, dict):
+            # Process each key-value pair in the dictionary
+            for key in list(data.keys()):
+                if data[key] is False or data[key] is None:
+                    del data[key]
+                elif isinstance(data[key], (dict, list)):
+                    result = self._recursive_clean(data[key])
+                    if result is None:
+                        del data[key]
+                    else:
+                        data[key] = result
+
+            # If the dictionary has only one key 'id$', remove the whole dictionary
+            if len(data) == 1 and "id$" in data:
+                return None
+            return data
+
+        elif isinstance(data, list):
+            # Process each item in the list
+            return [
+                self._recursive_clean(item)
+                for item in data
+                if item not in [False, None]
+            ]
+
+        else:
+            # Return the item if it's not a dictionary or list
+            return data
