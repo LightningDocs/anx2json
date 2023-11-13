@@ -97,7 +97,7 @@ class Knackly_Writer:
             "city": city,
             "state": state,
             "zip": zip,
-            "county": county,
+            "selectCounty": county,
         }
 
         result = self.remove_none_values(result)
@@ -1685,10 +1685,11 @@ class Knackly_Writer:
                     names,
                 ) = subordination_info
 
+                print(f"{property_ = }")
                 temp = {
                     "id$": str(ObjectId()),
                     "documentType": doc_types,
-                    "property": property_,  # <- This involves ObjectID / keys
+                    "property": self.uuid_map["Properties"].get(property_),
                     "postClosing": post_closing,
                     "documentName": doc_name,
                     "documentDate": doc_date,
@@ -1803,7 +1804,7 @@ class Knackly_Writer:
                     "repOptions": rep,
                     "documentType": doc_type,
                     "documentRecording": doc_recording,
-                    "property": property_,
+                    "property": self.uuid_map["Properties"].get(property_),
                     "debtAmount": amount,
                     "recordingDate": recording_date,
                     "signingDate": signing_date,

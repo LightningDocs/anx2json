@@ -1,19 +1,19 @@
 {
-  "id$": "6552a88dc7b3aa5ebfcdccda",
+  "id$": "6552aa7e40ae0cd4700a7226",
   "propertyInformation": {
-    "id$": "6552a88dc7b3aa5ebfcdccdb",
+    "id$": "6552aa7e40ae0cd4700a7227",
     "isScheduleOfProperties": false,
     "partialReleaseExpert": "None",
     "properties": [
       {
-        "id$": "6552a88dc7b3aa5ebfcdccdc",
+        "id$": "6552aa7e40ae0cd4700a7228",
         "PropertyAddress": {
-          "id$": "6552a88dc7b3aa5ebfcdccdd",
+          "id$": "6552aa7e40ae0cd4700a7229",
           "street": "996 Clay Street",
           "city": "Indianapolis",
           "state": "Nebraska",
           "zip": "46254",
-          "county": "AdamsH1"
+          "selectCounty": "AdamsH1"
         },
         "APN": "ABC-123",
         "lienPosition": "second",
@@ -24,7 +24,7 @@
         "isOwnerOccupied": true,
         "seniorLiens": [
           {
-            "id$": "6552a88dc7b3aa5ebfcdccde",
+            "id$": "6552aa7e40ae0cd4700a722a",
             "lenderName": "Senior Lender 1",
             "recordingDate": "2023-01-21",
             "instrumentNumber": "123",
@@ -32,7 +32,7 @@
             "trustee": "Senior Trustee 1"
           },
           {
-            "id$": "6552a88dc7b3aa5ebfcdccdf",
+            "id$": "6552aa7e40ae0cd4700a722b",
             "lenderName": "Senior Lender 2",
             "recordingDate": "2023-02-22",
             "instrumentNumber": "234",
@@ -40,7 +40,7 @@
             "trustee": "Senior Trustee 2"
           },
           {
-            "id$": "6552a88dc7b3aa5ebfcdcce0",
+            "id$": "6552aa7e40ae0cd4700a722c",
             "lenderName": "Senior Lender 4",
             "recordingDate": "2023-04-24",
             "instrumentNumber": "456",
@@ -51,14 +51,14 @@
         "includePUD": false
       },
       {
-        "id$": "6552a88dc7b3aa5ebfcdcce2",
+        "id$": "6552aa7e40ae0cd4700a722e",
         "PropertyAddress": {
-          "id$": "6552a88dc7b3aa5ebfcdcce3",
+          "id$": "6552aa7e40ae0cd4700a722f",
           "street": "2934 Angus Road",
           "city": "Portland",
           "state": "Oregon",
           "zip": "97218",
-          "county": "BentonH1"
+          "selectCounty": "BentonH1"
         },
         "APN": "XYZ-987",
         "lienPosition": "fourth",
@@ -74,7 +74,7 @@
     "isConfessionofJudgment": true
   },
   "loanTerms": {
-    "id$": "6552a88dc7b3aa5ebfcdcce4",
+    "id$": "6552aa7e40ae0cd4700a7230",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
@@ -83,21 +83,21 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "6552a88dc7b3aa5ebfcdcce5",
+    "id$": "6552aa7e40ae0cd4700a7231",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "6552a88dc7b3aa5ebfcdcce6",
+      "id$": "6552aa7e40ae0cd4700a7232",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "6552a88dc7b3aa5ebfcdcce7",
+      "id$": "6552aa7e40ae0cd4700a7233",
       "PrepaymentPenalty": "None",
       "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "6552a88dc7b3aa5ebfcdcce8",
+      "id$": "6552aa7e40ae0cd4700a7234",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -110,7 +110,7 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "6552a88dc7b3aa5ebfcdcce9",
+      "id$": "6552aa7e40ae0cd4700a7235",
       "isACH": false,
       "isACHRemove": false,
       "isSBALoan": false,
@@ -135,7 +135,7 @@
       "silverHillDeferredLoan": false
     },
     "reserves": {
-      "id$": "6552a88dc7b3aa5ebfcdccea",
+      "id$": "6552aa7e40ae0cd4700a7236",
       "IsLender": false,
       "isPropertyTax": false,
       "isPropertyInsurance": false,
@@ -147,11 +147,11 @@
     },
     "isImpounds1": false,
     "impounds1": {
-      "id$": "6552a88dc7b3aa5ebfcdcceb"
+      "id$": "6552aa7e40ae0cd4700a7237"
     }
   },
   "lenderInformation": {
-    "id$": "6552a88dc7b3aa5ebfcdccec",
+    "id$": "6552aa7e40ae0cd4700a7238",
     "isExhibitALenders": false,
     "IsCFLLicensee": false,
     "NoticeTo": "Lender",
@@ -163,14 +163,14 @@
   "fciDisbursementAgreement": false,
   "isBroker": false,
   "titlePolicy": {
-    "id$": "6552a88dc7b3aa5ebfcdccee",
+    "id$": "6552aa7e40ae0cd4700a723a",
     "isReduceInsurance": false,
     "isProformaPolicy": false,
     "version": "2006"
   },
   "isEscrow": false,
   "settlementFees": {
-    "id$": "6552a88dc7b3aa5ebfcdccef"
+    "id$": "6552aa7e40ae0cd4700a723b"
   },
   "preparerName": "a",
   "preparerEmail": "a",
@@ -178,22 +178,22 @@
   "closingName": "a",
   "closingEmail": "a",
   "docsAdd": {
-    "id$": "6552a88dc7b3aa5ebfcdccf0",
+    "id$": "6552aa7e40ae0cd4700a723c",
     "isAssignmentOfPropertyManagement": false,
     "isW9": false,
     "isFirstPaymentLetter": false,
     "floodInsurance": 0,
     "loanSaleInformation": {
-      "id$": "6552a88dc7b3aa5ebfcdccf1",
+      "id$": "6552aa7e40ae0cd4700a723d",
       "whenSold": "None"
     },
     "isCollateralAssignment": false,
     "isSubordinations": true,
     "subordinations_list": [
       {
-        "id$": "6552a88dc7b3aa5ebfcdccf2",
+        "id$": "6552aa7e40ae0cd4700a723e",
         "documentType": "Simple",
-        "property": "$$0001%%",
+        "property": "6552aa7e40ae0cd4700a7228",
         "postClosing": false,
         "documentName": "Lease Doc Name 1",
         "documentDate": "2023-11-17",
@@ -204,9 +204,9 @@
         ]
       },
       {
-        "id$": "6552a88dc7b3aa5ebfcdccf3",
+        "id$": "6552aa7e40ae0cd4700a723f",
         "documentType": "SNDA",
-        "property": "$$0002%%",
+        "property": "6552aa7e40ae0cd4700a722e",
         "postClosing": true,
         "documentName": "Lease Doc Name 2",
         "documentDate": "2023-11-13",
@@ -219,18 +219,18 @@
     "isIntercreditor": true,
     "intercreditorAgreements_list": [
       {
-        "id$": "6552a88dc7b3aa5ebfcdccf5",
+        "id$": "6552aa7e40ae0cd4700a7241",
         "repOptions": "Senior",
         "documentType": "Junior",
         "documentRecording": "Concurrent",
-        "property": "$$0001%%",
+        "property": "6552aa7e40ae0cd4700a7228",
         "debtAmount": 2500,
         "recordingDate": "2023-11-27",
         "signingDate": "2023-11-28",
         "instrumentNumber": "BCD-234",
         "trustor": "Loan Mortgagor Name 1",
         "address": {
-          "id$": "6552a88dc7b3aa5ebfcdccf6",
+          "id$": "6552aa7e40ae0cd4700a7242",
           "street": "4547 Park Boulevard",
           "city": "Oskaloosa",
           "state": "Indiana",
@@ -238,17 +238,17 @@
         },
         "lenderSpreadsheet": [
           {
-            "id$": "6552a88dc7b3aa5ebfcdccf7",
+            "id$": "6552aa7e40ae0cd4700a7243",
             "name": "Sub Lender 1-A"
           }
         ]
       },
       {
-        "id$": "6552a88dc7b3aa5ebfcdccf8",
+        "id$": "6552aa7e40ae0cd4700a7244",
         "repOptions": "Subordinate",
         "documentType": "Junior",
         "documentRecording": "Existing",
-        "property": "$$0002%%",
+        "property": "6552aa7e40ae0cd4700a722e",
         "debtAmount": 3250,
         "recordingDate": "2023-12-12",
         "signingDate": "2023-12-13",
@@ -256,7 +256,7 @@
         "trustor": "Loan Trustor Name 1",
         "trustee": "Loan Trustee Name 1",
         "address": {
-          "id$": "6552a88dc7b3aa5ebfcdccf9",
+          "id$": "6552aa7e40ae0cd4700a7245",
           "street": "4200 Hill Haven Drive",
           "city": "Waco",
           "state": "Texas",
@@ -264,12 +264,12 @@
         },
         "lenderSpreadsheet": [
           {
-            "id$": "6552a88dc7b3aa5ebfcdccfa",
+            "id$": "6552aa7e40ae0cd4700a7246",
             "name": "Loan Lender 2-A",
             "investedAmount": 2250
           },
           {
-            "id$": "6552a88dc7b3aa5ebfcdccfb",
+            "id$": "6552aa7e40ae0cd4700a7247",
             "name": "Loan Lender 2-B",
             "investedAmount": 1000
           }
@@ -285,7 +285,7 @@
     "housemaxCreditCardAuthorization": false
   },
   "docsCustomize": {
-    "id$": "6552a88dc7b3aa5ebfcdccfc",
+    "id$": "6552aa7e40ae0cd4700a7248",
     "isRemoveArbitrationProvisions": false,
     "isRemoveLanguageCapacity": false,
     "isRemoveInitialLines": false,

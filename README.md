@@ -56,8 +56,8 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "Clie
   - [x] Settlement Statement Info
 - [x] Loan Preparer
 - [x] Closing Contact Info
-- [ ] Optional Documents
-  - [ ] Additional Documents
+- [x] Optional Documents
+  - [x] Additional Documents
   - [x] Customizations to Documents
 
 ## General clean-up
