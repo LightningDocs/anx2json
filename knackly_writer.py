@@ -191,7 +191,7 @@ class Knackly_Writer:
     def non_borrower_property_owners(self) -> dict:
         raise NotImplementedError
 
-    def property_information(self) -> dict:
+    def property_information_page(self) -> dict:
         """Creates the `property_information` dictionary on the top level.
 
         Returns:
@@ -282,7 +282,9 @@ class Knackly_Writer:
             "TrusteeName TE",
             "Trustee Address TE",
             "Tennessee County TE",
-            "_",
+            # "_",  # This will become the list of PropertyOwners (actually Property Borrower DMC and Vesting Help MC)
+            "Property Borrower DMC",
+            "Vesting Help MC",
             "Owner Occupied TF",
             "Junior Lien Beneficiary TE",
             "Junior Lien Recorded On DT",
@@ -297,12 +299,11 @@ class Knackly_Writer:
             item if isinstance(item, list) else [item] for item in property_components
         ]
 
-        temp_result = []
-        for property_info in zip_longest(*property_components):
+        properties = []
+        for hotdocs_property_info in zip_longest(*property_components):
             # Skip the iteration if everything is None
-            if self.is_all_args_none(property_info):
+            if self.is_all_args_none(hotdocs_property_info):
                 continue
-            # print(f"{property_info = }")
             (
                 property_key,
                 min_release_price,
@@ -322,7 +323,8 @@ class Knackly_Writer:
                 trustee_name,
                 trustee_address,
                 trustee_county,
-                _,
+                prop_borrower_dmc,
+                vesting,
                 is_owner_occupied,
                 senior_name,
                 date,
@@ -331,9 +333,9 @@ class Knackly_Writer:
                 senior_trustee,
                 collateral_value,
                 is_include_pud,
-            ) = property_info
+            ) = hotdocs_property_info
 
-            temp = {
+            collateral_property = {
                 "id$": str(ObjectId()),
                 "minimumReleasePrice": min_release_price,
                 "PropertyAddress": self.address(street, city, state, zip_code, county),
@@ -348,21 +350,39 @@ class Knackly_Writer:
                 "trusteeName": trustee_name,
                 "trusteeAddressText": trustee_address,
                 "trusteeCounty": trustee_county,
-                "PropertyOwners": [],  # Come back to this
+                "PropertyOwners": [],  # Dealt with below
                 "isOwnerOccupied": is_owner_occupied,
-                "seniorLiens": [],  # Come back to this
+                "seniorLiens": [],  # Dealt with below
                 "collatoralValue": collateral_value,
                 "includePUD": is_include_pud,
             }
+
+            # Handle property owner stuff
+            if self.is_all_args_none([prop_borrower_dmc, vesting]):
+                collateral_property["PropertyOwners"] = None
+            else:
+                collateral_property["PropertyOwners"] = [
+                    {
+                        "id$": str(ObjectId()),
+                        "PropertyOwner": hd_borrower_key,  # This needs to be changed eventually
+                        "Vesting": hd_vesting,
+                    }
+                    for hd_borrower_key, hd_vesting in zip_longest(
+                        prop_borrower_dmc, vesting
+                    )
+                    if not self.is_all_args_none([hd_borrower_key, hd_vesting])
+                ]
+
+            if self.is_all_args_none(collateral_property["PropertyOwners"]):
+                collateral_property["PropertyOwners"] = None
 
             # Handle senior lien stuff
             if self.is_all_args_none(
                 (senior_name, date, instrument_num, senior_trustor, senior_trustee)
             ):
-                temp["seniorLiens"] = None
+                collateral_property["seniorLiens"] = None
             else:
-                pass
-                temp["seniorLiens"] = [
+                collateral_property["seniorLiens"] = [
                     senior_lien_row(
                         n,
                         d,
@@ -379,11 +399,18 @@ class Knackly_Writer:
                     )
                 ]
 
-            # Add property data to temp_result as well as the Knackly_Writer's uuid_map
-            self.uuid_map["Properties"].update({property_key: temp["id$"]})
-            temp_result.append(self.remove_none_values(temp))
+            # If the property object only contains an id, don't include it.
+            collateral_property = self.remove_none_values(collateral_property)
+            if len(collateral_property) == 1 and "id$" in collateral_property:
+                continue
 
-        result["properties"] = temp_result
+            # Add property data to temp_result as well as the Knackly_Writer's uuid_map
+            self.uuid_map["Properties"].update(
+                {property_key: collateral_property["id$"]}
+            )
+            properties.append(self.remove_none_values(collateral_property))
+
+        result["properties"] = properties
         return self.remove_none_values(result)
 
     def standard_loan_terms(self) -> dict:
@@ -1685,7 +1712,6 @@ class Knackly_Writer:
                     names,
                 ) = subordination_info
 
-                print(f"{property_ = }")
                 temp = {
                     "id$": str(ObjectId()),
                     "documentType": doc_types,
@@ -1925,7 +1951,7 @@ class Knackly_Writer:
         """Actually fill out `self.json` with all of the relevant information."""
         # self.json.update({"Borrower": self.borrower_information()}) # This is broken UGH
         # self.json["TitleHolder2"] = self.non_borrower_property_owners()
-        self.json["propertyInformation"] = self.property_information()
+        self.json["propertyInformation"] = self.property_information_page()
         # self.json["loanTerms"] = self.standard_loan_terms()
         self.json.update({"loanTerms": self.standard_loan_terms()})
         self.json.update({"features": self.special_loan_features()})
