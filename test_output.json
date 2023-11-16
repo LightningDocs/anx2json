@@ -1,74 +1,101 @@
 {
-  "id$": "65564ab853c8f933b8e23dc2",
+  "id$": "6556a5e153c8f962a04a0dd0",
   "Borrower": {
-    "id$": "65564ab853c8f933b8e23dc3",
+    "id$": "6556a5e153c8f962a04a0dd1",
     "Borrowers": [
       {
-        "id$": "65564ab853c8f933b8e23dc5",
+        "id$": "6556a5e153c8f962a04a0dd3",
         "BorrowerName": "Billy Bob",
         "BorrowerEntityType": "individual",
         "IsBorrowerAIF": false
       },
       {
-        "id$": "65564ab853c8f933b8e23dc6",
+        "id$": "6556a5e153c8f962a04a0dd4",
         "BorrowerName": "Mountain Dew",
         "BorrowerEntityType": "corporation",
-        "BorrowerOrgState": "District of Columbia"
+        "BorrowerOrgState": "District of Columbia",
+        "BorrowerSigners": [
+          {
+            "id$": "6556a5e153c8f962a04a0dd5",
+            "Signer1Name": "Mikey Dew",
+            "Signer1Title": "CEO"
+          },
+          {
+            "id$": "6556a5e153c8f962a04a0dd6",
+            "Signer1Name": "Matthew Dew",
+            "Signer1Title": "COO"
+          }
+        ]
       },
       {
-        "id$": "65564ab853c8f933b8e23dc8",
+        "id$": "6556a5e153c8f962a04a0dd7",
         "BorrowerName": "Tommy Tilamook Trust",
         "BorrowerEntityType": "trust",
         "BorrowerTrustName": "Tommy Tilamook Trust no Vesting",
         "VenturersOrTrustees": [
           {
-            "id$": "65564ab853c8f933b8e23dc9",
+            "id$": "6556a5e153c8f962a04a0dd8",
             "Signer1Name": "Trent"
           },
           {
-            "id$": "65564ab853c8f933b8e23dca",
+            "id$": "6556a5e153c8f962a04a0dd9",
             "Signer1Name": "Thomas"
           },
           {
-            "id$": "65564ab853c8f933b8e23dcb",
+            "id$": "6556a5e153c8f962a04a0dda",
             "Signer1Name": "Tyler"
           },
           {
-            "id$": "65564ab853c8f933b8e23dcc",
+            "id$": "6556a5e153c8f962a04a0ddb",
             "Signer1Name": "Tok"
           },
           {
-            "id$": "65564ab853c8f933b8e23dcd",
+            "id$": "6556a5e153c8f962a04a0ddc",
             "Signer1Name": "Tiffany"
           }
         ]
       },
       {
-        "id$": "65564ab853c8f933b8e23dce",
+        "id$": "6556a5e153c8f962a04a0ddd",
         "BorrowerName": "Gatorade",
         "BorrowerEntityType": "limited liability company",
-        "BorrowerOrgState": "Arizona"
+        "BorrowerOrgState": "Arizona",
+        "BorrowerSigners": [
+          {
+            "id$": "6556a5e153c8f962a04a0dde",
+            "Signer1Name": "The Gatorade Trust",
+            "Signer1Title": "Parent Company 1",
+            "Signer1EntityType": "trust"
+          },
+          {
+            "id$": "6556a5e153c8f962a04a0ddf",
+            "Signer1Name": "Gatorade Holdings",
+            "Signer1Title": "Parent Company 2",
+            "Signer1EntityType": "corporation",
+            "Signer1OrgState": "Alabama"
+          }
+        ]
       },
       {
-        "id$": "65564ab853c8f933b8e23dd0",
+        "id$": "6556a5e153c8f962a04a0de0",
         "BorrowerName": "The Adventurers",
         "BorrowerEntityType": "joint venture",
         "BorrowerOrgState": "Hawaii",
         "VenturersOrTrustees": [
           {
-            "id$": "65564ab853c8f933b8e23dd1",
+            "id$": "6556a5e153c8f962a04a0de1",
             "Signer1Name": "Victor"
           },
           {
-            "id$": "65564ab853c8f933b8e23dd2",
+            "id$": "6556a5e153c8f962a04a0de2",
             "Signer1Name": "Vannesa"
           },
           {
-            "id$": "65564ab853c8f933b8e23dd3",
+            "id$": "6556a5e153c8f962a04a0de3",
             "Signer1Name": "Vladimir"
           },
           {
-            "id$": "65564ab853c8f933b8e23dd4",
+            "id$": "6556a5e153c8f962a04a0de4",
             "Signer1Name": "Vince"
           }
         ]
@@ -76,7 +103,7 @@
     ],
     "BorrowerNoticeSentTo": "Other",
     "Notice": {
-      "id$": "65564ab853c8f933b8e23dc4",
+      "id$": "6556a5e153c8f962a04a0dd2",
       "street": "3381 Payne Street",
       "city": "Independence",
       "state": "Virginia",
@@ -84,96 +111,8 @@
     },
     "BorrowerDeliveryTo": "c/o Helen D. Willey"
   },
-  "propertyInformation": {
-    "id$": "65564ab853c8f933b8e23dd5",
-    "isScheduleOfProperties": false,
-    "partialReleaseExpert": "None",
-    "properties": [
-      {
-        "id$": "65564ab853c8f933b8e23dd6",
-        "PropertyAddress": {
-          "id$": "65564ab853c8f933b8e23dd7",
-          "street": "996 Clay Street",
-          "city": "Indianapolis",
-          "state": "Nebraska",
-          "zip": "46254",
-          "selectCounty": "AdamsH1"
-        },
-        "APN": "ABC-123",
-        "lienPosition": "second",
-        "type": "1-4 Single Family Residence",
-        "isLeaseholdMortgage": false,
-        "trusteeDropdown": "Title",
-        "PropertyOwners": [
-          {
-            "id$": "65564ab853c8f933b8e23dd8",
-            "PropertyOwner": "$$0003%%",
-            "Vesting": "a single man"
-          },
-          {
-            "id$": "65564ab853c8f933b8e23dd9",
-            "PropertyOwner": "$$0004%%"
-          }
-        ],
-        "isOwnerOccupied": true,
-        "seniorLiens": [
-          {
-            "id$": "65564ab853c8f933b8e23dda",
-            "lenderName": "Senior Lender 1",
-            "recordingDate": "2023-01-21",
-            "instrumentNumber": "123",
-            "trustorName": "Senior Trustor 1",
-            "trustee": "Senior Trustee 1"
-          },
-          {
-            "id$": "65564ab853c8f933b8e23ddb",
-            "lenderName": "Senior Lender 2",
-            "recordingDate": "2023-02-22",
-            "instrumentNumber": "234",
-            "trustorName": "Senior Trustor 2",
-            "trustee": "Senior Trustee 2"
-          },
-          {
-            "id$": "65564ab853c8f933b8e23ddc",
-            "lenderName": "Senior Lender 4",
-            "recordingDate": "2023-04-24",
-            "instrumentNumber": "456",
-            "trustorName": "Senior Trustor 4",
-            "trustee": "Senior Trustee 4"
-          }
-        ],
-        "includePUD": false
-      },
-      {
-        "id$": "65564ab853c8f933b8e23dde",
-        "PropertyAddress": {
-          "id$": "65564ab853c8f933b8e23ddf",
-          "street": "2934 Angus Road",
-          "city": "Portland",
-          "state": "Oregon",
-          "zip": "97218",
-          "selectCounty": "BentonH1"
-        },
-        "APN": "XYZ-987",
-        "lienPosition": "fourth",
-        "type": "1-4 Single Family Residence",
-        "trusteeDropdown": "Other",
-        "trusteeName": "Super Trusty Beneficiary",
-        "PropertyOwners": [
-          {
-            "id$": "65564ab853c8f933b8e23de0",
-            "PropertyOwner": "$$0004%%"
-          }
-        ],
-        "isOwnerOccupied": false
-      }
-    ],
-    "governingLawState": "Alabama",
-    "arbitrationCounty": "BullockH1",
-    "isConfessionofJudgment": true
-  },
   "loanTerms": {
-    "id$": "65564ab853c8f933b8e23de3",
+    "id$": "6556a5e153c8f962a04a0de5",
     "isInterestOnly": false,
     "interestCalcType": "30/360",
     "isVariableRate": false,
@@ -182,21 +121,21 @@
     "paymentInAdvance": false
   },
   "features": {
-    "id$": "65564ab853c8f933b8e23de4",
+    "id$": "6556a5e153c8f962a04a0de6",
     "isLineOfCredit": false,
     "lineOfCreditPage": {
-      "id$": "65564ab853c8f933b8e23de5",
+      "id$": "6556a5e153c8f962a04a0de7",
       "isRevolving": false
     },
     "penalties": {
-      "id$": "65564ab853c8f933b8e23de6",
+      "id$": "6556a5e153c8f962a04a0de8",
       "PrepaymentPenalty": "None",
       "IsPrepay20Percent": false,
       "IsPrepayLockYield": false
     },
     "isConstructionReserve": false,
     "construction1": {
-      "id$": "65564ab853c8f933b8e23de7",
+      "id$": "6556a5e153c8f962a04a0de9",
       "IsNonDutch": false,
       "IsExcludeSchedule": false,
       "IsRetainageRequired": false,
@@ -209,7 +148,7 @@
       "doesConstructionBorrowerContribute": false
     },
     "loanFeatures": {
-      "id$": "65564ab853c8f933b8e23de8",
+      "id$": "6556a5e153c8f962a04a0dea",
       "isACH": false,
       "isACHRemove": false,
       "isSBALoan": false,
@@ -234,7 +173,7 @@
       "silverHillDeferredLoan": false
     },
     "reserves": {
-      "id$": "65564ab853c8f933b8e23de9",
+      "id$": "6556a5e153c8f962a04a0deb",
       "IsLender": false,
       "isPropertyTax": false,
       "isPropertyInsurance": false,
@@ -246,11 +185,11 @@
     },
     "isImpounds1": false,
     "impounds1": {
-      "id$": "65564ab853c8f933b8e23dea"
+      "id$": "6556a5e153c8f962a04a0dec"
     }
   },
   "lenderInformation": {
-    "id$": "65564ab853c8f933b8e23deb",
+    "id$": "6556a5e153c8f962a04a0ded",
     "isExhibitALenders": false,
     "IsCFLLicensee": false,
     "NoticeTo": "Lender",
@@ -262,14 +201,14 @@
   "fciDisbursementAgreement": false,
   "isBroker": false,
   "titlePolicy": {
-    "id$": "65564ab853c8f933b8e23ded",
+    "id$": "6556a5e153c8f962a04a0def",
     "isReduceInsurance": false,
     "isProformaPolicy": false,
     "version": "2006"
   },
   "isEscrow": false,
   "settlementFees": {
-    "id$": "65564ab853c8f933b8e23dee"
+    "id$": "6556a5e153c8f962a04a0df0"
   },
   "preparerName": "a",
   "preparerEmail": "a",
@@ -277,22 +216,21 @@
   "closingName": "a",
   "closingEmail": "a",
   "docsAdd": {
-    "id$": "65564ab853c8f933b8e23def",
+    "id$": "6556a5e153c8f962a04a0df1",
     "isAssignmentOfPropertyManagement": false,
     "isW9": false,
     "isFirstPaymentLetter": false,
     "floodInsurance": 0,
     "loanSaleInformation": {
-      "id$": "65564ab853c8f933b8e23df0",
+      "id$": "6556a5e153c8f962a04a0df2",
       "whenSold": "None"
     },
     "isCollateralAssignment": false,
     "isSubordinations": true,
     "subordinations_list": [
       {
-        "id$": "65564ab853c8f933b8e23df1",
+        "id$": "6556a5e153c8f962a04a0df3",
         "documentType": "Simple",
-        "property": "65564ab853c8f933b8e23dd6",
         "postClosing": false,
         "documentName": "Lease Doc Name 1",
         "documentDate": "2023-11-17",
@@ -303,9 +241,8 @@
         ]
       },
       {
-        "id$": "65564ab853c8f933b8e23df2",
+        "id$": "6556a5e153c8f962a04a0df4",
         "documentType": "SNDA",
-        "property": "65564ab853c8f933b8e23dde",
         "postClosing": true,
         "documentName": "Lease Doc Name 2",
         "documentDate": "2023-11-13",
@@ -318,18 +255,17 @@
     "isIntercreditor": true,
     "intercreditorAgreements_list": [
       {
-        "id$": "65564ab853c8f933b8e23df4",
+        "id$": "6556a5e153c8f962a04a0df6",
         "repOptions": "Senior",
         "documentType": "Junior",
         "documentRecording": "Concurrent",
-        "property": "65564ab853c8f933b8e23dd6",
         "debtAmount": 2500,
         "recordingDate": "2023-11-27",
         "signingDate": "2023-11-28",
         "instrumentNumber": "BCD-234",
         "trustor": "Loan Mortgagor Name 1",
         "address": {
-          "id$": "65564ab853c8f933b8e23df5",
+          "id$": "6556a5e153c8f962a04a0df7",
           "street": "4547 Park Boulevard",
           "city": "Oskaloosa",
           "state": "Indiana",
@@ -337,17 +273,16 @@
         },
         "lenderSpreadsheet": [
           {
-            "id$": "65564ab853c8f933b8e23df6",
+            "id$": "6556a5e153c8f962a04a0df8",
             "name": "Sub Lender 1-A"
           }
         ]
       },
       {
-        "id$": "65564ab853c8f933b8e23df7",
+        "id$": "6556a5e153c8f962a04a0df9",
         "repOptions": "Subordinate",
         "documentType": "Junior",
         "documentRecording": "Existing",
-        "property": "65564ab853c8f933b8e23dde",
         "debtAmount": 3250,
         "recordingDate": "2023-12-12",
         "signingDate": "2023-12-13",
@@ -355,7 +290,7 @@
         "trustor": "Loan Trustor Name 1",
         "trustee": "Loan Trustee Name 1",
         "address": {
-          "id$": "65564ab853c8f933b8e23df8",
+          "id$": "6556a5e153c8f962a04a0dfa",
           "street": "4200 Hill Haven Drive",
           "city": "Waco",
           "state": "Texas",
@@ -363,12 +298,12 @@
         },
         "lenderSpreadsheet": [
           {
-            "id$": "65564ab853c8f933b8e23df9",
+            "id$": "6556a5e153c8f962a04a0dfb",
             "name": "Loan Lender 2-A",
             "investedAmount": 2250
           },
           {
-            "id$": "65564ab853c8f933b8e23dfa",
+            "id$": "6556a5e153c8f962a04a0dfc",
             "name": "Loan Lender 2-B",
             "investedAmount": 1000
           }
@@ -384,7 +319,7 @@
     "housemaxCreditCardAuthorization": false
   },
   "docsCustomize": {
-    "id$": "65564ab853c8f933b8e23dfb",
+    "id$": "6556a5e153c8f962a04a0dfd",
     "isRemoveArbitrationProvisions": false,
     "isRemoveLanguageCapacity": false,
     "isRemoveInitialLines": false,

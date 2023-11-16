@@ -339,7 +339,7 @@ class Knackly_Writer:
             # lvl 1 signer info
             "B signature underlying entity 1 name TX",
             "B signature underlying entity 1 entity type MC",
-            "B signature underlying entity 1 org state MC"
+            "B signature underlying entity 1 org state MC",
             "B signature underlying entity 1 title TX",
             # # lvl 2 signer info
             "B signature underlying entity 2 name TX",
@@ -419,10 +419,38 @@ class Knackly_Writer:
             # Other entity types
             elif entity_type not in ["individual", "trust", "joint venture"]:
                 borrower_signers = []
-                # print(signer_e1_names)
-                # print(signer_e1_types)
-                # print()
-                temp_e1 = {"id$": str(ObjectId()), "Signer1Name": "test"}
+                signer_e1_elements = (
+                    signer_e1_names,
+                    signer_e1_titles,
+                    signer_e1_types,
+                    signer_e1_states,
+                )
+
+                signer_e1_elements = tuple(
+                    [self.listify(x) for x in signer_e1_elements]
+                )
+
+                for signer_e1 in zip_longest(*signer_e1_elements):
+                    if self.is_all_args_none(signer_e1):
+                        continue
+
+                    (
+                        signer_e1_name,
+                        signer_e1_title,
+                        signer_e1_type,
+                        signer_e1_state,
+                    ) = signer_e1
+
+                    temp_e1 = {
+                        "id$": str(ObjectId()),
+                        "Signer1Name": signer_e1_name,
+                        "Signer1Title": signer_e1_title,
+                        "Signer1EntityType": signer_e1_type,
+                        "Signer1OrgState": signer_e1_state,
+                    }
+
+                    temp_e1 = self.remove_none_values(temp_e1)
+                    borrower_signers.append(temp_e1)
 
                 if borrower_signers:
                     temp_borrower["BorrowerSigners"] = borrower_signers
@@ -2324,19 +2352,38 @@ class Knackly_Writer:
         Returns:
             list: The nested list
         """
-
-        # Function to transform each element
-        def transform_element(element):
-            """Helper function that recursively calls `transform_list` for any lists, otherwise returns the element wrapped in a list."""
-            if element is None:
-                return [None]
-            elif isinstance(element, list):
-                return [None] if not element else self.transform_list(element)
-            else:
-                return element
-
         # Transform each element in the nested list
-        transformed = [transform_element(el) for el in nested_list]
+        transformed = [self.transform_element(el) for el in nested_list]
 
         # If the transformed list is empty, return [None]
         return transformed if transformed else [None]
+
+    def transform_element(self, element):
+        """Helper function that recursively calls `transform_list` for any lists, otherwise returns the element wrapped in a list."""
+        if element is None:
+            return [None]
+        elif isinstance(element, list):
+            return [None] if not element else self.transform_list(element)
+        else:
+            return element
+
+    def listify(self, element: None | list) -> list:
+        """Helper function to be used in the borrower_information method. Converts `None` values and empty lists to `[None]`
+
+        Args:
+            element (None | list): any NoneType or a list of anything.
+
+        Returns:
+            list: Either the original list (if at least one element long), or `[None]`
+        """
+        if element is None:
+            return [None]
+        elif isinstance(element, list):
+            if len(element) == 0:
+                return [None]
+            else:
+                return element
+        else:
+            raise ValueError(
+                f"error, expecting either None or a list, received {type(element).__name__}: {element}"
+            )
