@@ -3,6 +3,12 @@ Python script that converts HotDocs .anx files to Knackly .json files
 
 ## Commands
 
+### Setup
+You only have to do the following step once!
+```bash
+pip install -r requirements.txt
+```
+
 ### Usage
 
 ```bash
@@ -29,7 +35,7 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "Clie
 - [ ] Section A
   - [ ] Borrower Information
   - [ ] Non-Borrower Property Owners
-  - [ ] Property Information
+  - [x] Property Information
 - [ ] Section B
   - [x] Standard Loan Terms
   - [x] Special Loan Features

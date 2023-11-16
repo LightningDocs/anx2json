@@ -16,13 +16,13 @@ class Knackly_Writer:
             "Trustees": {},
             "Properties": {},
         }
-        # In the uuid map for borrowers, the key will be the entities name, and the value will be the generated uuid
+        # In the uuid map for borrowers, the key will be the entities DMC key, and the value will be the generated uuid
         # For example:
         # self.uuid_map = {
         #     "Borrowers": {
-        #         "Borrower A": "653fea131c45e2b8dddef937",
-        #         "Borrower B": "653fea131c45e2b8dddef938",
-        #         "Borrower C": "653fea131c45e2b8dddef939"
+        #         "$$0003%%": "653fea131c45e2b8dddef937",
+        #         "$$0004%%": "653fea131c45e2b8dddef938",
+        #         "$$0005%%": "653fea131c45e2b8dddef939"
         #     }
         # }
 
@@ -108,84 +108,340 @@ class Knackly_Writer:
 
         return result
 
-    def borrower_information(
+    def borrower_information_page(
         self,
-    ) -> (
-        dict
-    ):  # This isn't complete yet. Doesn't account for BorrowerSigners, BorrowerOwners, or Trustee stuff. I am leaving it incomplete because I am losing my mind trying to do this right now, and need to work on something else.
+    ) -> dict:  # Original Version
         """Creates the "Borrower" dictionary (on the top level of the Knackly interview)
 
         Returns:
             dict: The properly formatted "Borrower" dictionary
         """
+        landing_page_components = self.anx.parse_multiple(
+            "_",  # Placeholder for eventual Borrower objects
+            "Borrower Notice MC",
+            "Borrower Street Address TE",
+            "Borrower City TE",
+            "Borrower State MC",
+            "Borrower Zip Code TE",
+            "Borrower Delivery To Notice TE",
+            "Temple Email Address TX",
+            "FinMe Borrower Email TE",
+            "Temple Phone Num TE",
+        )
+        # pprint(landing_page_components)
 
-        def borrower_setup() -> list[dict]:
-            pass
+        if self.is_all_args_none(landing_page_components):
+            return None
 
-            def create_borrower(
-                name: str,
-                type: str,
-                is_aif: bool,
-                aif_name: str,
-                borrower_org_state: str,
-            ) -> dict:
-                id_ = str(ObjectId())
-                self.uuid_map["Borrowers"].update({name: id_})
-
-                result = {
-                    "id$": id_,
-                    "BorrowerName": name,
-                    "BorrowerEntityType": type,
-                    "IsBorrowerAIF": is_aif,
-                    "AIFName": aif_name,
-                    "BorrowerOrgState": borrower_org_state,
-                }
-
-                return self.remove_none_values(result)
-
-            result = []
-            for name, entity_type, is_aif, aif_name, borrower_org_state in zip_longest(
-                self.anx.parse_RptValue(self.anx.find_answer("Borrower Name TE"))[:-1],
-                self.anx.parse_RptValue(
-                    self.anx.find_answer("Borrower Entity Type MC")
-                )[:-1],
-                self.anx.parse_RptValue(
-                    self.anx.find_answer("B signature attorney in fact TF")
-                ),
-                self.anx.parse_RptValue(
-                    self.anx.find_answer("B signature attorney in fact name TX")
-                ),
-                self.anx.parse_RptValue(
-                    self.anx.find_answer("Borrower Organization State MC")
-                ),
-            ):
-                new_borrower = create_borrower(
-                    name, entity_type, is_aif, aif_name, borrower_org_state
-                )
-                result.append(new_borrower)
-            return result
+        (
+            _,
+            notice_sent_to,
+            street,
+            city,
+            state,
+            zip_code,
+            delivery_to,
+            email_temple,
+            email_finme,
+            phone_temple,
+        ) = landing_page_components
 
         result = {
             "id$": str(ObjectId()),
-            "Borrowers": borrower_setup(),
-            "BorrowerNoticeSentTo": self.anx.parse_MCValue(
-                self.anx.find_answer("Borrower Notice MC")
-            ),
-            "Notice": self.address(
-                street=self.anx.parse_TextValue(
-                    self.anx.find_answer("Borrower Street Address TE")
-                ),
-                city=self.anx.parse_TextValue(self.anx.find_answer("Borrower City TE")),
-                state=self.anx.parse_MCValue(self.anx.find_answer("Borrower State MC")),
-                zip=self.anx.parse_TextValue(
-                    self.anx.find_answer("Borrower Zip Code TE")
-                ),
-            ),
-            "BorrowerDeliveryTo": self.anx.parse_TextValue(
-                self.anx.find_answer("Borrower Delivery To Notice TE")
-            ),
+            "Borrowers": None,  # This will be replaced with the list of Borrower objects
+            "BorrowerNoticeSentTo": notice_sent_to,
+            "Notice": self.address(street, city, state, zip_code),
+            "BorrowerDeliveryTo": delivery_to,
+            "noticeEmail": email_temple
+            if email_temple
+            else (email_finme if email_finme else None),
+            "noticePhone": phone_temple,
         }
 
+        borrowers = []
+        # First level borrowers
+        lvl_1_borrower_components = self.anx.parse_multiple(
+            "Borrower Key TX",
+            "Third Party Borrower TF",
+            "Borrower Name TE",
+            "Borrower Entity Type MC",
+            "Trust Name TE",
+            "B signature attorney in fact TF",
+            "Borrower Organization State MC",
+            "B signature attorney in fact name TX",
+        )
+        lvl_1_borrower_components = [
+            elem if isinstance(elem, list) else [elem]
+            for elem in lvl_1_borrower_components
+        ]
+
+        for lvl_1_idx, borrower_info in enumerate(
+            zip_longest(*lvl_1_borrower_components)
+        ):
+            # Skip the iteration if it's all none
+            if self.is_all_args_none(borrower_info):
+                continue
+            # print(borrower_info)
+
+            (
+                borrower_key,
+                is_3rd_party,
+                borrower_name,
+                entity_type,
+                trust_name,
+                is_aif,
+                organization_state,
+                aif_name,
+            ) = borrower_info
+            temp_borrower = {
+                "id$": str(ObjectId()),
+                "BorrowerName": borrower_name,
+                "BorrowerEntityType": entity_type,
+                "BorrowerTrustName": trust_name,
+                "IsBorrowerAIF": is_aif,
+                "BorrowerOrgState": organization_state,
+                "AIFName": aif_name,
+            }
+
+            # Deal with trusts first, they are easy
+            if entity_type == "trust":
+                all_trustee_names = self.anx.parse_field("B signature trustee name TX")
+                if all_trustee_names is None:
+                    continue
+
+                trustee_names = all_trustee_names[lvl_1_idx]
+                temp_borrower["VenturersOrTrustees"] = [
+                    {"id$": str(ObjectId()), "Signer1Name": trustee_name}
+                    for trustee_name in trustee_names
+                    if trustee_name is not None
+                ]
+
+            # Deal with non-individuals and non-trusts
+            if entity_type not in ["individual", "trust"]:
+                # Part 1: Officer Information
+                all_officer_information = self.anx.parse_multiple(
+                    "B signature underlying entity 1 name TX",
+                    "B signature underlying entity 1 title TX",
+                    "B signature underlying entity 1 entity type MC",
+                    "B signature underlying entity 1 org state MC",
+                )
+                if all_officer_information is None:
+                    continue
+
+                all_officer_information = [
+                    elem if isinstance(elem, list) else [elem]
+                    for elem in all_officer_information
+                ]
+                for lvl_2_idx, officer_information in enumerate(
+                    zip_longest(*all_officer_information)
+                ):
+                    # print(officer_information)
+                    if lvl_2_idx == lvl_1_idx:
+                        # print(lvl_2_idx, officer_information)
+                        officer_information = [
+                            elem if isinstance(elem, list) else [elem]
+                            for elem in officer_information
+                        ]
+                        temp_officer_information = []  # This will be a list of dict's
+                        for officer_information_row in zip_longest(
+                            *officer_information
+                        ):
+                            if self.is_all_args_none(officer_information_row):
+                                continue
+                            print(officer_information_row)
+                            (
+                                name,
+                                title,
+                                entity_type,
+                                org_state,
+                            ) = officer_information_row
+                            temp_officer_information_row = {
+                                "id$": str(ObjectId()),
+                                "Signer1Name": name,
+                                "Signer1Title": title,
+                                "Signer1EntityType": entity_type,
+                                "Signer1OrgState": org_state,
+                            }
+                            temp_officer_information.append(
+                                self.remove_none_values(temp_officer_information_row)
+                            )
+                        temp_borrower["BorrowerSigners"] = temp_officer_information
+
+            # Finally, ...
+            self.uuid_map["Borrowers"].update({borrower_key: temp_borrower["id$"]})
+            borrowers.append(self.remove_none_values(temp_borrower))
+
+        # Finally, ...
+        if borrowers:
+            result["Borrowers"] = borrowers
+        return self.remove_none_values(result)
+
+    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    def borrower_information_page(
+        self,
+    ) -> dict:
+        """Creates the "Borrower" dictionary (on the top level of the Knackly interview)
+
+        Returns:
+            dict: The properly formatted "Borrower" dictionary
+        """
+        landing_page_components = self.anx.parse_multiple(
+            "_",  # Placeholder for eventual Borrower objects
+            # ------------
+            "Borrower Notice MC",
+            "Borrower Street Address TE",
+            "Borrower City TE",
+            "Borrower State MC",
+            "Borrower Zip Code TE",
+            "Borrower Delivery To Notice TE",
+            "Temple Email Address TX",
+            "FinMe Borrower Email TE",
+            "Temple Phone Num TE",
+        )
+        # pprint(landing_page_components)
+
+        (
+            _,
+            notice_sent_to,
+            street,
+            city,
+            state,
+            zip_code,
+            delivery_to,
+            email_temple,
+            email_finme,
+            phone_temple,
+        ) = landing_page_components
+
+        result = {
+            "id$": str(ObjectId()),
+            "Borrowers": None,  # This will be replaced with the list of Borrower objects
+            "BorrowerNoticeSentTo": notice_sent_to,
+            "Notice": self.address(street, city, state, zip_code),
+            "BorrowerDeliveryTo": delivery_to,
+            "noticeEmail": email_temple
+            if email_temple
+            else (email_finme if email_finme else None),
+            "noticePhone": phone_temple,
+        }
+
+        borrowers = []
+        borrower_components = self.anx.parse_multiple(
+            "Borrower Key TX",
+            "Borrower Name TE",
+            "Borrower Entity Type MC",
+            "Borrower Organization State MC",
+            "Trust Name TE",
+            "B signature trustee name TX",
+            "B signature joint venturer name TX",
+            "B signature attorney in fact TF",
+            # - BORROWER SIGNERS
+            # lvl 1 signer info
+            "B signature underlying entity 1 name TX",
+            "B signature underlying entity 1 entity type MC",
+            "B signature underlying entity 1 org state MC"
+            "B signature underlying entity 1 title TX",
+            # # lvl 2 signer info
+            "B signature underlying entity 2 name TX",
+            "B signature underlying entity 2 entity type MC",
+            "B signature underlying entity 2 org state MC",
+            "B signature underlying entity 2 title TX",
+            # # # lvl 3 signer info
+            "B signature underlying entity 3 name TX",
+            "B signature underlying entity 3 title TX",
+            # # lvl 2 owner info
+            "Borrower Owner Signer Underlying 2 Name TE",
+            "Borrower Owner Signer Underlying 2 Title TE",
+            # lvl 1 owner info
+            "Borrower Owner Signer Underlying 1 Name TE",
+            "Borrower Owner Signer Underlying 1 Entity Type MC",
+            "Borrower Owner Signer Underlying 1 State MC",
+            "Borrower Owner Signer Underlying 1 Title TE",
+            # # Owner information
+            "Borrower Owner Underlying 1 Individual Name TE",
+            "Borrower Owner Underlying 1 Individual Title TE",
+            # - BORROWER OWNERS
+            # lvl 1 owner info
+            "Borrower Owner Signer Name TE",
+            "Borrower Owner Entity Type MC",
+            "Borrower Owner Organization State MC",
+            "Borrower Owner Signer Title TE",
+            # lvl 2 signer info
+            "Borrower Owner Individual Name TE",
+            "Borrower Owner Individual Title TE",
+        )
+        borrower_components = [
+            elem if isinstance(elem, list) else [elem] for elem in borrower_components
+        ]
+
+        # borrower_components = self.transform_list(borrower_components)
+
+        # Now build the borrower objects
+        for idx, borrower in enumerate(zip_longest(*borrower_components)):
+            if self.is_all_args_none(borrower):
+                continue
+            # print(idx, borrower)
+            (
+                borrower_key,
+                name,
+                entity_type,
+                org_state,
+                trust_name,
+                trustees,
+                venturers,
+                is_aif,
+                signer_e1_names,
+                signer_e1_types,
+                signer_e1_states,
+                signer_e1_titles,
+                *_,
+            ) = borrower
+            temp_borrower = {
+                "id$": str(ObjectId()),
+                "BorrowerName": name,
+                "BorrowerEntityType": entity_type,
+                "BorrowerOrgState": org_state,
+                "BorrowerTrustName": trust_name,
+                "IsBorrowerAIF": is_aif,
+            }
+
+            # Trusts / Joint Ventures
+            if entity_type in ["trust", "joint venture"]:
+                if entity_type == "trust":
+                    names = self.remove_none_values(trustees)
+                else:
+                    names = self.remove_none_values(venturers)
+                temp_peoples = []
+                for name in names:
+                    temp_peoples.append({"id$": str(ObjectId()), "Signer1Name": name})
+                temp_borrower["VenturersOrTrustees"] = temp_peoples
+
+            # Other entity types
+            elif entity_type not in ["individual", "trust", "joint venture"]:
+                borrower_signers = []
+                print(signer_e1_names)
+                print(signer_e1_types)
+                print()
+                temp_e1 = {"id$": str(ObjectId()), "Signer1Name": "test"}
+
+                if borrower_signers:
+                    temp_borrower["BorrowerSigners"] = borrower_signers
+                # ----------------------------------------------------------
+                borrower_owners = []
+
+                if borrower_owners:
+                    temp_borrower["BorrowerOwners"] = borrower_owners
+
+            # Clean up each temporary borrower before committing to adding it
+            temp_borrower = self.remove_none_values(temp_borrower)
+            if len(temp_borrower) == 1 and "id$" in temp_borrower:
+                continue
+            borrowers.append(temp_borrower)
+            self.uuid_map["Borrowers"].update({borrower_key: temp_borrower["id$"]})
+
+        # Finally, ...
+        if borrowers:
+            result["Borrowers"] = borrowers
         return self.remove_none_values(result)
 
     def non_borrower_property_owners(self) -> dict:
@@ -1949,7 +2205,8 @@ class Knackly_Writer:
 
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""
-        # self.json.update({"Borrower": self.borrower_information()}) # This is broken UGH
+        # self.json.update({"Borrower": self.borrower_information_page()}) # This is broken UGH
+        self.json["Borrower"] = self.borrower_information_page()
         # self.json["TitleHolder2"] = self.non_borrower_property_owners()
         self.json["propertyInformation"] = self.property_information_page()
         # self.json["loanTerms"] = self.standard_loan_terms()
@@ -2057,3 +2314,29 @@ class Knackly_Writer:
         else:
             # Return the item if it's not a dictionary or list
             return data
+
+    def transform_list(self, nested_list: list) -> list:
+        """Helper function to aid in the heavily nested borrowers code. Wraps single elements in a list, and converts any empty lists to `[None]`. Needed for the zip_longest method to work.
+
+        Args:
+            nested_list (list): A list of elements, some of which could be lists themselves.
+
+        Returns:
+            list: The nested list
+        """
+
+        # Function to transform each element
+        def transform_element(element):
+            """Helper function that recursively calls `transform_list` for any lists, otherwise returns the element wrapped in a list."""
+            if element is None:
+                return [None]
+            elif isinstance(element, list):
+                return [None] if not element else self.transform_list(element)
+            else:
+                return element
+
+        # Transform each element in the nested list
+        transformed = [transform_element(el) for el in nested_list]
+
+        # If the transformed list is empty, return [None]
+        return transformed if transformed else [None]
