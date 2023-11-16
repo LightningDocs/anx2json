@@ -1,0 +1,277 @@
+{
+  "id$": "655691773eb30ffe90544eb7",
+  "Borrower": {
+    "id$": "655691773eb30ffe90544eb8",
+    "Borrowers": [
+      {
+        "id$": "655691773eb30ffe90544eba",
+        "BorrowerName": "Billy Bob",
+        "BorrowerEntityType": "individual",
+        "IsBorrowerAIF": false
+      },
+      {
+        "id$": "655691773eb30ffe90544ebb",
+        "BorrowerName": "Mountain Dew",
+        "BorrowerEntityType": "corporation",
+        "BorrowerOrgState": "District of Columbia"
+      },
+      {
+        "id$": "655691773eb30ffe90544ebd",
+        "BorrowerName": "Tommy Tilamook Trust",
+        "BorrowerEntityType": "trust",
+        "BorrowerTrustName": "Tommy Tilamook Trust no Vesting",
+        "VenturersOrTrustees": [
+          {
+            "id$": "655691773eb30ffe90544ebe",
+            "Signer1Name": "Trent"
+          },
+          {
+            "id$": "655691773eb30ffe90544ebf",
+            "Signer1Name": "Thomas"
+          },
+          {
+            "id$": "655691773eb30ffe90544ec0",
+            "Signer1Name": "Tyler"
+          },
+          {
+            "id$": "655691773eb30ffe90544ec1",
+            "Signer1Name": "Tok"
+          },
+          {
+            "id$": "655691773eb30ffe90544ec2",
+            "Signer1Name": "Tiffany"
+          }
+        ]
+      }
+    ],
+    "BorrowerNoticeSentTo": "Other",
+    "Notice": {
+      "id$": "655691773eb30ffe90544eb9",
+      "street": "3381 Payne Street",
+      "city": "Independence",
+      "state": "Virginia",
+      "zip": "24348"
+    },
+    "BorrowerDeliveryTo": "c/o Helen D. Willey"
+  },
+  "loanTerms": {
+    "id$": "655691773eb30ffe90544ec3",
+    "isInterestOnly": false,
+    "interestCalcType": "30/360",
+    "isVariableRate": false,
+    "isInterestStep": false,
+    "isMERSLoan": false,
+    "paymentInAdvance": false
+  },
+  "features": {
+    "id$": "655691773eb30ffe90544ec4",
+    "isLineOfCredit": false,
+    "lineOfCreditPage": {
+      "id$": "655691773eb30ffe90544ec5",
+      "isRevolving": false
+    },
+    "penalties": {
+      "id$": "655691773eb30ffe90544ec6",
+      "PrepaymentPenalty": "None",
+      "IsPrepay20Percent": false,
+      "IsPrepayLockYield": false
+    },
+    "isConstructionReserve": false,
+    "construction1": {
+      "id$": "655691773eb30ffe90544ec7",
+      "IsNonDutch": false,
+      "IsExcludeSchedule": false,
+      "IsRetainageRequired": false,
+      "IsThirdPartyFCA": false,
+      "isAssignmentOfPermits": false,
+      "isInspectionFee": false,
+      "IsConstructionContract": false,
+      "IsDesignContract": false,
+      "isThirdPartyConstructionGuaranty": false,
+      "doesConstructionBorrowerContribute": false
+    },
+    "loanFeatures": {
+      "id$": "655691773eb30ffe90544ec8",
+      "isACH": false,
+      "isACHRemove": false,
+      "isSBALoan": false,
+      "isCannabisLoan": false,
+      "isAffiliateLoan": false,
+      "isSpecialPurposeEntity": false,
+      "isRecycledSPE": false,
+      "isDebtServiceCoverageRatio": false,
+      "isAutoExtension": false,
+      "isExtension": false,
+      "isLockbox": false,
+      "isServicingFees": false,
+      "isExit": false,
+      "isTermination": false,
+      "deferredBrokerType": "None",
+      "deferredOriginationType": "None",
+      "isDefaultFee": false,
+      "iseResiLoan": false,
+      "isFStreetLoan": false,
+      "plDirectOriginationFee": false,
+      "isWallisLife": false,
+      "silverHillDeferredLoan": false
+    },
+    "reserves": {
+      "id$": "655691773eb30ffe90544ec9",
+      "IsLender": false,
+      "isPropertyTax": false,
+      "isPropertyInsurance": false,
+      "IsCapEx": false,
+      "IsAppraisal": false,
+      "DefaultType": "None",
+      "isOccupancy": false,
+      "DebtServiceType": "None"
+    },
+    "isImpounds1": false,
+    "impounds1": {
+      "id$": "655691773eb30ffe90544eca"
+    }
+  },
+  "lenderInformation": {
+    "id$": "655691773eb30ffe90544ecb",
+    "isExhibitALenders": false,
+    "IsCFLLicensee": false,
+    "NoticeTo": "Lender",
+    "OtherDelivery": "b"
+  },
+  "IsGuaranty": false,
+  "Guarantor": null,
+  "SelectServicer": "Lender",
+  "fciDisbursementAgreement": false,
+  "isBroker": false,
+  "titlePolicy": {
+    "id$": "655691773eb30ffe90544ecd",
+    "isReduceInsurance": false,
+    "isProformaPolicy": false,
+    "version": "2006"
+  },
+  "isEscrow": false,
+  "settlementFees": {
+    "id$": "655691773eb30ffe90544ece"
+  },
+  "preparerName": "a",
+  "preparerEmail": "a",
+  "PreparerAddress": "Lender",
+  "closingName": "a",
+  "closingEmail": "a",
+  "docsAdd": {
+    "id$": "655691773eb30ffe90544ecf",
+    "isAssignmentOfPropertyManagement": false,
+    "isW9": false,
+    "isFirstPaymentLetter": false,
+    "floodInsurance": 0,
+    "loanSaleInformation": {
+      "id$": "655691773eb30ffe90544ed0",
+      "whenSold": "None"
+    },
+    "isCollateralAssignment": false,
+    "isSubordinations": true,
+    "subordinations_list": [
+      {
+        "id$": "655691773eb30ffe90544ed1",
+        "documentType": "Simple",
+        "postClosing": false,
+        "documentName": "Lease Doc Name 1",
+        "documentDate": "2023-11-17",
+        "leaseMonths": 12,
+        "tenantNames": [
+          "Tenant 1-A",
+          "Tenant 1-B"
+        ]
+      },
+      {
+        "id$": "655691773eb30ffe90544ed2",
+        "documentType": "SNDA",
+        "postClosing": true,
+        "documentName": "Lease Doc Name 2",
+        "documentDate": "2023-11-13",
+        "tenantNames": [
+          "Tenant 2-A",
+          "Tenant 2-B"
+        ]
+      }
+    ],
+    "isIntercreditor": true,
+    "intercreditorAgreements_list": [
+      {
+        "id$": "655691773eb30ffe90544ed4",
+        "repOptions": "Senior",
+        "documentType": "Junior",
+        "documentRecording": "Concurrent",
+        "debtAmount": 2500,
+        "recordingDate": "2023-11-27",
+        "signingDate": "2023-11-28",
+        "instrumentNumber": "BCD-234",
+        "trustor": "Loan Mortgagor Name 1",
+        "address": {
+          "id$": "655691773eb30ffe90544ed5",
+          "street": "4547 Park Boulevard",
+          "city": "Oskaloosa",
+          "state": "Indiana",
+          "zip": "52577"
+        },
+        "lenderSpreadsheet": [
+          {
+            "id$": "655691773eb30ffe90544ed6",
+            "name": "Sub Lender 1-A"
+          }
+        ]
+      },
+      {
+        "id$": "655691773eb30ffe90544ed7",
+        "repOptions": "Subordinate",
+        "documentType": "Junior",
+        "documentRecording": "Existing",
+        "debtAmount": 3250,
+        "recordingDate": "2023-12-12",
+        "signingDate": "2023-12-13",
+        "instrumentNumber": "CDE-345",
+        "trustor": "Loan Trustor Name 1",
+        "trustee": "Loan Trustee Name 1",
+        "address": {
+          "id$": "655691773eb30ffe90544ed8",
+          "street": "4200 Hill Haven Drive",
+          "city": "Waco",
+          "state": "Texas",
+          "zip": "76701"
+        },
+        "lenderSpreadsheet": [
+          {
+            "id$": "655691773eb30ffe90544ed9",
+            "name": "Loan Lender 2-A",
+            "investedAmount": 2250
+          },
+          {
+            "id$": "655691773eb30ffe90544eda",
+            "name": "Loan Lender 2-B",
+            "investedAmount": 1000
+          }
+        ]
+      }
+    ],
+    "isTranslator": false,
+    "needsTranslator": 1,
+    "isLoanAdministrationAgreement": false,
+    "isPrincipalRepaymentAgreement": false,
+    "isPrincipalRepaymentProportional": false,
+    "isThirdPartyAffiliate": false,
+    "housemaxCreditCardAuthorization": false
+  },
+  "docsCustomize": {
+    "id$": "655691773eb30ffe90544edb",
+    "isRemoveArbitrationProvisions": false,
+    "isRemoveLanguageCapacity": false,
+    "isRemoveInitialLines": false,
+    "isRemoveAllEntityCerts": false,
+    "isIncludeEntityDocs": false,
+    "isRemoveTitleInsurance": false,
+    "isCoverpage": false,
+    "isMasterGuaranty": false,
+    "isNoFillNonOwner": false,
+    "isNoFillBusinessPurpose": false
+  }
+}

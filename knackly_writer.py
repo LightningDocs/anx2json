@@ -248,7 +248,7 @@ class Knackly_Writer:
                         ):
                             if self.is_all_args_none(officer_information_row):
                                 continue
-                            print(officer_information_row)
+                            # print(officer_information_row)
                             (
                                 name,
                                 title,
@@ -419,9 +419,9 @@ class Knackly_Writer:
             # Other entity types
             elif entity_type not in ["individual", "trust", "joint venture"]:
                 borrower_signers = []
-                print(signer_e1_names)
-                print(signer_e1_types)
-                print()
+                # print(signer_e1_names)
+                # print(signer_e1_types)
+                # print()
                 temp_e1 = {"id$": str(ObjectId()), "Signer1Name": "test"}
 
                 if borrower_signers:
@@ -2208,7 +2208,7 @@ class Knackly_Writer:
         # self.json.update({"Borrower": self.borrower_information_page()}) # This is broken UGH
         self.json["Borrower"] = self.borrower_information_page()
         # self.json["TitleHolder2"] = self.non_borrower_property_owners()
-        self.json["propertyInformation"] = self.property_information_page()
+        # self.json["propertyInformation"] = self.property_information_page()
         # self.json["loanTerms"] = self.standard_loan_terms()
         self.json.update({"loanTerms": self.standard_loan_terms()})
         self.json.update({"features": self.special_loan_features()})
