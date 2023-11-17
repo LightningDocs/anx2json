@@ -110,175 +110,6 @@ class Knackly_Writer:
 
     def borrower_information_page(
         self,
-    ) -> dict:  # Original Version
-        """Creates the "Borrower" dictionary (on the top level of the Knackly interview)
-
-        Returns:
-            dict: The properly formatted "Borrower" dictionary
-        """
-        landing_page_components = self.anx.parse_multiple(
-            "_",  # Placeholder for eventual Borrower objects
-            "Borrower Notice MC",
-            "Borrower Street Address TE",
-            "Borrower City TE",
-            "Borrower State MC",
-            "Borrower Zip Code TE",
-            "Borrower Delivery To Notice TE",
-            "Temple Email Address TX",
-            "FinMe Borrower Email TE",
-            "Temple Phone Num TE",
-        )
-        # pprint(landing_page_components)
-
-        if self.is_all_args_none(landing_page_components):
-            return None
-
-        (
-            _,
-            notice_sent_to,
-            street,
-            city,
-            state,
-            zip_code,
-            delivery_to,
-            email_temple,
-            email_finme,
-            phone_temple,
-        ) = landing_page_components
-
-        result = {
-            "id$": str(ObjectId()),
-            "Borrowers": None,  # This will be replaced with the list of Borrower objects
-            "BorrowerNoticeSentTo": notice_sent_to,
-            "Notice": self.address(street, city, state, zip_code),
-            "BorrowerDeliveryTo": delivery_to,
-            "noticeEmail": email_temple
-            if email_temple
-            else (email_finme if email_finme else None),
-            "noticePhone": phone_temple,
-        }
-
-        borrowers = []
-        # First level borrowers
-        lvl_1_borrower_components = self.anx.parse_multiple(
-            "Borrower Key TX",
-            "Third Party Borrower TF",
-            "Borrower Name TE",
-            "Borrower Entity Type MC",
-            "Trust Name TE",
-            "B signature attorney in fact TF",
-            "Borrower Organization State MC",
-            "B signature attorney in fact name TX",
-        )
-        lvl_1_borrower_components = [
-            elem if isinstance(elem, list) else [elem]
-            for elem in lvl_1_borrower_components
-        ]
-
-        for lvl_1_idx, borrower_info in enumerate(
-            zip_longest(*lvl_1_borrower_components)
-        ):
-            # Skip the iteration if it's all none
-            if self.is_all_args_none(borrower_info):
-                continue
-            # print(borrower_info)
-
-            (
-                borrower_key,
-                is_3rd_party,
-                borrower_name,
-                entity_type,
-                trust_name,
-                is_aif,
-                organization_state,
-                aif_name,
-            ) = borrower_info
-            temp_borrower = {
-                "id$": str(ObjectId()),
-                "BorrowerName": borrower_name,
-                "BorrowerEntityType": entity_type,
-                "BorrowerTrustName": trust_name,
-                "IsBorrowerAIF": is_aif,
-                "BorrowerOrgState": organization_state,
-                "AIFName": aif_name,
-            }
-
-            # Deal with trusts first, they are easy
-            if entity_type == "trust":
-                all_trustee_names = self.anx.parse_field("B signature trustee name TX")
-                if all_trustee_names is None:
-                    continue
-
-                trustee_names = all_trustee_names[lvl_1_idx]
-                temp_borrower["VenturersOrTrustees"] = [
-                    {"id$": str(ObjectId()), "Signer1Name": trustee_name}
-                    for trustee_name in trustee_names
-                    if trustee_name is not None
-                ]
-
-            # Deal with non-individuals and non-trusts
-            if entity_type not in ["individual", "trust"]:
-                # Part 1: Officer Information
-                all_officer_information = self.anx.parse_multiple(
-                    "B signature underlying entity 1 name TX",
-                    "B signature underlying entity 1 title TX",
-                    "B signature underlying entity 1 entity type MC",
-                    "B signature underlying entity 1 org state MC",
-                )
-                if all_officer_information is None:
-                    continue
-
-                all_officer_information = [
-                    elem if isinstance(elem, list) else [elem]
-                    for elem in all_officer_information
-                ]
-                for lvl_2_idx, officer_information in enumerate(
-                    zip_longest(*all_officer_information)
-                ):
-                    # print(officer_information)
-                    if lvl_2_idx == lvl_1_idx:
-                        # print(lvl_2_idx, officer_information)
-                        officer_information = [
-                            elem if isinstance(elem, list) else [elem]
-                            for elem in officer_information
-                        ]
-                        temp_officer_information = []  # This will be a list of dict's
-                        for officer_information_row in zip_longest(
-                            *officer_information
-                        ):
-                            if self.is_all_args_none(officer_information_row):
-                                continue
-                            # print(officer_information_row)
-                            (
-                                name,
-                                title,
-                                entity_type,
-                                org_state,
-                            ) = officer_information_row
-                            temp_officer_information_row = {
-                                "id$": str(ObjectId()),
-                                "Signer1Name": name,
-                                "Signer1Title": title,
-                                "Signer1EntityType": entity_type,
-                                "Signer1OrgState": org_state,
-                            }
-                            temp_officer_information.append(
-                                self.remove_none_values(temp_officer_information_row)
-                            )
-                        temp_borrower["BorrowerSigners"] = temp_officer_information
-
-            # Finally, ...
-            self.uuid_map["Borrowers"].update({borrower_key: temp_borrower["id$"]})
-            borrowers.append(self.remove_none_values(temp_borrower))
-
-        # Finally, ...
-        if borrowers:
-            result["Borrowers"] = borrowers
-        return self.remove_none_values(result)
-
-    # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    def borrower_information_page(
-        self,
     ) -> dict:
         """Creates the "Borrower" dictionary (on the top level of the Knackly interview)
 
@@ -336,37 +167,37 @@ class Knackly_Writer:
             "B signature joint venturer name TX",
             "B signature attorney in fact TF",
             # - BORROWER SIGNERS
-            # lvl 1 signer info
+            # borrower_signers (s1)
             "B signature underlying entity 1 name TX",
             "B signature underlying entity 1 entity type MC",
             "B signature underlying entity 1 org state MC",
             "B signature underlying entity 1 title TX",
-            # # lvl 2 signer info
+            # # signers for s1 (s1s2)
             "B signature underlying entity 2 name TX",
             "B signature underlying entity 2 entity type MC",
             "B signature underlying entity 2 org state MC",
             "B signature underlying entity 2 title TX",
-            # # # lvl 3 signer info
+            # # # signers for s1s2 (s1s2s3)
             "B signature underlying entity 3 name TX",
             "B signature underlying entity 3 title TX",
-            # # lvl 2 owner info
+            # # # owners of s1s2 (s1s2o1)
             "Borrower Owner Signer Underlying 2 Name TE",
             "Borrower Owner Signer Underlying 2 Title TE",
-            # lvl 1 owner info
+            # # owners of s1 (s1o1)
             "Borrower Owner Signer Underlying 1 Name TE",
             "Borrower Owner Signer Underlying 1 Entity Type MC",
             "Borrower Owner Signer Underlying 1 State MC",
             "Borrower Owner Signer Underlying 1 Title TE",
-            # # Owner information
+            # # # owners of s1o1 (s1o1o2)
             "Borrower Owner Underlying 1 Individual Name TE",
             "Borrower Owner Underlying 1 Individual Title TE",
             # - BORROWER OWNERS
-            # lvl 1 owner info
+            # borrower_owners (o1)
             "Borrower Owner Signer Name TE",
             "Borrower Owner Entity Type MC",
             "Borrower Owner Organization State MC",
             "Borrower Owner Signer Title TE",
-            # lvl 2 signer info
+            # # owners of o1 (o1o2)
             "Borrower Owner Individual Name TE",
             "Borrower Owner Individual Title TE",
         )
@@ -377,7 +208,7 @@ class Knackly_Writer:
         # borrower_components = self.transform_list(borrower_components)
 
         # Now build the borrower objects
-        for idx, borrower in enumerate(zip_longest(*borrower_components)):
+        for idx_i, borrower in enumerate(zip_longest(*borrower_components), start=1):
             if self.is_all_args_none(borrower):
                 continue
             # print(idx, borrower)
@@ -390,11 +221,40 @@ class Knackly_Writer:
                 trustees,
                 venturers,
                 is_aif,
-                signer_e1_names,
-                signer_e1_types,
-                signer_e1_states,
-                signer_e1_titles,
-                *_,
+                # - BORROWER SIGNERS
+                # signers for the borrower (s1)
+                s1_names,
+                s1_types,
+                s1_states,
+                s1_titles,
+                # # signers for s1 (s1s2)
+                s1s2_names,
+                s1s2_types,
+                s1s2_states,
+                s1s2_titles,
+                # # # signers for s1s2 (s1s2s3)
+                s1s2s3_names,
+                s1s2s3_titles,
+                # # # owners of s1s2 (s1s2o1)
+                s1s2o1_names,
+                s1s2o1_titles,
+                # # owners of s1 (s1o1)
+                s1o1_names,
+                s1o1_types,
+                s1o1_states,
+                s1o1_titles,
+                # # # owners of s1o1 (s1o1o2)
+                s1o1o2_names,
+                s1o1o2_titles,
+                # - BORROWER OWNERS
+                # owners of the borrower (o1)
+                o1_names,
+                o1_types,
+                o1_states,
+                o1_titles,
+                # owners of o1 (o1o2)
+                o1o2_names,
+                o1o2_titles,
             ) = borrower
             temp_borrower = {
                 "id$": str(ObjectId()),
@@ -419,43 +279,237 @@ class Knackly_Writer:
             # Other entity types
             elif entity_type not in ["individual", "trust", "joint venture"]:
                 borrower_signers = []
-                signer_e1_elements = (
-                    signer_e1_names,
-                    signer_e1_titles,
-                    signer_e1_types,
-                    signer_e1_states,
-                )
 
-                signer_e1_elements = tuple(
-                    [self.listify(x) for x in signer_e1_elements]
+                s1_elements = (
+                    s1_names,
+                    s1_types,
+                    s1_states,
+                    s1_titles,
+                    s1s2_names,
+                    s1s2_types,
+                    s1s2_states,
+                    s1s2_titles,
+                    s1s2s3_names,
+                    s1s2s3_titles,
+                    s1s2o1_names,
+                    s1s2o1_titles,
+                    s1o1_names,
+                    s1o1_types,
+                    s1o1_states,
+                    s1o1_titles,
+                    s1o1o2_names,
+                    s1o1o2_titles,
                 )
+                s1_elements = tuple([self.listify(x) for x in s1_elements])
 
-                for signer_e1 in zip_longest(*signer_e1_elements):
-                    if self.is_all_args_none(signer_e1):
+                # Look at each slice of these elements
+                for idx_ii, s1 in enumerate(zip_longest(*s1_elements), start=1):
+                    if self.is_all_args_none(s1):
                         continue
 
                     (
-                        signer_e1_name,
-                        signer_e1_title,
-                        signer_e1_type,
-                        signer_e1_state,
-                    ) = signer_e1
+                        name,
+                        type_,
+                        state,
+                        title,
+                        s1s2_names,
+                        s1s2_types,
+                        s1s2_states,
+                        s1s2_titles,
+                        s1s2s3_names,
+                        s1s2s3_titles,
+                        s1s2o1_names,
+                        s1s2o1_titles,
+                        s1o1_names,
+                        s1o1_types,
+                        s1o1_states,
+                        s1o1_titles,
+                        s1o1o2_names,
+                        s1o1o2_titles,
+                    ) = s1
+                    # print(f"{idx_i}:{idx_ii} {name=}, {title=}, {type_=}, {state=}")
 
-                    temp_e1 = {
+                    knackly_s1 = {
                         "id$": str(ObjectId()),
-                        "Signer1Name": signer_e1_name,
-                        "Signer1Title": signer_e1_title,
-                        "Signer1EntityType": signer_e1_type,
-                        "Signer1OrgState": signer_e1_state,
+                        "Signer1Name": name,
+                        "Signer1Title": title,
+                        "Signer1EntityType": type_,
+                        "Signer1OrgState": state,
+                        "Signer1Signers": [],
+                        "Signer1Owners": [],
                     }
 
-                    temp_e1 = self.remove_none_values(temp_e1)
-                    borrower_signers.append(temp_e1)
+                    # s1s2 information
+                    s1s2_elements = (
+                        s1s2_names,
+                        s1s2_types,
+                        s1s2_states,
+                        s1s2_titles,
+                        s1s2s3_names,
+                        s1s2s3_titles,
+                        s1s2o1_names,
+                        s1s2o1_titles,
+                    )
+                    s1s2_elements = tuple([self.listify(x) for x in s1s2_elements])
+
+                    # Look at each slice of these elements
+                    for idx_iii, s1s2 in enumerate(
+                        zip_longest(*s1s2_elements), start=1
+                    ):
+                        if self.is_all_args_none(s1s2):
+                            continue
+                        # print(f"{idx_i}:{idx_ii}:{idx_iii} {s1s2}")
+                        (
+                            name,
+                            type_,
+                            state,
+                            title,
+                            s1s2s3_names,
+                            s1s2s3_titles,
+                            s1s2o1_names,
+                            s1s2o1_titles,
+                        ) = s1s2
+
+                        print(
+                            f"{idx_i}:{idx_ii}:{idx_iii} {name=}, {title=}, {type_=}, {state=}"
+                        )
+
+                        # Build a single element of the Signer1Signers list
+                        knackly_s1s2 = {
+                            "id$": str(ObjectId()),
+                            "Signer2Name": name,
+                            "Signer2Title": title,
+                        }
+                        knackly_s1s2 = self.remove_none_values(knackly_s1s2)
+
+                        # Add it to the list if it is relevant
+                        if (len(knackly_s1s2) == 1 and "id$" in knackly_s1s2) or (
+                            name is None and type_ is None and state is None
+                        ):
+                            continue
+                        knackly_s1["Signer1Signers"].append(knackly_s1s2)
+
+                    # s1o1 information
+                    s1o1_elements = (
+                        s1o1_names,
+                        s1o1_types,
+                        s1o1_states,
+                        s1o1_titles,
+                        s1o1o2_names,
+                        s1o1o2_titles,
+                    )
+                    s1o1_elements = tuple([self.listify(x) for x in s1o1_elements])
+
+                    # Look at each slice of these elements
+                    for idx_iii, s1o1 in enumerate(
+                        zip_longest(*s1o1_elements), start=1
+                    ):
+                        if self.is_all_args_none(s1o1):
+                            continue
+                        # print(f"{idx_i}:{idx_ii}:{idx_iii} {s1o1}")
+                        (
+                            name,
+                            type_,
+                            state,
+                            title,
+                            s1o1o2_names,
+                            s1o1o2_titles,
+                        ) = s1o1
+
+                        # Build a single element of the Signer1Owners list
+                        knackly_s1o1 = {
+                            "id$": str(ObjectId()),
+                            "Signer2Name": name,
+                            "Signer2Title": title,
+                        }
+                        knackly_s1o1 = self.remove_none_values(knackly_s1o1)
+
+                        # Add it to the list if it is relevant
+                        if len(knackly_s1o1) == 1 and "id$" in knackly_s1o1:
+                            continue
+                        knackly_s1["Signer1Owners"].append(knackly_s1o1)
+
+                    # Clean up s1
+                    knackly_s1 = self.remove_none_values(knackly_s1)
+                    # # Deal with potentially empty s1s2 and s1o1 lists
+                    if len(knackly_s1["Signer1Signers"]) == 0:
+                        del knackly_s1["Signer1Signers"]
+                    if len(knackly_s1["Signer1Owners"]) == 0:
+                        del knackly_s1["Signer1Owners"]
+
+                    if len(knackly_s1) > 1:
+                        borrower_signers.append(knackly_s1)
 
                 if borrower_signers:
                     temp_borrower["BorrowerSigners"] = borrower_signers
                 # ----------------------------------------------------------
                 borrower_owners = []
+
+                o1_elements = (
+                    o1_names,
+                    o1_types,
+                    o1_states,
+                    o1_titles,
+                    o1o2_names,
+                    o1o2_titles,
+                )
+                o1_elements = tuple([self.listify(x) for x in o1_elements])
+
+                # Look at each slice of these elements
+                for idx_ii, o1 in enumerate(zip_longest(*o1_elements), start=1):
+                    if self.is_all_args_none(o1):
+                        continue
+                    # print(f"{idx_i}:{idx_ii} {o1}")
+
+                    (name, type_, state, title, o1o2_names, o1o2_titles) = o1
+
+                    knackly_o1 = {
+                        "id$": str(ObjectId()),
+                        "Signer1Name": name,
+                        "Signer1Title": title,
+                        "Signer1EntityType": type_,
+                        "Signer1OrgState": state,
+                        "Signer1Signers": [],
+                    }
+
+                    # o1o2 information
+                    o1o2_elements = (
+                        o1o2_names,
+                        o1o2_titles,
+                    )
+                    o1o2_elements = tuple([self.listify(x) for x in o1o2_elements])
+
+                    # Look at each slice of these elements
+                    for idx_iii, o1o2 in enumerate(
+                        zip_longest(*o1o2_elements), start=1
+                    ):
+                        if self.is_all_args_none(o1o2):
+                            continue
+                        # print(f"{idx_i}:{idx_ii}:{idx_iii} {o1o2}")
+
+                        (name, title) = o1o2
+
+                        # Build a single element of the Signer1Signers list
+                        knackly_o1o2 = {
+                            "id$": str(ObjectId()),
+                            "Signer2Name": name,
+                            "Signer2Title": title,
+                        }
+                        knackly_o1o2 = self.remove_none_values(knackly_o1o2)
+
+                        # Add the element to the list if it is relevant
+                        if len(knackly_o1o2) == 1 and "id$" in knackly_o1o2:
+                            continue
+                        knackly_o1["Signer1Signers"].append(knackly_o1o2)
+
+                    # Clean up o1
+                    knackly_o1 = self.remove_none_values(knackly_o1)
+                    # # Deal with potentially empty o1o2 lists
+                    if len(knackly_o1["Signer1Signers"]) == 0:
+                        del knackly_o1["Signer1Signers"]
+
+                    if len(knackly_o1) > 1:
+                        borrower_owners.append(knackly_o1)
 
                 if borrower_owners:
                     temp_borrower["BorrowerOwners"] = borrower_owners
@@ -2236,7 +2290,7 @@ class Knackly_Writer:
         # self.json.update({"Borrower": self.borrower_information_page()}) # This is broken UGH
         self.json["Borrower"] = self.borrower_information_page()
         # self.json["TitleHolder2"] = self.non_borrower_property_owners()
-        # self.json["propertyInformation"] = self.property_information_page()
+        self.json["propertyInformation"] = self.property_information_page()
         # self.json["loanTerms"] = self.standard_loan_terms()
         self.json.update({"loanTerms": self.standard_loan_terms()})
         self.json.update({"features": self.special_loan_features()})
