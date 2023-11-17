@@ -370,9 +370,9 @@ class Knackly_Writer:
                             s1s2o1_titles,
                         ) = s1s2
 
-                        print(
-                            f"{idx_i}:{idx_ii}:{idx_iii} {name=}, {title=}, {type_=}, {state=}"
-                        )
+                        # print(
+                        #     f"{idx_i}:{idx_ii}:{idx_iii} {name=}, {title=}, {type_=}, {state=}"
+                        # )
 
                         # Build a single element of the Signer1Signers list
                         knackly_s1s2 = {
@@ -699,10 +699,11 @@ class Knackly_Writer:
             if self.is_all_args_none([prop_borrower_dmc, vesting]):
                 collateral_property["PropertyOwners"] = None
             else:
+                print(prop_borrower_dmc)
                 collateral_property["PropertyOwners"] = [
                     {
                         "id$": str(ObjectId()),
-                        "PropertyOwner": hd_borrower_key,  # This needs to be changed eventually
+                        "PropertyOwner": self.uuid_map["Borrowers"][hd_borrower_key],
                         "Vesting": hd_vesting,
                     }
                     for hd_borrower_key, hd_vesting in zip_longest(
