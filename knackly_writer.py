@@ -541,7 +541,6 @@ class Knackly_Writer:
             temp_borrower = self.remove_none_values(temp_borrower)
             if len(temp_borrower) == 1 and "id$" in temp_borrower:
                 continue
-            print(f"{is_third_party=}")
 
             # Add to either borrowers or non_borrowers
             if is_third_party:
@@ -1625,24 +1624,13 @@ class Knackly_Writer:
                 "GuarantorName": name,
                 "GuarantorEntityType": entity_type,
                 "Type": guaranty_type,
-                "Address": address,
+                "GuarantorAddress": address,
             }
 
             return self.remove_none_values(result)
 
         guarantors = []
-        # components = [
-        #     "Guarantor Name TE",
-        #     "Guarantor Entity Type MC",
-        #     "Guarantor Type Select MC",
-        #     "Guarantor Street Address TE",
-        #     "Guarantor City TE",
-        #     "Guarantor State MC",
-        #     "Guarantor Zip Code TE",
-        # ]
-        # parsed_components = [
-        #     self.anx.parse_field(component) for component in components
-        # ]
+
         parsed_components = self.anx.parse_multiple(
             "Guarantor Name TE",
             "Guarantor Entity Type MC",
@@ -1680,6 +1668,134 @@ class Knackly_Writer:
             return None
 
         return {"id$": str(ObjectId()), "Guarantors": guarantors}
+
+    def guarantor_information_2(self) -> dict:
+        result = {
+            "id$": str(ObjectId()),
+            "Guarantors": None,  # This will be replaced with the list of 'guarantor' objects
+        }
+
+        guarantors = []
+        guarantor_components = self.anx.parse_multiple(
+            "Guarantor Name TE",
+            "Guarantor Type Select MC",
+            "Guarantor Address MC",
+            "Guarantor Street Address TE",
+            "Guarantor City TE",
+            "Guarantor State MC",
+            "Guarantor Zip Code TE",
+            "Guarantor Entity Type MC",
+            "Guarantor Organization State MC",
+            "Guarantor Trust Name TE",
+            "G signature trustee name TX",
+            # - GUARANTOR SIGNERS
+            # guarantor_signers (s1)
+            "G signature underlying entity 1 name TX",
+            "G signature underlying entity 1 entity type MC",
+            "G signature underlying entity 1 org state MC",
+            "G signature underlying entity 1 title TX",
+            # # signers for s1 (s1s2)
+            "Guarantor Owner Signer Underlying 1 Name TE",
+            "Guarantor Owner Signer Underlying 1 Role MC",
+            "Guarantor Owner Signer Underlying 1 Title TE",
+            # - GUARANTOR OWNERS
+            # guarantor_owners (o1)
+            "Guarantor Owner Signer Name TE",
+            "Guarantor Owner Entity Type MC",
+            "Guarantor Owner Organization State MC",
+            "Guarantor Owner Signer Title TE",
+            # signers for o1 (o1s1)
+            "Guarantor Owner Individual Name TE",
+            "Guarantor Owner Individual Title TE",
+        )
+        guarantor_components = [
+            elem if isinstance(elem, list) else [elem] for elem in guarantor_components
+        ]
+        # guarantor_components = self.transform_list(guarantor_components)
+        # print(guarantor_components)
+
+        # Now build the guarantor objects
+        for idx_i, guarantor in enumerate(zip_longest(*guarantor_components), start=1):
+            if self.is_all_args_none(guarantor):
+                continue
+            if all(element is None or element == [] for element in guarantor):
+                continue
+            print(idx_i, guarantor)
+            (
+                name,
+                guaranty_type,
+                address_dropdown,
+                street,
+                city,
+                state,
+                zip_code,
+                entity_type,
+                org_state,
+                trust_name,
+                trustees,
+                # - GUARANTOR SIGNERS
+                # signers for the guarantor (s1)
+                s1_names,
+                s1_types,
+                s1_states,
+                s1_titles,
+                # # signers for s1 (s1s2)
+                s1s2_names,
+                s1s2_roles,
+                s1s2_titles,
+                # - GUARANTOR OWNERS
+                # owners of the guarantor (o1)
+                o1_names,
+                o1_types,
+                o1_states,
+                o1_titles,
+                # signers for o1 (o1s1)
+                o1s1_names,
+                o1s1_titles,
+            ) = guarantor
+            temp_guarantor = {
+                "id$": str(ObjectId()),
+                "GuarantorName": name,
+                "GuarantorEntityType": entity_type,
+                "Type": guaranty_type,
+                "WhichAddress": "Use borrower address"
+                if address_dropdown == "Borrower"
+                else "Use property address"
+                if address_dropdown == "Property"
+                else "Enter address",
+            }
+
+            # Deal with "Other" address
+            if address_dropdown == "Other":
+                address = self.address(street, city, state, zip_code)
+                temp_guarantor.update({"GuarantorAddress": address})
+
+            # Deal with org state and trusts
+            if entity_type not in ["individual", "trust"]:
+                temp_guarantor["GuarantorOrgState"] = org_state
+            if entity_type == "trust":
+                temp_guarantor["GuarantorTrustName"] = trust_name
+                temp_guarantor["GuarantorVenturersOrTrustees"] = [
+                    {"id$": str(ObjectId()), "Signer1Name": trustee}
+                    for trustee in trustees
+                    if trustee is not None
+                ]
+
+            # Clean up each temporary guarantor before committing to adding it
+            temp_guarantor = self.remove_none_values(temp_guarantor)
+            if len(temp_guarantor) == 1 and "id$" in temp_guarantor:
+                continue
+            guarantors.append(temp_guarantor)
+            # self.uuid_map["Guarantors"].update({"SOMETHING GOES HERE": temp_guarantor["id$"]}) # This isn't ready... guarantor key isn't used anywhere
+
+        # Finally...
+        if guarantors:
+            result["Guarantors"] = guarantors
+
+        result = self.remove_none_values(result)
+        if len(result) == 1 and "id$" in result:
+            return None
+        return result
 
     def servicer(self) -> dict:
         """Responsible for creating the top level `servicer` object (if "other" was selected for Loan Servicer MC)
@@ -2336,7 +2452,7 @@ class Knackly_Writer:
         self.json.update(
             {"IsGuaranty": self.anx.parse_TFValue(self.anx.find_answer("Guarantor TF"))}
         )
-        self.json.update({"Guarantor": self.guarantor_information()})
+        self.json.update({"Guarantor": self.guarantor_information_2()})
         # Servicer stuff below
         self.json.update({"SelectServicer": self.anx.parse_field("Loan Servicer MC")})
         if self.json.get("SelectServicer") == "Other":
