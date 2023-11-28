@@ -327,7 +327,7 @@ class Knackly_Writer:
                         s1o1o2_names,
                         s1o1o2_titles,
                     ) = s1
-                    # print(f"{idx_i}:{idx_ii} {name=}, {title=}, {type_=}, {state=}")
+                    # print(f"{idx_i}:{idx_ii} {name=}, {type_=}, {state=}, {title=}")
 
                     knackly_s1 = {
                         "id$": str(ObjectId()),
@@ -337,6 +337,7 @@ class Knackly_Writer:
                         "Signer1OrgState": state,
                         "Signer1Signers": [],
                         "Signer1Owners": [],
+                        "Signer1VenturersOrTrustees": [],
                     }
 
                     # s1s2 information
@@ -351,6 +352,7 @@ class Knackly_Writer:
                         s1s2o1_titles,
                     )
                     s1s2_elements = tuple([self.listify(x) for x in s1s2_elements])
+                    parent_type = type_  # This is needed in the next nested loop to check if it was a trust or venture
 
                     # Look at each slice of these elements
                     for idx_iii, s1s2 in enumerate(
@@ -358,7 +360,7 @@ class Knackly_Writer:
                     ):
                         if self.is_all_args_none(s1s2):
                             continue
-                        # print(f"{idx_i}:{idx_ii}:{idx_iii} {s1s2}")
+                        # print(f"{idx_i}:{idx_ii}:{idx_iii} {s1s2}, {parent_type=}")
                         (
                             name,
                             type_,
@@ -374,12 +376,17 @@ class Knackly_Writer:
                         #     f"{idx_i}:{idx_ii}:{idx_iii} {name=}, {title=}, {type_=}, {state=}"
                         # )
 
-                        # Build a single element of the Signer1Signers list
+                        # Build a single element of the Signer1Signers list (or Signer1VenturersOrTrustees)
                         knackly_s1s2 = {
                             "id$": str(ObjectId()),
                             "Signer2Name": name,
                             "Signer2Title": title,
                         }
+
+                        if parent_type in ["trust", "joint venture"]:
+                            del knackly_s1s2["Signer2Name"]
+                            del knackly_s1s2["Signer2Title"]
+                            knackly_s1s2.update({"Signer1Name": name})
                         knackly_s1s2 = self.remove_none_values(knackly_s1s2)
 
                         # Add it to the list if it is relevant
@@ -387,7 +394,13 @@ class Knackly_Writer:
                             name is None and type_ is None and state is None
                         ):
                             continue
-                        knackly_s1["Signer1Signers"].append(knackly_s1s2)
+
+                        if parent_type not in ["trust", "joint venture"]:
+                            knackly_s1["Signer1Signers"].append(knackly_s1s2)
+                        else:
+                            knackly_s1["Signer1VenturersOrTrustees"].append(
+                                knackly_s1s2
+                            )
 
                     # s1o1 information
                     s1o1_elements = (
@@ -436,6 +449,8 @@ class Knackly_Writer:
                         del knackly_s1["Signer1Signers"]
                     if len(knackly_s1["Signer1Owners"]) == 0:
                         del knackly_s1["Signer1Owners"]
+                    if len(knackly_s1["Signer1VenturersOrTrustees"]) == 0:
+                        del knackly_s1["Signer1VenturersOrTrustees"]
 
                     if len(knackly_s1) > 1:
                         borrower_signers.append(knackly_s1)
@@ -699,7 +714,6 @@ class Knackly_Writer:
             if self.is_all_args_none([prop_borrower_dmc, vesting]):
                 collateral_property["PropertyOwners"] = None
             else:
-                print(prop_borrower_dmc)
                 collateral_property["PropertyOwners"] = [
                     {
                         "id$": str(ObjectId()),
