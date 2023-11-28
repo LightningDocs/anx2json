@@ -108,7 +108,7 @@ class Knackly_Writer:
 
         return result
 
-    def borrower_information_page(
+    def borrower_information(
         self,
     ) -> dict:
         """Creates the "Borrower" dictionary (on the top level of the Knackly interview)
@@ -144,7 +144,7 @@ class Knackly_Writer:
             phone_temple,
         ) = landing_page_components
 
-        result = {
+        borrower_page = {
             "id$": str(ObjectId()),
             "Borrowers": None,  # This will be replaced with the list of Borrower objects
             "BorrowerNoticeSentTo": notice_sent_to,
@@ -155,10 +155,17 @@ class Knackly_Writer:
             else (email_finme if email_finme else None),
             "noticePhone": phone_temple,
         }
-
         borrowers = []
+
+        non_borrower_page = {
+            "id$": str(ObjectId()),
+            "nonborrowers": None,  # This will be replaced with the list of third party borrowers
+        }
+        non_borrowers = []
+
         borrower_components = self.anx.parse_multiple(
             "Borrower Key TX",
+            "Third Party Borrower TF",
             "Borrower Name TE",
             "Borrower Entity Type MC",
             "Borrower Organization State MC",
@@ -214,6 +221,7 @@ class Knackly_Writer:
             # print(idx, borrower)
             (
                 borrower_key,
+                is_third_party,
                 name,
                 entity_type,
                 org_state,
@@ -533,13 +541,25 @@ class Knackly_Writer:
             temp_borrower = self.remove_none_values(temp_borrower)
             if len(temp_borrower) == 1 and "id$" in temp_borrower:
                 continue
-            borrowers.append(temp_borrower)
+            print(f"{is_third_party=}")
+
+            # Add to either borrowers or non_borrowers
+            if is_third_party:
+                non_borrowers.append(temp_borrower)
+            else:
+                borrowers.append(temp_borrower)
             self.uuid_map["Borrowers"].update({borrower_key: temp_borrower["id$"]})
 
         # Finally, ...
         if borrowers:
-            result["Borrowers"] = borrowers
-        return self.remove_none_values(result)
+            borrower_page["Borrowers"] = borrowers
+        if non_borrowers:
+            non_borrower_page["nonborrowers"] = non_borrowers
+        # pprint(borrower_page)
+        return (
+            self.remove_none_values(borrower_page),
+            self.remove_none_values(non_borrower_page),
+        )
 
     def non_borrower_property_owners(self) -> dict:
         raise NotImplementedError
@@ -2302,8 +2322,10 @@ class Knackly_Writer:
 
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""
-        # self.json.update({"Borrower": self.borrower_information_page()}) # This is broken UGH
-        self.json["Borrower"] = self.borrower_information_page()
+        borrowers = self.borrower_information()
+        self.json["Borrower"] = borrowers[0]
+        self.json["TitleHolder2"] = borrowers[1]
+        # self.json["Borrower"] = self.borrower_information_page()
         # self.json["TitleHolder2"] = self.non_borrower_property_owners()
         self.json["propertyInformation"] = self.property_information_page()
         # self.json["loanTerms"] = self.standard_loan_terms()
