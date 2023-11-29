@@ -32,9 +32,9 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "Clie
 ```
 ## Todo list
 
-- [ ] Section A
-  - [ ] Borrower Information
-  - [ ] Non-Borrower Property Owners
+- [x] Section A
+  - [x] Borrower Information
+  - [x] Non-Borrower Property Owners
   - [x] Property Information
 - [ ] Section B
   - [x] Standard Loan Terms
@@ -46,10 +46,10 @@ python main.py -i "my_loan.anx" -o "output.json" -v -e "Loan Documents MC" "Clie
     - [x] Reserves
     - [x] Impounds
   - [ ] Membership Pledge & UCC Documents
-- [ ] Section C
+- [x] Section C
   - [x] Lender Information
   - [x] Is there a Guaranty?
-  - [ ] Guarantor Information
+  - [x] Guarantor Information
 - [x] Section D
   - [x] Loan Servicer
   - [x] Servicer Info
