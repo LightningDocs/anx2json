@@ -733,6 +733,9 @@ class Knackly_Writer:
             if self.is_all_args_none([prop_borrower_dmc, vesting]):
                 collateral_property["PropertyOwners"] = None
             else:
+                # print(f"{prop_borrower_dmc=}, {vesting=}")
+                if vesting is None:
+                    vesting = [None]
                 collateral_property["PropertyOwners"] = [
                     {
                         "id$": str(ObjectId()),
@@ -1490,6 +1493,8 @@ class Knackly_Writer:
             lender_name_rpt = self.anx.parse_RptValue(
                 self.anx.find_answer("Lender Name TE")
             )
+            lender_name_rpt = self.remove_none_values(lender_name_rpt)
+            # print(lender_name_rpt)
 
             if lender_name_rpt is None:
                 return None
@@ -2164,6 +2169,15 @@ class Knackly_Writer:
                 if self.is_all_args_none([amount, description, comment, paid_to]):
                     continue  # Skip this iteration
 
+                # print(f"{amount=}, {description=}, {comment=}, {paid_to}")
+
+                # Weird edge case
+                if (
+                    comment
+                    and comment.lower() == "delivery instructions to be provided"
+                ):
+                    comment = "Delivery Instructions to be Provided"
+
                 temp = {
                     "id$": str(ObjectId()),
                     "amount": amount,
@@ -2206,7 +2220,7 @@ class Knackly_Writer:
         # Broker, Lender, and Other fees
         result = {"id$": str(ObjectId())}
         for fee_type in ["Broker", "Lender", "Other"]:
-            result[fee_type] = process_fee_components(fee_type)
+            result[fee_type.lower() + "Fees"] = process_fee_components(fee_type)
 
         # Geraci fees
         geraci_fee = self.anx.parse_field("Geraci Fee NU")
@@ -2215,6 +2229,10 @@ class Knackly_Writer:
         if geraci_fee is not None and len(geraci_fee) > 0:
             result["geraciFee"] = geraci_fee[0]
         if geraci_delivery is not None and len(geraci_fee) > 0:
+            # Weird edge case
+            if geraci_delivery[0] == "Wire":
+                geraci_delivery[0] = "Geraci Wire Instructions"
+
             result["geraciFeeDelivery"] = geraci_delivery[0]
 
         # Per Diem
@@ -2334,6 +2352,7 @@ class Knackly_Writer:
                 return None
 
             result = []
+            print(parsed_components)
             for subordination_info in zip_longest(*parsed_components):
                 (
                     doc_types,
@@ -2513,9 +2532,7 @@ class Knackly_Writer:
             "loanSaleInformation": loan_sale_information(),
             "isCollateralAssignment": self.anx.parse_field("Collateral Assignment TF"),
             "isSubordinations": self.anx.parse_field("seth_isSubordinations"),
-            "subordinations_list": subordinations(),
             "isIntercreditor": self.anx.parse_field("seth_isIntercreditor"),
-            "intercreditorAgreements_list": intercreditor_agreements(),
             "isTranslator": self.anx.parse_field("Translator Required TF"),
             "needsTranslator": 1,  # <- This involves ObjectID (i think)
             "isLoanAdministrationAgreement": self.anx.parse_field(
@@ -2537,6 +2554,12 @@ class Knackly_Writer:
                 "Housemax Credit Card Authorization TF"
             ),
         }
+
+        if result["isSubordinations"]:
+            print("here")
+            result["subordinations_list"] = subordinations()
+        if result["isIntercreditor"]:
+            result["intercreditorAgreements_list"] = intercreditor_agreements()
 
         result = self.remove_none_values(result)
 
@@ -2646,8 +2669,13 @@ class Knackly_Writer:
         self.json["docsAdd"] = self.docs_add()
         self.json["docsCustomize"] = self.docs_customize()
 
+        # Documents to Produce
+        self.json["LoanDocuments"] = self.anx.parse_field("Loan Documents MC")
+        if not isinstance(self.json["LoanDocuments"], list):
+            self.json["LoanDocuments"] = [self.json["LoanDocuments"]]
+
         # Optional clean up
-        # self.clean_up()
+        self.clean_up()
 
     def clean_up(self) -> None:
         """Clean up the self.json dictionary associated with the class instance."""
