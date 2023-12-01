@@ -81,7 +81,13 @@ def main(args: argparse.Namespace):
     json.dump(writer.json, args.output, indent=2)
     print(f"Success! Saved output to {os.path.abspath(args.output.name)}")
     args.output.close()
-    # pprint(writer.uuid_map)
+
+    if args.verbose:
+        print("\n--- UNUSED ELEMENTS ---")
+
+        unvisited_elements = writer.anx.get_unvisited_elements(args.exclude)
+        for idx, e in enumerate(unvisited_elements, start=1):
+            print(idx, e.get("name"))
 
 
 def test(args: argparse.Namespace):

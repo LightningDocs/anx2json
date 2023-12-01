@@ -756,7 +756,9 @@ class Knackly_Writer:
                     if not self.is_all_args_none([hd_borrower_key, hd_vesting])
                 ]
 
-            if self.is_all_args_none(collateral_property["PropertyOwners"]):
+            if collateral_property["PropertyOwners"] is None or self.is_all_args_none(
+                collateral_property["PropertyOwners"]
+            ):
                 collateral_property["PropertyOwners"] = None
 
             # Handle senior lien stuff
@@ -2241,7 +2243,7 @@ class Knackly_Writer:
 
         if geraci_fee is not None and len(geraci_fee) > 0:
             result["geraciFee"] = geraci_fee[0]
-        if geraci_delivery is not None and len(geraci_fee) > 0:
+        if geraci_delivery is not None and len(geraci_delivery) > 0:
             # Weird edge case
             if geraci_delivery[0] == "Wire":
                 geraci_delivery[0] = "Geraci Wire Instructions"
