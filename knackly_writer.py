@@ -1070,6 +1070,9 @@ class Knackly_Writer:
                     return None
 
                 result = []
+                # print(percents, days)
+                if self.is_all_args_none([percents, days]):
+                    return None
                 for percent, day in zip_longest(percents, days):
                     if self.is_all_args_none([percent, day]):
                         continue
@@ -2179,12 +2182,14 @@ class Knackly_Writer:
 
                 # print(f"{amount=}, {description=}, {comment=}, {paid_to}")
 
-                # Weird edge case
+                # Weird edge cases
                 if (
                     comment
                     and comment.lower() == "delivery instructions to be provided"
                 ):
                     comment = "Delivery Instructions to be Provided"
+                if comment and comment.lower() == "to be net funded":
+                    comment = "To Be Net Funded"
 
                 temp = {
                     "id$": str(ObjectId()),
@@ -2323,6 +2328,7 @@ class Knackly_Writer:
 
             result = []
             # properties, managers, dates, streets, cities, states, zip_codes = parsed_components
+            parsed_components = [self.listify(x) for x in parsed_components]
             for property_, manager, date, street, city, state, zip_code in zip_longest(
                 *parsed_components
             ):
@@ -2360,7 +2366,7 @@ class Knackly_Writer:
                 return None
 
             result = []
-            print(parsed_components)
+            # print(parsed_components)
             for subordination_info in zip_longest(*parsed_components):
                 (
                     doc_types,
@@ -2564,7 +2570,6 @@ class Knackly_Writer:
         }
 
         if result["isSubordinations"]:
-            print("here")
             result["subordinations_list"] = subordinations()
         if result["isIntercreditor"]:
             result["intercreditorAgreements_list"] = intercreditor_agreements()
@@ -2755,7 +2760,8 @@ class Knackly_Writer:
             return element
 
     def listify(self, element: None | list) -> list:
-        """Helper function to be used in the borrower_information method. Converts `None` values and empty lists to `[None]`
+        """Helper function to convert `None` values and empty lists to `[None]`
+        Used for one-level lists, not for nested lists.
 
         Args:
             element (None | list): any NoneType or a list of anything.
