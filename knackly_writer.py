@@ -97,8 +97,11 @@ class Knackly_Writer:
             "city": city,
             "state": state,
             "zip": zip,
-            "selectCounty": county,
+            # "selectCounty": f"{state}-{county[:-2]}",
         }
+
+        if county is not None:
+            result["selectCounty"] = f"{state}-{county[:-2]}"
 
         result = self.remove_none_values(result)
 
@@ -630,9 +633,14 @@ class Knackly_Writer:
             "properties": _,
             "legalDescription": legal_description,
             "governingLawState": governing_law_state,
-            "arbitrationCounty": governing_law_county,
+            # "arbitrationCounty": governing_law_county,
             "isConfessionofJudgment": confession_of_judgment,
         }
+
+        if governing_law_county is not None:
+            result[
+                "arbitrationCounty"
+            ] = f"{governing_law_state}-{governing_law_county[:-2]}"
 
         # Now look at actual properties
         property_components = self.anx.parse_multiple(
