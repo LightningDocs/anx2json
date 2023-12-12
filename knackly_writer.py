@@ -272,7 +272,6 @@ class Knackly_Writer:
                 "BorrowerName": name,
                 "BorrowerEntityType": entity_type,
                 "BorrowerOrgState": org_state,
-                "BorrowerTrustName": trust_name,
                 "IsBorrowerAIF": is_aif,
             }
 
@@ -280,6 +279,7 @@ class Knackly_Writer:
             if entity_type in ["trust", "joint venture"]:
                 if entity_type == "trust":
                     names = self.remove_none_values(trustees)
+                    temp_borrower["BorrowerName"] = trust_name
                 else:
                     names = self.remove_none_values(venturers)
                 temp_peoples = []
@@ -1792,7 +1792,7 @@ class Knackly_Writer:
             if entity_type not in ["individual", "trust"]:
                 temp_guarantor["GuarantorOrgState"] = org_state
             elif entity_type == "trust":
-                temp_guarantor["GuarantorTrustName"] = trust_name
+                temp_guarantor["GuarantorName"] = trust_name
                 temp_guarantor["GuarantorVenturersOrTrustees"] = [
                     {"id$": str(ObjectId()), "Signer1Name": trustee}
                     for trustee in trustees
