@@ -2192,6 +2192,10 @@ class Knackly_Writer:
                     comment = "Delivery Instructions to be Provided"
                 if comment and comment.lower() == "to be net funded":
                     comment = "To Be Net Funded"
+                if comment and comment.lower() == "deliver to lender's address":
+                    comment = "Deliver to Lender's Address"
+                if comment and comment.lower() == "deliver to broker's address":
+                    comment = "Deliver to Broker's Address"
 
                 temp = {
                     "id$": str(ObjectId()),
