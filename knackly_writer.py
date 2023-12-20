@@ -2523,6 +2523,38 @@ class Knackly_Writer:
             else:
                 return result
 
+        def aka_statements() -> list[dict]:
+            """Helper function to create the list of `akas` models.
+
+            Returns:
+                list[dict]: A list of dictionaries, where each dictionary represents a single `akas` object.
+            """
+            parsed_components = self.anx.parse_multiple(
+                "Borrower AKA Name MC", "Borrower AKA TX"
+            )
+            if self.is_all_args_none(parsed_components):
+                return None
+            party_names, alternate_names_list = parsed_components
+
+            result = []
+            for party_name, alternate_names in zip_longest(
+                party_names, alternate_names_list
+            ):
+                if (
+                    self.is_all_args_none([party_name, alternate_names[0]])
+                    and len(alternate_names) == 1
+                ):
+                    continue
+
+                temp_aka = {
+                    "id$": str(ObjectId()),
+                    "SelectIndividual": party_name,
+                    "AKAList": [name for name in alternate_names if name is not None],
+                }
+                result.append(temp_aka)
+
+            return result
+
         result = {
             "id$": str(ObjectId()),
             "isAssignmentOfPropertyManagement": self.anx.parse_field(
@@ -2573,12 +2605,15 @@ class Knackly_Writer:
             "housemaxCreditCardAuthorization": self.anx.parse_field(
                 "Housemax Credit Card Authorization TF"
             ),
+            "akasRequired": self.anx.parse_field("Borrower AKA Required TF"),
         }
 
         if result["isSubordinations"]:
             result["subordinations_list"] = subordinations()
         if result["isIntercreditor"]:
             result["intercreditorAgreements_list"] = intercreditor_agreements()
+        if result["akasRequired"]:
+            result["akaList"] = aka_statements()
 
         result = self.remove_none_values(result)
 

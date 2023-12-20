@@ -1,0 +1,196 @@
+{
+  "id$": "65834ccff158e38f05b00950",
+  "Borrower": {
+    "id$": "65834ccff158e38f05b00951",
+    "Borrowers": [
+      {
+        "id$": "65834ccff158e38f05b00954",
+        "BorrowerName": "The James Roland Robinson Reovacable Living Trust",
+        "BorrowerEntityType": "trust",
+        "VenturersOrTrustees": [
+          {
+            "id$": "65834ccff158e38f05b00955",
+            "Signer1Name": "Ramona Denise Robinson"
+          }
+        ]
+      }
+    ],
+    "BorrowerNoticeSentTo": "Borrower",
+    "Notice": {
+      "id$": "65834ccff158e38f05b00952",
+      "street": "12919 Donegal Way",
+      "city": "Houston",
+      "state": "Texas",
+      "zip": "77047"
+    }
+  },
+  "propertyInformation": {
+    "id$": "65834ccff158e38f05b00956",
+    "partialReleaseExpert": "None",
+    "properties": [
+      {
+        "id$": "65834ccff158e38f05b00957",
+        "PropertyAddress": {
+          "id$": "65834ccff158e38f05b00958",
+          "street": "802 East Nutwood Street",
+          "city": "Inglewood",
+          "state": "California",
+          "zip": "90301",
+          "selectCounty": "California-Los Angeles"
+        },
+        "APN": "4021-037-009",
+        "lienPosition": "first",
+        "type": "1-4 Single Family Residence",
+        "trusteeDropdown": "Other",
+        "trusteeName": "California TD Specialists",
+        "trusteeAddressText": "Attn: Loan Servicing Dept., P.O. Box 27370, Anaheim Hills, California 92809-0112",
+        "PropertyOwners": [
+          {
+            "id$": "65834ccff158e38f05b00959",
+            "PropertyOwner": "65834ccff158e38f05b00954"
+          }
+        ]
+      }
+    ],
+    "governingLawState": "Washington",
+    "isConfessionofJudgment": true,
+    "arbitrationCounty": "Washington-Pierce"
+  },
+  "loanTerms": {
+    "id$": "65834ccff158e38f05b0095c",
+    "closingDate": "2023-12-08",
+    "loanTerm": 12,
+    "loanAmount1": 300000,
+    "isInterestOnly": true,
+    "interestOnlyMonths": 12,
+    "amortizationMonths": 0,
+    "interestRate": 11.99,
+    "defaultInterestRate": 24,
+    "interestCalcType": "30/360"
+  },
+  "features": {
+    "id$": "65834ccff158e38f05b0095d",
+    "penalties": {
+      "id$": "65834ccff158e38f05b0095f",
+      "PrepaymentPenalty": "Guaranteed Interest",
+      "PrepayTerm": 12
+    },
+    "loanFeatures": {
+      "id$": "65834ccff158e38f05b00961",
+      "isExtension": true,
+      "extensionNum": 2,
+      "extensionMonths": 12,
+      "extensionType": "None",
+      "isServicingFees": true,
+      "deferredBrokerType": "None",
+      "deferredOriginationType": "None"
+    },
+    "reserves": {
+      "id$": "65834ccff158e38f05b00962",
+      "DefaultType": "None",
+      "DebtServiceType": "None"
+    }
+  },
+  "lenderInformation": {
+    "id$": "65834ccff158e38f05b00964",
+    "Lender": "Roger Anderson Trustee of the RWA Trust dated 3/14/2014",
+    "NoticeTo": "Lender",
+    "OtherDelivery": "Roger Anderson Trustee of the RWA Trust dated 3/14/2014",
+    "Notice": {
+      "id$": "65834ccff158e38f05b00966",
+      "street": "P.O. Box 2539",
+      "city": "Gig Harbor",
+      "state": "Washington",
+      "zip": "98335"
+    }
+  },
+  "SelectServicer": "FCI",
+  "isBroker": true,
+  "broker": {
+    "id$": "65834ccff158e38f05b00968",
+    "name": "American Premium Lending",
+    "licenseNumber": "02126363",
+    "address": {
+      "id$": "65834ccff158e38f05b00969",
+      "street": "18245 San Jose Street",
+      "city": "Northridge",
+      "state": "California",
+      "zip": "91326"
+    }
+  },
+  "titlePolicy": {
+    "id$": "65834ccff158e38f05b0096c",
+    "titleCompany": {
+      "id$": "65834ccff158e38f05b0096b",
+      "companyName": "Chicago Title Insurance Company",
+      "officerContactName": "Jay Najera",
+      "officerContactEmail": "teamjay@ctt.com"
+    },
+    "orderNumber": "112313680- JN",
+    "effectiveDate": "2023-10-17",
+    "version": "2006"
+  },
+  "isEscrow": true,
+  "escrowCompany": {
+    "id$": "65834ccff158e38f05b0096d",
+    "companyName": "Chicago Title Insurance Company",
+    "officerContactName": "Bridget Drayton",
+    "officerContactEmail": "bridget@laanchorescrow.com"
+  },
+  "settlementFees": {
+    "id$": "65834ccff158e38f05b0096f",
+    "brokerFees": [
+      {
+        "id$": "65834ccff158e38f05b00970",
+        "amount": 30000,
+        "description": "Broker Fee",
+        "comment": "Wire Instructions to be Provided"
+      }
+    ],
+    "lenderFees": [
+      {
+        "id$": "65834ccff158e38f05b00971",
+        "amount": 2500,
+        "description": "Processing Fee",
+        "comment": "Deliver to Lender's Address"
+      },
+      {
+        "id$": "65834ccff158e38f05b00972",
+        "amount": 60,
+        "description": "Wire Fee",
+        "comment": "Deliver to Lender's Address"
+      }
+    ],
+    "geraciFee": 1000,
+    "geraciFeeDelivery": "Geraci Wire Instructions",
+    "perDiemInterestDelivery": "Loan Servicer's Address"
+  },
+  "preparerName": "Sarah Toomey",
+  "preparerEmail": "s.toomey@geracillp.com",
+  "PreparerAddress": "Lender",
+  "closingName": "Roger Anderson",
+  "closingEmail": "rogerinvesting@gmail.com",
+  "docsAdd": {
+    "id$": "65834ccff158e38f05b00973",
+    "floodInsurance": 0,
+    "loanSaleInformation": {
+      "id$": "65834ccff158e38f05b00974",
+      "whenSold": "None"
+    },
+    "needsTranslator": 1,
+    "akasRequired": true,
+    "akaList": [
+      {
+        "id$": "65834ccff158e38f05b00975",
+        "SelectIndividual": "Ramona Denise Robinson",
+        "AKAList": [
+          "Rammy",
+          "Mona"
+        ]
+      }
+    ]
+  },
+  "LoanDocuments": [
+    "Master"
+  ]
+}
