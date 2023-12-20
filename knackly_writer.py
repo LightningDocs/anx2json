@@ -392,13 +392,80 @@ class Knackly_Writer:
                             "id$": str(ObjectId()),
                             "Signer2Name": name,
                             "Signer2Title": title,
+                            "Signer2EntityType": type_,
+                            "Signer2OrgState": state,
+                            "Signer2Signers": [],
+                            "Signer2Owners": [],
                         }
 
+                        # s1s2s3 information
+                        s1s2s3_elements = s1s2s3_names, s1s2s3_titles
+                        s1s2s3_elements = tuple(
+                            [self.listify(x) for x in s1s2s3_elements]
+                        )
+                        # Look at each slice of these elements
+                        for idx_iv, s1s2s3 in enumerate(
+                            zip_longest(*s1s2s3_elements), start=1
+                        ):
+                            if self.is_all_args_none(s1s2s3):
+                                continue
+                            name, title = s1s2s3
+                            # print(
+                            #     f"{idx_i}:{idx_ii}:{idx_iii}:{idx_iv} {name=}, {title=}"
+                            # )
+
+                            # Build a single element of the Signer2Signers list
+                            knackly_s1s2s3 = {
+                                "id$": str(ObjectId()),
+                                "Signer3Name": name,
+                                "Signer3Title": title,
+                            }
+                            
+                            # Add it to the list if it is relevant
+                            knackly_s1s2s3 = self.remove_none_values(knackly_s1s2s3)
+                            if (len(knackly_s1s2s3) == 1 and "id$" in knackly_s1s2s3):
+                                continue
+                            knackly_s1s2["Signer2Signers"].append(knackly_s1s2s3)
+
+                        # s1s2o1 information
+                        s1s2o1_elements = s1s2o1_names, s1s2o1_titles
+                        s1s2o1_elements = tuple(
+                            [self.listify(x) for x in s1s2o1_elements]
+                        )
+                        # Look at each slice of these elements
+                        for idx_iv, s1s2o1 in enumerate(
+                            zip_longest(*s1s2o1_elements), start=1
+                        ):
+                            if self.is_all_args_none(s1s2o1):
+                                continue
+                            name, title = s1s2o1
+                            # print(
+                            #     f"{idx_i}:{idx_ii}:{idx_iii}:{idx_iv} {name=}, {title=}"
+                            # )
+
+                            # Build a single element of the Signer3Owners list
+                            knackly_s1s2o1 = {
+                                "id$": str(ObjectId()),
+                                "Signer3Name": name,
+                                "Signer3Title": title,
+                            }
+                            
+                            # Add it to the list if it is relevant
+                            knackly_s1s2o1 = self.remove_none_values(knackly_s1s2o1)
+                            if (len(knackly_s1s2o1) == 1 and "id$" in knackly_s1s2o1):
+                                continue
+                            knackly_s1s2["Signer2Owners"].append(knackly_s1s2o1)
+
+                        # Clean up knackly_s1s2
                         if parent_type in ["trust", "joint venture"]:
                             del knackly_s1s2["Signer2Name"]
                             del knackly_s1s2["Signer2Title"]
                             knackly_s1s2.update({"Signer1Name": name})
                         knackly_s1s2 = self.remove_none_values(knackly_s1s2)
+                        if len(knackly_s1s2["Signer2Signers"]) == 0:
+                            del knackly_s1s2["Signer2Signers"]
+                        if len(knackly_s1s2["Signer2Owners"]) == 0:
+                            del knackly_s1s2["Signer2Owners"]
 
                         # Add it to the list if it is relevant
                         if (len(knackly_s1s2) == 1 and "id$" in knackly_s1s2) or (
@@ -445,13 +512,48 @@ class Knackly_Writer:
                             "id$": str(ObjectId()),
                             "Signer2Name": name,
                             "Signer2Title": title,
+                            "Signer2EntityType": type_,
+                            "Signer2OrgState": state,
+                            "Signer2Signers": [],
                         }
-                        knackly_s1o1 = self.remove_none_values(knackly_s1o1)
+
+                        # s1o1o2 information
+                        s1o1o2_elements = (s1o1o2_names, s1o1o2_titles)
+                        s1o1o2_elements = tuple(
+                            [self.listify(x) for x in s1o1o2_elements]
+                        )
+
+                        # Look at each slice of these elements
+                        for idx_iv, s1o1o2 in enumerate(
+                            zip_longest(*s1o1o2_elements), start=1
+                        ):
+                            if self.is_all_args_none(s1o1o2):
+                                continue
+                            # print(f"{idx_i}:{idx_ii}:{idx_iii}:{idx_iv} {s1o1o2}")
+                            name, title = s1o1o2
+
+                            # Build a single element of the Signer2Signers list
+                            knackly_s1o1o2 = {
+                                "id$": str(ObjectId()),
+                                "Signer3Name": name,
+                                "Signer3Title": title,
+                            }
+
+                            # Add it to the list if it is relevant
+                            knackly_s1o1o2 = self.remove_none_values(knackly_s1o1o2)
+                            if len(knackly_s1o1o2) == 1 and "id$" in knackly_s1o1o2:
+                                continue
+                            knackly_s1o1["Signer2Signers"].append(knackly_s1o1o2)
 
                         # Add it to the list if it is relevant
+                        knackly_s1o1 = self.remove_none_values(knackly_s1o1)
                         if len(knackly_s1o1) == 1 and "id$" in knackly_s1o1:
                             continue
                         knackly_s1["Signer1Owners"].append(knackly_s1o1)
+
+                        # Clean up s1o1
+                        if len(knackly_s1o1["Signer2Signers"]) == 0:
+                            del knackly_s1o1["Signer2Signers"]
 
                     # Clean up s1
                     knackly_s1 = self.remove_none_values(knackly_s1)
