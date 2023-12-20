@@ -2062,7 +2062,7 @@ class Knackly_Writer:
         if not self.is_all_args_none(parsed_components):
             c_name, o_name, street, state, city, zip_code, o_email = parsed_components
             title_company = create_title_company(
-                c_name, o_name, self.address(street, state, city, zip_code), o_email
+                c_name, o_name, self.address(street, city, state, zip_code), o_email
             )
 
         parsed_components = self.anx.parse_multiple(

@@ -3,6 +3,8 @@ examples/
 test_examples/
 test_output.json
 real_examples/
+user_experience/input/
+user_experience/output/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
