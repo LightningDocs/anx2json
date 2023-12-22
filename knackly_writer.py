@@ -420,10 +420,10 @@ class Knackly_Writer:
                                 "Signer3Name": name,
                                 "Signer3Title": title,
                             }
-                            
+
                             # Add it to the list if it is relevant
                             knackly_s1s2s3 = self.remove_none_values(knackly_s1s2s3)
-                            if (len(knackly_s1s2s3) == 1 and "id$" in knackly_s1s2s3):
+                            if len(knackly_s1s2s3) == 1 and "id$" in knackly_s1s2s3:
                                 continue
                             knackly_s1s2["Signer2Signers"].append(knackly_s1s2s3)
 
@@ -449,10 +449,10 @@ class Knackly_Writer:
                                 "Signer3Name": name,
                                 "Signer3Title": title,
                             }
-                            
+
                             # Add it to the list if it is relevant
                             knackly_s1s2o1 = self.remove_none_values(knackly_s1s2o1)
-                            if (len(knackly_s1s2o1) == 1 and "id$" in knackly_s1s2o1):
+                            if len(knackly_s1s2o1) == 1 and "id$" in knackly_s1s2o1:
                                 continue
                             knackly_s1s2["Signer2Owners"].append(knackly_s1s2o1)
 
@@ -2243,7 +2243,7 @@ class Knackly_Writer:
             "id$": str(ObjectId()),
             "companyName": c_name,
             "officerContactName": o_name,
-            "address": self.address(street, state, city, zip_code),
+            "address": self.address(street, city, state, zip_code),
             "officerContactEmail": o_email,
             "isKassSchuler": is_kass,
         }
