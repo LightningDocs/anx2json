@@ -2298,6 +2298,8 @@ class Knackly_Writer:
                     comment = "Deliver to Lender's Address"
                 if comment and comment.lower() == "deliver to broker's address":
                     comment = "Deliver to Broker's Address"
+                if comment and comment.lower() == "wire instructions to be provided":
+                    comment = "Wire Instructions to be Provided"
 
                 temp = {
                     "id$": str(ObjectId()),
