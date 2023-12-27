@@ -2448,7 +2448,7 @@ class Knackly_Writer:
                     continue  # Skip this iteration if everything is None
                 temp = {
                     "id$": str(ObjectId()),
-                    "property": property_,
+                    "property": self.uuid_map["Properties"][property_],
                     "propertyManager": manager,
                     "agreementDate": date,
                     "address": self.address(street, city, state, zip_code),
