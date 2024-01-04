@@ -850,7 +850,9 @@ class Knackly_Writer:
                     {
                         "id$": str(ObjectId()),
                         "PropertyOwner": self.uuid_map["Borrowers"][hd_borrower_key],
-                        "Vesting": hd_vesting,
+                        "Vesting": hd_vesting
+                        if hd_vesting != "married"
+                        else "married [vested with next borrower]",
                     }
                     for hd_borrower_key, hd_vesting in zip_longest(
                         prop_borrower_dmc, vesting
@@ -2536,6 +2538,9 @@ class Knackly_Writer:
                     list[dict]: A list of dictionaries containing a unique id, the name, and invested amount.
                 """
                 result = []
+                # Special case below.
+                if amounts is None:
+                    amounts = [None]
                 for name, amount in zip_longest(names, amounts):
                     if self.is_all_args_none([name, amount]):
                         continue  # Skip if this iteration is all None
@@ -2601,6 +2606,8 @@ class Knackly_Writer:
                 ) = intercreditor_agreement_info
                 if self.is_all_args_none(intercreditor_agreement_info):
                     continue  # Skip this iteration if its completely blank
+                # print(f"{sub_lenders=}, {type(sub_lenders)=}")
+                # print(f"{invested_amounts=}, {type(invested_amounts)=}")
                 temp = {
                     "id$": str(ObjectId()),
                     "repOptions": rep,
