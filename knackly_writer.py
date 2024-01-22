@@ -1104,11 +1104,11 @@ class Knackly_Writer:
                 dict: the `penalties` dictionary object.
             """
 
-            def prepay_non_linear_setup() -> dict | None:
-                """Responsible for creating the prepay non linear object. This is analogous to the one cell spreadsheet on the Loan Information page of the HotDocs interview.
+            def prepay_non_linear_setup() -> list[dict] | None:
+                """Responsible for creating the prepay non linear object. This is analogous to the spreadsheet on the Loan Information page of the HotDocs interview.
 
                 Returns:
-                    dict | None: A dictionary representation of the one penalty percentage the user entered, or `None` if they didn't enter one.
+                    list[dict] | None: A list of dictionaries representing the penalty percentages the user entered, or `None` if they didn't enter one.
                 """
                 number = self.anx.parse_RptValue(
                     self.anx.find_answer("Prepay Non Percent NU")
@@ -1116,10 +1116,7 @@ class Knackly_Writer:
                 if number is None:
                     return None
 
-                return {
-                    "id$": str(ObjectId()),
-                    "Percent": number[0],
-                }  # number will be a list, but HotDocs ensures that it can only be one element long
+                return [{"id$": str(ObjectId()), "Percent": n} for n in number]
 
             result = {
                 "id$": str(ObjectId()),
