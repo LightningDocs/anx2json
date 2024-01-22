@@ -2677,6 +2677,9 @@ class Knackly_Writer:
             "firstPaymentAmount": self.anx.parse_field(
                 "First Payment Letter Payment AMT NU"
             ),
+            "isFirstPaymentLetterUseAmount": self.anx.parse_field(
+                "First Payment Letter Use Amount TF"
+            ),
             "isFirstPaymentIncludeEscrow": self.anx.parse_field(
                 "Fay Escrow Reserves TF"
             ),
