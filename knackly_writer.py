@@ -825,7 +825,7 @@ class Knackly_Writer:
                 "lienPosition": lien_pos,
                 "isPurchaseMoney": is_purchase_money,
                 "type": type_,
-                "isRental": is_rental,
+                "isRental": "Yes" if is_rental else "No",
                 "isLeaseholdMortgage": is_leasehold,
                 "leasehold_MortgageLessor": leasehold_names,
                 "trusteeDropdown": trustee_mc,
