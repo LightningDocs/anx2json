@@ -1807,6 +1807,7 @@ class Knackly_Writer:
             "Guarantor State MC",
             "Guarantor Zip Code TE",
             "Guarantor Entity Type MC",
+            "Guarantor Spousal Consent MC",
             "Guarantor Organization State MC",
             "Guarantor Trust Name TE",
             "G signature trustee name TX",
@@ -1852,6 +1853,7 @@ class Knackly_Writer:
                 state,
                 zip_code,
                 entity_type,
+                spousal_consent,
                 org_state,
                 trust_name,
                 trustees,
@@ -1880,6 +1882,7 @@ class Knackly_Writer:
                 "GuarantorName": name,
                 "GuarantorEntityType": entity_type,
                 "Type": guaranty_type,
+                "isGuarantorSpouseSigning": spousal_consent,
                 "WhichAddress": "Use borrower address"
                 if address_dropdown == "Borrower"
                 else "Use property address"
