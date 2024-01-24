@@ -1039,9 +1039,6 @@ class Knackly_Writer:
             "mersNumber": self.anx.parse_TextValue(
                 self.anx.find_answer("MERS Number TE")
             ),
-            "PrincipalRepaymentPercent": self.anx.parse_NumValue(
-                self.anx.find_answer("Principal Repayment Percent NU")
-            ),
             "MaturityDate": self.anx.parse_DateValue(
                 self.anx.find_answer("Maturity DT")
             ),
@@ -2713,6 +2710,9 @@ class Knackly_Writer:
             ),
             "isPrincipalRepaymentProportional": self.anx.parse_field(
                 "Principal Repayment Proportional TF"
+            ),
+            "principalRepaymentPercent": self.anx.parse_NumValue(
+                self.anx.find_answer("Principal Repayment Percent NU")
             ),
             "isThirdPartyAffiliate": self.anx.parse_field("Renovo Third Party TF"),
             "renovoThirdPartyName": self.anx.parse_field("Renovo Third Party Name TX"),
