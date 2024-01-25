@@ -825,7 +825,8 @@ class Knackly_Writer:
                 "lienPosition": lien_pos,
                 "isPurchaseMoney": is_purchase_money,
                 "type": type_,
-                "isRental": "Yes" if is_rental else "No",
+                # "isRental": "Yes" if is_rental else "No",
+                "isRental": is_rental,
                 "isLeaseholdMortgage": is_leasehold,
                 "leasehold_MortgageLessor": leasehold_names,
                 "trusteeDropdown": trustee_mc,
@@ -838,6 +839,12 @@ class Knackly_Writer:
                 "collatoralValue": collateral_value,
                 "includePUD": is_include_pud,
             }
+
+            # Handle converting rental from t/f to selection
+            if collateral_property["isRental"] == True:
+                collateral_property["isRental"] == "Yes"
+            elif collateral_property["isRental"] == False:
+                collateral_property["isRental"] == "No"
 
             # Handle property owner stuff
             if self.is_all_args_none([prop_borrower_dmc, vesting]):
