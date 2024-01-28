@@ -2780,6 +2780,15 @@ class Knackly_Writer:
 
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""
+        client_name = self.anx.parse_TextValue("Client Specific Pass TX")
+        if client_name is not None:
+            # Convert the client password to use the dropdown if it's trans, otherwise the text field.
+            client_name = client_name.lower()
+            if client_name == "trans":
+                self.json["clientMC"] = client_name
+            else:
+                self.json["clientName"] = client_name
+
         borrowers = self.borrower_information()
         self.json["Borrower"] = borrowers[0]
         self.json["TitleHolder2"] = borrowers[1]
@@ -2853,7 +2862,7 @@ class Knackly_Writer:
         self.clean_up()
 
     def clean_up(self) -> None:
-        """Clean up the self.json dictionary associated with the class instance."""
+        """Clean up the self.json dictionary associated with the class instance by deleting any keys with a value of False or None"""
         self.json = self._recursive_clean(self.json)
 
         if self.json is None:
