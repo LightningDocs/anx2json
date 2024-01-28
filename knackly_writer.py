@@ -2780,12 +2780,14 @@ class Knackly_Writer:
 
     def create(self) -> None:
         """Actually fill out `self.json` with all of the relevant information."""
-        client_name = self.anx.parse_TextValue("Client Specific Pass TX")
-        if client_name is not None:
+        client_name = self.anx.parse_field("Client Specific Pass Store TX")
+        if client_name:
             # Convert the client password to use the dropdown if it's trans, otherwise the text field.
             client_name = client_name.lower()
             if client_name == "trans":
-                self.json["clientMC"] = client_name
+                client_mc = self.anx.parse_field("Client MC")
+                if client_mc:
+                    self.json["clientMC"] = client_mc.lower()
             else:
                 self.json["clientName"] = client_name
 
