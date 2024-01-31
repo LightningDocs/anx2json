@@ -2306,6 +2306,8 @@ class Knackly_Writer:
                     comment = "Deliver to Broker's Address"
                 if comment and comment.lower() == "wire instructions to be provided":
                     comment = "Wire Instructions to be Provided"
+                if comment and comment.lower() == "deliver to loan servicer":
+                    comment = "Deliver to Loan Servicer"
 
                 temp = {
                     "id$": str(ObjectId()),
@@ -2819,8 +2821,7 @@ class Knackly_Writer:
         )
         # Broker stuff below
         self.json.update({"isBroker": self.anx.parse_field("CA Broker TF")})
-        if self.json.get("isBroker") == True:
-            self.json.update({"broker": self.broker()})
+        self.json.update({"broker": self.broker()})
         # Title Policy stuff below
         self.json.update({"titlePolicy": self.title_policy()})
         # Escrow / Settlement stuff below
