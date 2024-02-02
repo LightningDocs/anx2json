@@ -153,9 +153,9 @@ class Knackly_Writer:
             "BorrowerNoticeSentTo": notice_sent_to,
             "Notice": self.address(street, city, state, zip_code),
             "BorrowerDeliveryTo": delivery_to,
-            "noticeEmail": email_temple
-            if email_temple
-            else (email_finme if email_finme else None),
+            "noticeEmail": (
+                email_temple if email_temple else (email_finme if email_finme else None)
+            ),
             "noticePhone": phone_temple,
         }
         borrowers = []
@@ -709,6 +709,7 @@ class Knackly_Writer:
         parsed_components = self.anx.parse_multiple(
             "Schedule of Properties TF",
             "Partial Release Advanced MC",
+            "Partial Reconveyance TF",
             "_",  # To be replaced with actual properties
             "Legal Description TX",
             "Note Governing Law State MC",
@@ -722,12 +723,14 @@ class Knackly_Writer:
         (
             schedule_of_props,
             partial_release,
+            partial_release_basic,
             _,
             legal_description,
             governing_law_state,
             governing_law_county,
             confession_of_judgment,
         ) = parsed_components
+
         result = {
             "id$": str(ObjectId()),
             "isScheduleOfProperties": schedule_of_props,
@@ -738,11 +741,14 @@ class Knackly_Writer:
             # "arbitrationCounty": governing_law_county,
             "isConfessionofJudgment": confession_of_judgment,
         }
+        
+        if partial_release_basic:
+            result["partialReleaseExpert"] = "Release Price"
 
         if governing_law_county is not None:
-            result[
-                "arbitrationCounty"
-            ] = f"{governing_law_state}-{governing_law_county[:-2]}"
+            result["arbitrationCounty"] = (
+                f"{governing_law_state}-{governing_law_county[:-2]}"
+            )
 
         # Now look at actual properties
         property_components = self.anx.parse_multiple(
@@ -857,9 +863,11 @@ class Knackly_Writer:
                     {
                         "id$": str(ObjectId()),
                         "PropertyOwner": self.uuid_map["Borrowers"][hd_borrower_key],
-                        "Vesting": hd_vesting
-                        if hd_vesting != "married"
-                        else "married [vested with next borrower]",
+                        "Vesting": (
+                            hd_vesting
+                            if hd_vesting != "married"
+                            else "married [vested with next borrower]"
+                        ),
                     }
                     for hd_borrower_key, hd_vesting in zip_longest(
                         prop_borrower_dmc, vesting
@@ -1884,11 +1892,15 @@ class Knackly_Writer:
                 "GuarantorEntityType": entity_type,
                 "Type": guaranty_type,
                 "isGuarantorSpouseSigning": spousal_consent,
-                "WhichAddress": "Use borrower address"
-                if address_dropdown == "Borrower"
-                else "Use property address"
-                if address_dropdown == "Property"
-                else "Enter address",
+                "WhichAddress": (
+                    "Use borrower address"
+                    if address_dropdown == "Borrower"
+                    else (
+                        "Use property address"
+                        if address_dropdown == "Property"
+                        else "Enter address"
+                    )
+                ),
             }
 
             # Deal with "Other" address
