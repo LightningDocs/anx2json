@@ -1316,17 +1316,16 @@ class Knackly_Writer:
                 if (is_old_version and broker_fees_tf == False) or (
                     broker_fees_mc == "None"
                 ):
-                    return "None"  # We return the string "None" instead of the singleton "None" here because that is the actual name of the option in Knackly.
+                    return "None"  # We return the string "None" instead of the singleton `None` here because that is the actual name of the option in Knackly.
 
-                dollar_amount = self.anx.parse_NumValue(
-                    self.anx.find_answer("Deferred Broker Fee NU")
+                percentage_amount = self.anx.parse_NumValue(
+                    self.anx.find_answer("Deferred Broker Fee Percent NU")
                 )
-                # percentage_amount = self.anx.parse_NumValue(self.anx.find_answer("Deferred Broker Fee Percent NU"))
 
-                if dollar_amount:
-                    return "Dollar Amount"
-                else:
+                if percentage_amount:
                     return "Percentage of Loan"
+                else:
+                    return "Dollar Amount"
 
             result = {
                 "id$": str(ObjectId()),
