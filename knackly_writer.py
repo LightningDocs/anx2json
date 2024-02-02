@@ -741,7 +741,7 @@ class Knackly_Writer:
             # "arbitrationCounty": governing_law_county,
             "isConfessionofJudgment": confession_of_judgment,
         }
-        
+
         if partial_release_basic:
             result["partialReleaseExpert"] = "Release Price"
 
@@ -886,14 +886,13 @@ class Knackly_Writer:
             ):
                 collateral_property["seniorLiens"] = None
             else:
+                senior_name = self.listify(senior_name)
+                date = self.listify(date)
+                instrument_num = self.listify(instrument_num)
+                senior_trustor = self.listify(senior_trustor)
+                senior_trustee = self.listify(senior_trustee)
                 collateral_property["seniorLiens"] = [
-                    senior_lien_row(
-                        n,
-                        d,
-                        i_n,
-                        s_trustor,
-                        s_trustee,
-                    )
+                    senior_lien_row(n, d, i_n, s_trustor, s_trustee)
                     for n, d, i_n, s_trustor, s_trustee in zip_longest(
                         senior_name,
                         date,
