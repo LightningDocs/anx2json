@@ -1250,6 +1250,10 @@ class Knackly_Writer:
                 ),
             }
 
+            if result.get("isAssignmentOfPermits"):
+                result["assignmentOfPermitProperties"] = list(
+                    self.uuid_map["Properties"].values()
+                )
             if result.get("IsConstructionContract"):
                 result.update(
                     {
@@ -1595,6 +1599,15 @@ class Knackly_Writer:
             ),
             "impounds1": impounds_setup(),
         }
+
+        if result.get("construction1"):
+            if result["construction1"].get("isAssignmentOfPermits"):
+                if result.get("loanFeatures") and result["loanFeatures"].get(
+                    "isCannabisLoan"
+                ):
+                    result["loanFeatures"]["cannabisAssignmentPermitProperties"] = list(
+                        self.uuid_map["Properties"].values()
+                    )
 
         return self.remove_none_values(result)
 
