@@ -351,6 +351,10 @@ class Knackly_Writer:
                         "Signer1VenturersOrTrustees": [],
                     }
 
+                    # Assume that each signer for a corporation is an individual, even though that info would be missing from the .anx
+                    if entity_type == "corporation":
+                        knackly_s1["Signer1EntityType"] = "individual"
+
                     # s1s2 information
                     s1s2_elements = (
                         s1s2_names,
