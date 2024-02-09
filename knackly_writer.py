@@ -1568,6 +1568,9 @@ class Knackly_Writer:
                 "initialInsurance": self.anx.parse_NumValue(
                     self.anx.find_answer("Impound Insurance NU")
                 ),
+                "initialFloodInsurance": self.anx.parse_NumValue(
+                    self.anx.find_answer("Impound Flood NU")
+                ),
                 "monthlyTax": self.anx.parse_NumValue(
                     self.anx.find_answer("Tax Payment NU")
                 ),
@@ -2712,17 +2715,6 @@ class Knackly_Writer:
             ),
             "isFirstPaymentIncludeEscrow": self.anx.parse_field(
                 "Fay Escrow Reserves TF"
-            ),
-            "firstPaymentLetterInsurance": self.anx.parse_field(
-                "First Payment Letter Insurance NU"
-            ),
-            "floodInsurance": self.anx.parse_field("Flood Insurance NU"),
-            "firstPaymentLetterFlood": self.anx.parse_field(
-                "First Payment Letter Flood NU"
-            ),
-            "taxPayment": self.anx.parse_field("Tax Payment NU"),
-            "firstPaymentLetterTax": self.anx.parse_field(
-                "First Payment Letter Tax NU"
             ),
             "isForSale": self.anx.parse_field("seth_isForSale"),
             "loanSaleInformation": loan_sale_information(),
