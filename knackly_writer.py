@@ -1,6 +1,5 @@
 from bson import ObjectId
 from itertools import zip_longest
-from pprint import pprint
 
 from anx_parser import ANX_Parser
 
@@ -851,9 +850,9 @@ class Knackly_Writer:
             }
 
             # Handle converting rental from t/f to selection
-            if collateral_property["isRental"] == True:
+            if collateral_property["isRental"] is True:
                 collateral_property["isRental"] == "Yes"
-            elif collateral_property["isRental"] == False:
+            elif collateral_property["isRental"] is False:
                 collateral_property["isRental"] == "No"
 
             # Handle property owner stuff
@@ -1321,7 +1320,7 @@ class Knackly_Writer:
 
                 is_old_version = broker_fees_tf is not None and broker_fees_mc is None
 
-                if (is_old_version and broker_fees_tf == False) or (
+                if (is_old_version and broker_fees_tf is False) or (
                     broker_fees_mc == "None"
                 ):
                     return "None"  # We return the string "None" instead of the singleton `None` here because that is the actual name of the option in Knackly.
@@ -1480,7 +1479,7 @@ class Knackly_Writer:
                 tf_question = self.anx.parse_TFValue(
                     self.anx.find_answer("Interest Reserve TF")
                 )
-                if tf_question == False:
+                if tf_question is False:
                     return "None"  # We return the literal string "None" because that is the name of one of the keys in Knackly.
 
                 is_months = self.anx.parse_TFValue(
@@ -1657,9 +1656,9 @@ class Knackly_Writer:
             lender_amount_rpt = self.anx.parse_RptValue(
                 self.anx.find_answer("Lender Invest Amount NU")
             )
-            if lender_name_rpt == None:
+            if lender_name_rpt is None:
                 lender_name_rpt = [None]
-            if lender_amount_rpt == None:
+            if lender_amount_rpt is None:
                 lender_amount_rpt = [None]
 
             # Check to see if they were both not none.
@@ -1970,7 +1969,7 @@ class Knackly_Writer:
                     # s1s2 information
                     s1s2_elements = s1s2_names, s1s2_roles, s1s2_titles
                     s1s2_elements = tuple([self.listify(x) for x in s1s2_elements])
-                    parent_type = type_  # This might be needed in future. Just adding it now because it *was* used in borrower_information, which this is mimicking.
+                    # parent_type = type_  # This might be needed in future. Just adding it now because it *was* used in borrower_information, which this is mimicking.
 
                     # Look at each slice of these elements
                     for idx_iii, s1s2 in enumerate(
@@ -2307,7 +2306,7 @@ class Knackly_Writer:
             Returns:
                 list[dict]: A list of objects, where each object contains at most one amount, description, comment, and paid to.
             """
-            if paid_tos == None:
+            if paid_tos is None:
                 paid_tos = [None]
             result = []
 
@@ -2558,9 +2557,7 @@ class Knackly_Writer:
                 list[dict]: A list of dictionaries, where each element contains information about a particular intercreditor agreement.
             """
 
-            def lender_spreadsheet(
-                names: list[str], amounts: [list[int]]
-            ) -> list[dict]:
+            def lender_spreadsheet(names: list[str], amounts: list[int]) -> list[dict]:
                 """Helper function to create the subordinate lender spreadsheets.
 
                 Args:
@@ -2855,7 +2852,7 @@ class Knackly_Writer:
         escrow_title_select = self.anx.parse_field("Escrow and Title Select MC")
         is_escrow = True if escrow_title_select == "Escrow and Title" else False
         self.json.update({"isEscrow": is_escrow})
-        if self.json.get("isEscrow") == True:
+        if self.json.get("isEscrow") is True:
             self.json.update({"escrowCompany": self.create_escrow_company()})
         self.json.update({"settlementFees": self.settlement()})
         # Preparer stuff below
