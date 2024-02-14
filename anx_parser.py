@@ -154,7 +154,8 @@ class ANX_Parser:
             return None
 
         result = [self.parse_SelValue(child) for child in element]
-
+        if len(result) == 0:
+            return None  # Weird edge case for Vesting Help MC being blank
         if len(element) == 1:
             return result[0]
         elif (
@@ -163,7 +164,7 @@ class ANX_Parser:
             return result
         else:
             raise ValueError(
-                f"`result` list is empty. This really shouldn't happen here."
+                "`result` list is empty. This really shouldn't happen here."
             )
 
     def parse_Primitive(self, element: ET.Element) -> str | int | float:
