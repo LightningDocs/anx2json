@@ -849,6 +849,22 @@ class Knackly_Writer:
                 "includePUD": is_include_pud,
             }
 
+            # Handle converting type_ from HD standard to Knackly standard
+            if (
+                type_ == "1-6 Single Family Residence"
+                or type_ == "1-4 Single Family Residence"
+            ):
+                collateral_property["type"] = "Residential"
+            elif type_ == "Commercial Property":
+                collateral_property["type"] = "Commercial"
+            elif type_ == "Vacant Land":
+                collateral_property["type"] = "Vacant"
+            elif (
+                type_ == "5+ Multi-Family Property"
+                or type_ == "7+ Multi-Family Property"
+            ):
+                collateral_property["type"] = "Multi-Family"
+
             # Handle converting rental from t/f to selection
             if collateral_property["isRental"] is True:
                 collateral_property["isRental"] == "Yes"
