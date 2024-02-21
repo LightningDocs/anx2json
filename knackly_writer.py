@@ -1355,12 +1355,6 @@ class Knackly_Writer:
                 "insurancePayment": self.anx.parse_NumValue(
                     self.anx.find_answer("Insurance Payment NU")
                 ),
-                "isACH": self.anx.parse_TFValue(
-                    self.anx.find_answer("ACH Delivery of Payments TF")
-                ),
-                "isACHRemove": self.anx.parse_TFValue(
-                    self.anx.find_answer("Remove ACH TF")
-                ),
                 "isSBALoan": self.anx.parse_TFValue(
                     self.anx.find_answer("SBA Loan TF")
                 ),
@@ -2841,6 +2835,8 @@ class Knackly_Writer:
         )
         self.json.update({"Guarantor": self.guarantor_information_2()})
         # Servicer stuff below
+        self.json.update({"isACH": self.anx.parse_field("ACH Delivery of Payments TF")})
+        self.json.update({"isACHRemove": self.anx.parse_field("Remove ACH TF")})
         self.json.update({"SelectServicer": self.anx.parse_field("Loan Servicer MC")})
         if self.json.get("SelectServicer") == "Other":
             self.json.update({"servicer": self.servicer()})
