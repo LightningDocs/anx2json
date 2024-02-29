@@ -2690,6 +2690,10 @@ class Knackly_Writer:
                 return None
             party_names, alternate_names_list = parsed_components
 
+            # Edge case where the user didn't fill out any alternative names for any of the parties
+            if alternate_names_list is None:
+                alternate_names_list = [[None] for _ in party_names]
+
             result = []
             for party_name, alternate_names in zip_longest(
                 party_names, alternate_names_list
@@ -2705,6 +2709,8 @@ class Knackly_Writer:
                     "SelectIndividual": party_name,
                     "AKAList": [name for name in alternate_names if name is not None],
                 }
+                if temp_aka["AKAList"] == []:
+                    del temp_aka["AKAList"]
                 result.append(temp_aka)
 
             return result
