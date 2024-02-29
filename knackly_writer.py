@@ -2698,6 +2698,9 @@ class Knackly_Writer:
             for party_name, alternate_names in zip_longest(
                 party_names, alternate_names_list
             ):
+                print("---")
+                print(f"{party_name = }")
+                print(f"{alternate_names = }")
                 if (
                     self.is_all_args_none([party_name, alternate_names[0]])
                     and len(alternate_names) == 1
