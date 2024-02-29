@@ -38,7 +38,11 @@ def continuous():
                 ) as out_file:
                     args = Args(in_file, out_file)
 
-                    main.main(args)
+                    try:
+                        main.main(args)
+                    except Exception as e:
+                        print(f"Something went wrong with {base_name}: {e}")
+                        continue
 
                     # move the .anx file into the output folder as well
                     os.rename(
