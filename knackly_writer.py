@@ -1146,7 +1146,11 @@ class Knackly_Writer:
                 if number is None:
                     return None
 
-                return [{"id$": str(ObjectId()), "Percent": n} for n in number]
+                return [
+                    {"id$": str(ObjectId()), "Percent": n}
+                    for n in number
+                    if n is not None
+                ]
 
             result = {
                 "id$": str(ObjectId()),
