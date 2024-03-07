@@ -21,10 +21,17 @@ def continuous():
     while True:
         # Look at each file in the input folder
         files = os.listdir(input_folder_path)
+        out_files = os.listdir(output_folder_path)
         for file in files:
             # If the file is not .anx, just skip it
             base_name, extension = os.path.splitext(file)
             if extension != ".anx":
+                continue
+            # If the .anx file already exists in the output folder, also skip it. We don't want to allow overwriting files.
+            if file in out_files:
+                print(
+                    f"Refusing to convert {file} as there already exists a file with the same name in {output_folder_path}"
+                )
                 continue
 
             # call main.py for the file, directing the converted file to the output folder
