@@ -924,6 +924,13 @@ class Knackly_Writer:
             collateral_property = self.remove_none_values(collateral_property)
             if len(collateral_property) == 1 and "id$" in collateral_property:
                 continue
+            # Another edge case to exclude
+            elif (
+                len(collateral_property) == 2
+                and "id$" in collateral_property
+                and "isRental" in collateral_property
+            ):
+                continue
 
             # Add property data to temp_result as well as the Knackly_Writer's uuid_map
             self.uuid_map["Properties"].update(
@@ -2549,9 +2556,9 @@ class Knackly_Writer:
                     "tenantNames": names,
                 }
 
-                if isinstance(temp["documentType"], list):
-                    temp["documentType"] = temp["documentType"][0]
-                    # Knackly only supports a single selection for documentType, so if there were multiple selected in HotDocs, just pick the first one
+                # if isinstance(temp["documentType"], list):
+                #     temp["documentType"] = temp["documentType"][0]
+                # Knackly only supports a single selection for documentType, so if there were multiple selected in HotDocs, just pick the first one
 
                 temp = self.remove_none_values(temp)
 
@@ -2562,6 +2569,14 @@ class Knackly_Writer:
                     and len(temp["tenantNames"]) == 0
                 ):
                     continue  # Skip this iteration if its really empty
+                elif (
+                    len(temp) == 3
+                    and "id$" in temp
+                    and "property" in temp
+                    and "tenantNames" in temp
+                    and temp["tenantNames"] == []
+                ):
+                    continue  # Skip this iteration for weird edge case
 
                 result.append(temp)
             return result
@@ -2740,8 +2755,6 @@ class Knackly_Writer:
             "isCollateralAssignment": self.anx.parse_field("Collateral Assignment TF"),
             "isSubordinations": self.anx.parse_field("seth_isSubordinations"),
             "isIntercreditor": self.anx.parse_field("seth_isIntercreditor"),
-            "isTranslator": self.anx.parse_field("Translator Required TF"),
-            "needsTranslator": 1,  # <- This involves ObjectID (i think)
             "isLoanAdministrationAgreement": self.anx.parse_field(
                 "Loan Administration Agreement TF"
             ),

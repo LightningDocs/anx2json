@@ -288,3 +288,7 @@ class ANXTagError(Exception):
 
     def __str__(self):
         return f"Expecting '{self.expected_tag}' element, but was provided '{self.provided_tag}' element"
+
+
+if __name__ == "__main__":
+    pass
