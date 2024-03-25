@@ -2533,8 +2533,13 @@ class Knackly_Writer:
                 return None
 
             result = []
-            # print(parsed_components)
+            parsed_components = [
+                x if isinstance(x, list) else [x] for x in parsed_components
+            ]
             for subordination_info in zip_longest(*parsed_components):
+                if self.is_all_args_none(subordination_info):
+                    continue
+
                 (
                     doc_types,
                     property_,
@@ -2949,11 +2954,14 @@ class Knackly_Writer:
 
         elif isinstance(data, list):
             # Process each item in the list
-            return [
+            result = [
                 self._recursive_clean(item)
                 for item in data
                 if item not in [False, None]
             ]
+            if self.is_all_args_none(result):
+                return None
+            return result
 
         else:
             # Return the item if it's not a dictionary or list
@@ -3004,3 +3012,7 @@ class Knackly_Writer:
             raise ValueError(
                 f"error, expecting either None or a list, received {type(element).__name__}: {element}"
             )
+
+
+if __name__ == "__main__":
+    pass
