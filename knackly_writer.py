@@ -279,6 +279,7 @@ class Knackly_Writer:
                 if entity_type == "trust":
                     names = self.remove_none_values(trustees)
                     temp_borrower["BorrowerName"] = trust_name
+                    temp_borrower["TrustVestingName"] = name
                 else:
                     names = self.remove_none_values(venturers)
                 temp_peoples = []
