@@ -70,6 +70,22 @@ class Knackly_Writer:
                 f"Expected a dictionary or a list, but got {type(args).__name__}"
             )
 
+    def product_mc(self, client: str) -> str | None:
+        """Gets the name of the selected product from the .anx file.
+
+        Args:
+            client (str): The name of the client identified from the .anx file
+
+        Returns:
+            str | None: The name of the selected product if one was found, otherwise None
+        """
+        if client == "Archwest" or client == "DLP" or client == "Oaktree":
+            return self.anx.parse_field("DLP Product MC")
+        elif client == "Churchill":
+            return self.anx.parse_field("Churchill Product MC")
+        else:
+            return None
+
     def address(
         self,
         street: str,
@@ -2846,6 +2862,12 @@ class Knackly_Writer:
                     self.json["clientMC"] = client_mc.lower()
             else:
                 self.json["clientName"] = client_name
+
+        # Product dropdown
+        if client_mc:
+            self.json["productMC_Wrap"] = self.product_mc(client_mc)
+        elif client_name:
+            self.json["productMC_Wrap"] = self.product_mc(client_name)
 
         borrowers = self.borrower_information()
         self.json["Borrower"] = borrowers[0]
