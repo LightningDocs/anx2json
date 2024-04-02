@@ -2864,6 +2864,7 @@ class Knackly_Writer:
                 self.json["clientName"] = client_name
 
         # Product dropdown
+        client_mc = self.anx.parse_field("Client MC")
         if client_mc:
             self.json["productMC_Wrap"] = self.product_mc(client_mc)
         elif client_name:
