@@ -2799,6 +2799,7 @@ class Knackly_Writer:
                 "Housemax Credit Card Authorization TF"
             ),
             "akasRequired": self.anx.parse_field("Borrower AKA Required TF"),
+            "isBorrowerCertification": self.anx.parse_field("Borrower Certification TF")
         }
 
         if result["isSubordinations"]:
