@@ -70,6 +70,15 @@ class Knackly_Writer:
                 f"Expected a dictionary or a list, but got {type(args).__name__}"
             )
 
+    def is_transactional(self) -> bool:
+        """Returns whether or not the anx file came from Transactional
+
+        Returns:
+            bool: True if the anx file came from Transactional, otherwise False
+        """
+        client_name = self.anx.parse_field("Client Specific Pass Store TX")
+        return client_name.lower() == "trans"
+
     def product_mc(self, client: str) -> str | None:
         """Gets the name of the selected product from the .anx file.
 
@@ -474,7 +483,8 @@ class Knackly_Writer:
                             knackly_s1s2o1 = self.remove_none_values(knackly_s1s2o1)
                             if len(knackly_s1s2o1) == 1 and "id$" in knackly_s1s2o1:
                                 continue
-                            knackly_s1s2["Signer2Owners"].append(knackly_s1s2o1)
+                            if self.is_transactional():
+                                knackly_s1s2["Signer2Owners"].append(knackly_s1s2o1)
 
                         # Clean up knackly_s1s2
                         if parent_type in ["trust", "joint venture"]:
@@ -563,13 +573,15 @@ class Knackly_Writer:
                             knackly_s1o1o2 = self.remove_none_values(knackly_s1o1o2)
                             if len(knackly_s1o1o2) == 1 and "id$" in knackly_s1o1o2:
                                 continue
-                            knackly_s1o1["Signer2Signers"].append(knackly_s1o1o2)
+                            if self.is_transactional():
+                                knackly_s1o1["Signer2Signers"].append(knackly_s1o1o2)
 
                         # Add it to the list if it is relevant
                         knackly_s1o1 = self.remove_none_values(knackly_s1o1)
                         if len(knackly_s1o1) == 1 and "id$" in knackly_s1o1:
                             continue
-                        knackly_s1["Signer1Owners"].append(knackly_s1o1)
+                        if self.is_transactional():
+                            knackly_s1["Signer1Owners"].append(knackly_s1o1)
 
                         # Clean up s1o1
                         if len(knackly_s1o1["Signer2Signers"]) == 0:
@@ -659,7 +671,7 @@ class Knackly_Writer:
                     if len(knackly_o1) > 1:
                         borrower_owners.append(knackly_o1)
 
-                if borrower_owners:
+                if borrower_owners and self.is_transactional():
                     temp_borrower["BorrowerOwners"] = borrower_owners
 
             # Clean up each temporary borrower before committing to adding it
@@ -2799,7 +2811,9 @@ class Knackly_Writer:
                 "Housemax Credit Card Authorization TF"
             ),
             "akasRequired": self.anx.parse_field("Borrower AKA Required TF"),
-            "isBorrowerCertification": self.anx.parse_field("Borrower Certification TF")
+            "isBorrowerCertification": self.anx.parse_field(
+                "Borrower Certification TF"
+            ),
         }
 
         if result["isSubordinations"]:
