@@ -1,5 +1,6 @@
-from bson import ObjectId
 from itertools import zip_longest
+
+from bson import ObjectId
 
 from anx_parser import ANX_Parser
 
@@ -36,15 +37,9 @@ class Knackly_Writer:
             dict: The new dictionary, without any "None" values
         """
         if isinstance(dictionary, dict):
-            return {
-                key: self.remove_none_values(value)
-                for key, value in dictionary.items()
-                if value is not None
-            }
+            return {key: self.remove_none_values(value) for key, value in dictionary.items() if value is not None}
         elif isinstance(dictionary, list):
-            return [
-                self.remove_none_values(item) for item in dictionary if item is not None
-            ]
+            return [self.remove_none_values(item) for item in dictionary if item is not None]
         else:
             return dictionary
 
@@ -66,9 +61,7 @@ class Knackly_Writer:
             return all(value is None for value in args)
         else:
             # This should never run
-            raise TypeError(
-                f"Expected a dictionary or a list, but got {type(args).__name__}"
-            )
+            raise TypeError(f"Expected a dictionary or a list, but got {type(args).__name__}")
 
     def is_transactional(self) -> bool:
         """Returns whether or not the anx file came from Transactional
@@ -177,9 +170,7 @@ class Knackly_Writer:
             "BorrowerNoticeSentTo": notice_sent_to,
             "Notice": self.address(street, city, state, zip_code),
             "BorrowerDeliveryTo": delivery_to,
-            "noticeEmail": (
-                email_temple if email_temple else (email_finme if email_finme else None)
-            ),
+            "noticeEmail": (email_temple if email_temple else (email_finme if email_finme else None)),
             "noticePhone": phone_temple,
         }
         borrowers = []
@@ -235,9 +226,7 @@ class Knackly_Writer:
             "Borrower Owner Individual Name TE",
             "Borrower Owner Individual Title TE",
         )
-        borrower_components = [
-            elem if isinstance(elem, list) else [elem] for elem in borrower_components
-        ]
+        borrower_components = [elem if isinstance(elem, list) else [elem] for elem in borrower_components]
 
         # borrower_components = self.transform_list(borrower_components)
 
@@ -395,9 +384,7 @@ class Knackly_Writer:
                     parent_type = type_  # This is needed in the next nested loop to check if it was a trust or venture
 
                     # Look at each slice of these elements
-                    for idx_iii, s1s2 in enumerate(
-                        zip_longest(*s1s2_elements), start=1
-                    ):
+                    for idx_iii, s1s2 in enumerate(zip_longest(*s1s2_elements), start=1):
                         if self.is_all_args_none(s1s2):
                             continue
                         # print(f"{idx_i}:{idx_ii}:{idx_iii} {s1s2}, {parent_type=}")
@@ -429,13 +416,9 @@ class Knackly_Writer:
 
                         # s1s2s3 information
                         s1s2s3_elements = s1s2s3_names, s1s2s3_titles
-                        s1s2s3_elements = tuple(
-                            [self.listify(x) for x in s1s2s3_elements]
-                        )
+                        s1s2s3_elements = tuple([self.listify(x) for x in s1s2s3_elements])
                         # Look at each slice of these elements
-                        for idx_iv, s1s2s3 in enumerate(
-                            zip_longest(*s1s2s3_elements), start=1
-                        ):
+                        for idx_iv, s1s2s3 in enumerate(zip_longest(*s1s2s3_elements), start=1):
                             if self.is_all_args_none(s1s2s3):
                                 continue
                             name, title = s1s2s3
@@ -458,13 +441,9 @@ class Knackly_Writer:
 
                         # s1s2o1 information
                         s1s2o1_elements = s1s2o1_names, s1s2o1_titles
-                        s1s2o1_elements = tuple(
-                            [self.listify(x) for x in s1s2o1_elements]
-                        )
+                        s1s2o1_elements = tuple([self.listify(x) for x in s1s2o1_elements])
                         # Look at each slice of these elements
-                        for idx_iv, s1s2o1 in enumerate(
-                            zip_longest(*s1s2o1_elements), start=1
-                        ):
+                        for idx_iv, s1s2o1 in enumerate(zip_longest(*s1s2o1_elements), start=1):
                             if self.is_all_args_none(s1s2o1):
                                 continue
                             name, title = s1s2o1
@@ -498,17 +477,13 @@ class Knackly_Writer:
                             del knackly_s1s2["Signer2Owners"]
 
                         # Add it to the list if it is relevant
-                        if (len(knackly_s1s2) == 1 and "id$" in knackly_s1s2) or (
-                            name is None and type_ is None and state is None
-                        ):
+                        if (len(knackly_s1s2) == 1 and "id$" in knackly_s1s2) or (name is None and type_ is None and state is None):
                             continue
 
                         if parent_type not in ["trust", "joint venture"]:
                             knackly_s1["Signer1Signers"].append(knackly_s1s2)
                         else:
-                            knackly_s1["Signer1VenturersOrTrustees"].append(
-                                knackly_s1s2
-                            )
+                            knackly_s1["Signer1VenturersOrTrustees"].append(knackly_s1s2)
 
                     # s1o1 information
                     s1o1_elements = (
@@ -522,9 +497,7 @@ class Knackly_Writer:
                     s1o1_elements = tuple([self.listify(x) for x in s1o1_elements])
 
                     # Look at each slice of these elements
-                    for idx_iii, s1o1 in enumerate(
-                        zip_longest(*s1o1_elements), start=1
-                    ):
+                    for idx_iii, s1o1 in enumerate(zip_longest(*s1o1_elements), start=1):
                         if self.is_all_args_none(s1o1):
                             continue
                         # print(f"{idx_i}:{idx_ii}:{idx_iii} {s1o1}")
@@ -549,14 +522,10 @@ class Knackly_Writer:
 
                         # s1o1o2 information
                         s1o1o2_elements = (s1o1o2_names, s1o1o2_titles)
-                        s1o1o2_elements = tuple(
-                            [self.listify(x) for x in s1o1o2_elements]
-                        )
+                        s1o1o2_elements = tuple([self.listify(x) for x in s1o1o2_elements])
 
                         # Look at each slice of these elements
-                        for idx_iv, s1o1o2 in enumerate(
-                            zip_longest(*s1o1o2_elements), start=1
-                        ):
+                        for idx_iv, s1o1o2 in enumerate(zip_longest(*s1o1o2_elements), start=1):
                             if self.is_all_args_none(s1o1o2):
                                 continue
                             # print(f"{idx_i}:{idx_ii}:{idx_iii}:{idx_iv} {s1o1o2}")
@@ -640,9 +609,7 @@ class Knackly_Writer:
                     o1o2_elements = tuple([self.listify(x) for x in o1o2_elements])
 
                     # Look at each slice of these elements
-                    for idx_iii, o1o2 in enumerate(
-                        zip_longest(*o1o2_elements), start=1
-                    ):
+                    for idx_iii, o1o2 in enumerate(zip_longest(*o1o2_elements), start=1):
                         if self.is_all_args_none(o1o2):
                             continue
                         # print(f"{idx_i}:{idx_ii}:{idx_iii} {o1o2}")
@@ -707,9 +674,7 @@ class Knackly_Writer:
             dict: A dictionary containing information about various properties, and general information about all the properties.
         """
 
-        def senior_lien_row(
-            name: str, date: str, instrument: str, trustor: str, trustee: str
-        ) -> dict:
+        def senior_lien_row(name: str, date: str, instrument: str, trustor: str, trustee: str) -> dict:
             """Helper function to create a single senior_lien_row object.
 
             Args:
@@ -778,9 +743,7 @@ class Knackly_Writer:
             result["partialReleaseExpert"] = "Release Price"
 
         if governing_law_county is not None:
-            result["arbitrationCounty"] = (
-                f"{governing_law_state}-{governing_law_county[:-2]}"
-            )
+            result["arbitrationCounty"] = f"{governing_law_state}-{governing_law_county[:-2]}"
 
         # Now look at actual properties
         property_components = self.anx.parse_multiple(
@@ -815,9 +778,7 @@ class Knackly_Writer:
             "Property Include PUD TF",
         )
         # Make sure that everything is a list
-        property_components = [
-            item if isinstance(item, list) else [item] for item in property_components
-        ]
+        property_components = [item if isinstance(item, list) else [item] for item in property_components]
 
         properties = []
         for hotdocs_property_info in zip_longest(*property_components):
@@ -878,19 +839,13 @@ class Knackly_Writer:
             }
 
             # Handle converting type_ from HD standard to Knackly standard
-            if (
-                type_ == "1-6 Single Family Residence"
-                or type_ == "1-4 Single Family Residence"
-            ):
+            if type_ == "1-6 Single Family Residence" or type_ == "1-4 Single Family Residence":
                 collateral_property["type"] = "Residential"
             elif type_ == "Commercial Property":
                 collateral_property["type"] = "Commercial"
             elif type_ == "Vacant Land":
                 collateral_property["type"] = "Vacant"
-            elif (
-                type_ == "5+ Multi-Family Property"
-                or type_ == "7+ Multi-Family Property"
-            ):
+            elif type_ == "5+ Multi-Family Property" or type_ == "7+ Multi-Family Property":
                 collateral_property["type"] = "Multi-Family"
 
             # Handle converting rental from t/f to selection
@@ -910,27 +865,17 @@ class Knackly_Writer:
                     {
                         "id$": str(ObjectId()),
                         "PropertyOwner": self.uuid_map["Borrowers"][hd_borrower_key],
-                        "Vesting": (
-                            hd_vesting
-                            if hd_vesting != "married"
-                            else "married [vested with next borrower]"
-                        ),
+                        "Vesting": (hd_vesting if hd_vesting != "married" else "married [vested with next borrower]"),
                     }
-                    for hd_borrower_key, hd_vesting in zip_longest(
-                        prop_borrower_dmc, vesting
-                    )
+                    for hd_borrower_key, hd_vesting in zip_longest(prop_borrower_dmc, vesting)
                     if not self.is_all_args_none([hd_borrower_key, hd_vesting])
                 ]
 
-            if collateral_property["PropertyOwners"] is None or self.is_all_args_none(
-                collateral_property["PropertyOwners"]
-            ):
+            if collateral_property["PropertyOwners"] is None or self.is_all_args_none(collateral_property["PropertyOwners"]):
                 collateral_property["PropertyOwners"] = None
 
             # Handle senior lien stuff
-            if self.is_all_args_none(
-                (senior_name, date, instrument_num, senior_trustor, senior_trustee)
-            ):
+            if self.is_all_args_none((senior_name, date, instrument_num, senior_trustor, senior_trustee)):
                 collateral_property["seniorLiens"] = None
             else:
                 senior_name = self.listify(senior_name)
@@ -954,17 +899,11 @@ class Knackly_Writer:
             if len(collateral_property) == 1 and "id$" in collateral_property:
                 continue
             # Another edge case to exclude
-            elif (
-                len(collateral_property) == 2
-                and "id$" in collateral_property
-                and "isRental" in collateral_property
-            ):
+            elif len(collateral_property) == 2 and "id$" in collateral_property and "isRental" in collateral_property:
                 continue
 
             # Add property data to temp_result as well as the Knackly_Writer's uuid_map
-            self.uuid_map["Properties"].update(
-                {property_key: collateral_property["id$"]}
-            )
+            self.uuid_map["Properties"].update({property_key: collateral_property["id$"]})
             properties.append(self.remove_none_values(collateral_property))
 
         result["properties"] = properties
@@ -985,33 +924,15 @@ class Knackly_Writer:
             """
             result = {
                 "id$": str(ObjectId()),
-                "margin": self.anx.parse_NumValue(
-                    self.anx.find_answer("Variable Margin NM")
-                ),
-                "isDailyFloatingRate": self.anx.parse_TFValue(
-                    self.anx.find_answer("Rate Adjust Daily TF")
-                ),
-                "changeDate": self.anx.parse_NumValue(
-                    self.anx.find_answer("Variable Change Date NU")
-                ),
-                "armAdjustmentPeriod": self.anx.parse_NumValue(
-                    self.anx.find_answer("Variable ARM Adjustment Period NM")
-                ),
-                "firstInterestCap": self.anx.parse_NumValue(
-                    self.anx.find_answer("Variable First Interest Cap NM")
-                ),
-                "subsequentInterestCap": self.anx.parse_NumValue(
-                    self.anx.find_answer("Variable Subsequent Interest Cap NM")
-                ),
-                "floorRate": self.anx.parse_NumValue(
-                    self.anx.find_answer("Variable Floor Rate NM")
-                ),
-                "maximumInterestRateCap": self.anx.parse_NumValue(
-                    self.anx.find_answer("Variable Maximum interest Rate Cap NM")
-                ),
-                "interestRateIndex": self.anx.parse_MCValue(
-                    self.anx.find_answer("Variable Interest Rate Index MC")
-                ),
+                "margin": self.anx.parse_NumValue(self.anx.find_answer("Variable Margin NM")),
+                "isDailyFloatingRate": self.anx.parse_TFValue(self.anx.find_answer("Rate Adjust Daily TF")),
+                "changeDate": self.anx.parse_NumValue(self.anx.find_answer("Variable Change Date NU")),
+                "armAdjustmentPeriod": self.anx.parse_NumValue(self.anx.find_answer("Variable ARM Adjustment Period NM")),
+                "firstInterestCap": self.anx.parse_NumValue(self.anx.find_answer("Variable First Interest Cap NM")),
+                "subsequentInterestCap": self.anx.parse_NumValue(self.anx.find_answer("Variable Subsequent Interest Cap NM")),
+                "floorRate": self.anx.parse_NumValue(self.anx.find_answer("Variable Floor Rate NM")),
+                "maximumInterestRateCap": self.anx.parse_NumValue(self.anx.find_answer("Variable Maximum interest Rate Cap NM")),
+                "interestRateIndex": self.anx.parse_MCValue(self.anx.find_answer("Variable Interest Rate Index MC")),
             }
 
             return self.remove_none_values(result)
@@ -1038,12 +959,8 @@ class Knackly_Writer:
                 result = {"id$": str(ObjectId()), "rate": rate, "duration": duration}
                 return self.remove_none_values(result)
 
-            interest_step_rate_nu = self.anx.parse_RptValue(
-                self.anx.find_answer("Interest Step Rate NU")
-            )
-            interest_step_duration_nu = self.anx.parse_RptValue(
-                self.anx.find_answer("Interest Step Duration NU")
-            )
+            interest_step_rate_nu = self.anx.parse_RptValue(self.anx.find_answer("Interest Step Rate NU"))
+            interest_step_duration_nu = self.anx.parse_RptValue(self.anx.find_answer("Interest Step Duration NU"))
 
             # If either of the options are not found in the .anx file, return None immediately
             if interest_step_rate_nu is None or interest_step_duration_nu is None:
@@ -1052,67 +969,33 @@ class Knackly_Writer:
             result = [
                 create_interest_step(rate, duration)
                 for rate, duration in zip_longest(
-                    self.anx.parse_RptValue(
-                        self.anx.find_answer("Interest Step Rate NU")
-                    ),
-                    self.anx.parse_RptValue(
-                        self.anx.find_answer("Interest Step Duration NU")
-                    ),
+                    self.anx.parse_RptValue(self.anx.find_answer("Interest Step Rate NU")),
+                    self.anx.parse_RptValue(self.anx.find_answer("Interest Step Duration NU")),
                 )
             ]
             return result
 
         result = {
             "id$": str(ObjectId()),
-            "closingDate": self.anx.parse_DateValue(
-                self.anx.find_answer("Document Date DT")
-            ),
-            "loanNumber": self.anx.parse_TextValue(
-                self.anx.find_answer("Loan Number TE")
-            ),
+            "closingDate": self.anx.parse_DateValue(self.anx.find_answer("Document Date DT")),
+            "loanNumber": self.anx.parse_TextValue(self.anx.find_answer("Loan Number TE")),
             "loanTerm": self.anx.parse_NumValue(self.anx.find_answer("Loan Term NU")),
-            "loanAmount1": self.anx.parse_NumValue(
-                self.anx.find_answer("Loan Amount NU")
-            ),
-            "firstPaymentDate": self.anx.parse_DateValue(
-                self.anx.find_answer("First Payment DT")
-            ),
-            "isInterestOnly": self.anx.parse_TFValue(
-                self.anx.find_answer("Loan Type Interest Only TF")
-            ),
-            "interestOnlyMonths": self.anx.parse_NumValue(
-                self.anx.find_answer("Variable Interest Rate Interest Only Period NM")
-            ),
-            "amortizationMonths": self.anx.parse_NumValue(
-                self.anx.find_answer("Amortization Period NU")
-            ),
+            "loanAmount1": self.anx.parse_NumValue(self.anx.find_answer("Loan Amount NU")),
+            "firstPaymentDate": self.anx.parse_DateValue(self.anx.find_answer("First Payment DT")),
+            "isInterestOnly": self.anx.parse_TFValue(self.anx.find_answer("Loan Type Interest Only TF")),
+            "interestOnlyMonths": self.anx.parse_NumValue(self.anx.find_answer("Variable Interest Rate Interest Only Period NM")),
+            "amortizationMonths": self.anx.parse_NumValue(self.anx.find_answer("Amortization Period NU")),
             # ---
-            "interestRate": self.anx.parse_NumValue(
-                self.anx.find_answer("Interest Rate NU")
-            ),
-            "defaultInterestRate": self.anx.parse_NumValue(
-                self.anx.find_answer("Default Interest Rate NU")
-            ),
-            "interestCalcType": self.anx.parse_MCValue(
-                self.anx.find_answer("Interest Calc Type MC")
-            ),
-            "isVariableRate": self.anx.parse_TFValue(
-                self.anx.find_answer("Loan Type Variable TF")
-            ),
-            "isInterestStep": self.anx.parse_TFValue(
-                self.anx.find_answer("Interest Step TF")
-            ),
+            "interestRate": self.anx.parse_NumValue(self.anx.find_answer("Interest Rate NU")),
+            "defaultInterestRate": self.anx.parse_NumValue(self.anx.find_answer("Default Interest Rate NU")),
+            "interestCalcType": self.anx.parse_MCValue(self.anx.find_answer("Interest Calc Type MC")),
+            "isVariableRate": self.anx.parse_TFValue(self.anx.find_answer("Loan Type Variable TF")),
+            "isInterestStep": self.anx.parse_TFValue(self.anx.find_answer("Interest Step TF")),
             "interestStepSpreadsheet": interest_step_spreadsheet_setup(),
             "isMERSLoan": self.anx.parse_TFValue(self.anx.find_answer("MERS TF")),
-            "mersNumber": self.anx.parse_TextValue(
-                self.anx.find_answer("MERS Number TE")
-            ),
-            "MaturityDate": self.anx.parse_DateValue(
-                self.anx.find_answer("Maturity DT")
-            ),
-            "paymentInAdvance": self.anx.parse_TFValue(
-                self.anx.find_answer("Payment in Advance TF")
-            ),
+            "mersNumber": self.anx.parse_TextValue(self.anx.find_answer("MERS Number TE")),
+            "MaturityDate": self.anx.parse_DateValue(self.anx.find_answer("Maturity DT")),
+            "paymentInAdvance": self.anx.parse_TFValue(self.anx.find_answer("Payment in Advance TF")),
         }
 
         if result.get("isVariableRate"):
@@ -1143,21 +1026,11 @@ class Knackly_Writer:
             """
             result = {
                 "id$": str(ObjectId()),
-                "isRevolving": self.anx.parse_TFValue(
-                    self.anx.find_answer("Credit Line Revolving TF")
-                ),
-                "minAdvanceRequest": self.anx.parse_NumValue(
-                    self.anx.find_answer("Credit Line Minimum Request NU")
-                ),
-                "advanceRequestFee": self.anx.parse_NumValue(
-                    self.anx.find_answer("Credit Line Request Fee NU")
-                ),
-                "maxDrawsPerMonth": self.anx.parse_NumValue(
-                    self.anx.find_answer("Credit Line Maximum Draws NU")
-                ),
-                "minOutstandingPrincipalBal": self.anx.parse_NumValue(
-                    self.anx.find_answer("Credit Line Minimum Balance NU")
-                ),
+                "isRevolving": self.anx.parse_TFValue(self.anx.find_answer("Credit Line Revolving TF")),
+                "minAdvanceRequest": self.anx.parse_NumValue(self.anx.find_answer("Credit Line Minimum Request NU")),
+                "advanceRequestFee": self.anx.parse_NumValue(self.anx.find_answer("Credit Line Request Fee NU")),
+                "maxDrawsPerMonth": self.anx.parse_NumValue(self.anx.find_answer("Credit Line Maximum Draws NU")),
+                "minOutstandingPrincipalBal": self.anx.parse_NumValue(self.anx.find_answer("Credit Line Minimum Balance NU")),
             }
 
             return self.remove_none_values(result)
@@ -1175,48 +1048,24 @@ class Knackly_Writer:
                 Returns:
                     list[dict] | None: A list of dictionaries representing the penalty percentages the user entered, or `None` if they didn't enter one.
                 """
-                number = self.anx.parse_RptValue(
-                    self.anx.find_answer("Prepay Non Percent NU")
-                )
+                number = self.anx.parse_RptValue(self.anx.find_answer("Prepay Non Percent NU"))
                 if number is None:
                     return None
 
-                return [
-                    {"id$": str(ObjectId()), "Percent": n}
-                    for n in number
-                    if n is not None
-                ]
+                return [{"id$": str(ObjectId()), "Percent": n} for n in number if n is not None]
 
             result = {
                 "id$": str(ObjectId()),
-                "PrepaymentPenalty": self.anx.parse_MCValue(
-                    self.anx.find_answer("Prepay MC")
-                ),
-                "PrepayTerm": self.anx.parse_NumValue(
-                    self.anx.find_answer("Prepay Term NU")
-                ),
-                "IsPrepay20Percent": self.anx.parse_TFValue(
-                    self.anx.find_answer("Prepay 20 Percent TF")
-                ),
-                "PenatlyCalculatedFrom": self.anx.parse_MCValue(
-                    self.anx.find_answer("Prepay Lock Penalty MC")
-                ),
-                "IsPrepayLockYield": self.anx.parse_TFValue(
-                    self.anx.find_answer("Prepay Lock Yield TF")
-                ),
+                "PrepaymentPenalty": self.anx.parse_MCValue(self.anx.find_answer("Prepay MC")),
+                "PrepayTerm": self.anx.parse_NumValue(self.anx.find_answer("Prepay Term NU")),
+                "IsPrepay20Percent": self.anx.parse_TFValue(self.anx.find_answer("Prepay 20 Percent TF")),
+                "PenatlyCalculatedFrom": self.anx.parse_MCValue(self.anx.find_answer("Prepay Lock Penalty MC")),
+                "IsPrepayLockYield": self.anx.parse_TFValue(self.anx.find_answer("Prepay Lock Yield TF")),
                 "PrepayNonlinear": prepay_non_linear_setup(),
-                "PrepayLockDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Prepay Lock Dollars NU")
-                ),
-                "PrepayLockMonths": self.anx.parse_NumValue(
-                    self.anx.find_answer("Prepay Lock Months NU")
-                ),
-                "PrepayLockPercent": self.anx.parse_NumValue(
-                    self.anx.find_answer("Prepay Lock Percent NU")
-                ),
-                "prepaymentPremiumMonths": self.anx.parse_NumValue(
-                    self.anx.find_answer("Prepayment Premium Months NU")
-                ),
+                "PrepayLockDollars": self.anx.parse_NumValue(self.anx.find_answer("Prepay Lock Dollars NU")),
+                "PrepayLockMonths": self.anx.parse_NumValue(self.anx.find_answer("Prepay Lock Months NU")),
+                "PrepayLockPercent": self.anx.parse_NumValue(self.anx.find_answer("Prepay Lock Percent NU")),
+                "prepaymentPremiumMonths": self.anx.parse_NumValue(self.anx.find_answer("Prepayment Premium Months NU")),
             }
 
             return self.remove_none_values(result)
@@ -1230,12 +1079,8 @@ class Knackly_Writer:
                 Returns:
                     list[dict] | None: A list of the completion objects if any exist, otherwise `None`.
                 """
-                percents = self.anx.parse_RptValue(
-                    self.anx.find_answer("Construction Contract Percent NU")
-                )
-                days = self.anx.parse_RptValue(
-                    self.anx.find_answer("Construction Contract Days NU")
-                )
+                percents = self.anx.parse_RptValue(self.anx.find_answer("Construction Contract Percent NU"))
+                days = self.anx.parse_RptValue(self.anx.find_answer("Construction Contract Days NU"))
 
                 # Make sure that the percents and days lists aren't both None
                 if self.is_all_args_none(locals()):
@@ -1255,79 +1100,35 @@ class Knackly_Writer:
 
             result = {
                 "id$": str(ObjectId()),
-                "reserve": self.anx.parse_NumValue(
-                    self.anx.find_answer("Holdback Amount NU")
-                ),
-                "IsNonDutch": self.anx.parse_TFValue(
-                    self.anx.find_answer("Non Dutch TF")
-                ),
-                "Type": self.anx.parse_MCValue(
-                    self.anx.find_answer("Construction Type MC")
-                ),
-                "IsExcludeSchedule": self.anx.parse_TFValue(
-                    self.anx.find_answer("Exclude Disbursement Schedule TF")
-                ),
-                "IsRetainageRequired": self.anx.parse_TFValue(
-                    self.anx.find_answer("Retainage Required TF")
-                ),
-                "IsThirdPartyFCA": self.anx.parse_TFValue(
-                    self.anx.find_answer("Construction Fund Control TF")
-                ),
-                "isAssignmentOfPermits": self.anx.parse_TFValue(
-                    self.anx.find_answer("Assignment of Permits TF")
-                ),
-                "isInspectionFee": self.anx.parse_TFValue(
-                    self.anx.find_answer("seth_Inspection Fee TF")
-                ),
-                "inspectionFee": self.anx.parse_NumValue(
-                    self.anx.find_answer("Inspection Fee NU")
-                ),
-                "IsConstructionContract": self.anx.parse_TFValue(
-                    self.anx.find_answer("Construction Contract TF")
-                ),
-                "ContractorName": self.anx.parse_TextValue(
-                    self.anx.find_answer("Construction Contractor TE")
-                ),
-                "IsDesignContract": self.anx.parse_TFValue(
-                    self.anx.find_answer("Construction Design Contract TF")
-                ),
-                "DesignerName": self.anx.parse_TextValue(
-                    self.anx.find_answer("Construction Designer TE")
-                ),
-                "isThirdPartyConstructionGuaranty": self.anx.parse_TFValue(
-                    self.anx.find_answer("Guaranty of Completion TF")
-                ),
-                "completionGuarantors": self.anx.parse_RptValue(
-                    self.anx.find_answer("Construction Guaranty Name TX")
-                ),
-                "doesConstructionBorrowerContribute": self.anx.parse_TFValue(
-                    self.anx.find_answer("Construction Borrower Contribution TF")
-                ),
-                "constructionBorrowerContribution": self.anx.parse_NumValue(
-                    self.anx.find_answer("Construction Borrower Contribution NU")
-                ),
+                "reserve": self.anx.parse_NumValue(self.anx.find_answer("Holdback Amount NU")),
+                "IsNonDutch": self.anx.parse_TFValue(self.anx.find_answer("Non Dutch TF")),
+                "Type": self.anx.parse_MCValue(self.anx.find_answer("Construction Type MC")),
+                "IsExcludeSchedule": self.anx.parse_TFValue(self.anx.find_answer("Exclude Disbursement Schedule TF")),
+                "IsRetainageRequired": self.anx.parse_TFValue(self.anx.find_answer("Retainage Required TF")),
+                "IsThirdPartyFCA": self.anx.parse_TFValue(self.anx.find_answer("Construction Fund Control TF")),
+                "isAssignmentOfPermits": self.anx.parse_TFValue(self.anx.find_answer("Assignment of Permits TF")),
+                "isInspectionFee": self.anx.parse_TFValue(self.anx.find_answer("seth_Inspection Fee TF")),
+                "inspectionFee": self.anx.parse_NumValue(self.anx.find_answer("Inspection Fee NU")),
+                "IsConstructionContract": self.anx.parse_TFValue(self.anx.find_answer("Construction Contract TF")),
+                "ContractorName": self.anx.parse_TextValue(self.anx.find_answer("Construction Contractor TE")),
+                "IsDesignContract": self.anx.parse_TFValue(self.anx.find_answer("Construction Design Contract TF")),
+                "DesignerName": self.anx.parse_TextValue(self.anx.find_answer("Construction Designer TE")),
+                "isThirdPartyConstructionGuaranty": self.anx.parse_TFValue(self.anx.find_answer("Guaranty of Completion TF")),
+                "completionGuarantors": self.anx.parse_RptValue(self.anx.find_answer("Construction Guaranty Name TX")),
+                "doesConstructionBorrowerContribute": self.anx.parse_TFValue(self.anx.find_answer("Construction Borrower Contribution TF")),
+                "constructionBorrowerContribution": self.anx.parse_NumValue(self.anx.find_answer("Construction Borrower Contribution NU")),
             }
 
             if result.get("isAssignmentOfPermits"):
-                result["assignmentOfPermitProperties"] = list(
-                    self.uuid_map["Properties"].values()
-                )
+                result["assignmentOfPermitProperties"] = list(self.uuid_map["Properties"].values())
             if result.get("IsConstructionContract"):
                 result.update(
                     {
                         "Contractor": self.address(
-                            street=self.anx.parse_TextValue(
-                                self.anx.find_answer("Contractor Street Address TE")
-                            ),
-                            city=self.anx.parse_TextValue(
-                                self.anx.find_answer("Contractor City TE")
-                            ),
-                            state=self.anx.parse_MCValue(
-                                self.anx.find_answer("Contractor State MC")
-                            ),
-                            zip=self.anx.parse_TextValue(
-                                self.anx.find_answer("Contractor Zip TE")
-                            ),
+                            street=self.anx.parse_TextValue(self.anx.find_answer("Contractor Street Address TE")),
+                            city=self.anx.parse_TextValue(self.anx.find_answer("Contractor City TE")),
+                            state=self.anx.parse_MCValue(self.anx.find_answer("Contractor State MC")),
+                            zip=self.anx.parse_TextValue(self.anx.find_answer("Contractor Zip TE")),
                         ),
                         "Completion": completion_setup(),
                     }
@@ -1336,18 +1137,10 @@ class Knackly_Writer:
                 result.update(
                     {
                         "Designer": self.address(
-                            street=self.anx.parse_TextValue(
-                                self.anx.find_answer("Designer Street Address TE")
-                            ),
-                            city=self.anx.parse_TextValue(
-                                self.anx.find_answer("Designer City TE")
-                            ),
-                            state=self.anx.parse_MCValue(
-                                self.anx.find_answer("Designer State MC")
-                            ),
-                            zip=self.anx.parse_TextValue(
-                                self.anx.find_answer("Designer Zip TE")
-                            ),
+                            street=self.anx.parse_TextValue(self.anx.find_answer("Designer Street Address TE")),
+                            city=self.anx.parse_TextValue(self.anx.find_answer("Designer City TE")),
+                            state=self.anx.parse_MCValue(self.anx.find_answer("Designer State MC")),
+                            zip=self.anx.parse_TextValue(self.anx.find_answer("Designer Zip TE")),
                         )
                     }
                 )
@@ -1364,25 +1157,17 @@ class Knackly_Writer:
                     str: "None" if there are no deferred broker fees. "Dollar" if there was a dollar amount entered. "Percent" otherwise.
                 """
                 # Old version
-                broker_fees_tf = self.anx.parse_TFValue(
-                    self.anx.find_answer("Deferred Broker Fees TF")
-                )
+                broker_fees_tf = self.anx.parse_TFValue(self.anx.find_answer("Deferred Broker Fees TF"))
 
                 # New version
-                broker_fees_mc = self.anx.parse_MCValue(
-                    self.anx.find_answer("Deferred Broker Fees MC")
-                )
+                broker_fees_mc = self.anx.parse_MCValue(self.anx.find_answer("Deferred Broker Fees MC"))
 
                 is_old_version = broker_fees_tf is not None and broker_fees_mc is None
 
-                if (is_old_version and broker_fees_tf is False) or (
-                    broker_fees_mc == "None"
-                ):
+                if (is_old_version and broker_fees_tf is False) or (broker_fees_mc == "None"):
                     return "None"  # We return the string "None" instead of the singleton `None` here because that is the actual name of the option in Knackly.
 
-                percentage_amount = self.anx.parse_NumValue(
-                    self.anx.find_answer("Deferred Broker Fee Percent NU")
-                )
+                percentage_amount = self.anx.parse_NumValue(self.anx.find_answer("Deferred Broker Fee Percent NU"))
 
                 if percentage_amount:
                     return "Percentage of Loan"
@@ -1391,123 +1176,47 @@ class Knackly_Writer:
 
             result = {
                 "id$": str(ObjectId()),
-                "insurancePayment": self.anx.parse_NumValue(
-                    self.anx.find_answer("Insurance Payment NU")
-                ),
-                "isSBALoan": self.anx.parse_TFValue(
-                    self.anx.find_answer("SBA Loan TF")
-                ),
-                "sba_ApprovalDate": self.anx.parse_DateValue(
-                    self.anx.find_answer("SBA Approval DT")
-                ),
-                "sba_LoanNumber": self.anx.parse_TextValue(
-                    self.anx.find_answer("SBA Loan Number TX")
-                ),
-                "isCannabisLoan": self.anx.parse_TFValue(
-                    self.anx.find_answer("Cannabis Loan TF")
-                ),
-                "isAffiliateLoan": self.anx.parse_TFValue(
-                    self.anx.find_answer("Affiliate Loan TF")
-                ),
-                "isSpecialPurposeEntity": self.anx.parse_TFValue(
-                    self.anx.find_answer("Special Purpose Entity TF")
-                ),
-                "isRecycledSPE": self.anx.parse_TFValue(
-                    self.anx.find_answer("SPE Recycled TF")
-                ),
-                "isDebtServiceCoverageRatio": self.anx.parse_TFValue(
-                    self.anx.find_answer("DSCR TF")
-                ),
+                "insurancePayment": self.anx.parse_NumValue(self.anx.find_answer("Insurance Payment NU")),
+                "isSBALoan": self.anx.parse_TFValue(self.anx.find_answer("SBA Loan TF")),
+                "sba_ApprovalDate": self.anx.parse_DateValue(self.anx.find_answer("SBA Approval DT")),
+                "sba_LoanNumber": self.anx.parse_TextValue(self.anx.find_answer("SBA Loan Number TX")),
+                "isCannabisLoan": self.anx.parse_TFValue(self.anx.find_answer("Cannabis Loan TF")),
+                "isAffiliateLoan": self.anx.parse_TFValue(self.anx.find_answer("Affiliate Loan TF")),
+                "isSpecialPurposeEntity": self.anx.parse_TFValue(self.anx.find_answer("Special Purpose Entity TF")),
+                "isRecycledSPE": self.anx.parse_TFValue(self.anx.find_answer("SPE Recycled TF")),
+                "isDebtServiceCoverageRatio": self.anx.parse_TFValue(self.anx.find_answer("DSCR TF")),
                 "ratio": self.anx.parse_NumValue(self.anx.find_answer("DSCR NU")),
-                "isAutoExtension": self.anx.parse_TFValue(
-                    self.anx.find_answer("Auto Extension TF")
-                ),
-                "isExtension": self.anx.parse_TFValue(
-                    self.anx.find_answer("Extension TF")
-                ),
-                "extensionNum": self.anx.parse_NumValue(
-                    self.anx.find_answer("Extension Number NU")
-                ),
-                "extensionMonths": self.anx.parse_NumValue(
-                    self.anx.find_answer("Extension Months NU")
-                ),
-                "extensionType": self.anx.parse_MCValue(
-                    self.anx.find_answer("Extension Fee Type MC")
-                ),
-                "extensionFeePercent": self.anx.parse_NumValue(
-                    self.anx.find_answer("Extension Fee NU")
-                ),
-                "extensionFeeAmount": self.anx.parse_NumValue(
-                    self.anx.find_answer("Extension Fee Amount NU")
-                ),
-                "isLockbox": self.anx.parse_TFValue(
-                    self.anx.find_answer("Rental Income LockBox TF")
-                ),
-                "lockbox_Type": self.anx.parse_MCValue(
-                    self.anx.find_answer("Rental Income Lockbox MC")
-                ),
-                "lockbox_Bank": self.anx.parse_TextValue(
-                    self.anx.find_answer("Rental Income Lockbox Bank TE")
-                ),
-                "lockbox_FirstRentDate": self.anx.parse_DateValue(
-                    self.anx.find_answer("Rental Income Lockbox DT")
-                ),
-                "isServicingFees": self.anx.parse_TFValue(
-                    self.anx.find_answer("Servicing Fees TF")
-                ),
-                "servicingFee": self.anx.parse_NumValue(
-                    self.anx.find_answer("Servicing Fees Amount NU")
-                ),
+                "isAutoExtension": self.anx.parse_TFValue(self.anx.find_answer("Auto Extension TF")),
+                "isExtension": self.anx.parse_TFValue(self.anx.find_answer("Extension TF")),
+                "extensionNum": self.anx.parse_NumValue(self.anx.find_answer("Extension Number NU")),
+                "extensionMonths": self.anx.parse_NumValue(self.anx.find_answer("Extension Months NU")),
+                "extensionType": self.anx.parse_MCValue(self.anx.find_answer("Extension Fee Type MC")),
+                "extensionFeePercent": self.anx.parse_NumValue(self.anx.find_answer("Extension Fee NU")),
+                "extensionFeeAmount": self.anx.parse_NumValue(self.anx.find_answer("Extension Fee Amount NU")),
+                "isLockbox": self.anx.parse_TFValue(self.anx.find_answer("Rental Income LockBox TF")),
+                "lockbox_Type": self.anx.parse_MCValue(self.anx.find_answer("Rental Income Lockbox MC")),
+                "lockbox_Bank": self.anx.parse_TextValue(self.anx.find_answer("Rental Income Lockbox Bank TE")),
+                "lockbox_FirstRentDate": self.anx.parse_DateValue(self.anx.find_answer("Rental Income Lockbox DT")),
+                "isServicingFees": self.anx.parse_TFValue(self.anx.find_answer("Servicing Fees TF")),
+                "servicingFee": self.anx.parse_NumValue(self.anx.find_answer("Servicing Fees Amount NU")),
                 "isExit": self.anx.parse_TFValue(self.anx.find_answer("Exit Fee TF")),
-                "exitDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Exit Fee Amount NU")
-                ),
-                "isTermination": self.anx.parse_TFValue(
-                    self.anx.find_answer("Termination Fee TF")
-                ),
-                "terminationDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Termination Fee AMT NU")
-                ),
+                "exitDollars": self.anx.parse_NumValue(self.anx.find_answer("Exit Fee Amount NU")),
+                "isTermination": self.anx.parse_TFValue(self.anx.find_answer("Termination Fee TF")),
+                "terminationDollars": self.anx.parse_NumValue(self.anx.find_answer("Termination Fee AMT NU")),
                 "deferredBrokerType": deferred_broker_type_setup(),
-                "deferredBrokerDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Deferred Broker Fee NU")
-                ),
-                "deferredBrokerPercent": self.anx.parse_NumValue(
-                    self.anx.find_answer("Deferred Broker Fee Percent NU")
-                ),
-                "deferredOriginationType": self.anx.parse_MCValue(
-                    self.anx.find_answer("Deferred Origination Fees MC")
-                ),
-                "deferredOriginationDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Deferred Origination Fee NU")
-                ),
-                "deferredOriginationPercent": self.anx.parse_NumValue(
-                    self.anx.find_answer("Deferred Origination Fee Percent NU")
-                ),
-                "isDefaultFee": self.anx.parse_TFValue(
-                    self.anx.find_answer("Default Fee TF")
-                ),
-                "defaultFeeAMT": self.anx.parse_NumValue(
-                    self.anx.find_answer("Default Fee AMT NU")
-                ),
-                "iseResiLoan": self.anx.parse_TFValue(
-                    self.anx.find_answer("eResi Loan TF")
-                ),
-                "isFStreetLoan": self.anx.parse_TFValue(
-                    self.anx.find_answer("F Street Loan TF")
-                ),
-                "plDirectOriginationFeeNU": self.anx.parse_NumValue(
-                    self.anx.find_answer("PLDirect Origination Fee NU")
-                ),
-                "plDirectOriginationFee": self.anx.parse_TFValue(
-                    self.anx.find_answer("PLDirect Origination Fee TF")
-                ),
-                "isWallisLife": self.anx.parse_TFValue(
-                    self.anx.find_answer("Wallis Life Insurance TF")
-                ),
-                "silverHillDeferredLoan": self.anx.parse_TFValue(
-                    self.anx.find_answer("Silver Hill Deferred Loan TF")
-                ),
+                "deferredBrokerDollars": self.anx.parse_NumValue(self.anx.find_answer("Deferred Broker Fee NU")),
+                "deferredBrokerPercent": self.anx.parse_NumValue(self.anx.find_answer("Deferred Broker Fee Percent NU")),
+                "deferredOriginationType": self.anx.parse_MCValue(self.anx.find_answer("Deferred Origination Fees MC")),
+                "deferredOriginationDollars": self.anx.parse_NumValue(self.anx.find_answer("Deferred Origination Fee NU")),
+                "deferredOriginationPercent": self.anx.parse_NumValue(self.anx.find_answer("Deferred Origination Fee Percent NU")),
+                "isDefaultFee": self.anx.parse_TFValue(self.anx.find_answer("Default Fee TF")),
+                "defaultFeeAMT": self.anx.parse_NumValue(self.anx.find_answer("Default Fee AMT NU")),
+                "iseResiLoan": self.anx.parse_TFValue(self.anx.find_answer("eResi Loan TF")),
+                "isFStreetLoan": self.anx.parse_TFValue(self.anx.find_answer("F Street Loan TF")),
+                "plDirectOriginationFeeNU": self.anx.parse_NumValue(self.anx.find_answer("PLDirect Origination Fee NU")),
+                "plDirectOriginationFee": self.anx.parse_TFValue(self.anx.find_answer("PLDirect Origination Fee TF")),
+                "isWallisLife": self.anx.parse_TFValue(self.anx.find_answer("Wallis Life Insurance TF")),
+                "silverHillDeferredLoan": self.anx.parse_TFValue(self.anx.find_answer("Silver Hill Deferred Loan TF")),
             }
 
             return self.remove_none_values(result)
@@ -1525,15 +1234,11 @@ class Knackly_Writer:
                 Returns:
                     str: `"None"` if there was no debt service reserve. `"Monthly Payments"` if the DSR was in months. Otherwise, `"Dollar Amount"`.
                 """
-                tf_question = self.anx.parse_TFValue(
-                    self.anx.find_answer("Interest Reserve TF")
-                )
+                tf_question = self.anx.parse_TFValue(self.anx.find_answer("Interest Reserve TF"))
                 if tf_question is False:
                     return "None"  # We return the literal string "None" because that is the name of one of the keys in Knackly.
 
-                is_months = self.anx.parse_TFValue(
-                    self.anx.find_answer("Interest Reserve Months TF")
-                )
+                is_months = self.anx.parse_TFValue(self.anx.find_answer("Interest Reserve Months TF"))
                 if is_months:
                     return "Monthly Payments"
                 else:
@@ -1541,64 +1246,26 @@ class Knackly_Writer:
 
             result = {
                 "id$": str(ObjectId()),
-                "IsLender": self.anx.parse_TFValue(
-                    self.anx.find_answer("Lender Holdback TF")
-                ),
-                "LenderDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Lender Holdback NU")
-                ),
-                "isPropertyTax": self.anx.parse_TFValue(
-                    self.anx.find_answer("Real Property Tax Holdback TF")
-                ),
-                "PropertyTaxDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Real Property Tax Holdback NU")
-                ),
-                "isPropertyInsurance": self.anx.parse_TFValue(
-                    self.anx.find_answer("Insurance Holdback TF")
-                ),
-                "PropertyInsuranceDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Insurance Holdback NU")
-                ),
-                "IsCapEx": self.anx.parse_TFValue(
-                    self.anx.find_answer("Capex Holdback TF")
-                ),
-                "CapExDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Capex Holdback NU")
-                ),
-                "IsAppraisal": self.anx.parse_TFValue(
-                    self.anx.find_answer("Appraisal Reserve TF")
-                ),
-                "AppraisalDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Appraisal Reserve Amount NU")
-                ),
-                "appraisalARV": self.anx.parse_NumValue(
-                    self.anx.find_answer("Appraisal ARV NU")
-                ),
-                "DefaultType": self.anx.parse_MCValue(
-                    self.anx.find_answer("Default Reserve MC")
-                ),
-                "DefaultDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Default Reserve Dollars NU")
-                ),
-                "DefaultMonths": self.anx.parse_NumValue(
-                    self.anx.find_answer("Default Reserve Months NU")
-                ),
-                "isOccupancy": self.anx.parse_TFValue(
-                    self.anx.find_answer("Damage Reserve TF")
-                ),
-                "occupancyAmount": self.anx.parse_NumValue(
-                    self.anx.find_answer("Damage Reserve Amount NU")
-                ),
-                "occupancyDeadline": self.anx.parse_DateValue(
-                    self.anx.find_answer("Damage Deadline DT")
-                ),
+                "IsLender": self.anx.parse_TFValue(self.anx.find_answer("Lender Holdback TF")),
+                "LenderDollars": self.anx.parse_NumValue(self.anx.find_answer("Lender Holdback NU")),
+                "isPropertyTax": self.anx.parse_TFValue(self.anx.find_answer("Real Property Tax Holdback TF")),
+                "PropertyTaxDollars": self.anx.parse_NumValue(self.anx.find_answer("Real Property Tax Holdback NU")),
+                "isPropertyInsurance": self.anx.parse_TFValue(self.anx.find_answer("Insurance Holdback TF")),
+                "PropertyInsuranceDollars": self.anx.parse_NumValue(self.anx.find_answer("Insurance Holdback NU")),
+                "IsCapEx": self.anx.parse_TFValue(self.anx.find_answer("Capex Holdback TF")),
+                "CapExDollars": self.anx.parse_NumValue(self.anx.find_answer("Capex Holdback NU")),
+                "IsAppraisal": self.anx.parse_TFValue(self.anx.find_answer("Appraisal Reserve TF")),
+                "AppraisalDollars": self.anx.parse_NumValue(self.anx.find_answer("Appraisal Reserve Amount NU")),
+                "appraisalARV": self.anx.parse_NumValue(self.anx.find_answer("Appraisal ARV NU")),
+                "DefaultType": self.anx.parse_MCValue(self.anx.find_answer("Default Reserve MC")),
+                "DefaultDollars": self.anx.parse_NumValue(self.anx.find_answer("Default Reserve Dollars NU")),
+                "DefaultMonths": self.anx.parse_NumValue(self.anx.find_answer("Default Reserve Months NU")),
+                "isOccupancy": self.anx.parse_TFValue(self.anx.find_answer("Damage Reserve TF")),
+                "occupancyAmount": self.anx.parse_NumValue(self.anx.find_answer("Damage Reserve Amount NU")),
+                "occupancyDeadline": self.anx.parse_DateValue(self.anx.find_answer("Damage Deadline DT")),
                 "DebtServiceType": debt_service_type_setup(),
-                "DebtServiceDollars": self.anx.parse_NumValue(
-                    self.anx.find_answer("Interest Reserve Amount NU")
-                ),
-                "DebtServiceMonths": self.anx.parse_NumValue(
-                    self.anx.find_answer("Interest Reserve Months NU")
-                ),
+                "DebtServiceDollars": self.anx.parse_NumValue(self.anx.find_answer("Interest Reserve Amount NU")),
+                "DebtServiceMonths": self.anx.parse_NumValue(self.anx.find_answer("Interest Reserve Months NU")),
             }
 
             return self.remove_none_values(result)
@@ -1611,58 +1278,34 @@ class Knackly_Writer:
             """
             result = {
                 "id$": str(ObjectId()),
-                "initialTax": self.anx.parse_NumValue(
-                    self.anx.find_answer("Impound Tax NU")
-                ),
-                "initialInsurance": self.anx.parse_NumValue(
-                    self.anx.find_answer("Impound Insurance NU")
-                ),
-                "initialFloodInsurance": self.anx.parse_NumValue(
-                    self.anx.find_answer("Impound Flood NU")
-                ),
-                "monthlyTax": self.anx.parse_NumValue(
-                    self.anx.find_answer("Tax Payment NU")
-                ),
-                "monthlyPropertyInsurance": self.anx.parse_NumValue(
-                    self.anx.find_answer("Insurance Payment NU")
-                ),
-                "monthlyFloodInsurance": self.anx.parse_NumValue(
-                    self.anx.find_answer("First Payment Letter Flood NU")
-                ),
-                "monthlyCapEx": self.anx.parse_NumValue(
-                    self.anx.find_answer("CapEx Impound NU")
-                ),
+                "initialTax": self.anx.parse_NumValue(self.anx.find_answer("Impound Tax NU")),
+                "initialInsurance": self.anx.parse_NumValue(self.anx.find_answer("Impound Insurance NU")),
+                "initialFloodInsurance": self.anx.parse_NumValue(self.anx.find_answer("Impound Flood NU")),
+                "monthlyTax": self.anx.parse_NumValue(self.anx.find_answer("Tax Payment NU")),
+                "monthlyPropertyInsurance": self.anx.parse_NumValue(self.anx.find_answer("Insurance Payment NU")),
+                "monthlyFloodInsurance": self.anx.parse_NumValue(self.anx.find_answer("First Payment Letter Flood NU")),
+                "monthlyCapEx": self.anx.parse_NumValue(self.anx.find_answer("CapEx Impound NU")),
             }
 
             return self.remove_none_values(result)
 
         result = {
             "id$": str(ObjectId()),
-            "isLineOfCredit": self.anx.parse_TFValue(
-                self.anx.find_answer("Credit Line TF")
-            ),
+            "isLineOfCredit": self.anx.parse_TFValue(self.anx.find_answer("Credit Line TF")),
             "lineOfCreditPage": line_of_credit_setup(),
             "penalties": penalties_setup(),
-            "isConstructionReserve": self.anx.parse_TFValue(
-                self.anx.find_answer("Construction Holdback TF")
-            ),
+            "isConstructionReserve": self.anx.parse_TFValue(self.anx.find_answer("Construction Holdback TF")),
             "construction1": construction_setup(),
             "loanFeatures": loan_features_setup(),
             "reserves": reserves_setup(),
-            "isImpounds1": self.anx.parse_TFValue(
-                self.anx.find_answer("Impound Accounts TF")
-            ),
+            "isImpounds1": self.anx.parse_TFValue(self.anx.find_answer("Impound Accounts TF")),
             "impounds1": impounds_setup(),
         }
 
         if result.get("construction1"):
             if result["construction1"].get("isAssignmentOfPermits"):
-                if result.get("loanFeatures") and result["loanFeatures"].get(
-                    "isCannabisLoan"
-                ):
-                    result["loanFeatures"]["cannabisAssignmentPermitProperties"] = list(
-                        self.uuid_map["Properties"].values()
-                    )
+                if result.get("loanFeatures") and result["loanFeatures"].get("isCannabisLoan"):
+                    result["loanFeatures"]["cannabisAssignmentPermitProperties"] = list(self.uuid_map["Properties"].values())
 
         return self.remove_none_values(result)
 
@@ -1682,9 +1325,7 @@ class Knackly_Writer:
             Returns:
                 str | None: The name of the sole lender. If there were multiple lenders, return None.
             """
-            lender_name_rpt = self.anx.parse_RptValue(
-                self.anx.find_answer("Lender Name TE")
-            )
+            lender_name_rpt = self.anx.parse_RptValue(self.anx.find_answer("Lender Name TE"))
             lender_name_rpt = self.remove_none_values(lender_name_rpt)
             # print(lender_name_rpt)
 
@@ -1702,12 +1343,8 @@ class Knackly_Writer:
             Returns:
                 list[dict] | None: A list of dictionaries containing the name of the lender and amount invested if available, otherwise None if there were no multiple lenders
             """
-            lender_name_rpt = self.anx.parse_RptValue(
-                self.anx.find_answer("Lender Name TE")
-            )
-            lender_amount_rpt = self.anx.parse_RptValue(
-                self.anx.find_answer("Lender Invest Amount NU")
-            )
+            lender_name_rpt = self.anx.parse_RptValue(self.anx.find_answer("Lender Name TE"))
+            lender_amount_rpt = self.anx.parse_RptValue(self.anx.find_answer("Lender Invest Amount NU"))
             if lender_name_rpt is None:
                 lender_name_rpt = [None]
             if lender_amount_rpt is None:
@@ -1738,12 +1375,8 @@ class Knackly_Writer:
                 str | None: The email address if found, otherwise None.
             """
             # raise NotImplementedError
-            temple_email = self.anx.parse_TextValue(
-                self.anx.find_answer("Temple Lender Email Address TX")
-            )
-            finme_email = self.anx.parse_TextValue(
-                self.anx.find_answer("FinMe Lender Email TE")
-            )
+            temple_email = self.anx.parse_TextValue(self.anx.find_answer("Temple Lender Email Address TX"))
+            finme_email = self.anx.parse_TextValue(self.anx.find_answer("FinMe Lender Email TE"))
 
             if self.is_all_args_none(locals()):
                 return None
@@ -1756,37 +1389,21 @@ class Knackly_Writer:
 
         result = {
             "id$": str(ObjectId()),
-            "isExhibitALenders": self.anx.parse_RptValue(
-                self.anx.find_answer("Exhibit A Lender List TF")
-            )[
+            "isExhibitALenders": self.anx.parse_RptValue(self.anx.find_answer("Exhibit A Lender List TF"))[
                 0
             ],  # We only care about the answer to the first iteration
-            "IsMultipleLenders": self.anx.parse_TFValue(
-                self.anx.find_answer("seth_Multiple Lenders TF")
-            ),
-            "IsCFLLicensee": self.anx.parse_TFValue(
-                self.anx.find_answer("CA CFL License TF")
-            ),
+            "IsMultipleLenders": self.anx.parse_TFValue(self.anx.find_answer("seth_Multiple Lenders TF")),
+            "IsCFLLicensee": self.anx.parse_TFValue(self.anx.find_answer("CA CFL License TF")),
             "Lender": lender_setup(),
-            "CFLLicenseNumber": self.anx.parse_TextValue(
-                self.anx.find_answer("Lender CFL License Number TE")
-            ),
+            "CFLLicenseNumber": self.anx.parse_TextValue(self.anx.find_answer("Lender CFL License Number TE")),
             "MultipleLenders": multiple_lenders_setup(),
-            "NoticeTo": self.anx.parse_MCValue(
-                self.anx.find_answer("Lender Care Of MC")
-            ),
-            "OtherDelivery": self.anx.parse_TextValue(
-                self.anx.find_answer("Lender Delivery To Notice TE")
-            ),
+            "NoticeTo": self.anx.parse_MCValue(self.anx.find_answer("Lender Care Of MC")),
+            "OtherDelivery": self.anx.parse_TextValue(self.anx.find_answer("Lender Delivery To Notice TE")),
             "Notice": self.address(
-                street=self.anx.parse_TextValue(
-                    self.anx.find_answer("Lender Street Address TE")
-                ),
+                street=self.anx.parse_TextValue(self.anx.find_answer("Lender Street Address TE")),
                 city=self.anx.parse_TextValue(self.anx.find_answer("Lender City TE")),
                 state=self.anx.parse_MCValue(self.anx.find_answer("Lender State MC")),
-                zip=self.anx.parse_TextValue(
-                    self.anx.find_answer("Lender Zip Code TE")
-                ),
+                zip=self.anx.parse_TextValue(self.anx.find_answer("Lender Zip Code TE")),
             ),
             "noticeEmail": notice_email_setup(),
         }
@@ -1802,9 +1419,7 @@ class Knackly_Writer:
             dict: the `Guarantor` object
         """
 
-        def create_guarantor(
-            name: str, entity_type: str, guaranty_type: str, address: dict
-        ) -> dict:
+        def create_guarantor(name: str, entity_type: str, guaranty_type: str, address: dict) -> dict:
             """Helper function to create a single guarantor
 
             Args:
@@ -1906,9 +1521,7 @@ class Knackly_Writer:
             "Guarantor Owner Individual Name TE",
             "Guarantor Owner Individual Title TE",
         )
-        guarantor_components = [
-            elem if isinstance(elem, list) else [elem] for elem in guarantor_components
-        ]
+        guarantor_components = [elem if isinstance(elem, list) else [elem] for elem in guarantor_components]
         # guarantor_components = self.transform_list(guarantor_components)
         # print(guarantor_components)
 
@@ -1961,11 +1574,7 @@ class Knackly_Writer:
                 "WhichAddress": (
                     "Use borrower address"
                     if address_dropdown == "Borrower"
-                    else (
-                        "Use property address"
-                        if address_dropdown == "Property"
-                        else "Enter address"
-                    )
+                    else ("Use property address" if address_dropdown == "Property" else "Enter address")
                 ),
             }
 
@@ -1980,9 +1589,7 @@ class Knackly_Writer:
             elif entity_type == "trust":
                 temp_guarantor["GuarantorName"] = trust_name
                 temp_guarantor["GuarantorVenturersOrTrustees"] = [
-                    {"id$": str(ObjectId()), "Signer1Name": trustee}
-                    for trustee in trustees
-                    if trustee is not None
+                    {"id$": str(ObjectId()), "Signer1Name": trustee} for trustee in trustees if trustee is not None
                 ]
 
             # Other entity types
@@ -2024,9 +1631,7 @@ class Knackly_Writer:
                     # parent_type = type_  # This might be needed in future. Just adding it now because it *was* used in borrower_information, which this is mimicking.
 
                     # Look at each slice of these elements
-                    for idx_iii, s1s2 in enumerate(
-                        zip_longest(*s1s2_elements), start=1
-                    ):
+                    for idx_iii, s1s2 in enumerate(zip_longest(*s1s2_elements), start=1):
                         if self.is_all_args_none(s1s2):
                             continue
                         # print(f"{idx_i}:{idx_ii}:{idx_iii}: {s1s2}")
@@ -2095,9 +1700,7 @@ class Knackly_Writer:
                     o1s1_elements = tuple([self.listify(x) for x in o1s1_elements])
 
                     # Look at each slice of these elements
-                    for idx_iii, o1s1 in enumerate(
-                        zip_longest(*o1s1_elements), start=1
-                    ):
+                    for idx_iii, o1s1 in enumerate(zip_longest(*o1s1_elements), start=1):
                         if self.is_all_args_none(o1s1):
                             continue
                         # print(f"{idx_i}:{idx_ii}:{idx_iii}: {o1s1}")
@@ -2208,9 +1811,7 @@ class Knackly_Writer:
             dict: The object describing the attributes of the `titlePolicy` object.
         """
 
-        def create_title_company(
-            company_name: str, contact_name: str, address: dict, contact_email: str
-        ) -> dict:
+        def create_title_company(company_name: str, contact_name: str, address: dict, contact_email: str) -> dict:
             """Helper function to create a TitleCompany object.
 
             Args:
@@ -2247,9 +1848,7 @@ class Knackly_Writer:
         title_company = None
         if not self.is_all_args_none(parsed_components):
             c_name, o_name, street, state, city, zip_code, o_email = parsed_components
-            title_company = create_title_company(
-                c_name, o_name, self.address(street, city, state, zip_code), o_email
-            )
+            title_company = create_title_company(c_name, o_name, self.address(street, city, state, zip_code), o_email)
 
         parsed_components = self.anx.parse_multiple(
             "Title Order Number TE",
@@ -2362,19 +1961,14 @@ class Knackly_Writer:
                 paid_tos = [None]
             result = []
 
-            for amount, description, comment, paid_to in zip_longest(
-                amounts, descriptions, comments, paid_tos
-            ):
+            for amount, description, comment, paid_to in zip_longest(amounts, descriptions, comments, paid_tos):
                 if self.is_all_args_none([amount, description, comment, paid_to]):
                     continue  # Skip this iteration
 
                 # print(f"{amount=}, {description=}, {comment=}, {paid_to}")
 
                 # Weird edge cases
-                if (
-                    comment
-                    and comment.lower() == "delivery instructions to be provided"
-                ):
+                if comment and comment.lower() == "delivery instructions to be provided":
                     comment = "Delivery Instructions to be Provided"
                 if comment and comment.lower() == "to be net funded":
                     comment = "To Be Net Funded"
@@ -2445,9 +2039,7 @@ class Knackly_Writer:
             result["geraciFeeDelivery"] = geraci_delivery[0]
 
         # Per Diem
-        result["perDiemInterestDelivery"] = self.anx.parse_field(
-            "Per Diem interest Delivery MC"
-        )
+        result["perDiemInterestDelivery"] = self.anx.parse_field("Per Diem interest Delivery MC")
 
         # Return none if the result only contains the id$ key
         if len(result) == 1 and "id$" in result:
@@ -2490,9 +2082,7 @@ class Knackly_Writer:
                 "assigneeName": name,
             }
 
-            if street is not None and (
-                city_state_zip is not None and len(city_state_zip.split(", ")) == 3
-            ):
+            if street is not None and (city_state_zip is not None and len(city_state_zip.split(", ")) == 3):
                 city, state, zip_code = city_state_zip.split(", ")
                 result["assigneeAddress"] = self.address(street, city, state, zip_code)
 
@@ -2525,12 +2115,8 @@ class Knackly_Writer:
             result = []
             # properties, managers, dates, streets, cities, states, zip_codes = parsed_components
             parsed_components = [self.listify(x) for x in parsed_components]
-            for property_, manager, date, street, city, state, zip_code in zip_longest(
-                *parsed_components
-            ):
-                if self.is_all_args_none(
-                    [property_, manager, date, street, city, state, zip_code]
-                ):
+            for property_, manager, date, street, city, state, zip_code in zip_longest(*parsed_components):
+                if self.is_all_args_none([property_, manager, date, street, city, state, zip_code]):
                     continue  # Skip this iteration if everything is None
                 temp = {
                     "id$": str(ObjectId()),
@@ -2562,9 +2148,7 @@ class Knackly_Writer:
                 return None
 
             result = []
-            parsed_components = [
-                x if isinstance(x, list) else [x] for x in parsed_components
-            ]
+            parsed_components = [x if isinstance(x, list) else [x] for x in parsed_components]
             for subordination_info in zip_longest(*parsed_components):
                 if self.is_all_args_none(subordination_info):
                     continue
@@ -2596,20 +2180,9 @@ class Knackly_Writer:
 
                 temp = self.remove_none_values(temp)
 
-                if (
-                    len(temp) == 2
-                    and "id$" in temp
-                    and "tenantNames" in temp
-                    and len(temp["tenantNames"]) == 0
-                ):
+                if len(temp) == 2 and "id$" in temp and "tenantNames" in temp and len(temp["tenantNames"]) == 0:
                     continue  # Skip this iteration if its really empty
-                elif (
-                    len(temp) == 3
-                    and "id$" in temp
-                    and "property" in temp
-                    and "tenantNames" in temp
-                    and temp["tenantNames"] == []
-                ):
+                elif len(temp) == 3 and "id$" in temp and "property" in temp and "tenantNames" in temp and temp["tenantNames"] == []:
                     continue  # Skip this iteration for weird edge case
 
                 result.append(temp)
@@ -2674,9 +2247,7 @@ class Knackly_Writer:
             if self.is_all_args_none(parsed_components):
                 return None
 
-            parsed_components = [
-                x if x is not None else [None] for x in parsed_components
-            ]
+            parsed_components = [x if x is not None else [None] for x in parsed_components]
 
             result = []
             for intercreditor_agreement_info in zip_longest(*parsed_components):
@@ -2716,9 +2287,7 @@ class Knackly_Writer:
                     "trustor": trustor_name,
                     "trustee": trustee_name,
                     "address": self.address(street, city, state, zip_code),
-                    "lenderSpreadsheet": lender_spreadsheet(
-                        sub_lenders, invested_amounts
-                    ),
+                    "lenderSpreadsheet": lender_spreadsheet(sub_lenders, invested_amounts),
                     "subordinateInterestRate": interest_rate,
                 }
 
@@ -2735,9 +2304,7 @@ class Knackly_Writer:
             Returns:
                 list[dict]: A list of dictionaries, where each dictionary represents a single `akas` object.
             """
-            parsed_components = self.anx.parse_multiple(
-                "Borrower AKA Name MC", "Borrower AKA TX"
-            )
+            parsed_components = self.anx.parse_multiple("Borrower AKA Name MC", "Borrower AKA TX")
             if self.is_all_args_none(parsed_components):
                 return None
             party_names, alternate_names_list = parsed_components
@@ -2747,13 +2314,8 @@ class Knackly_Writer:
                 alternate_names_list = [[None] for _ in party_names]
 
             result = []
-            for party_name, alternate_names in zip_longest(
-                party_names, alternate_names_list
-            ):
-                if (
-                    self.is_all_args_none([party_name, alternate_names[0]])
-                    and len(alternate_names) == 1
-                ):
+            for party_name, alternate_names in zip_longest(party_names, alternate_names_list):
+                if self.is_all_args_none([party_name, alternate_names[0]]) and len(alternate_names) == 1:
                     continue
 
                 temp_aka = {
@@ -2769,51 +2331,29 @@ class Knackly_Writer:
 
         result = {
             "id$": str(ObjectId()),
-            "isAssignmentOfPropertyManagement": self.anx.parse_field(
-                "Assignment of Property Management TF"
-            ),
+            "isAssignmentOfPropertyManagement": self.anx.parse_field("Assignment of Property Management TF"),
             "assignment_Spreadsheet_list": assignment_spreadsheet(),
             "isW9": self.anx.parse_field("W9 TF"),
             "isFirstPaymentLetter": self.anx.parse_field("First Payment Letter TF"),
-            "firstPaymentAmount": self.anx.parse_field(
-                "First Payment Letter Payment AMT NU"
-            ),
-            "isFirstPaymentLetterUseAmount": self.anx.parse_field(
-                "First Payment Letter Use Amount TF"
-            ),
-            "isFirstPaymentIncludeEscrow": self.anx.parse_field(
-                "Fay Escrow Reserves TF"
-            ),
+            "firstPaymentAmount": self.anx.parse_field("First Payment Letter Payment AMT NU"),
+            "isFirstPaymentLetterUseAmount": self.anx.parse_field("First Payment Letter Use Amount TF"),
+            "isFirstPaymentIncludeEscrow": self.anx.parse_field("Fay Escrow Reserves TF"),
             "isForSale": self.anx.parse_field("seth_isForSale"),
             "loanSaleInformation": loan_sale_information(),
             "isCollateralAssignment": self.anx.parse_field("Collateral Assignment TF"),
             "isSubordinations": self.anx.parse_field("seth_isSubordinations"),
             "isIntercreditor": self.anx.parse_field("seth_isIntercreditor"),
-            "isLoanAdministrationAgreement": self.anx.parse_field(
-                "Loan Administration Agreement TF"
-            ),
-            "impledServicingSpreadPercent": self.anx.parse_field(
-                "Implied Servicing Spread Percent NU"
-            ),
+            "isLoanAdministrationAgreement": self.anx.parse_field("Loan Administration Agreement TF"),
+            "impledServicingSpreadPercent": self.anx.parse_field("Implied Servicing Spread Percent NU"),
             "investorRatePercent": self.anx.parse_field("Investor Rate Percent NU"),
-            "isPrincipalRepaymentAgreement": self.anx.parse_field(
-                "Principal Repayment Agreement TF"
-            ),
-            "isPrincipalRepaymentProportional": self.anx.parse_field(
-                "Principal Repayment Proportional TF"
-            ),
-            "principalRepaymentPercent": self.anx.parse_NumValue(
-                self.anx.find_answer("Principal Repayment Percent NU")
-            ),
+            "isPrincipalRepaymentAgreement": self.anx.parse_field("Principal Repayment Agreement TF"),
+            "isPrincipalRepaymentProportional": self.anx.parse_field("Principal Repayment Proportional TF"),
+            "principalRepaymentPercent": self.anx.parse_NumValue(self.anx.find_answer("Principal Repayment Percent NU")),
             "isThirdPartyAffiliate": self.anx.parse_field("Renovo Third Party TF"),
             "renovoThirdPartyName": self.anx.parse_field("Renovo Third Party Name TX"),
-            "housemaxCreditCardAuthorization": self.anx.parse_field(
-                "Housemax Credit Card Authorization TF"
-            ),
+            "housemaxCreditCardAuthorization": self.anx.parse_field("Housemax Credit Card Authorization TF"),
             "akasRequired": self.anx.parse_field("Borrower AKA Required TF"),
-            "isBorrowerCertification": self.anx.parse_field(
-                "Borrower Certification TF"
-            ),
+            "isBorrowerCertification": self.anx.parse_field("Borrower Certification TF"),
         }
 
         if result["isSubordinations"]:
@@ -2838,12 +2378,8 @@ class Knackly_Writer:
         """
         result = {
             "id$": str(ObjectId()),
-            "isRemoveArbitrationProvisions": self.anx.parse_field(
-                "Remove Arbitration TF"
-            ),
-            "isRemoveLanguageCapacity": self.anx.parse_field(
-                "Remove Language Capacity TF"
-            ),
+            "isRemoveArbitrationProvisions": self.anx.parse_field("Remove Arbitration TF"),
+            "isRemoveLanguageCapacity": self.anx.parse_field("Remove Language Capacity TF"),
             "isRemoveInitialLines": self.anx.parse_field("No Footer Initials TF"),
             "isRemoveAllEntityCerts": self.anx.parse_field("No Entity Certificates TF"),
             "isIncludeEntityDocs": self.anx.parse_field("Include Entity Documents TF"),
@@ -2853,9 +2389,7 @@ class Knackly_Writer:
             "masterGuarantyDate": self.anx.parse_field("Master Guaranty DT"),
             "masterGuarantyName": self.anx.parse_field("Master Guaranty Name TX"),
             "isNoFillNonOwner": self.anx.parse_field("No Fill Non Owner TF"),
-            "isNoFillBusinessPurpose": self.anx.parse_field(
-                "No Fill Business Purpose TF"
-            ),
+            "isNoFillBusinessPurpose": self.anx.parse_field("No Fill Business Purpose TF"),
         }
 
         result = self.remove_none_values(result)
@@ -2896,9 +2430,7 @@ class Knackly_Writer:
         self.json.update({"features": self.special_loan_features()})
         self.json.update({"lenderInformation": self.lender_information()})
         # Guaranty stuff below
-        self.json.update(
-            {"IsGuaranty": self.anx.parse_TFValue(self.anx.find_answer("Guarantor TF"))}
-        )
+        self.json.update({"IsGuaranty": self.anx.parse_TFValue(self.anx.find_answer("Guarantor TF"))})
         self.json.update({"Guarantor": self.guarantor_information_2()})
         # Servicer stuff below
         self.json.update({"isACH": self.anx.parse_field("ACH Delivery of Payments TF")})
@@ -2906,13 +2438,7 @@ class Knackly_Writer:
         self.json.update({"SelectServicer": self.anx.parse_field("Loan Servicer MC")})
         if self.json.get("SelectServicer") == "Other":
             self.json.update({"servicer": self.servicer()})
-        self.json.update(
-            {
-                "fciDisbursementAgreement": self.anx.parse_field(
-                    "FCI Disbursement Agreement TF"
-                )
-            }
-        )
+        self.json.update({"fciDisbursementAgreement": self.anx.parse_field("FCI Disbursement Agreement TF")})
         # Broker stuff below
         self.json.update({"isBroker": self.anx.parse_field("CA Broker TF")})
         self.json.update({"broker": self.broker()})
@@ -2943,9 +2469,7 @@ class Knackly_Writer:
             self.json.update({"Preparer": self.address(*preparer_address_components)})
         # Closing Contact stuff below
         self.json["closingName"] = self.anx.parse_field("Closing Contact Name TE")
-        self.json["closingEmail"] = self.anx.parse_field(
-            "Closing Contact Email Address TX"
-        )
+        self.json["closingEmail"] = self.anx.parse_field("Closing Contact Email Address TX")
         # Docs Add / Customize
         self.json["docsAdd"] = self.docs_add()
         self.json["docsCustomize"] = self.docs_customize()
@@ -2993,11 +2517,7 @@ class Knackly_Writer:
 
         elif isinstance(data, list):
             # Process each item in the list
-            result = [
-                self._recursive_clean(item)
-                for item in data
-                if item not in [False, None]
-            ]
+            result = [self._recursive_clean(item) for item in data if item not in [False, None]]
             if self.is_all_args_none(result):
                 return None
             return result
@@ -3048,9 +2568,7 @@ class Knackly_Writer:
             else:
                 return element
         else:
-            raise ValueError(
-                f"error, expecting either None or a list, received {type(element).__name__}: {element}"
-            )
+            raise ValueError(f"error, expecting either None or a list, received {type(element).__name__}: {element}")
 
 
 if __name__ == "__main__":

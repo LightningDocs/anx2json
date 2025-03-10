@@ -130,9 +130,7 @@ class ANX_Parser:
 
         return element.text
 
-    def parse_MCValue(
-        self, element: ET.Element
-    ) -> str | int | float | list[str] | list[int] | list[float]:
+    def parse_MCValue(self, element: ET.Element) -> str | int | float | list[str] | list[int] | list[float]:
         """Parse the contents of a MCValue element in the .anx file.
 
         Args:
@@ -158,14 +156,10 @@ class ANX_Parser:
             return None  # Weird edge case for Vesting Help MC being blank
         if len(element) == 1:
             return result[0]
-        elif (
-            len(element) > 1
-        ):  # This doesn't happen often. Represents the "Select All that Apply"
+        elif len(element) > 1:  # This doesn't happen often. Represents the "Select All that Apply"
             return result
         else:
-            raise ValueError(
-                "`result` list is empty. This really shouldn't happen here."
-            )
+            raise ValueError("`result` list is empty. This really shouldn't happen here.")
 
     def parse_Primitive(self, element: ET.Element) -> str | int | float:
         """Parse the contents of any primitive element type in the .anx file.
@@ -253,9 +247,7 @@ class ANX_Parser:
         else:
             return result
 
-    def get_unvisited_elements(
-        self, excluded_elements: list[str] = None
-    ) -> list[ET.Element]:
+    def get_unvisited_elements(self, excluded_elements: list[str] = None) -> list[ET.Element]:
         """Get a list of all elements that have not been used / visited.
 
         Args:
@@ -270,10 +262,7 @@ class ANX_Parser:
         unvisited_elements = []
 
         for element in self.answer_set:
-            if (
-                element.get("name") not in excluded_elements
-                and element.get("visited") != "true"
-            ):
+            if element.get("name") not in excluded_elements and element.get("visited") != "true":
                 unvisited_elements.append(element)
 
         return unvisited_elements

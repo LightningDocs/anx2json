@@ -1,6 +1,7 @@
 import os
-import main
 from time import sleep
+
+import main
 
 
 class Args:
@@ -29,9 +30,7 @@ def continuous():
                 continue
             # If the .anx file already exists in the output folder, also skip it. We don't want to allow overwriting files.
             if file in out_files:
-                print(
-                    f"Refusing to convert {file} as there already exists a file with the same name in {output_folder_path}"
-                )
+                print(f"Refusing to convert {file} as there already exists a file with the same name in {output_folder_path}")
                 continue
 
             # call main.py for the file, directing the converted file to the output folder
@@ -40,9 +39,7 @@ def continuous():
                 mode="r",
                 encoding="UTF-8",
             ) as in_file:
-                with open(
-                    f"user_experience/output/{base_name}.json", mode="w"
-                ) as out_file:
+                with open(f"user_experience/output/{base_name}.json", mode="w") as out_file:
                     args = Args(in_file, out_file)
 
                     try:
@@ -52,9 +49,7 @@ def continuous():
                         continue
 
                     # move the .anx file into the output folder as well
-                    os.rename(
-                        f"{input_folder_path}/{file}", f"{output_folder_path}/{file}"
-                    )
+                    os.rename(f"{input_folder_path}/{file}", f"{output_folder_path}/{file}")
 
         # Delay the program for 30 seconds
         print(f"Finished iteration {iteration}")
