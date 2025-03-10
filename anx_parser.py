@@ -203,6 +203,8 @@ class ANX_Parser:
             return None
         # Raise an error if the element is not actually a RptValue element
         if element.tag != "RptValue":
+            if "unans" in element.attrib:
+                return None
             raise ANXTagError("RptValue", element.tag)
         elif "unans" in element.attrib:
             return None

@@ -867,7 +867,7 @@ class Knackly_Writer:
                         "PropertyOwner": self.uuid_map["Borrowers"][hd_borrower_key],
                         "Vesting": (hd_vesting if hd_vesting != "married" else "married [vested with next borrower]"),
                     }
-                    for hd_borrower_key, hd_vesting in zip_longest(prop_borrower_dmc, vesting)
+                    for hd_borrower_key, hd_vesting in zip_longest([prop_borrower_dmc], vesting)
                     if not self.is_all_args_none([hd_borrower_key, hd_vesting])
                 ]
 
