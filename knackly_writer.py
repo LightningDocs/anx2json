@@ -85,6 +85,8 @@ class Knackly_Writer:
             return self.anx.parse_field("DLP Product MC")
         elif client == "Churchill":
             return self.anx.parse_field("Churchill Product MC")
+        elif client.lower() == "housemax":
+            return self.anx.parse_field("DLP Loan Purpose MC")
         else:
             return None
 
