@@ -8,6 +8,8 @@ test_output.json
 real_examples/
 user_experience/input/
 user_experience/output/
+in/*
+.vscode/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
