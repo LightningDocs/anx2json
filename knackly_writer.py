@@ -911,6 +911,40 @@ class Knackly_Writer:
         result["properties"] = properties
         return self.remove_none_values(result)
 
+    def equity_pledge_agreements(self) -> list[dict]:
+        """Creates a list of Knackly equity pledge agreement objects
+
+        Returns:
+            list[dict]: A list of objects, where each object represents a Knackly equity pledge agreement
+        """
+        parsed_components = self.anx.parse_multiple(
+            "Membership Pledgor Name TE",
+            "Membership Pledgor Ind TF",
+            "Membership Pledgor Signer 1 TE",
+            "Membership Pledgor Title TE",
+            "Membership Pledgor State MC",
+        )
+        parsed_components = [self.listify(cmp) for cmp in parsed_components]
+
+        results = []
+        for epa in zip_longest(*parsed_components):
+            pledgor_name, _, signer_name, signer_title, state = epa
+
+            if pledgor_name is None:
+                continue
+
+            knackly_epa = {
+                "id$": str(ObjectId()),
+                "entitySelection": "otherSelection",
+                "otherCollateral": pledgor_name,
+                "otherState": state,
+                "otherSigners": {"id$": str(ObjectId()), "signerName": signer_name, "signerTitle": signer_title},
+            }
+
+            results.append(self.remove_none_values(knackly_epa))
+
+        return results
+
     def standard_loan_terms(self) -> dict:
         """Produces the top level `loanTerms` object in the Knackly json.
 
@@ -2444,6 +2478,9 @@ class Knackly_Writer:
         # self.json["Borrower"] = self.borrower_information_page()
         # self.json["TitleHolder2"] = self.non_borrower_property_owners()
         self.json["propertyInformation"] = self.property_information_page()
+        self.json["isEquityPledgeAgreement"] = self.anx.parse_TFValue(self.anx.find_answer("Membership Pledge TF"))
+        if self.json.get("isEquityPledgeAgreement"):
+            self.json["equityPledgeAgreementsIntake"] = self.equity_pledge_agreements()
         # self.json["loanTerms"] = self.standard_loan_terms()
         self.json.update({"loanTerms": self.standard_loan_terms()})
         self.json.update({"features": self.special_loan_features()})
