@@ -2411,8 +2411,12 @@ class Knackly_Writer:
                 client_mc = self.anx.parse_field("Client MC")
                 if client_mc:
                     self.json["clientMC"] = client_mc.lower()
+                    if client_mc.lower() == "housemax":
+                        self.json["clientMC"] = "HouseMax"
             else:
                 self.json["clientName"] = client_name
+                if client_name.lower() == "housemax":
+                    self.json["clientName"] = "HouseMax"
 
         if client_name.lower() == "housemax" or client_mc.lower() == "housemax":
             self.json["Permissions"] = {
@@ -2424,6 +2428,7 @@ class Knackly_Writer:
                 "isLineOfCredit": True,
                 "isLegalDescription": True,
                 "isUCC": True,
+                "isInterestCalcType": True,
             }
 
         # Product dropdown
