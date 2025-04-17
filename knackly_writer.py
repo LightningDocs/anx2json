@@ -640,7 +640,7 @@ class Knackly_Writer:
                     if len(knackly_o1) > 1:
                         borrower_owners.append(knackly_o1)
 
-                if borrower_owners and self.is_transactional():
+                if borrower_owners:
                     temp_borrower["BorrowerOwners"] = borrower_owners
 
             # Clean up each temporary borrower before committing to adding it
@@ -942,6 +942,40 @@ class Knackly_Writer:
             }
 
             results.append(self.remove_none_values(knackly_epa))
+
+        return results
+
+    def collateral_security_agreements(self) -> list[dict]:
+        results = []
+
+        is_multiple_csas = self.anx.parse_TFValue(self.anx.find_answer("CSA Debtor TF"))
+        is_blanket = self.anx.parse_TFValue(self.anx.find_answer("UCC Personal Property TF"))
+
+        if is_multiple_csas:
+            parsed_components = self.anx.parse_multiple(
+                "CSA Debtor Name TE", "CSA Debtor Ind TF", "CSA Debtor Signer 1 TE", "CSA Debtor Signer 1 Title TE", "CSA Debtor State MC"
+            )
+            parsed_components = [self.listify(cmp) for cmp in parsed_components]
+
+            for csa in zip_longest(*parsed_components):
+                debtor_name, is_individual, signer_name, signer_title, state = csa
+                if debtor_name is None:
+                    continue
+
+                knackly_csa = {
+                    "id$": str(ObjectId()),
+                    "debtorSelection": "otherSelection",
+                    "otherType": ("individual" if is_individual else None),
+                    "otherName": debtor_name,
+                    "otherState": state,
+                    "otherSigners": {"id$": str(ObjectId()), "signerName": signer_name, "signerTitle": signer_title},
+                    "csaSelectionVariable": ("blanket" if is_blanket else None),
+                }
+
+                results.append(self.remove_none_values(knackly_csa))
+        else:
+            single_csa = {"id$": str(ObjectId()), "csaSelectionVariable": ("blanket" if is_blanket else None)}
+            results.append(self.remove_none_values(single_csa))
 
         return results
 
@@ -2463,6 +2497,7 @@ class Knackly_Writer:
                 "isLegalDescription": True,
                 "isUCC": True,
                 "isInterestCalcType": True,
+                "isComplexEntityIntake": True,
             }
 
         # Product dropdown
@@ -2481,6 +2516,9 @@ class Knackly_Writer:
         self.json["isEquityPledgeAgreement"] = self.anx.parse_TFValue(self.anx.find_answer("Membership Pledge TF"))
         if self.json.get("isEquityPledgeAgreement"):
             self.json["equityPledgeAgreementsIntake"] = self.equity_pledge_agreements()
+        self.json["isCollateralSecurityAgreement"] = self.anx.parse_TFValue(self.anx.find_answer("Collateral Security Agreement TF"))
+        if self.json.get("isCollateralSecurityAgreement"):
+            self.json["collateralSecurityAgreementsIntake"] = self.collateral_security_agreements()
         # self.json["loanTerms"] = self.standard_loan_terms()
         self.json.update({"loanTerms": self.standard_loan_terms()})
         self.json.update({"features": self.special_loan_features()})
